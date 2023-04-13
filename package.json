@@ -6,11 +6,20 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": "brian <admin@wayearn.com>",
+  "homepage": "https://github.com/toimc/vue-md-shiki",
   "license": "MIT",
   "scripts": {
-    "build": "learn build"
+    "build": "learn build",
+    "release": "lerna publish --conventional-commits"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "conventional-changelog-conventionalcommits": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toimc/vue-md-shiki.git"
+  }
 }
