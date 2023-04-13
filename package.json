@@ -9,7 +9,7 @@
   "homepage": "https://github.com/toimc/vue-markdown-shiki",
   "license": "MIT",
   "scripts": {
-    "build": "learn build",
+    "build": "lerna build",
     "release": "lerna publish --conventional-commits"
   },
   "workspaces": [

@@ -92,7 +92,7 @@ For more detailed usage instructions, please see the [Example](https://github.co
 
 ## ScreenShot
 
-![](./vue-markdown-shiki/screenshots/1.png)
+![](./packages/vue-markdown-shiki/screenshots/1.png)
 
 ## Contributing
 

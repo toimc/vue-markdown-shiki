@@ -27,7 +27,7 @@
     "lib": "lib"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "tsup lib/plugin.ts --format cjs,esm --dts --clean"
