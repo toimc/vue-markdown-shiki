@@ -1,0 +1,65 @@
+/* 小于640之后全是0 */
+@media (max-width: 639px) {
+  .vp-doc div[class*='language-'] {
+    border-radius: 0;
+    /* margin: 16px 0; */
+  }
+}
+
+@media (min-width: 640px) {
+  .vp-doc {
+    min-width: 320px;
+  }
+
+  .vp-doc div[class*='language-'] {
+    border-radius: 0 0 8px 8px;
+    /* margin: 16px 0; */
+  }
+
+  .vp-header {
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.vp-doc {
+  margin: 0;
+  width: 100%;
+  /* min-height: 100vh; */
+  line-height: 24px;
+  font-family: var(--vp-font-family-base);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--vp-c-text-1);
+  /* background-color: var(--vp-c-bg); */
+  direction: ltr;
+  font-synthesis: style;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vp-doc div:first-child p {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* .result-streaming> div > div :not(ol):not(ul):not(pre):last-child:after, */
+.result-streaming > div:last-child div span.line:last-child:after,
+.result-streaming > div:last-child p:last-child:after,
+.result-streaming > div:last-child li:last-child p:after {
+  -webkit-animation: blink 1s steps(5, start) infinite;
+  animation: blink 1s steps(5, start) infinite;
+  content: '▋';
+  margin-left: 0.25rem;
+  vertical-align: baseline;
+}

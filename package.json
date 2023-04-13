@@ -1,0 +1,16 @@
+{
+  "name": "vue3-md-shiki",
+  "version": "1.0.0",
+  "description": "A Vue 3 component library that provides integration with Shiki and Markdown-it. ",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "brian <admin@wayearn.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "learn build"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

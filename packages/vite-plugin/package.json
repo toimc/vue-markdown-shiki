@@ -1,0 +1,46 @@
+{
+  "name": "vite-plugin-vmsc-copy-assets",
+  "version": "1.0.0",
+  "description": "Use for vue-md-shiki-component to copy assets from node_modules",
+  "keywords": [
+    "vue3",
+    "vue-md-shiki-component",
+    "vite",
+    "plugin"
+  ],
+  "author": "toimc <brain@toimc.com>",
+  "type": "module",
+  "homepage": "",
+  "license": "MIT",
+  "types": "dist/plugin.d.ts",
+  "main": "dist/plugin.cjs",
+  "module": "dist/plugin.js",
+  "exports": {
+    ".": {
+      "import": "./dist/plugin.js",
+      "require": "./dist/plugin.cjs"
+    }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com/"
+  },
+  "scripts": {
+    "build": "tsup lib/plugin.ts --format cjs,esm --dts --clean"
+  },
+  "peerDependencies": {
+    "vue-md-shiki-components": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^6.7.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "pkg-dir": "^7.0.0"
+  }
+}

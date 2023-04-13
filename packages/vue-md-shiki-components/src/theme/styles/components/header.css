@@ -1,0 +1,23 @@
+.vp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  color: var(--vp-c-mute-light);
+  background-color: var(--vp-header-bg);
+  transition: all 0.5s;
+}
+
+.vp-header .ctrl {
+  display: flex;
+  align-items: center;
+}
+
+.vp-header .copyRef {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.vp-header .copyRef span {
+  margin-left: 0.375rem;
+}
