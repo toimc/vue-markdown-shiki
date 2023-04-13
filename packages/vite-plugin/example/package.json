@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "vue": "^3.2.47",
-    "vue-markdown-shiki": "workspace:^1.0.0"
+    "vue-markdown-shiki": "file:../../vue-components"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

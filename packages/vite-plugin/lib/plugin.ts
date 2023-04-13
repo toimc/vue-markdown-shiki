@@ -41,7 +41,7 @@ export function copyPublicPlugin(options: Options = {}): Plugin {
     name: pluginName,
     async buildStart() {
       const pkgDir = (await packageDirectory()) || __dirname
-      const sourceDir = join(pkgDir, 'node_modules/vue-md-shiki-components/public')
+      const sourceDir = join(pkgDir, 'node_modules/vue-markdown-shiki/public')
       const targetDir = join(pkgDir, options.distDir || 'public')
 
       await copyDir(sourceDir, targetDir, options)
