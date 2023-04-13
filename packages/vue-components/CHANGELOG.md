@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.3](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.0.2...vue-markdown-shiki@1.0.3) (2023-04-13)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* type error update docs ([4606818](https://github.com/toimc/vue-markdown-shiki/commit/4606818993c817635126d0846bd331d1d347cc29))
+
+
+
 ### 1.0.2 (2023-04-13)
 
 
