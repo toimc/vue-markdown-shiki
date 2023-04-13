@@ -7,13 +7,15 @@ This is a Vue 3 component library that provides integration with Shiki and Markd
 ## Features
 
 - Vue 3 integration for easy component development
-- Shiki integration for efficient code syntax highlighting
+- Shiki integration for efficient code syntax highlighting, with automatic dynamic loading of language packages
 - Markdown-it integration for powerful Markdown parsing
 - Customizable code highlighting and Markdown parsing options
 - Copy and download functionality
 - Two components provided: `VueMarkdownIt` and `VueMarkDownHeader`
   - `VueMarkdownIt` renders native Markdown strings and includes `VueMarkDownHeader` by default
   - `VueMarkDownHeader` provides a menu for copy and download functionality
+- Responsive styles for optimal display on any device
+- ChatGPT-like output mode for a unique user experience
 
 ## Options
 
@@ -91,7 +93,13 @@ For more detailed usage instructions, please see the [Example](./example).
 
 ## ScreenShot
 
+Shiki highlight:
+
 ![](./screenshots/1.png)
+
+Automatic + Dynamic loading of code language source.
+
+![](./screenshots/2.png)
 
 ## Contributing
 
