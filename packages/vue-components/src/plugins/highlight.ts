@@ -20,7 +20,7 @@ import {
 
 import type { Logger } from 'vite'
 import type { ThemeOptions } from '../markdown'
-import type { HighlightPlugin } from '@/shared'
+import type { HighlightPlugin } from '../shared'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 
