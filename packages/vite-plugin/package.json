@@ -1,17 +1,18 @@
 {
-  "name": "vite-plugin-vmsc",
+  "name": "vite-plugin-forvmsc",
   "version": "1.0.0",
   "description": "Use for vue-md-shiki-component to copy assets from node_modules",
   "private": false,
   "keywords": [
+    "vue",
     "vue3",
-    "vue-md-shiki-component",
+    "vue-markdown-shiki",
     "vite",
     "plugin"
   ],
   "author": "toimc <brain@toimc.com>",
   "type": "module",
-  "homepage": "https://github.com/toimc/vue-md-shiki/blob/main/packages/vite-plugin/README.md",
+  "homepage": "",
   "license": "MIT",
   "types": "dist/plugin.d.ts",
   "main": "dist/plugin.cjs",
@@ -32,7 +33,7 @@
     "build": "tsup lib/plugin.ts --format cjs,esm --dts --clean"
   },
   "peerDependencies": {
-    "vue-md-shiki-components": "^1.0.0"
+    "vue-markdown-shiki": "*"
   },
   "devDependencies": {
     "tsup": "^6.7.0"

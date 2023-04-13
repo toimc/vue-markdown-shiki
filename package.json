@@ -1,12 +1,12 @@
 {
-  "name": "vue3-md-shiki",
+  "name": "vue-markdown-shiki-monorepo",
   "version": "1.0.0",
   "description": "A Vue 3 component library that provides integration with Shiki and Markdown-it. ",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": "brian <admin@wayearn.com>",
-  "homepage": "https://github.com/toimc/vue-md-shiki",
+  "homepage": "https://github.com/toimc/vue-markdown-shiki",
   "license": "MIT",
   "scripts": {
     "build": "learn build",
@@ -20,6 +20,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/toimc/vue-md-shiki.git"
+    "url": "https://github.com/toimc/vue-markdown-shiki.git"
   }
 }

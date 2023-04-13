@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import { join } from 'path'
 import { packageDirectory } from 'pkg-dir'
 
-const pluginName = 'vite-plugin-vmsc'
+const pluginName = 'vite-plugin-forvmsc'
 
 interface Options {
   distDir?: string

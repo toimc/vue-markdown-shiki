@@ -1,5 +1,5 @@
 {
-  "name": "vue-md-shiki-components",
+  "name": "vue-markdown-shiki",
   "version": "1.0.0",
   "description": "A Vue 3 component library that provides integration with Shiki and Markdown-it. ",
   "keywords": [
@@ -12,7 +12,7 @@
     "vue3-markdown-it"
   ],
   "author": "toimc <brain@toimc.com>",
-  "homepage": "https://github.com/toimc/vue-md-shiki/tree/main/packages/vue-md-shiki-components",
+  "homepage": "",
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
@@ -67,5 +67,6 @@
     "vite-plugin-dts": "^2.2.0",
     "vue": "^3.2.47",
     "vue-tsc": "^1.2.0"
-  }
+  },
+  "gitHead": "a72e1a6a399bbe6eb03d5eee006af6b03cee47a6"
 }

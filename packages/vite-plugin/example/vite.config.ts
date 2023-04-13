@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { copyPublicPlugin } from 'vite-plugin-vmsc'
+import { copyPublicPlugin } from 'vite-plugin-forvmsc'
 
 // https://vitejs.dev/config/
 export default defineConfig({

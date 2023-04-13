@@ -5,13 +5,13 @@
 Copy Assets:
 
 ```bash
-npm install -D vite-plugin-vmsc
+npm install -D vite-plugin-forvmsc
 ```
 
 Modify your `vite.config.*` file:
 
 ```typescript
-import { copyPublicPlugin } from 'vite-plugin-vmsc'
+import { copyPublicPlugin } from 'vite-plugin-forvmsc'
 
 export default defineConfig(() => {
   // ...

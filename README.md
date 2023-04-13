@@ -33,20 +33,20 @@ To use this component library in your Vue 3 project, follow these steps:
 1. Install the library using `npm` or `yarn`:
 
    ```bash
-   npm install vue-md-shiki-components
+   npm install vue-markdown-shiki
    ```
 
    or
 
    ```bash
-   yarn add vue-md-shiki-components
+   yarn add vue-markdown-shiki
    ```
 
 2. Import the components you need in your Vue 3 project, modify `main.ts`
 
    ```typescript
-   import 'vue-md-shiki-components/style'
-   import markdownPlugin from 'vue-md-shiki-components'
+   import 'vue-markdown-shiki/style'
+   import markdownPlugin from 'vue-markdown-shiki'
 
    app.use(markdownPlugin)
    ```
@@ -56,13 +56,13 @@ To use this component library in your Vue 3 project, follow these steps:
    - Vite-plugin:
 
      ```bash
-     npm install -D vite-plugin-vmsc
+     npm install -D vite-plugin-forvmsc
      ```
 
      Modify your `vite.config.*` file:
 
      ```typescript
-     import { copyPublicPlugin } from 'vite-plugin-vmsc'
+     import { copyPublicPlugin } from 'vite-plugin-forvmsc'
 
       export default defineConfig(() => {
         // ...
@@ -72,13 +72,13 @@ To use this component library in your Vue 3 project, follow these steps:
           copyPublicPlugin()
       })
 
-      - Manually: `node_modules/vue-md-shiki-components/public/*`, to your `public` directory.
+      - Manually: `node_modules/vue-markdown-shiki/public/*`, to your `public` directory.
      ```
 
 4. Use the components in your Vue 3 templates:
 
    ```vue
-   import { VueMarkdownIt } from 'vue-md-shiki-components'
+   import { VueMarkdownIt } from 'vue-markdown-shiki'
 
    <template>
      <div>
@@ -87,11 +87,11 @@ To use this component library in your Vue 3 project, follow these steps:
    </template>
    ```
 
-For more detailed usage instructions, please see the [Example](./vue-md-shiki-components/example).
+For more detailed usage instructions, please see the [Example](./vue-markdown-shiki/example).
 
 ## ScreenShot
 
-![](./vue-md-shiki-components/screenshots/1.png)
+![](./vue-markdown-shiki/screenshots/1.png)
 
 ## Contributing
 
