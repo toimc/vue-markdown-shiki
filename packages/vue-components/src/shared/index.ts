@@ -104,7 +104,7 @@ export const getLangs = () => {
   ]
 }
 
-export const transform = {
+export const transform: Record<string, string> = {
   'C++': 'cpp',
   'C#': 'csharp'
 }

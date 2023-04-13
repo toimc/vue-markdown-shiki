@@ -12,11 +12,11 @@
   ],
   "author": "toimc <brain@toimc.com>",
   "type": "module",
-  "homepage": "",
+  "homepage": "https://github.com/toimc/vue-markdown-shiki/blob/main/packages/vite-plugin/README.md",
   "license": "MIT",
-  "types": "dist/plugin.d.ts",
-  "main": "dist/plugin.cjs",
-  "module": "dist/plugin.js",
+  "types": "./dist/plugin.d.ts",
+  "main": "./dist/plugin.cjs",
+  "module": "./dist/plugin.js",
   "exports": {
     ".": {
       "import": "./dist/plugin.js",
@@ -41,5 +41,9 @@
   "dependencies": {
     "fs-extra": "^11.1.1",
     "pkg-dir": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toimc/vue-markdown-shiki.git"
   }
 }
