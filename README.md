@@ -72,8 +72,9 @@ To use this component library in your Vue 3 project, follow these steps:
           copyPublicPlugin()
       })
 
-      - Manually: `node_modules/vue-markdown-shiki/public/*`, to your `public` directory.
      ```
+
+   - Manually: `node_modules/vue-markdown-shiki/public/*`, to your vue3 project's `public` directory.
 
 4. Use the components in your Vue 3 templates:
 
@@ -82,12 +83,12 @@ To use this component library in your Vue 3 project, follow these steps:
 
    <template>
      <div>
-       <VueMarkdownIt :content="your - raw - markdown - string" />
+       <VueMarkdownIt :content="'your-raw-markdown-string'" />
      </div>
    </template>
    ```
 
-For more detailed usage instructions, please see the [Example](./vue-markdown-shiki/example).
+For more detailed usage instructions, please see the [Example](https://github.com/toimc/vue-markdown-shiki/tree/main/packages/vue-components/example).
 
 ## ScreenShot
 
