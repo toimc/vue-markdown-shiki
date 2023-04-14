@@ -19,6 +19,9 @@ export default defineConfig(() => {
     // ...
     // add this line:
     copyPublicPlugin()
+   ],
+   // very important!
+   assetsInclude: ['**/*.wasm']
 })
 
 ```

@@ -65,15 +65,18 @@ To use this component library in your Vue 3 project, follow these steps:
 
      ```typescript
      import { copyPublicPlugin } from 'vite-plugin-forvmsc'
-
+     
       export default defineConfig(() => {
         // ...
         plugins: [
           // ...
           // add this line:
           copyPublicPlugin()
+        ],
+        // very important!
+        assetsInclude: ['**/*.wasm']
       })
-
+     
       - Manually: `node_modules/vue-markdown-shiki/public/*`, to your `public` directory.
      ```
 
@@ -81,7 +84,7 @@ To use this component library in your Vue 3 project, follow these steps:
 
    ```vue
    import { VueMarkdownIt } from 'vue-markdown-shiki'
-
+   
    <template>
      <div>
        <VueMarkdownIt :content="your - raw - markdown - string" />
