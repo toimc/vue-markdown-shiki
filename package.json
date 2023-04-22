@@ -9,6 +9,7 @@
   "homepage": "https://github.com/toimc/vue-markdown-shiki",
   "license": "MIT",
   "scripts": {
+    "dev": "pnpm -F=vue-markdown-shiki run dev",
     "build": "lerna build",
     "release": "lerna publish --conventional-commits"
   },

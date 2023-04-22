@@ -1,134 +1,155 @@
-<template>
-  <div :class="['vp-doc', props.class, { 'result-streaming': stream }]" :style="style">
-    <!-- 循环输出allData数组中的html字符串, 不渲染div -->
-    <!-- 循环的过程中，根据item的值的不同，来动态输出slot -->
-    <template v-for="item in allData" :key="item">
-      <!-- 自定义Code部分逻辑 -->
-      <slot name="code" :item="getCodes(item)" :html="item" :lang="getLangName(item)" v-if="codeClassRE.test(item)">
-        <VueMarkDownHeader :lang="getLangName(item)" :item="getCodes(item)"></VueMarkDownHeader>
-      </slot>
-      <div v-html="item"></div>
-    </template>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { ref, computed, inject, watch, onBeforeMount, type CSSProperties } from 'vue'
+<script lang="tsx">
+import { ref, computed, inject, watch, onBeforeMount, h, defineComponent, toRefs } from 'vue'
 // 样式
 import VueMarkDownHeader from './VueMarkDownHeader.vue'
 
 import '../theme/index'
 
-import type { PropType } from 'vue'
+import type { PropType, VNode, CSSProperties } from 'vue'
+import type { Lang } from 'shiki'
+import type { MarkdownType } from '../markdown'
 import type MarkdownIt from 'markdown-it'
 
 import { validateAndModifyMarkdown } from '../utils/mkUtils'
-import type { MarkdownType } from '../markdown'
 import { MarkdownSymbol, transform } from '../shared'
-import type { Lang } from 'shiki'
 
-// 判断是否设置了slots
-// const slots = useSlots()
-
-const props = defineProps({
-  content: {
-    type: String,
-    required: true
+export default defineComponent({
+  components: { VueMarkDownHeader },
+  props: {
+    content: {
+      type: String,
+      required: true
+    },
+    style: {
+      type: Object as PropType<CSSProperties>,
+      default: () => {}
+    },
+    class: {
+      type: String,
+      default: ''
+    },
+    stream: {
+      type: Boolean,
+      default: false
+    }
   },
-  style: {
-    type: Object as PropType<CSSProperties>,
-    default: () => {}
-  },
-  class: {
-    type: String,
-    default: ''
-  },
-  stream: {
-    type: Boolean,
-    default: false
-  }
-})
+  setup(props, { expose }) {
+    const render = ref('')
+    const md = ref<MarkdownIt>()
+    const loadLangFn = ref<MarkdownType['loadLang']>()
 
-const render = ref('')
-const md = ref<MarkdownIt>()
-const loadLangFn = ref<MarkdownType['loadLang']>()
+    // 判断是否是code
+    // const codeClassRE = /class="language-.*/
+    // 提取语言
+    // const codeRE = /class="language-([\w+]+)"/
+    const langRE = /```([\w+#]+)\n/g
 
-const regex = /<([a-zA-Z]+)(?:\s+[a-zA-Z]+=(?:"[^"]*"|'[^']*'))*\s*\/?>[\s\S]*?<\/\1\s*>/g
+    const { stream, class: cls, style } = toRefs(props)
 
-// 判断是否是code
-const codeClassRE = /class="language-.*/
-// 提取语言
-const codeRE = /class="language-([\w+]+)"/
-const langRE = /```([\w+#]+)\n/g
+    const divClass = computed(() => {
+      return ['vp-doc', cls.value, { 'result-streaming': stream.value }]
+    })
 
-// function hasSlot  (name: string) {
-//   return slots[name] !== undefined
-// }
+    function getCodes(item: string, lang: string = '') {
+      let text = ''
 
-function getLangName(item: string) {
-  return codeRE.exec(item)?.[1] || ''
-}
+      const parser = new DOMParser()
+      const htmlDoc = parser.parseFromString(item, 'text/html')
 
-function getCodes(item: string) {
-  let text = ''
+      const isShell = /shellscript|shell|bash|sh|zsh/.test(lang)
 
-  const parser = new DOMParser()
-  const htmlDoc = parser.parseFromString(item, 'text/html')
+      htmlDoc.querySelectorAll('span.line:not(.diff.remove)').forEach((node) => (text += (node.textContent || '') + '\n'))
 
-  const isShell = /shellscript|shell|bash|sh|zsh/.test(getLangName(item))
+      if (isShell) {
+        text = text.replace(/^ *(\$|>) /gm, '').trim()
+      }
 
-  htmlDoc.querySelectorAll('span.line:not(.diff.remove)').forEach((node) => (text += (node.textContent || '') + '\n'))
+      return text.slice(0, -1)
+    }
+    const validateAndModify = computed(() => {
+      return validateAndModifyMarkdown(props.content || '')
+    })
 
-  if (isShell) {
-    text = text.replace(/^ *(\$|>) /gm, '').trim()
-  }
+    function traverseNode(node: Node): VNode | VNode[] | undefined {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent as unknown as VNode
+      }
 
-  return text.slice(0, -1)
-}
-const validateAndModify = computed(() => {
-  return validateAndModifyMarkdown(props.content || '')
-})
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const element = node as HTMLElement
 
-const allData = computed<string[]>(() => {
-  return render.value.match(regex) || []
-})
+        // 判断 class 是否以 'language-' 开头
+        const languageClassRegex = /^language-/
+        const languageClassFound = Array.from(element.classList).some((className) => languageClassRegex.test(className))
 
-const loadLangAsync = async () => {
-  // 异步加载语言包
-  const match = Array.from(validateAndModify.value.matchAll(langRE)).map((match) => {
-    return match[1]
-  })
-  if (match && loadLangFn.value) {
-    for (let i = 0; i < match.length; i++) {
-      const item = match[i]
-      try {
-        const langType = transform[item.toLocaleUpperCase()] || item
-        await loadLangFn.value(langType as Lang)
-        // loadLangFn.value(match[i] as Lang).then(() => {
-        //   console.log('loaded')
-        // })
-      } catch (error) {
-        // 强制渲染
-        continue
+        if (languageClassFound) {
+          const langMatch = element.className.match(/language-(\w+)/)
+          const lang = langMatch ? langMatch[1] : 'plain'
+
+          const item = getCodes(element.innerHTML, lang)
+          const html = element.innerHTML
+          // const lang = getLangName(item)
+          // 从element.className中使用正则匹配，匹配其中xxxx的内容，默认是plain
+
+          return (
+            <div class={divClass.value} style={{ ...style }}>
+              <slot name="code" item={item} html={item} lang={lang}>
+                <VueMarkDownHeader lang={lang} item={item}></VueMarkDownHeader>
+              </slot>
+              <div class={element.className} v-html={html}></div>
+            </div>
+          )
+        } else {
+          const children = Array.from(element.childNodes).map(traverseNode).flat()
+          return h(element.tagName, {}, children)
+        }
       }
     }
+
+    const loadLangAsync = async () => {
+      // 异步加载语言包
+      const match = Array.from(validateAndModify.value.matchAll(langRE)).map((match) => {
+        return match[1]
+      })
+      if (match && loadLangFn.value) {
+        for (let i = 0; i < match.length; i++) {
+          const item = match[i]
+          try {
+            const langType = transform[item.toLocaleUpperCase()] || item
+            await loadLangFn.value(langType as Lang)
+            // loadLangFn.value(match[i] as Lang).then(() => {
+            //   console.log('loaded')
+            // })
+          } catch (error) {
+            // 强制渲染
+            continue
+          }
+        }
+      }
+      // 使用同个render实例渲染
+      render.value = md.value?.render(validateAndModify.value) || ''
+    }
+
+    watch(validateAndModify, async () => await loadLangAsync())
+
+    onBeforeMount(async () => {
+      const { md: markd, loadLang } = (await inject(MarkdownSymbol)) as MarkdownType
+      // 保存实例
+      md.value = markd
+      loadLangFn.value = loadLang
+      await loadLangAsync()
+    })
+
+    const allData = () => {
+      const parser = new DOMParser()
+      const parsedHtml = parser.parseFromString(render.value, 'text/html')
+      const vnode = traverseNode(parsedHtml.body)
+      const parentNode = h('div', { class: divClass.value, style: style.value }, [vnode])
+      return parentNode
+    }
+
+    return () => allData()
   }
-  // 使用同个render实例渲染
-  render.value = md.value?.render(validateAndModify.value) || ''
-}
-
-watch(validateAndModify, async () => await loadLangAsync())
-
-onBeforeMount(async () => {
-  const { md: markd, loadLang } = (await inject(MarkdownSymbol)) as MarkdownType
-  // 保存实例
-  md.value = markd
-  loadLangFn.value = loadLang
-  await loadLangAsync()
-})
-
-defineExpose({
-  md
 })
 </script>
 <style scoped></style>
