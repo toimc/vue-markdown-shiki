@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import mdDemo from './example.md?raw'
 
 const md = ref(null)
@@ -14,6 +14,20 @@ const md = ref(null)
 const theme = ref<'dark' | 'light'>('light')
 
 const str = ref(mdDemo)
+
+onMounted(() => {
+  const len = str.value.length
+  const value = str.value
+  let i = 0
+  setInterval(() => {
+    // 截取str随机长度，并每次添加一个字符到str，直到len
+    str.value = value.slice(0, i)
+    i++
+    if (i === len) {
+      i = 0
+    }
+  }, 20)
+})
 </script>
 
 <style>

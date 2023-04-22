@@ -47,7 +47,7 @@ export default defineComponent({
     const { stream, class: cls, style } = toRefs(props)
 
     const divClass = computed(() => {
-      return ['vp-doc', cls.value, { 'result-streaming': stream.value }]
+      return ['vp-doc', cls.value]
     })
 
     function getCodes(item: string, lang: string = '') {
@@ -144,7 +144,7 @@ export default defineComponent({
       const parser = new DOMParser()
       const parsedHtml = parser.parseFromString(render.value, 'text/html')
       const vnode = traverseNode(parsedHtml.body)
-      const parentNode = h('div', { class: divClass.value, style: style.value }, [vnode])
+      const parentNode = h('div', { class: [divClass.value, { 'result-streaming': stream.value }], style: style.value }, [vnode])
       return parentNode
     }
 
