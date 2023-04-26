@@ -1,32 +1,42 @@
 <template>
   <div class="body">
-    <button class="btn" @click="theme = theme === 'dark' ? 'light' : 'dark'">Change Theme</button>
-    <VueMarkdownIt :content="str" :stream="true" ref="md" :class="theme"> </VueMarkdownIt>
+    <div class="flex">
+      <button class="btn" @click="theme = theme === 'dark' ? 'light' : 'dark'">Change Theme</button>
+      <button class="btn" @click="stream = !stream">Turn {{ stream ? 'off' : 'on' }} Stream</button>
+    </div>
+    <VueMarkdownIt :content="str" :stream="stream" ref="md" :class="theme"> </VueMarkdownIt>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import mdDemo from './example.md?raw'
 
 const md = ref(null)
 
 const theme = ref<'dark' | 'light'>('light')
+const stream = ref(false)
 
 const str = ref(mdDemo)
+let t: any = null
 
-onMounted(() => {
-  const len = str.value.length
-  const value = str.value
-  let i = 0
-  setInterval(() => {
-    // 截取str随机长度，并每次添加一个字符到str，直到len
-    str.value = value.slice(0, i)
-    i++
-    if (i === len) {
-      i = 0
-    }
-  }, 20)
+watch(stream, () => {
+  if (stream.value) {
+    const len = str.value.length
+    const value = str.value
+    let i = 0
+    t = setInterval(() => {
+      // 截取str随机长度，并每次添加一个字符到str，直到len
+      str.value = value.slice(0, i)
+      i++
+      if (i === len) {
+        i = 0
+      }
+    }, 20)
+  } else {
+    str.value = mdDemo
+    clearInterval(t)
+  }
 })
 </script>
 
@@ -134,5 +144,10 @@ ul {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

@@ -16,7 +16,7 @@ import {
   defineProcessor,
   getHighlighter,
   type Processor
-} from 'shiki-processor'
+} from './shiki-processor/index'
 
 import type { Logger } from 'vite'
 import type { ThemeOptions } from '../markdown'

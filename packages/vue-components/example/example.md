@@ -320,11 +320,66 @@ Duplicated footnote reference[^second].
 
 # Code and Syntax Highlighting
 
+highlight line with focus: 
+
+```js {3}
+export default {
+  data () {
+    return {
+      msg: 'FocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocusedFocused!' // [!code  focus]
+    }
+  }
+}
+```
+
+diff code: 
+
+```js
+export default {
+  data () {
+    return {
+      msg: 'Removed' // [!code  --]
+      msg: 'Added' // [!code  ++]
+    }
+  }
+}
+```
+
+code group: 
+
+::: code-group
+
+```js [config.js]
+/**
+ * @type {import('vitepress').UserConfig}
+ */
+const config = {
+  // ...
+}
+
+export default config
+```
+
+```ts [config.ts]
+import type { UserConfig } from 'vitepress'
+
+const config: UserConfig = {
+  // ...
+}
+
+export default config
+```
+
+:::
+
+
 ```
 Inline `code` has `back-ticks around` it.
 ```
 
 Inline `code` has `back-ticks around` it.
+
+::: code-group
 
 ```c#
 using System.IO.Compression;
@@ -435,6 +490,7 @@ datahere
 datahere */
 datahere
 ```
+:::
 
 ------
 

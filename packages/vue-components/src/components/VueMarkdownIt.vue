@@ -2,6 +2,7 @@
 import { ref, computed, inject, watch, onBeforeMount, h, defineComponent, toRefs } from 'vue'
 // 样式
 import VueMarkDownHeader from './VueMarkDownHeader.vue'
+import VueGroupCode from './VueGroupCode.vue'
 
 import '../theme/index'
 
@@ -38,11 +39,17 @@ export default defineComponent({
     const md = ref<MarkdownIt>()
     const loadLangFn = ref<MarkdownType['loadLang']>()
 
+    expose({
+      render,
+      md,
+      loadLangFn
+    })
+
     // 判断是否是code
     // const codeClassRE = /class="language-.*/
     // 提取语言
     // const codeRE = /class="language-([\w+]+)"/
-    const langRE = /```([\w+#]+)\n/g
+    const langRE = /(?<=```)\S+/g
 
     const { stream, class: cls, style } = toRefs(props)
 
@@ -82,7 +89,17 @@ export default defineComponent({
         const languageClassRegex = /^language-/
         const languageClassFound = Array.from(element.classList).some((className) => languageClassRegex.test(className))
 
-        if (languageClassFound) {
+        const groupRegex = /vp-code-group/
+        const groupFound = Array.from(element.classList).some((className) => groupRegex.test(className))
+
+        // 组代码块逻辑
+        if (groupFound) {
+          const labels = Array.from(element.querySelectorAll('.tabs label'))
+          const names = labels.map((label) => (label as HTMLElement).innerText)
+          const blocks = element.querySelectorAll('.blocks div')
+
+          return <VueGroupCode names={names} blocks={blocks}></VueGroupCode>
+        } else if (languageClassFound) {
           const langMatch = element.className.match(/language-(\w+)/)
           const lang = langMatch ? langMatch[1] : 'plain'
 
@@ -101,16 +118,29 @@ export default defineComponent({
           )
         } else {
           const children = Array.from(element.childNodes).map(traverseNode).flat()
-          return h(element.tagName, {}, children)
+          const attrs = {}
+          for (let i = 0; i < element.attributes.length; i++) {
+            const attr = element.attributes[i]
+            attrs[attr.name] = attr.value
+          }
+          // 保留attrs，直接透传给h
+          return h(
+            element.tagName,
+            {
+              ...attrs
+            },
+            children
+          )
         }
       }
     }
 
-    const loadLangAsync = async () => {
+    async function loadLangAsync() {
       // 异步加载语言包
       const match = Array.from(validateAndModify.value.matchAll(langRE)).map((match) => {
-        return match[1]
+        return match[0]
       })
+      console.log('🚀 ~ file: VueMarkdownIt.vue:143 ~ match ~ match:', match)
       if (match && loadLangFn.value) {
         for (let i = 0; i < match.length; i++) {
           const item = match[i]
@@ -144,8 +174,11 @@ export default defineComponent({
       const parser = new DOMParser()
       const parsedHtml = parser.parseFromString(render.value, 'text/html')
       const vnode = traverseNode(parsedHtml.body)
-      const parentNode = h('div', { class: [divClass.value, { 'result-streaming': stream.value }], style: style.value }, [vnode])
-      return parentNode
+      return (
+        <div class={[divClass.value, { 'result-streaming': stream.value }]} style={{ ...style.value }}>
+          {vnode}
+        </div>
+      )
     }
 
     return () => allData()

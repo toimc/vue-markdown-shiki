@@ -13,8 +13,10 @@ export function preWrapperPlugin(md: MarkdownIt) {
     if (!allLangs.includes(lang)) {
       lang = 'plainText'
     }
+
     const rawCode = fence(...args)
     return `<div class="language-${lang}">${rawCode}</div>`
+    // return `<div class="language-${lang}${/ active( |$)/.test(token.info) ? ' active' : ''}">${rawCode}</div>`
     // return `<div class="language-${lang}${
     //   / active( |$)/.test(token.info) ? ' active' : ''
     // }"><button title="Copy Code" class="copy"></button><span class="lang">${lang}</span>${rawCode}</div>`

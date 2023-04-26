@@ -15,6 +15,9 @@
 
 .vp-header .copyRef {
   cursor: pointer;
+}
+
+.vp-header .copyRef:first-child{
   margin-right: 1rem;
 }
 

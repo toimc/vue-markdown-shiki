@@ -13,36 +13,30 @@ export const containerPlugin = (md: MarkdownIt) => {
     .use(...createContainer('details', 'Details', md))
     // explicitly escape Vue syntax
     .use(container, 'v-pre', {
-      render: (tokens: Token[], idx: number) =>
-        tokens[idx].nesting === 1 ? `<div v-pre>\n` : `</div>\n`
+      render: (tokens: Token[], idx: number) => (tokens[idx].nesting === 1 ? `<div v-pre>\n` : `</div>\n`)
     })
     .use(container, 'raw', {
-      render: (tokens: Token[], idx: number) =>
-        tokens[idx].nesting === 1 ? `<div class="vp-raw">\n` : `</div>\n`
+      render: (tokens: Token[], idx: number) => (tokens[idx].nesting === 1 ? `<div class="vp-raw">\n` : `</div>\n`)
     })
     .use(...createCodeGroup())
-    // .use(container, 'PromptBar', {
-    //   render: (tokens: Token[], idx: number) => {
-    //     debugger
-    //     const token = tokens[idx]
-    //     const info = token.info.trim().slice('prompt-bar'.length).trim()
-    //     if (token.nesting === 1) {
-    //       const title = md.renderInline(info || 'Terminal')
-    //       return `<div class="prompt-bar custom-block"><p class="custom-block-title">${title}</p>\n`
-    //     } else {
-    //       return `</div>\n`
-    //     }
-    //   }
-    // })
+  // .use(container, 'PromptBar', {
+  //   render: (tokens: Token[], idx: number) => {
+  //     debugger
+  //     const token = tokens[idx]
+  //     const info = token.info.trim().slice('prompt-bar'.length).trim()
+  //     if (token.nesting === 1) {
+  //       const title = md.renderInline(info || 'Terminal')
+  //       return `<div class="prompt-bar custom-block"><p class="custom-block-title">${title}</p>\n`
+  //     } else {
+  //       return `</div>\n`
+  //     }
+  //   }
+  // })
 }
 
 type ContainerArgs = [typeof container, string, { render: RenderRule }]
 
-function createContainer(
-  klass: string,
-  defaultTitle: string,
-  md: MarkdownIt
-): ContainerArgs {
+function createContainer(klass: string, defaultTitle: string, md: MarkdownIt): ContainerArgs {
   return [
     container,
     klass,
@@ -75,14 +69,7 @@ function createCodeGroup(): ContainerArgs {
           let tabs = ''
           let checked = 'checked="checked"'
 
-          for (
-            let i = idx + 1;
-            !(
-              tokens[i].nesting === -1 &&
-              tokens[i].type === 'container_code-group_close'
-            );
-            ++i
-          ) {
+          for (let i = idx + 1; !(tokens[i].nesting === -1 && tokens[i].type === 'container_code-group_close'); ++i) {
             if (tokens[i].type === 'fence' && tokens[i].tag === 'code') {
               const title = extractTitle(tokens[i].info)
               const id = nanoid(7)
