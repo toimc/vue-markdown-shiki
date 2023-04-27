@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { PluginOption } from 'vite'
 
 import fs from 'fs-extra'
 import { join } from 'path'
@@ -36,7 +36,7 @@ async function copyDir(sourceDir: string, targetDir: string, options: Options = 
   }
 }
 
-export function copyPublicPlugin(options: Options = {}): Plugin {
+export function copyPublicPlugin(options: Options = {}): PluginOption {
   return {
     name: pluginName,
     async buildStart() {
