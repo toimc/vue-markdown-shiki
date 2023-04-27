@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.1.0...vue-markdown-shiki@1.2.0) (2023-04-27)
+
+
+### ✨ Features | 新功能
+
+* add focus,diff, code-group feature ([de4c4b4](https://github.com/toimc/vue-markdown-shiki/commit/de4c4b483baf071262fbffc6ef82a3570b2235af))
+
+
+
 ### [1.0.3](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.0.2...vue-markdown-shiki@1.0.3) (2023-04-13)
 
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/toimc/vue-markdown-shiki/compare/vite-plugin-forvmsc@1.0.4...vite-plugin-forvmsc@1.0.5) (2023-04-27)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* Plugin2 type error ([be369f2](https://github.com/toimc/vue-markdown-shiki/commit/be369f29e7db010f375749a022d0d98dad336e33))
+
+
+
 ### 1.0.2 (2023-04-13)
 
 
