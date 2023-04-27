@@ -1,5 +1,5 @@
-import { type CSSProperties } from 'vue';
-import type { PropType } from 'vue';
+import type { PropType, CSSProperties } from 'vue';
+import type { Lang } from 'shiki';
 import type MarkdownIt from 'markdown-it';
 declare const _sfc_main: import("vue").DefineComponent<{
     content: {
@@ -19,7 +19,9 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: boolean;
     };
 }, {
+    render: import("vue").Ref<string>;
     md: import("vue").Ref<MarkdownIt | undefined>;
+    loadLangFn: import("vue").Ref<((lang: Lang) => Promise<void>) | undefined>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     content: {
         type: StringConstructor;

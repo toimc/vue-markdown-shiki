@@ -18,6 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-s clean type-check build-only",
+    "build:web": "vite --config=vite-web.config.ts build",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "clean": "rimraf dist/"
@@ -55,17 +56,17 @@
     "@types/markdown-it-attrs": "^4.1.0",
     "@types/markdown-it-container": "^2.0.5",
     "@types/markdown-it-emoji": "^2.0.2",
-    "@types/node": "^18.15.13",
+    "@types/node": "^18.16.1",
     "lerna": "^6.5.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
     "unplugin-icons": "^0.16.1",
     "unplugin-vue-components": "^0.24.1",
-    "vite": "^4.3.1",
+    "vite": "^4.3.3",
     "vite-plugin-dts": "^2.3.0",
     "vue": "^3.2.47",
-    "vue-tsc": "^1.4.2"
+    "vue-tsc": "^1.6.0"
   },
   "repository": {
     "type": "git",

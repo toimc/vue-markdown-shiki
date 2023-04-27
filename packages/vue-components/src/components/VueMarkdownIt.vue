@@ -140,7 +140,6 @@ export default defineComponent({
       const match = Array.from(validateAndModify.value.matchAll(langRE)).map((match) => {
         return match[0]
       })
-      console.log('🚀 ~ file: VueMarkdownIt.vue:143 ~ match ~ match:', match)
       if (match && loadLangFn.value) {
         for (let i = 0; i < match.length; i++) {
           const item = match[i]
@@ -170,7 +169,8 @@ export default defineComponent({
       await loadLangAsync()
     })
 
-    const allData = () => {
+    // @ts-ignore
+    function allData() {
       const parser = new DOMParser()
       const parsedHtml = parser.parseFromString(render.value, 'text/html')
       const vnode = traverseNode(parsedHtml.body)

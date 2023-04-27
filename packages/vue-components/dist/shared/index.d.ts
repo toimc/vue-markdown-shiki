@@ -44,7 +44,4 @@ export interface HighlightPlugin {
 }
 export declare const MarkdownSymbol: unique symbol;
 export declare const getLangs: () => string[];
-export declare const transform: {
-    'C++': string;
-    'C#': string;
-};
+export declare const transform: Record<string, string>;

@@ -1,4 +1,3 @@
-import { customAlphabet } from 'nanoid'
 // import c from 'picocolors'
 import type {
   // BUNDLED_LANGUAGES,
@@ -7,6 +6,12 @@ import type {
   IThemeRegistration,
   Lang
 } from 'shiki'
+import type { Processor } from './shiki-processors/index'
+import type { Logger } from 'vite'
+import type { ThemeOptions } from '../markdown'
+import type { HighlightPlugin } from '../shared'
+
+import { customAlphabet } from 'nanoid'
 import {
   addClass,
   createDiffProcessor,
@@ -14,13 +19,8 @@ import {
   createHighlightProcessor,
   createRangeProcessor,
   defineProcessor,
-  getHighlighter,
-  type Processor
-} from './shiki-processor/index'
-
-import type { Logger } from 'vite'
-import type { ThemeOptions } from '../markdown'
-import type { HighlightPlugin } from '../shared'
+  getHighlighter
+} from './shiki-processors/index'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 

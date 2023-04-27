@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     TablerCheck: typeof import('~icons/tabler/check')['default']
     TablerCopy: typeof import('~icons/tabler/copy')['default']
     TablerDownload: typeof import('~icons/tabler/download')['default']
+    VueGroupCode: typeof import('./src/components/VueGroupCode.vue')['default']
     VueMarkDownHeader: typeof import('./src/components/VueMarkDownHeader.vue')['default']
     VueMarkdownIt: typeof import('./src/components/VueMarkdownIt.vue')['default']
   }

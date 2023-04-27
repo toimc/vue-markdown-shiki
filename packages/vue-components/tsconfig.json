@@ -12,14 +12,13 @@
     "noImplicitAny": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom", "dom.iterable"],
-    "declaration": true, 
-    "declarationDir": "dist",
     "ignoreDeprecations": "5.0",
     "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "exclude": ["**/node_modules/**", "**/dist/**", "dist", "public", "example"],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "packages/vite-plugin/vite-copy-plugin.ts", "packages/vite-plugin/vite-copy-plugin.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
