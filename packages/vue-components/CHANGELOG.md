@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.2.0...vue-markdown-shiki@1.2.1) (2023-04-27)
+
+
+### 💄 Styles | 样式
+
+* modify flash cursor, remove unused files ([e1c562a](https://github.com/toimc/vue-markdown-shiki/commit/e1c562a2075f523d61f93c88aac95b8f6e75a8ae))
+
+
+
 ## [1.2.0](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.1.0...vue-markdown-shiki@1.2.0) (2023-04-27)
 
 
