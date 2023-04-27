@@ -52,11 +52,13 @@
     visibility: hidden;
   }
 }
-/* 
-.result-streaming> body p:not(ol):not(ul):not(pre):last-child:after,
-.result-streaming li:last-child:not(:empty):not(:has(div)):not(:has(p)):after,*/
+
+/* .result-streaming> body p:not(ol):not(ul):not(pre):last-child:after, */
+/* .result-streaming li:last-child:not(:empty):not(:has(div)):not(:has(p)):after, */
 .result-streaming .line:last-child > span:last-child:after,
-.result-streaming>body>:last-child>*:last-child::after
+.result-streaming > body > :last-child:not(ol):not(ul):not(pre):not(:has(.line)):after,
+.result-streaming > body > ul:last-child > li:last-child::after
+/* .result-streaming > body > :last-child > *:last-child::after */
 {
   -webkit-animation: blink 1s steps(5, start) infinite;
   animation: blink 1s steps(5, start) infinite;

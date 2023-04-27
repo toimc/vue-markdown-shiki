@@ -16,7 +16,7 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.3",
-    "vite-plugin-forvmsc": "workspace:^",
+    "vite-plugin-forvmsc": "file:../../vite-plugin",
     "vue-tsc": "^1.4.2"
   }
 }
