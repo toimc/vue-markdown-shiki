@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.2.1...vue-markdown-shiki@1.3.0) (2023-04-27)
+
+
+### ✨ Features | 新功能
+
+* github pages deploy action ([bd76164](https://github.com/toimc/vue-markdown-shiki/commit/bd761646916fbf365d247a020afc99229e3b9b7e))
+
+
+
 ## [1.2.1](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.2.0...vue-markdown-shiki@1.2.1) (2023-04-27)
 
 
