@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm -F=vue-markdown-shiki run dev",
-    "build": "lerna build",
+    "build": "lerna run build",
     "release": "lerna publish --conventional-commits"
   },
   "workspaces": [

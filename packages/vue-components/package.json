@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "run-p start build:watch",
+    "dev": "run-p build:watch start",
     "start": "vite",
     "build": "run-s clean type-check build-only",
     "build-only": "vite build",
