@@ -1,10 +1,12 @@
 # Vue 3 Component Library with Shiki and Markdown-it Integration
 
+[中文说明](./README-cn.md)
+
 This is a Vue 3 component library that provides integration with Shiki and Markdown-it.
 
 [Shiki](https://github.com/shikijs/shiki) is an efficient code syntax highlighter, while [Markdown-it](https://github.com/markdown-it/markdown-it) is a popular Markdown parser. With Vue 3 integration, this library offers customizable code highlighting and Markdown parsing, making it easy to build beautiful and highly customizable web applications.
 
-## Features
+## ✨ Features
 
 - Vue 3 integration for easy component development
 - Shiki integration for efficient code syntax highlighting
@@ -15,7 +17,7 @@ This is a Vue 3 component library that provides integration with Shiki and Markd
   - `VueMarkdownIt` renders native Markdown strings and includes `VueMarkDownHeader` by default
   - `VueMarkDownHeader` provides a menu for copy and download functionality
 
-## Options
+## 🚀 Getting Started
 
 `VueMarkdownIt` options:
 
@@ -26,7 +28,7 @@ This is a Vue 3 component library that provides integration with Shiki and Markd
 
 You can use these props to customize the appearance and behavior of the rendered Markdown. For example, you could use the `style` prop to change the font size or color of the rendered Markdown, or the `class` prop to add a custom CSS class that applies specific styling. The `stream` prop can be useful when rendering very large Markdown documents, as it can improve performance by rendering the document in smaller chunks.
 
-## Getting Started
+## 🚀 Getting Started
 
 To use this component library in your Vue 3 project, follow these steps:
 
@@ -88,12 +90,7 @@ To use this component library in your Vue 3 project, follow these steps:
    </template>
    ```
 
-For more detailed usage instructions, please see the [Example](https://github.com/toimc/vue-markdown-shiki/tree/main/packages/vue-components/example).
-
-## ScreenShot
-
-![](./packages/vue-components/screenshots/1.png)
-![](./packages/vue-components/screenshots/2.png)
+For more detailed usage instructions, please see the [Example](https://toimc.github.io/vue-markdown-shiki/).
 
 ## Contributing
 
