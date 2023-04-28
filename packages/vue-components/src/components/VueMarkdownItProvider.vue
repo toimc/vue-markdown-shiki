@@ -15,7 +15,11 @@ import { MarkdownSymbol } from '../shared'
 
 const props = defineProps({
   options: {
-    type: Object as PropType<MarkdownOptions>
+    type: Object as PropType<MarkdownOptions>,
+    default: {
+      theme: 'dracula-soft',
+      defaultHighlightLang: 'javascript'
+    }
   },
   class: {
     type: String,
