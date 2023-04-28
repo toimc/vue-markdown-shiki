@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.1...vue-markdown-shiki@1.4.2) (2023-04-28)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* add options default value ([8fc9be2](https://github.com/toimc/vue-markdown-shiki/commit/8fc9be22f12a88edb5f1cf86b44ae3e9feec240c))
+
+
+
 ## [1.4.1](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.0...vue-markdown-shiki@1.4.1) (2023-04-28)
 
 
