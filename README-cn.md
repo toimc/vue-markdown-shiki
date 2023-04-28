@@ -14,6 +14,7 @@
 - 提供两个组件：`VueMarkdownIt` 和 `VueMarkDownHeader`
   - `VueMarkdownIt` 渲染原生 Markdown 字符串并默认包含 `VueMarkDownHeader`
   - `VueMarkDownHeader` 提供复制和下载功能的菜单
+  - `VueMarkdownItProvider` 是用于异步使用的包装器，提供了全局的 `md` 实例，用于 MarkdownIt。
 
 ## ⚙️ 选项
 
@@ -46,8 +47,59 @@
    ```typescript
    import 'vue-markdown-shiki/style'
    import markdownPlugin from 'vue-markdown-shiki'
-
+   
    app.use(markdownPlugin)
+   ```
+   
+   你还可以使用 `app.use(markdownPlugin, options)` 传递一个 `options`，该参数可以接受如下内容：
+   
+   `MarkdownOptions` 接口扩展了 [`MarkdownIt.Options`](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) 接口，提供了配置 Markdown-it 解析器的选项。除了基础选项外，`MarkdownOptions` 还提供了以下选项：
+   
+   - `lineNumbers`：一个布尔值，指定是否应向代码块添加行号。
+   - `config`：一个接受 `MarkdownIt` 实例并允许您对其进行配置的函数。
+   - `anchor`：一个 `markdown-it-anchor` 插件选项对象，用于向 Markdown 中的标题添加锚点。
+   - `attrs`：一个 `markdown-it-attrs` 插件选项对象，允许您向 Markdown 中的元素添加自定义属性。
+   - `defaultHighlightLang`：一个字符串，指定要用于代码块高亮的默认语言。
+   - `headers`：一个 `markdown-it-anchor` 插件选项对象，用于向 Markdown 中的标题添加锚点。如果设置为 `false`，则禁用该插件。
+   - `theme`：一个 `markdown-it-highlightjs-theme` 插件选项对象，允许您自定义用于代码高亮的主题。
+   - `languages`：一个对象数组，用于使用 `markdown-it-highlight` 插件注册其他要进行语法高亮的语言。
+   - `toc`：一个 `markdown-it-table-of-contents` 插件选项对象，用于为 Markdown 生成目录。
+   - `externalLinks`：一个将域名映射到其对应 URL 前缀的对象，这些前缀将添加到 Markdown 中的外部链接中。
+   
+   这些选项可以传递给 `app.use(markdownPlugin, options)` 方法，以配置 `VueMarkdownIt` 组件使用的 `markdown-it` 解析器。
+   
+   **提示：为什么在这里需要使用 `app.use` 全局初始化实例？**
+   
+   这是因为它允许我们在渲染 Markdown 字符串时避免重复加载语言 JSON，因此强烈建议进行全局初始化。如果您认为在页面加载期间进行初始化不够优雅，可以使用异步组件。请参阅[示例](https://vuejs.org/guide/components/async.html)。
+   
+   a. 定义一个 `MD.vue` 组件:
+   
+   ```vue
+   <script setup lang="ts">
+     import {VueMarkdownItProvider, VueMarkdownIt} from 'vue-markdown-shiki'
+   </script>
+   
+   <template>
+     <VueMarkdownItProvider>
+       <VueMarkdownIt :content="str" :stream="stream" ref="md" :class="theme"> </VueMarkdownIt>
+     </VueMarkdownItProvider>
+   </template>
+   ```
+   
+   b. 使用异步组件 `MD.vue`:
+   
+   ```vue
+   <script>
+   import { defineAsyncComponent } from 'vue'
+   
+   export default {
+     components: {
+       AdminPage: defineAsyncComponent(() =>
+         import('./components/MD.vue')
+       )
+     }
+   }
+   </script>
    ```
 
 
@@ -80,7 +132,7 @@
 
    ```vue
    import { VueMarkdownIt } from 'vue-markdown-shiki'
-
+   
    <template>
      <div>
        <VueMarkdownIt :content="'your-raw-markdown-string'" />
