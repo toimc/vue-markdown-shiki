@@ -1,6 +1,6 @@
 {
   "name": "vue-markdown-shiki",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A Vue 3 component library that provides integration with Shiki and Markdown-it. ",
   "keywords": [
     "vue",
