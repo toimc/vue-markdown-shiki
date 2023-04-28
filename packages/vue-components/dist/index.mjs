@@ -1,14 +1,14 @@
-import { openBlock as ce, createElementBlock as fe, createElementVNode as ie, defineComponent as Xn, ref as Me, computed as Gn, renderSlot as Xo, toDisplayString as Un, createBlock as pt, unref as Ko, createVNode as _e, Fragment as An, withCtx as es, renderList as ht, normalizeClass as dt, withDirectives as ns, vShow as ts, toRefs as os, watch as ss, onBeforeMount as rs, inject as cs, h as as } from "vue";
-const is = {
+import { openBlock as re, createElementBlock as ie, createElementVNode as le, defineComponent as pn, ref as Me, computed as Un, renderSlot as ho, toDisplayString as Hn, createBlock as dt, unref as es, createVNode as _e, Fragment as Sn, withCtx as ns, renderList as ft, normalizeClass as Vn, withDirectives as ts, vShow as os, toRefs as ss, watch as rs, onBeforeMount as cs, inject as as, h as is, provide as ls } from "vue";
+const us = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
   "'": "&#39;",
   '"': "&quot;"
-}, ls = /[&<>'"]/g, Fe = (n) => n.replace(
-  ls,
-  (e) => is[e]
-), po = (n, { shouldAllowHtml: e, shouldEscapeText: t }) => {
+}, ps = /[&<>'"]/g, Fe = (n) => n.replace(
+  ps,
+  (e) => us[e]
+), fo = (n, { shouldAllowHtml: e, shouldEscapeText: t }) => {
   const o = n.children ?? [], r = ["text", "emoji", "code_inline"];
   return e && r.push("html_inline"), o.filter(
     (a) => {
@@ -17,7 +17,7 @@ const is = {
       !((c = a.meta) != null && c.isPermalinkSymbol);
     }
   ).reduce((a, c) => t && (c.type === "code_inline" || c.type === "text") ? `${a}${Fe(c.content)}` : `${a}${c.content}`, "").trim();
-}, ho = (n, {
+}, mo = (n, {
   level: e,
   shouldAllowHtml: t,
   shouldAllowNested: o,
@@ -40,7 +40,7 @@ const is = {
     const f = n[p + 1];
     if (!f)
       continue;
-    const m = po(f, {
+    const m = fo(f, {
       shouldAllowHtml: t,
       shouldEscapeText: r
     }), L = h.attrGet("id") ?? s(m);
@@ -53,14 +53,14 @@ const is = {
     });
   }
   return c;
-}, us = /[\u0000-\u001f]/g, ps = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’<>,.?/]+/g, hs = /[\u0300-\u036F]/g, sn = (n) => n.normalize("NFKD").replace(hs, "").replace(us, "").replace(ps, "-").replace(/-{2,}/g, "-").replace(/^-+|-+$/g, "").replace(/^(\d)/, "_$1").toLowerCase(), ds = (n, {
+}, hs = /[\u0000-\u001f]/g, ds = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’<>,.?/]+/g, fs = /[\u0300-\u036F]/g, sn = (n) => n.normalize("NFKD").replace(fs, "").replace(hs, "").replace(ds, "-").replace(/-{2,}/g, "-").replace(/^-+|-+$/g, "").replace(/^(\d)/, "_$1").toLowerCase(), ms = (n, {
   level: e = [2, 3],
   shouldAllowNested: t = !1,
   slugify: o = sn,
   format: r
 } = {}) => {
   const s = n.renderer.render.bind(n.renderer);
-  n.renderer.render = (a, c, l) => (l.headers = ho(a, {
+  n.renderer.render = (a, c, l) => (l.headers = mo(a, {
     level: e,
     shouldAllowHtml: !1,
     shouldAllowNested: t,
@@ -68,16 +68,16 @@ const is = {
     slugify: o,
     format: r
   }), s(a, c, l));
-}, fs = (n) => {
+}, gs = (n) => {
   const e = n.renderer.render.bind(n.renderer);
   n.renderer.render = (t, o, r) => {
     const s = t.findIndex((a) => a.tag === "h1");
-    return r.title = s > -1 ? po(t[s + 1], {
+    return r.title = s > -1 ? fo(t[s + 1], {
       shouldAllowHtml: !1,
       shouldEscapeText: !1
     }) : "", e(t, o, r);
   };
-}, ms = ({
+}, _s = ({
   listTag: n,
   listClass: e,
   itemClass: t,
@@ -88,7 +88,7 @@ const is = {
     (m) => `<${c}${l}${l}><${i}${p}${h(m.link)}>${m.title}</${i}>${m.children.length > 0 ? d(m.children) : ""}</${c}>`
   ).join("")}</${s}>`;
   return d;
-}, gs = ({
+}, bs = ({
   pattern: n,
   containerTag: e,
   containerClass: t
@@ -107,7 +107,7 @@ const is = {
   h.markup = i, h.map = [r, o.line], h.hidden = !0;
   const d = o.push("toc_close", e, -1);
   return d.markup = "", h.map = [r, o.line], !0;
-}, _s = (n, {
+}, ks = (n, {
   pattern: e = /^\[\[toc\]\]$/i,
   slugify: t = sn,
   format: o,
@@ -124,7 +124,7 @@ const is = {
   n.block.ruler.before(
     "heading",
     "toc",
-    gs({
+    bs({
       pattern: e,
       containerTag: a,
       containerClass: c
@@ -133,7 +133,7 @@ const is = {
       alt: ["paragraph", "reference", "blockquote"]
     }
   );
-  const f = ms({
+  const f = _s({
     listTag: l,
     listClass: i,
     itemClass: p,
@@ -141,7 +141,7 @@ const is = {
     linkClass: d
   });
   n.renderer.rules.toc_body = (m) => f(
-    ho(m, {
+    mo(m, {
       level: r,
       shouldAllowHtml: !0,
       shouldAllowNested: s,
@@ -151,11 +151,11 @@ const is = {
     })
   );
 };
-var fo = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function pn(n) {
+var go = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function hn(n) {
   return n && n.__esModule && Object.prototype.hasOwnProperty.call(n, "default") ? n.default : n;
 }
-function bs(n) {
+function ys(n) {
   if (n.__esModule)
     return n;
   var e = n.default;
@@ -183,2148 +183,2148 @@ function bs(n) {
   }), t;
 }
 var B = {};
-const ks = "Á", ys = "á", ws = "Ă", vs = "ă", xs = "∾", As = "∿", Ss = "∾̳", Ls = "Â", Cs = "â", Es = "´", Ts = "А", Ds = "а", qs = "Æ", js = "æ", Rs = "⁡", Ns = "𝔄", Ps = "𝔞", Is = "À", Os = "à", Fs = "ℵ", Ms = "ℵ", Bs = "Α", zs = "α", $s = "Ā", Gs = "ā", Us = "⨿", Hs = "&", Vs = "&", Ws = "⩕", Zs = "⩓", Js = "∧", Qs = "⩜", Ys = "⩘", Xs = "⩚", Ks = "∠", er = "⦤", nr = "∠", tr = "⦨", or = "⦩", sr = "⦪", rr = "⦫", cr = "⦬", ar = "⦭", ir = "⦮", lr = "⦯", ur = "∡", pr = "∟", hr = "⊾", dr = "⦝", fr = "∢", mr = "Å", gr = "⍼", _r = "Ą", br = "ą", kr = "𝔸", yr = "𝕒", wr = "⩯", vr = "≈", xr = "⩰", Ar = "≊", Sr = "≋", Lr = "'", Cr = "⁡", Er = "≈", Tr = "≊", Dr = "Å", qr = "å", jr = "𝒜", Rr = "𝒶", Nr = "≔", Pr = "*", Ir = "≈", Or = "≍", Fr = "Ã", Mr = "ã", Br = "Ä", zr = "ä", $r = "∳", Gr = "⨑", Ur = "≌", Hr = "϶", Vr = "‵", Wr = "∽", Zr = "⋍", Jr = "∖", Qr = "⫧", Yr = "⊽", Xr = "⌅", Kr = "⌆", ec = "⌅", nc = "⎵", tc = "⎶", oc = "≌", sc = "Б", rc = "б", cc = "„", ac = "∵", ic = "∵", lc = "∵", uc = "⦰", pc = "϶", hc = "ℬ", dc = "ℬ", fc = "Β", mc = "β", gc = "ℶ", _c = "≬", bc = "𝔅", kc = "𝔟", yc = "⋂", wc = "◯", vc = "⋃", xc = "⨀", Ac = "⨁", Sc = "⨂", Lc = "⨆", Cc = "★", Ec = "▽", Tc = "△", Dc = "⨄", qc = "⋁", jc = "⋀", Rc = "⤍", Nc = "⧫", Pc = "▪", Ic = "▴", Oc = "▾", Fc = "◂", Mc = "▸", Bc = "␣", zc = "▒", $c = "░", Gc = "▓", Uc = "█", Hc = "=⃥", Vc = "≡⃥", Wc = "⫭", Zc = "⌐", Jc = "𝔹", Qc = "𝕓", Yc = "⊥", Xc = "⊥", Kc = "⋈", ea = "⧉", na = "┐", ta = "╕", oa = "╖", sa = "╗", ra = "┌", ca = "╒", aa = "╓", ia = "╔", la = "─", ua = "═", pa = "┬", ha = "╤", da = "╥", fa = "╦", ma = "┴", ga = "╧", _a = "╨", ba = "╩", ka = "⊟", ya = "⊞", wa = "⊠", va = "┘", xa = "╛", Aa = "╜", Sa = "╝", La = "└", Ca = "╘", Ea = "╙", Ta = "╚", Da = "│", qa = "║", ja = "┼", Ra = "╪", Na = "╫", Pa = "╬", Ia = "┤", Oa = "╡", Fa = "╢", Ma = "╣", Ba = "├", za = "╞", $a = "╟", Ga = "╠", Ua = "‵", Ha = "˘", Va = "˘", Wa = "¦", Za = "𝒷", Ja = "ℬ", Qa = "⁏", Ya = "∽", Xa = "⋍", Ka = "⧅", ei = "\\", ni = "⟈", ti = "•", oi = "•", si = "≎", ri = "⪮", ci = "≏", ai = "≎", ii = "≏", li = "Ć", ui = "ć", pi = "⩄", hi = "⩉", di = "⩋", fi = "∩", mi = "⋒", gi = "⩇", _i = "⩀", bi = "ⅅ", ki = "∩︀", yi = "⁁", wi = "ˇ", vi = "ℭ", xi = "⩍", Ai = "Č", Si = "č", Li = "Ç", Ci = "ç", Ei = "Ĉ", Ti = "ĉ", Di = "∰", qi = "⩌", ji = "⩐", Ri = "Ċ", Ni = "ċ", Pi = "¸", Ii = "¸", Oi = "⦲", Fi = "¢", Mi = "·", Bi = "·", zi = "𝔠", $i = "ℭ", Gi = "Ч", Ui = "ч", Hi = "✓", Vi = "✓", Wi = "Χ", Zi = "χ", Ji = "ˆ", Qi = "≗", Yi = "↺", Xi = "↻", Ki = "⊛", el = "⊚", nl = "⊝", tl = "⊙", ol = "®", sl = "Ⓢ", rl = "⊖", cl = "⊕", al = "⊗", il = "○", ll = "⧃", ul = "≗", pl = "⨐", hl = "⫯", dl = "⧂", fl = "∲", ml = "”", gl = "’", _l = "♣", bl = "♣", kl = ":", yl = "∷", wl = "⩴", vl = "≔", xl = "≔", Al = ",", Sl = "@", Ll = "∁", Cl = "∘", El = "∁", Tl = "ℂ", Dl = "≅", ql = "⩭", jl = "≡", Rl = "∮", Nl = "∯", Pl = "∮", Il = "𝕔", Ol = "ℂ", Fl = "∐", Ml = "∐", Bl = "©", zl = "©", $l = "℗", Gl = "∳", Ul = "↵", Hl = "✗", Vl = "⨯", Wl = "𝒞", Zl = "𝒸", Jl = "⫏", Ql = "⫑", Yl = "⫐", Xl = "⫒", Kl = "⋯", eu = "⤸", nu = "⤵", tu = "⋞", ou = "⋟", su = "↶", ru = "⤽", cu = "⩈", au = "⩆", iu = "≍", lu = "∪", uu = "⋓", pu = "⩊", hu = "⊍", du = "⩅", fu = "∪︀", mu = "↷", gu = "⤼", _u = "⋞", bu = "⋟", ku = "⋎", yu = "⋏", wu = "¤", vu = "↶", xu = "↷", Au = "⋎", Su = "⋏", Lu = "∲", Cu = "∱", Eu = "⌭", Tu = "†", Du = "‡", qu = "ℸ", ju = "↓", Ru = "↡", Nu = "⇓", Pu = "‐", Iu = "⫤", Ou = "⊣", Fu = "⤏", Mu = "˝", Bu = "Ď", zu = "ď", $u = "Д", Gu = "д", Uu = "‡", Hu = "⇊", Vu = "ⅅ", Wu = "ⅆ", Zu = "⤑", Ju = "⩷", Qu = "°", Yu = "∇", Xu = "Δ", Ku = "δ", ep = "⦱", np = "⥿", tp = "𝔇", op = "𝔡", sp = "⥥", rp = "⇃", cp = "⇂", ap = "´", ip = "˙", lp = "˝", up = "`", pp = "˜", hp = "⋄", dp = "⋄", fp = "⋄", mp = "♦", gp = "♦", _p = "¨", bp = "ⅆ", kp = "ϝ", yp = "⋲", wp = "÷", vp = "÷", xp = "⋇", Ap = "⋇", Sp = "Ђ", Lp = "ђ", Cp = "⌞", Ep = "⌍", Tp = "$", Dp = "𝔻", qp = "𝕕", jp = "¨", Rp = "˙", Np = "⃜", Pp = "≐", Ip = "≑", Op = "≐", Fp = "∸", Mp = "∔", Bp = "⊡", zp = "⌆", $p = "∯", Gp = "¨", Up = "⇓", Hp = "⇐", Vp = "⇔", Wp = "⫤", Zp = "⟸", Jp = "⟺", Qp = "⟹", Yp = "⇒", Xp = "⊨", Kp = "⇑", eh = "⇕", nh = "∥", th = "⤓", oh = "↓", sh = "↓", rh = "⇓", ch = "⇵", ah = "̑", ih = "⇊", lh = "⇃", uh = "⇂", ph = "⥐", hh = "⥞", dh = "⥖", fh = "↽", mh = "⥟", gh = "⥗", _h = "⇁", bh = "↧", kh = "⊤", yh = "⤐", wh = "⌟", vh = "⌌", xh = "𝒟", Ah = "𝒹", Sh = "Ѕ", Lh = "ѕ", Ch = "⧶", Eh = "Đ", Th = "đ", Dh = "⋱", qh = "▿", jh = "▾", Rh = "⇵", Nh = "⥯", Ph = "⦦", Ih = "Џ", Oh = "џ", Fh = "⟿", Mh = "É", Bh = "é", zh = "⩮", $h = "Ě", Gh = "ě", Uh = "Ê", Hh = "ê", Vh = "≖", Wh = "≕", Zh = "Э", Jh = "э", Qh = "⩷", Yh = "Ė", Xh = "ė", Kh = "≑", ed = "ⅇ", nd = "≒", td = "𝔈", od = "𝔢", sd = "⪚", rd = "È", cd = "è", ad = "⪖", id = "⪘", ld = "⪙", ud = "∈", pd = "⏧", hd = "ℓ", dd = "⪕", fd = "⪗", md = "Ē", gd = "ē", _d = "∅", bd = "∅", kd = "◻", yd = "∅", wd = "▫", vd = " ", xd = " ", Ad = " ", Sd = "Ŋ", Ld = "ŋ", Cd = " ", Ed = "Ę", Td = "ę", Dd = "𝔼", qd = "𝕖", jd = "⋕", Rd = "⧣", Nd = "⩱", Pd = "ε", Id = "Ε", Od = "ε", Fd = "ϵ", Md = "≖", Bd = "≕", zd = "≂", $d = "⪖", Gd = "⪕", Ud = "⩵", Hd = "=", Vd = "≂", Wd = "≟", Zd = "⇌", Jd = "≡", Qd = "⩸", Yd = "⧥", Xd = "⥱", Kd = "≓", ef = "ℯ", nf = "ℰ", tf = "≐", of = "⩳", sf = "≂", rf = "Η", cf = "η", af = "Ð", lf = "ð", uf = "Ë", pf = "ë", hf = "€", df = "!", ff = "∃", mf = "∃", gf = "ℰ", _f = "ⅇ", bf = "ⅇ", kf = "≒", yf = "Ф", wf = "ф", vf = "♀", xf = "ﬃ", Af = "ﬀ", Sf = "ﬄ", Lf = "𝔉", Cf = "𝔣", Ef = "ﬁ", Tf = "◼", Df = "▪", qf = "fj", jf = "♭", Rf = "ﬂ", Nf = "▱", Pf = "ƒ", If = "𝔽", Of = "𝕗", Ff = "∀", Mf = "∀", Bf = "⋔", zf = "⫙", $f = "ℱ", Gf = "⨍", Uf = "½", Hf = "⅓", Vf = "¼", Wf = "⅕", Zf = "⅙", Jf = "⅛", Qf = "⅔", Yf = "⅖", Xf = "¾", Kf = "⅗", em = "⅜", nm = "⅘", tm = "⅚", om = "⅝", sm = "⅞", rm = "⁄", cm = "⌢", am = "𝒻", im = "ℱ", lm = "ǵ", um = "Γ", pm = "γ", hm = "Ϝ", dm = "ϝ", fm = "⪆", mm = "Ğ", gm = "ğ", _m = "Ģ", bm = "Ĝ", km = "ĝ", ym = "Г", wm = "г", vm = "Ġ", xm = "ġ", Am = "≥", Sm = "≧", Lm = "⪌", Cm = "⋛", Em = "≥", Tm = "≧", Dm = "⩾", qm = "⪩", jm = "⩾", Rm = "⪀", Nm = "⪂", Pm = "⪄", Im = "⋛︀", Om = "⪔", Fm = "𝔊", Mm = "𝔤", Bm = "≫", zm = "⋙", $m = "⋙", Gm = "ℷ", Um = "Ѓ", Hm = "ѓ", Vm = "⪥", Wm = "≷", Zm = "⪒", Jm = "⪤", Qm = "⪊", Ym = "⪊", Xm = "⪈", Km = "≩", eg = "⪈", ng = "≩", tg = "⋧", og = "𝔾", sg = "𝕘", rg = "`", cg = "≥", ag = "⋛", ig = "≧", lg = "⪢", ug = "≷", pg = "⩾", hg = "≳", dg = "𝒢", fg = "ℊ", mg = "≳", gg = "⪎", _g = "⪐", bg = "⪧", kg = "⩺", yg = ">", wg = ">", vg = "≫", xg = "⋗", Ag = "⦕", Sg = "⩼", Lg = "⪆", Cg = "⥸", Eg = "⋗", Tg = "⋛", Dg = "⪌", qg = "≷", jg = "≳", Rg = "≩︀", Ng = "≩︀", Pg = "ˇ", Ig = " ", Og = "½", Fg = "ℋ", Mg = "Ъ", Bg = "ъ", zg = "⥈", $g = "↔", Gg = "⇔", Ug = "↭", Hg = "^", Vg = "ℏ", Wg = "Ĥ", Zg = "ĥ", Jg = "♥", Qg = "♥", Yg = "…", Xg = "⊹", Kg = "𝔥", e_ = "ℌ", n_ = "ℋ", t_ = "⤥", o_ = "⤦", s_ = "⇿", r_ = "∻", c_ = "↩", a_ = "↪", i_ = "𝕙", l_ = "ℍ", u_ = "―", p_ = "─", h_ = "𝒽", d_ = "ℋ", f_ = "ℏ", m_ = "Ħ", g_ = "ħ", __ = "≎", b_ = "≏", k_ = "⁃", y_ = "‐", w_ = "Í", v_ = "í", x_ = "⁣", A_ = "Î", S_ = "î", L_ = "И", C_ = "и", E_ = "İ", T_ = "Е", D_ = "е", q_ = "¡", j_ = "⇔", R_ = "𝔦", N_ = "ℑ", P_ = "Ì", I_ = "ì", O_ = "ⅈ", F_ = "⨌", M_ = "∭", B_ = "⧜", z_ = "℩", $_ = "Ĳ", G_ = "ĳ", U_ = "Ī", H_ = "ī", V_ = "ℑ", W_ = "ⅈ", Z_ = "ℐ", J_ = "ℑ", Q_ = "ı", Y_ = "ℑ", X_ = "⊷", K_ = "Ƶ", eb = "⇒", nb = "℅", tb = "∞", ob = "⧝", sb = "ı", rb = "⊺", cb = "∫", ab = "∬", ib = "ℤ", lb = "∫", ub = "⊺", pb = "⋂", hb = "⨗", db = "⨼", fb = "⁣", mb = "⁢", gb = "Ё", _b = "ё", bb = "Į", kb = "į", yb = "𝕀", wb = "𝕚", vb = "Ι", xb = "ι", Ab = "⨼", Sb = "¿", Lb = "𝒾", Cb = "ℐ", Eb = "∈", Tb = "⋵", Db = "⋹", qb = "⋴", jb = "⋳", Rb = "∈", Nb = "⁢", Pb = "Ĩ", Ib = "ĩ", Ob = "І", Fb = "і", Mb = "Ï", Bb = "ï", zb = "Ĵ", $b = "ĵ", Gb = "Й", Ub = "й", Hb = "𝔍", Vb = "𝔧", Wb = "ȷ", Zb = "𝕁", Jb = "𝕛", Qb = "𝒥", Yb = "𝒿", Xb = "Ј", Kb = "ј", ek = "Є", nk = "є", tk = "Κ", ok = "κ", sk = "ϰ", rk = "Ķ", ck = "ķ", ak = "К", ik = "к", lk = "𝔎", uk = "𝔨", pk = "ĸ", hk = "Х", dk = "х", fk = "Ќ", mk = "ќ", gk = "𝕂", _k = "𝕜", bk = "𝒦", kk = "𝓀", yk = "⇚", wk = "Ĺ", vk = "ĺ", xk = "⦴", Ak = "ℒ", Sk = "Λ", Lk = "λ", Ck = "⟨", Ek = "⟪", Tk = "⦑", Dk = "⟨", qk = "⪅", jk = "ℒ", Rk = "«", Nk = "⇤", Pk = "⤟", Ik = "←", Ok = "↞", Fk = "⇐", Mk = "⤝", Bk = "↩", zk = "↫", $k = "⤹", Gk = "⥳", Uk = "↢", Hk = "⤙", Vk = "⤛", Wk = "⪫", Zk = "⪭", Jk = "⪭︀", Qk = "⤌", Yk = "⤎", Xk = "❲", Kk = "{", ey = "[", ny = "⦋", ty = "⦏", oy = "⦍", sy = "Ľ", ry = "ľ", cy = "Ļ", ay = "ļ", iy = "⌈", ly = "{", uy = "Л", py = "л", hy = "⤶", dy = "“", fy = "„", my = "⥧", gy = "⥋", _y = "↲", by = "≤", ky = "≦", yy = "⟨", wy = "⇤", vy = "←", xy = "←", Ay = "⇐", Sy = "⇆", Ly = "↢", Cy = "⌈", Ey = "⟦", Ty = "⥡", Dy = "⥙", qy = "⇃", jy = "⌊", Ry = "↽", Ny = "↼", Py = "⇇", Iy = "↔", Oy = "↔", Fy = "⇔", My = "⇆", By = "⇋", zy = "↭", $y = "⥎", Gy = "↤", Uy = "⊣", Hy = "⥚", Vy = "⋋", Wy = "⧏", Zy = "⊲", Jy = "⊴", Qy = "⥑", Yy = "⥠", Xy = "⥘", Ky = "↿", ew = "⥒", nw = "↼", tw = "⪋", ow = "⋚", sw = "≤", rw = "≦", cw = "⩽", aw = "⪨", iw = "⩽", lw = "⩿", uw = "⪁", pw = "⪃", hw = "⋚︀", dw = "⪓", fw = "⪅", mw = "⋖", gw = "⋚", _w = "⪋", bw = "⋚", kw = "≦", yw = "≶", ww = "≶", vw = "⪡", xw = "≲", Aw = "⩽", Sw = "≲", Lw = "⥼", Cw = "⌊", Ew = "𝔏", Tw = "𝔩", Dw = "≶", qw = "⪑", jw = "⥢", Rw = "↽", Nw = "↼", Pw = "⥪", Iw = "▄", Ow = "Љ", Fw = "љ", Mw = "⇇", Bw = "≪", zw = "⋘", $w = "⌞", Gw = "⇚", Uw = "⥫", Hw = "◺", Vw = "Ŀ", Ww = "ŀ", Zw = "⎰", Jw = "⎰", Qw = "⪉", Yw = "⪉", Xw = "⪇", Kw = "≨", e0 = "⪇", n0 = "≨", t0 = "⋦", o0 = "⟬", s0 = "⇽", r0 = "⟦", c0 = "⟵", a0 = "⟵", i0 = "⟸", l0 = "⟷", u0 = "⟷", p0 = "⟺", h0 = "⟼", d0 = "⟶", f0 = "⟶", m0 = "⟹", g0 = "↫", _0 = "↬", b0 = "⦅", k0 = "𝕃", y0 = "𝕝", w0 = "⨭", v0 = "⨴", x0 = "∗", A0 = "_", S0 = "↙", L0 = "↘", C0 = "◊", E0 = "◊", T0 = "⧫", D0 = "(", q0 = "⦓", j0 = "⇆", R0 = "⌟", N0 = "⇋", P0 = "⥭", I0 = "‎", O0 = "⊿", F0 = "‹", M0 = "𝓁", B0 = "ℒ", z0 = "↰", $0 = "↰", G0 = "≲", U0 = "⪍", H0 = "⪏", V0 = "[", W0 = "‘", Z0 = "‚", J0 = "Ł", Q0 = "ł", Y0 = "⪦", X0 = "⩹", K0 = "<", ev = "<", nv = "≪", tv = "⋖", ov = "⋋", sv = "⋉", rv = "⥶", cv = "⩻", av = "◃", iv = "⊴", lv = "◂", uv = "⦖", pv = "⥊", hv = "⥦", dv = "≨︀", fv = "≨︀", mv = "¯", gv = "♂", _v = "✠", bv = "✠", kv = "↦", yv = "↦", wv = "↧", vv = "↤", xv = "↥", Av = "▮", Sv = "⨩", Lv = "М", Cv = "м", Ev = "—", Tv = "∺", Dv = "∡", qv = " ", jv = "ℳ", Rv = "𝔐", Nv = "𝔪", Pv = "℧", Iv = "µ", Ov = "*", Fv = "⫰", Mv = "∣", Bv = "·", zv = "⊟", $v = "−", Gv = "∸", Uv = "⨪", Hv = "∓", Vv = "⫛", Wv = "…", Zv = "∓", Jv = "⊧", Qv = "𝕄", Yv = "𝕞", Xv = "∓", Kv = "𝓂", e1 = "ℳ", n1 = "∾", t1 = "Μ", o1 = "μ", s1 = "⊸", r1 = "⊸", c1 = "∇", a1 = "Ń", i1 = "ń", l1 = "∠⃒", u1 = "≉", p1 = "⩰̸", h1 = "≋̸", d1 = "ŉ", f1 = "≉", m1 = "♮", g1 = "ℕ", _1 = "♮", b1 = " ", k1 = "≎̸", y1 = "≏̸", w1 = "⩃", v1 = "Ň", x1 = "ň", A1 = "Ņ", S1 = "ņ", L1 = "≇", C1 = "⩭̸", E1 = "⩂", T1 = "Н", D1 = "н", q1 = "–", j1 = "⤤", R1 = "↗", N1 = "⇗", P1 = "↗", I1 = "≠", O1 = "≐̸", F1 = "​", M1 = "​", B1 = "​", z1 = "​", $1 = "≢", G1 = "⤨", U1 = "≂̸", H1 = "≫", V1 = "≪", W1 = `
-`, Z1 = "∄", J1 = "∄", Q1 = "𝔑", Y1 = "𝔫", X1 = "≧̸", K1 = "≱", ex = "≱", nx = "≧̸", tx = "⩾̸", ox = "⩾̸", sx = "⋙̸", rx = "≵", cx = "≫⃒", ax = "≯", ix = "≯", lx = "≫̸", ux = "↮", px = "⇎", hx = "⫲", dx = "∋", fx = "⋼", mx = "⋺", gx = "∋", _x = "Њ", bx = "њ", kx = "↚", yx = "⇍", wx = "‥", vx = "≦̸", xx = "≰", Ax = "↚", Sx = "⇍", Lx = "↮", Cx = "⇎", Ex = "≰", Tx = "≦̸", Dx = "⩽̸", qx = "⩽̸", jx = "≮", Rx = "⋘̸", Nx = "≴", Px = "≪⃒", Ix = "≮", Ox = "⋪", Fx = "⋬", Mx = "≪̸", Bx = "∤", zx = "⁠", $x = " ", Gx = "𝕟", Ux = "ℕ", Hx = "⫬", Vx = "¬", Wx = "≢", Zx = "≭", Jx = "∦", Qx = "∉", Yx = "≠", Xx = "≂̸", Kx = "∄", eA = "≯", nA = "≱", tA = "≧̸", oA = "≫̸", sA = "≹", rA = "⩾̸", cA = "≵", aA = "≎̸", iA = "≏̸", lA = "∉", uA = "⋵̸", pA = "⋹̸", hA = "∉", dA = "⋷", fA = "⋶", mA = "⧏̸", gA = "⋪", _A = "⋬", bA = "≮", kA = "≰", yA = "≸", wA = "≪̸", vA = "⩽̸", xA = "≴", AA = "⪢̸", SA = "⪡̸", LA = "∌", CA = "∌", EA = "⋾", TA = "⋽", DA = "⊀", qA = "⪯̸", jA = "⋠", RA = "∌", NA = "⧐̸", PA = "⋫", IA = "⋭", OA = "⊏̸", FA = "⋢", MA = "⊐̸", BA = "⋣", zA = "⊂⃒", $A = "⊈", GA = "⊁", UA = "⪰̸", HA = "⋡", VA = "≿̸", WA = "⊃⃒", ZA = "⊉", JA = "≁", QA = "≄", YA = "≇", XA = "≉", KA = "∤", eS = "∦", nS = "∦", tS = "⫽⃥", oS = "∂̸", sS = "⨔", rS = "⊀", cS = "⋠", aS = "⊀", iS = "⪯̸", lS = "⪯̸", uS = "⤳̸", pS = "↛", hS = "⇏", dS = "↝̸", fS = "↛", mS = "⇏", gS = "⋫", _S = "⋭", bS = "⊁", kS = "⋡", yS = "⪰̸", wS = "𝒩", vS = "𝓃", xS = "∤", AS = "∦", SS = "≁", LS = "≄", CS = "≄", ES = "∤", TS = "∦", DS = "⋢", qS = "⋣", jS = "⊄", RS = "⫅̸", NS = "⊈", PS = "⊂⃒", IS = "⊈", OS = "⫅̸", FS = "⊁", MS = "⪰̸", BS = "⊅", zS = "⫆̸", $S = "⊉", GS = "⊃⃒", US = "⊉", HS = "⫆̸", VS = "≹", WS = "Ñ", ZS = "ñ", JS = "≸", QS = "⋪", YS = "⋬", XS = "⋫", KS = "⋭", eL = "Ν", nL = "ν", tL = "#", oL = "№", sL = " ", rL = "≍⃒", cL = "⊬", aL = "⊭", iL = "⊮", lL = "⊯", uL = "≥⃒", pL = ">⃒", hL = "⤄", dL = "⧞", fL = "⤂", mL = "≤⃒", gL = "<⃒", _L = "⊴⃒", bL = "⤃", kL = "⊵⃒", yL = "∼⃒", wL = "⤣", vL = "↖", xL = "⇖", AL = "↖", SL = "⤧", LL = "Ó", CL = "ó", EL = "⊛", TL = "Ô", DL = "ô", qL = "⊚", jL = "О", RL = "о", NL = "⊝", PL = "Ő", IL = "ő", OL = "⨸", FL = "⊙", ML = "⦼", BL = "Œ", zL = "œ", $L = "⦿", GL = "𝔒", UL = "𝔬", HL = "˛", VL = "Ò", WL = "ò", ZL = "⧁", JL = "⦵", QL = "Ω", YL = "∮", XL = "↺", KL = "⦾", eC = "⦻", nC = "‾", tC = "⧀", oC = "Ō", sC = "ō", rC = "Ω", cC = "ω", aC = "Ο", iC = "ο", lC = "⦶", uC = "⊖", pC = "𝕆", hC = "𝕠", dC = "⦷", fC = "“", mC = "‘", gC = "⦹", _C = "⊕", bC = "↻", kC = "⩔", yC = "∨", wC = "⩝", vC = "ℴ", xC = "ℴ", AC = "ª", SC = "º", LC = "⊶", CC = "⩖", EC = "⩗", TC = "⩛", DC = "Ⓢ", qC = "𝒪", jC = "ℴ", RC = "Ø", NC = "ø", PC = "⊘", IC = "Õ", OC = "õ", FC = "⨶", MC = "⨷", BC = "⊗", zC = "Ö", $C = "ö", GC = "⌽", UC = "‾", HC = "⏞", VC = "⎴", WC = "⏜", ZC = "¶", JC = "∥", QC = "∥", YC = "⫳", XC = "⫽", KC = "∂", eE = "∂", nE = "П", tE = "п", oE = "%", sE = ".", rE = "‰", cE = "⊥", aE = "‱", iE = "𝔓", lE = "𝔭", uE = "Φ", pE = "φ", hE = "ϕ", dE = "ℳ", fE = "☎", mE = "Π", gE = "π", _E = "⋔", bE = "ϖ", kE = "ℏ", yE = "ℎ", wE = "ℏ", vE = "⨣", xE = "⊞", AE = "⨢", SE = "+", LE = "∔", CE = "⨥", EE = "⩲", TE = "±", DE = "±", qE = "⨦", jE = "⨧", RE = "±", NE = "ℌ", PE = "⨕", IE = "𝕡", OE = "ℙ", FE = "£", ME = "⪷", BE = "⪻", zE = "≺", $E = "≼", GE = "⪷", UE = "≺", HE = "≼", VE = "≺", WE = "⪯", ZE = "≼", JE = "≾", QE = "⪯", YE = "⪹", XE = "⪵", KE = "⋨", eT = "⪯", nT = "⪳", tT = "≾", oT = "′", sT = "″", rT = "ℙ", cT = "⪹", aT = "⪵", iT = "⋨", lT = "∏", uT = "∏", pT = "⌮", hT = "⌒", dT = "⌓", fT = "∝", mT = "∝", gT = "∷", _T = "∝", bT = "≾", kT = "⊰", yT = "𝒫", wT = "𝓅", vT = "Ψ", xT = "ψ", AT = " ", ST = "𝔔", LT = "𝔮", CT = "⨌", ET = "𝕢", TT = "ℚ", DT = "⁗", qT = "𝒬", jT = "𝓆", RT = "ℍ", NT = "⨖", PT = "?", IT = "≟", OT = '"', FT = '"', MT = "⇛", BT = "∽̱", zT = "Ŕ", $T = "ŕ", GT = "√", UT = "⦳", HT = "⟩", VT = "⟫", WT = "⦒", ZT = "⦥", JT = "⟩", QT = "»", YT = "⥵", XT = "⇥", KT = "⤠", eD = "⤳", nD = "→", tD = "↠", oD = "⇒", sD = "⤞", rD = "↪", cD = "↬", aD = "⥅", iD = "⥴", lD = "⤖", uD = "↣", pD = "↝", hD = "⤚", dD = "⤜", fD = "∶", mD = "ℚ", gD = "⤍", _D = "⤏", bD = "⤐", kD = "❳", yD = "}", wD = "]", vD = "⦌", xD = "⦎", AD = "⦐", SD = "Ř", LD = "ř", CD = "Ŗ", ED = "ŗ", TD = "⌉", DD = "}", qD = "Р", jD = "р", RD = "⤷", ND = "⥩", PD = "”", ID = "”", OD = "↳", FD = "ℜ", MD = "ℛ", BD = "ℜ", zD = "ℝ", $D = "ℜ", GD = "▭", UD = "®", HD = "®", VD = "∋", WD = "⇋", ZD = "⥯", JD = "⥽", QD = "⌋", YD = "𝔯", XD = "ℜ", KD = "⥤", eq = "⇁", nq = "⇀", tq = "⥬", oq = "Ρ", sq = "ρ", rq = "ϱ", cq = "⟩", aq = "⇥", iq = "→", lq = "→", uq = "⇒", pq = "⇄", hq = "↣", dq = "⌉", fq = "⟧", mq = "⥝", gq = "⥕", _q = "⇂", bq = "⌋", kq = "⇁", yq = "⇀", wq = "⇄", vq = "⇌", xq = "⇉", Aq = "↝", Sq = "↦", Lq = "⊢", Cq = "⥛", Eq = "⋌", Tq = "⧐", Dq = "⊳", qq = "⊵", jq = "⥏", Rq = "⥜", Nq = "⥔", Pq = "↾", Iq = "⥓", Oq = "⇀", Fq = "˚", Mq = "≓", Bq = "⇄", zq = "⇌", $q = "‏", Gq = "⎱", Uq = "⎱", Hq = "⫮", Vq = "⟭", Wq = "⇾", Zq = "⟧", Jq = "⦆", Qq = "𝕣", Yq = "ℝ", Xq = "⨮", Kq = "⨵", ej = "⥰", nj = ")", tj = "⦔", oj = "⨒", sj = "⇉", rj = "⇛", cj = "›", aj = "𝓇", ij = "ℛ", lj = "↱", uj = "↱", pj = "]", hj = "’", dj = "’", fj = "⋌", mj = "⋊", gj = "▹", _j = "⊵", bj = "▸", kj = "⧎", yj = "⧴", wj = "⥨", vj = "℞", xj = "Ś", Aj = "ś", Sj = "‚", Lj = "⪸", Cj = "Š", Ej = "š", Tj = "⪼", Dj = "≻", qj = "≽", jj = "⪰", Rj = "⪴", Nj = "Ş", Pj = "ş", Ij = "Ŝ", Oj = "ŝ", Fj = "⪺", Mj = "⪶", Bj = "⋩", zj = "⨓", $j = "≿", Gj = "С", Uj = "с", Hj = "⊡", Vj = "⋅", Wj = "⩦", Zj = "⤥", Jj = "↘", Qj = "⇘", Yj = "↘", Xj = "§", Kj = ";", e2 = "⤩", n2 = "∖", t2 = "∖", o2 = "✶", s2 = "𝔖", r2 = "𝔰", c2 = "⌢", a2 = "♯", i2 = "Щ", l2 = "щ", u2 = "Ш", p2 = "ш", h2 = "↓", d2 = "←", f2 = "∣", m2 = "∥", g2 = "→", _2 = "↑", b2 = "­", k2 = "Σ", y2 = "σ", w2 = "ς", v2 = "ς", x2 = "∼", A2 = "⩪", S2 = "≃", L2 = "≃", C2 = "⪞", E2 = "⪠", T2 = "⪝", D2 = "⪟", q2 = "≆", j2 = "⨤", R2 = "⥲", N2 = "←", P2 = "∘", I2 = "∖", O2 = "⨳", F2 = "⧤", M2 = "∣", B2 = "⌣", z2 = "⪪", $2 = "⪬", G2 = "⪬︀", U2 = "Ь", H2 = "ь", V2 = "⌿", W2 = "⧄", Z2 = "/", J2 = "𝕊", Q2 = "𝕤", Y2 = "♠", X2 = "♠", K2 = "∥", eR = "⊓", nR = "⊓︀", tR = "⊔", oR = "⊔︀", sR = "√", rR = "⊏", cR = "⊑", aR = "⊏", iR = "⊑", lR = "⊐", uR = "⊒", pR = "⊐", hR = "⊒", dR = "□", fR = "□", mR = "⊓", gR = "⊏", _R = "⊑", bR = "⊐", kR = "⊒", yR = "⊔", wR = "▪", vR = "□", xR = "▪", AR = "→", SR = "𝒮", LR = "𝓈", CR = "∖", ER = "⌣", TR = "⋆", DR = "⋆", qR = "☆", jR = "★", RR = "ϵ", NR = "ϕ", PR = "¯", IR = "⊂", OR = "⋐", FR = "⪽", MR = "⫅", BR = "⊆", zR = "⫃", $R = "⫁", GR = "⫋", UR = "⊊", HR = "⪿", VR = "⥹", WR = "⊂", ZR = "⋐", JR = "⊆", QR = "⫅", YR = "⊆", XR = "⊊", KR = "⫋", eN = "⫇", nN = "⫕", tN = "⫓", oN = "⪸", sN = "≻", rN = "≽", cN = "≻", aN = "⪰", iN = "≽", lN = "≿", uN = "⪰", pN = "⪺", hN = "⪶", dN = "⋩", fN = "≿", mN = "∋", gN = "∑", _N = "∑", bN = "♪", kN = "¹", yN = "²", wN = "³", vN = "⊃", xN = "⋑", AN = "⪾", SN = "⫘", LN = "⫆", CN = "⊇", EN = "⫄", TN = "⊃", DN = "⊇", qN = "⟉", jN = "⫗", RN = "⥻", NN = "⫂", PN = "⫌", IN = "⊋", ON = "⫀", FN = "⊃", MN = "⋑", BN = "⊇", zN = "⫆", $N = "⊋", GN = "⫌", UN = "⫈", HN = "⫔", VN = "⫖", WN = "⤦", ZN = "↙", JN = "⇙", QN = "↙", YN = "⤪", XN = "ß", KN = "	", eP = "⌖", nP = "Τ", tP = "τ", oP = "⎴", sP = "Ť", rP = "ť", cP = "Ţ", aP = "ţ", iP = "Т", lP = "т", uP = "⃛", pP = "⌕", hP = "𝔗", dP = "𝔱", fP = "∴", mP = "∴", gP = "∴", _P = "Θ", bP = "θ", kP = "ϑ", yP = "ϑ", wP = "≈", vP = "∼", xP = "  ", AP = " ", SP = " ", LP = "≈", CP = "∼", EP = "Þ", TP = "þ", DP = "˜", qP = "∼", jP = "≃", RP = "≅", NP = "≈", PP = "⨱", IP = "⊠", OP = "×", FP = "⨰", MP = "∭", BP = "⤨", zP = "⌶", $P = "⫱", GP = "⊤", UP = "𝕋", HP = "𝕥", VP = "⫚", WP = "⤩", ZP = "‴", JP = "™", QP = "™", YP = "▵", XP = "▿", KP = "◃", eI = "⊴", nI = "≜", tI = "▹", oI = "⊵", sI = "◬", rI = "≜", cI = "⨺", aI = "⃛", iI = "⨹", lI = "⧍", uI = "⨻", pI = "⏢", hI = "𝒯", dI = "𝓉", fI = "Ц", mI = "ц", gI = "Ћ", _I = "ћ", bI = "Ŧ", kI = "ŧ", yI = "≬", wI = "↞", vI = "↠", xI = "Ú", AI = "ú", SI = "↑", LI = "↟", CI = "⇑", EI = "⥉", TI = "Ў", DI = "ў", qI = "Ŭ", jI = "ŭ", RI = "Û", NI = "û", PI = "У", II = "у", OI = "⇅", FI = "Ű", MI = "ű", BI = "⥮", zI = "⥾", $I = "𝔘", GI = "𝔲", UI = "Ù", HI = "ù", VI = "⥣", WI = "↿", ZI = "↾", JI = "▀", QI = "⌜", YI = "⌜", XI = "⌏", KI = "◸", eO = "Ū", nO = "ū", tO = "¨", oO = "_", sO = "⏟", rO = "⎵", cO = "⏝", aO = "⋃", iO = "⊎", lO = "Ų", uO = "ų", pO = "𝕌", hO = "𝕦", dO = "⤒", fO = "↑", mO = "↑", gO = "⇑", _O = "⇅", bO = "↕", kO = "↕", yO = "⇕", wO = "⥮", vO = "↿", xO = "↾", AO = "⊎", SO = "↖", LO = "↗", CO = "υ", EO = "ϒ", TO = "ϒ", DO = "Υ", qO = "υ", jO = "↥", RO = "⊥", NO = "⇈", PO = "⌝", IO = "⌝", OO = "⌎", FO = "Ů", MO = "ů", BO = "◹", zO = "𝒰", $O = "𝓊", GO = "⋰", UO = "Ũ", HO = "ũ", VO = "▵", WO = "▴", ZO = "⇈", JO = "Ü", QO = "ü", YO = "⦧", XO = "⦜", KO = "ϵ", eF = "ϰ", nF = "∅", tF = "ϕ", oF = "ϖ", sF = "∝", rF = "↕", cF = "⇕", aF = "ϱ", iF = "ς", lF = "⊊︀", uF = "⫋︀", pF = "⊋︀", hF = "⫌︀", dF = "ϑ", fF = "⊲", mF = "⊳", gF = "⫨", _F = "⫫", bF = "⫩", kF = "В", yF = "в", wF = "⊢", vF = "⊨", xF = "⊩", AF = "⊫", SF = "⫦", LF = "⊻", CF = "∨", EF = "⋁", TF = "≚", DF = "⋮", qF = "|", jF = "‖", RF = "|", NF = "‖", PF = "∣", IF = "|", OF = "❘", FF = "≀", MF = " ", BF = "𝔙", zF = "𝔳", $F = "⊲", GF = "⊂⃒", UF = "⊃⃒", HF = "𝕍", VF = "𝕧", WF = "∝", ZF = "⊳", JF = "𝒱", QF = "𝓋", YF = "⫋︀", XF = "⊊︀", KF = "⫌︀", e3 = "⊋︀", n3 = "⊪", t3 = "⦚", o3 = "Ŵ", s3 = "ŵ", r3 = "⩟", c3 = "∧", a3 = "⋀", i3 = "≙", l3 = "℘", u3 = "𝔚", p3 = "𝔴", h3 = "𝕎", d3 = "𝕨", f3 = "℘", m3 = "≀", g3 = "≀", _3 = "𝒲", b3 = "𝓌", k3 = "⋂", y3 = "◯", w3 = "⋃", v3 = "▽", x3 = "𝔛", A3 = "𝔵", S3 = "⟷", L3 = "⟺", C3 = "Ξ", E3 = "ξ", T3 = "⟵", D3 = "⟸", q3 = "⟼", j3 = "⋻", R3 = "⨀", N3 = "𝕏", P3 = "𝕩", I3 = "⨁", O3 = "⨂", F3 = "⟶", M3 = "⟹", B3 = "𝒳", z3 = "𝓍", $3 = "⨆", G3 = "⨄", U3 = "△", H3 = "⋁", V3 = "⋀", W3 = "Ý", Z3 = "ý", J3 = "Я", Q3 = "я", Y3 = "Ŷ", X3 = "ŷ", K3 = "Ы", eM = "ы", nM = "¥", tM = "𝔜", oM = "𝔶", sM = "Ї", rM = "ї", cM = "𝕐", aM = "𝕪", iM = "𝒴", lM = "𝓎", uM = "Ю", pM = "ю", hM = "ÿ", dM = "Ÿ", fM = "Ź", mM = "ź", gM = "Ž", _M = "ž", bM = "З", kM = "з", yM = "Ż", wM = "ż", vM = "ℨ", xM = "​", AM = "Ζ", SM = "ζ", LM = "𝔷", CM = "ℨ", EM = "Ж", TM = "ж", DM = "⇝", qM = "𝕫", jM = "ℤ", RM = "𝒵", NM = "𝓏", PM = "‍", IM = "‌", OM = {
-  Aacute: ks,
-  aacute: ys,
-  Abreve: ws,
-  abreve: vs,
-  ac: xs,
-  acd: As,
-  acE: Ss,
-  Acirc: Ls,
-  acirc: Cs,
-  acute: Es,
-  Acy: Ts,
-  acy: Ds,
-  AElig: qs,
-  aelig: js,
-  af: Rs,
-  Afr: Ns,
-  afr: Ps,
-  Agrave: Is,
-  agrave: Os,
-  alefsym: Fs,
-  aleph: Ms,
-  Alpha: Bs,
-  alpha: zs,
-  Amacr: $s,
-  amacr: Gs,
-  amalg: Us,
-  amp: Hs,
-  AMP: Vs,
-  andand: Ws,
-  And: Zs,
-  and: Js,
-  andd: Qs,
-  andslope: Ys,
-  andv: Xs,
-  ang: Ks,
-  ange: er,
-  angle: nr,
-  angmsdaa: tr,
-  angmsdab: or,
-  angmsdac: sr,
-  angmsdad: rr,
-  angmsdae: cr,
-  angmsdaf: ar,
-  angmsdag: ir,
-  angmsdah: lr,
-  angmsd: ur,
-  angrt: pr,
-  angrtvb: hr,
-  angrtvbd: dr,
-  angsph: fr,
-  angst: mr,
-  angzarr: gr,
-  Aogon: _r,
-  aogon: br,
-  Aopf: kr,
-  aopf: yr,
-  apacir: wr,
-  ap: vr,
-  apE: xr,
-  ape: Ar,
-  apid: Sr,
-  apos: Lr,
-  ApplyFunction: Cr,
-  approx: Er,
-  approxeq: Tr,
-  Aring: Dr,
-  aring: qr,
-  Ascr: jr,
-  ascr: Rr,
-  Assign: Nr,
-  ast: Pr,
-  asymp: Ir,
-  asympeq: Or,
-  Atilde: Fr,
-  atilde: Mr,
-  Auml: Br,
-  auml: zr,
-  awconint: $r,
-  awint: Gr,
-  backcong: Ur,
-  backepsilon: Hr,
-  backprime: Vr,
-  backsim: Wr,
-  backsimeq: Zr,
-  Backslash: Jr,
-  Barv: Qr,
-  barvee: Yr,
-  barwed: Xr,
-  Barwed: Kr,
-  barwedge: ec,
-  bbrk: nc,
-  bbrktbrk: tc,
-  bcong: oc,
-  Bcy: sc,
-  bcy: rc,
-  bdquo: cc,
-  becaus: ac,
-  because: ic,
-  Because: lc,
-  bemptyv: uc,
-  bepsi: pc,
-  bernou: hc,
-  Bernoullis: dc,
-  Beta: fc,
-  beta: mc,
-  beth: gc,
-  between: _c,
-  Bfr: bc,
-  bfr: kc,
-  bigcap: yc,
-  bigcirc: wc,
-  bigcup: vc,
-  bigodot: xc,
-  bigoplus: Ac,
-  bigotimes: Sc,
-  bigsqcup: Lc,
-  bigstar: Cc,
-  bigtriangledown: Ec,
-  bigtriangleup: Tc,
-  biguplus: Dc,
-  bigvee: qc,
-  bigwedge: jc,
-  bkarow: Rc,
-  blacklozenge: Nc,
-  blacksquare: Pc,
-  blacktriangle: Ic,
-  blacktriangledown: Oc,
-  blacktriangleleft: Fc,
-  blacktriangleright: Mc,
-  blank: Bc,
-  blk12: zc,
-  blk14: $c,
-  blk34: Gc,
-  block: Uc,
-  bne: Hc,
-  bnequiv: Vc,
-  bNot: Wc,
-  bnot: Zc,
-  Bopf: Jc,
-  bopf: Qc,
-  bot: Yc,
-  bottom: Xc,
-  bowtie: Kc,
-  boxbox: ea,
-  boxdl: na,
-  boxdL: ta,
-  boxDl: oa,
-  boxDL: sa,
-  boxdr: ra,
-  boxdR: ca,
-  boxDr: aa,
-  boxDR: ia,
-  boxh: la,
-  boxH: ua,
-  boxhd: pa,
-  boxHd: ha,
-  boxhD: da,
-  boxHD: fa,
-  boxhu: ma,
-  boxHu: ga,
-  boxhU: _a,
-  boxHU: ba,
-  boxminus: ka,
-  boxplus: ya,
-  boxtimes: wa,
-  boxul: va,
-  boxuL: xa,
-  boxUl: Aa,
-  boxUL: Sa,
-  boxur: La,
-  boxuR: Ca,
-  boxUr: Ea,
-  boxUR: Ta,
-  boxv: Da,
-  boxV: qa,
-  boxvh: ja,
-  boxvH: Ra,
-  boxVh: Na,
-  boxVH: Pa,
-  boxvl: Ia,
-  boxvL: Oa,
-  boxVl: Fa,
-  boxVL: Ma,
-  boxvr: Ba,
-  boxvR: za,
-  boxVr: $a,
-  boxVR: Ga,
-  bprime: Ua,
-  breve: Ha,
-  Breve: Va,
-  brvbar: Wa,
-  bscr: Za,
-  Bscr: Ja,
-  bsemi: Qa,
-  bsim: Ya,
-  bsime: Xa,
-  bsolb: Ka,
-  bsol: ei,
-  bsolhsub: ni,
-  bull: ti,
-  bullet: oi,
-  bump: si,
-  bumpE: ri,
-  bumpe: ci,
-  Bumpeq: ai,
-  bumpeq: ii,
-  Cacute: li,
-  cacute: ui,
-  capand: pi,
-  capbrcup: hi,
-  capcap: di,
-  cap: fi,
-  Cap: mi,
-  capcup: gi,
-  capdot: _i,
-  CapitalDifferentialD: bi,
-  caps: ki,
-  caret: yi,
-  caron: wi,
-  Cayleys: vi,
-  ccaps: xi,
-  Ccaron: Ai,
-  ccaron: Si,
-  Ccedil: Li,
-  ccedil: Ci,
-  Ccirc: Ei,
-  ccirc: Ti,
-  Cconint: Di,
-  ccups: qi,
-  ccupssm: ji,
-  Cdot: Ri,
-  cdot: Ni,
-  cedil: Pi,
-  Cedilla: Ii,
-  cemptyv: Oi,
-  cent: Fi,
-  centerdot: Mi,
-  CenterDot: Bi,
-  cfr: zi,
-  Cfr: $i,
-  CHcy: Gi,
-  chcy: Ui,
-  check: Hi,
-  checkmark: Vi,
-  Chi: Wi,
-  chi: Zi,
-  circ: Ji,
-  circeq: Qi,
-  circlearrowleft: Yi,
-  circlearrowright: Xi,
-  circledast: Ki,
-  circledcirc: el,
-  circleddash: nl,
-  CircleDot: tl,
-  circledR: ol,
-  circledS: sl,
-  CircleMinus: rl,
-  CirclePlus: cl,
-  CircleTimes: al,
-  cir: il,
-  cirE: ll,
-  cire: ul,
-  cirfnint: pl,
-  cirmid: hl,
-  cirscir: dl,
-  ClockwiseContourIntegral: fl,
-  CloseCurlyDoubleQuote: ml,
-  CloseCurlyQuote: gl,
-  clubs: _l,
-  clubsuit: bl,
-  colon: kl,
-  Colon: yl,
-  Colone: wl,
-  colone: vl,
-  coloneq: xl,
-  comma: Al,
-  commat: Sl,
-  comp: Ll,
-  compfn: Cl,
-  complement: El,
-  complexes: Tl,
-  cong: Dl,
-  congdot: ql,
-  Congruent: jl,
-  conint: Rl,
-  Conint: Nl,
-  ContourIntegral: Pl,
-  copf: Il,
-  Copf: Ol,
-  coprod: Fl,
-  Coproduct: Ml,
-  copy: Bl,
-  COPY: zl,
-  copysr: $l,
-  CounterClockwiseContourIntegral: Gl,
-  crarr: Ul,
-  cross: Hl,
-  Cross: Vl,
-  Cscr: Wl,
-  cscr: Zl,
-  csub: Jl,
-  csube: Ql,
-  csup: Yl,
-  csupe: Xl,
-  ctdot: Kl,
-  cudarrl: eu,
-  cudarrr: nu,
-  cuepr: tu,
-  cuesc: ou,
-  cularr: su,
-  cularrp: ru,
-  cupbrcap: cu,
-  cupcap: au,
-  CupCap: iu,
-  cup: lu,
-  Cup: uu,
-  cupcup: pu,
-  cupdot: hu,
-  cupor: du,
-  cups: fu,
-  curarr: mu,
-  curarrm: gu,
-  curlyeqprec: _u,
-  curlyeqsucc: bu,
-  curlyvee: ku,
-  curlywedge: yu,
-  curren: wu,
-  curvearrowleft: vu,
-  curvearrowright: xu,
-  cuvee: Au,
-  cuwed: Su,
-  cwconint: Lu,
-  cwint: Cu,
-  cylcty: Eu,
-  dagger: Tu,
-  Dagger: Du,
-  daleth: qu,
-  darr: ju,
-  Darr: Ru,
-  dArr: Nu,
-  dash: Pu,
-  Dashv: Iu,
-  dashv: Ou,
-  dbkarow: Fu,
-  dblac: Mu,
-  Dcaron: Bu,
-  dcaron: zu,
-  Dcy: $u,
-  dcy: Gu,
-  ddagger: Uu,
-  ddarr: Hu,
-  DD: Vu,
-  dd: Wu,
-  DDotrahd: Zu,
-  ddotseq: Ju,
-  deg: Qu,
-  Del: Yu,
-  Delta: Xu,
-  delta: Ku,
-  demptyv: ep,
-  dfisht: np,
-  Dfr: tp,
-  dfr: op,
-  dHar: sp,
-  dharl: rp,
-  dharr: cp,
-  DiacriticalAcute: ap,
-  DiacriticalDot: ip,
-  DiacriticalDoubleAcute: lp,
-  DiacriticalGrave: up,
-  DiacriticalTilde: pp,
-  diam: hp,
-  diamond: dp,
-  Diamond: fp,
-  diamondsuit: mp,
-  diams: gp,
-  die: _p,
-  DifferentialD: bp,
-  digamma: kp,
-  disin: yp,
-  div: wp,
-  divide: vp,
-  divideontimes: xp,
-  divonx: Ap,
-  DJcy: Sp,
-  djcy: Lp,
-  dlcorn: Cp,
-  dlcrop: Ep,
-  dollar: Tp,
-  Dopf: Dp,
-  dopf: qp,
-  Dot: jp,
-  dot: Rp,
-  DotDot: Np,
-  doteq: Pp,
-  doteqdot: Ip,
-  DotEqual: Op,
-  dotminus: Fp,
-  dotplus: Mp,
-  dotsquare: Bp,
-  doublebarwedge: zp,
-  DoubleContourIntegral: $p,
-  DoubleDot: Gp,
-  DoubleDownArrow: Up,
-  DoubleLeftArrow: Hp,
-  DoubleLeftRightArrow: Vp,
-  DoubleLeftTee: Wp,
-  DoubleLongLeftArrow: Zp,
-  DoubleLongLeftRightArrow: Jp,
-  DoubleLongRightArrow: Qp,
-  DoubleRightArrow: Yp,
-  DoubleRightTee: Xp,
-  DoubleUpArrow: Kp,
-  DoubleUpDownArrow: eh,
-  DoubleVerticalBar: nh,
-  DownArrowBar: th,
-  downarrow: oh,
-  DownArrow: sh,
-  Downarrow: rh,
-  DownArrowUpArrow: ch,
-  DownBreve: ah,
-  downdownarrows: ih,
-  downharpoonleft: lh,
-  downharpoonright: uh,
-  DownLeftRightVector: ph,
-  DownLeftTeeVector: hh,
-  DownLeftVectorBar: dh,
-  DownLeftVector: fh,
-  DownRightTeeVector: mh,
-  DownRightVectorBar: gh,
-  DownRightVector: _h,
-  DownTeeArrow: bh,
-  DownTee: kh,
-  drbkarow: yh,
-  drcorn: wh,
-  drcrop: vh,
-  Dscr: xh,
-  dscr: Ah,
-  DScy: Sh,
-  dscy: Lh,
-  dsol: Ch,
-  Dstrok: Eh,
-  dstrok: Th,
-  dtdot: Dh,
-  dtri: qh,
-  dtrif: jh,
-  duarr: Rh,
-  duhar: Nh,
-  dwangle: Ph,
-  DZcy: Ih,
-  dzcy: Oh,
-  dzigrarr: Fh,
-  Eacute: Mh,
-  eacute: Bh,
-  easter: zh,
-  Ecaron: $h,
-  ecaron: Gh,
-  Ecirc: Uh,
-  ecirc: Hh,
-  ecir: Vh,
-  ecolon: Wh,
-  Ecy: Zh,
-  ecy: Jh,
-  eDDot: Qh,
-  Edot: Yh,
-  edot: Xh,
-  eDot: Kh,
-  ee: ed,
-  efDot: nd,
-  Efr: td,
-  efr: od,
-  eg: sd,
-  Egrave: rd,
-  egrave: cd,
-  egs: ad,
-  egsdot: id,
-  el: ld,
-  Element: ud,
-  elinters: pd,
-  ell: hd,
-  els: dd,
-  elsdot: fd,
-  Emacr: md,
-  emacr: gd,
-  empty: _d,
-  emptyset: bd,
-  EmptySmallSquare: kd,
-  emptyv: yd,
-  EmptyVerySmallSquare: wd,
-  emsp13: vd,
-  emsp14: xd,
-  emsp: Ad,
-  ENG: Sd,
-  eng: Ld,
-  ensp: Cd,
-  Eogon: Ed,
-  eogon: Td,
-  Eopf: Dd,
-  eopf: qd,
-  epar: jd,
-  eparsl: Rd,
-  eplus: Nd,
-  epsi: Pd,
-  Epsilon: Id,
-  epsilon: Od,
-  epsiv: Fd,
-  eqcirc: Md,
-  eqcolon: Bd,
-  eqsim: zd,
-  eqslantgtr: $d,
-  eqslantless: Gd,
-  Equal: Ud,
-  equals: Hd,
-  EqualTilde: Vd,
-  equest: Wd,
-  Equilibrium: Zd,
-  equiv: Jd,
-  equivDD: Qd,
-  eqvparsl: Yd,
-  erarr: Xd,
-  erDot: Kd,
-  escr: ef,
-  Escr: nf,
-  esdot: tf,
-  Esim: of,
-  esim: sf,
-  Eta: rf,
-  eta: cf,
-  ETH: af,
-  eth: lf,
-  Euml: uf,
-  euml: pf,
-  euro: hf,
-  excl: df,
-  exist: ff,
-  Exists: mf,
-  expectation: gf,
-  exponentiale: _f,
-  ExponentialE: bf,
-  fallingdotseq: kf,
-  Fcy: yf,
-  fcy: wf,
-  female: vf,
-  ffilig: xf,
-  fflig: Af,
-  ffllig: Sf,
-  Ffr: Lf,
-  ffr: Cf,
-  filig: Ef,
-  FilledSmallSquare: Tf,
-  FilledVerySmallSquare: Df,
-  fjlig: qf,
-  flat: jf,
-  fllig: Rf,
-  fltns: Nf,
-  fnof: Pf,
-  Fopf: If,
-  fopf: Of,
-  forall: Ff,
-  ForAll: Mf,
-  fork: Bf,
-  forkv: zf,
-  Fouriertrf: $f,
-  fpartint: Gf,
-  frac12: Uf,
-  frac13: Hf,
-  frac14: Vf,
-  frac15: Wf,
-  frac16: Zf,
-  frac18: Jf,
-  frac23: Qf,
-  frac25: Yf,
-  frac34: Xf,
-  frac35: Kf,
-  frac38: em,
-  frac45: nm,
-  frac56: tm,
-  frac58: om,
-  frac78: sm,
-  frasl: rm,
-  frown: cm,
-  fscr: am,
-  Fscr: im,
-  gacute: lm,
-  Gamma: um,
-  gamma: pm,
-  Gammad: hm,
-  gammad: dm,
-  gap: fm,
-  Gbreve: mm,
-  gbreve: gm,
-  Gcedil: _m,
-  Gcirc: bm,
-  gcirc: km,
-  Gcy: ym,
-  gcy: wm,
-  Gdot: vm,
-  gdot: xm,
-  ge: Am,
-  gE: Sm,
-  gEl: Lm,
-  gel: Cm,
-  geq: Em,
-  geqq: Tm,
-  geqslant: Dm,
-  gescc: qm,
-  ges: jm,
-  gesdot: Rm,
-  gesdoto: Nm,
-  gesdotol: Pm,
-  gesl: Im,
-  gesles: Om,
-  Gfr: Fm,
-  gfr: Mm,
-  gg: Bm,
-  Gg: zm,
-  ggg: $m,
-  gimel: Gm,
-  GJcy: Um,
-  gjcy: Hm,
-  gla: Vm,
-  gl: Wm,
-  glE: Zm,
-  glj: Jm,
-  gnap: Qm,
-  gnapprox: Ym,
-  gne: Xm,
-  gnE: Km,
-  gneq: eg,
-  gneqq: ng,
-  gnsim: tg,
-  Gopf: og,
-  gopf: sg,
-  grave: rg,
-  GreaterEqual: cg,
-  GreaterEqualLess: ag,
-  GreaterFullEqual: ig,
-  GreaterGreater: lg,
-  GreaterLess: ug,
-  GreaterSlantEqual: pg,
-  GreaterTilde: hg,
-  Gscr: dg,
-  gscr: fg,
-  gsim: mg,
-  gsime: gg,
-  gsiml: _g,
-  gtcc: bg,
-  gtcir: kg,
-  gt: yg,
-  GT: wg,
-  Gt: vg,
-  gtdot: xg,
-  gtlPar: Ag,
-  gtquest: Sg,
-  gtrapprox: Lg,
-  gtrarr: Cg,
-  gtrdot: Eg,
-  gtreqless: Tg,
-  gtreqqless: Dg,
-  gtrless: qg,
-  gtrsim: jg,
-  gvertneqq: Rg,
-  gvnE: Ng,
-  Hacek: Pg,
-  hairsp: Ig,
-  half: Og,
-  hamilt: Fg,
-  HARDcy: Mg,
-  hardcy: Bg,
-  harrcir: zg,
-  harr: $g,
-  hArr: Gg,
-  harrw: Ug,
-  Hat: Hg,
-  hbar: Vg,
-  Hcirc: Wg,
-  hcirc: Zg,
-  hearts: Jg,
-  heartsuit: Qg,
-  hellip: Yg,
-  hercon: Xg,
-  hfr: Kg,
-  Hfr: e_,
-  HilbertSpace: n_,
-  hksearow: t_,
-  hkswarow: o_,
-  hoarr: s_,
-  homtht: r_,
-  hookleftarrow: c_,
-  hookrightarrow: a_,
-  hopf: i_,
-  Hopf: l_,
-  horbar: u_,
-  HorizontalLine: p_,
-  hscr: h_,
-  Hscr: d_,
-  hslash: f_,
-  Hstrok: m_,
-  hstrok: g_,
-  HumpDownHump: __,
-  HumpEqual: b_,
-  hybull: k_,
-  hyphen: y_,
-  Iacute: w_,
-  iacute: v_,
-  ic: x_,
-  Icirc: A_,
-  icirc: S_,
-  Icy: L_,
-  icy: C_,
-  Idot: E_,
-  IEcy: T_,
-  iecy: D_,
-  iexcl: q_,
-  iff: j_,
-  ifr: R_,
-  Ifr: N_,
-  Igrave: P_,
-  igrave: I_,
-  ii: O_,
-  iiiint: F_,
-  iiint: M_,
-  iinfin: B_,
-  iiota: z_,
-  IJlig: $_,
-  ijlig: G_,
-  Imacr: U_,
-  imacr: H_,
-  image: V_,
-  ImaginaryI: W_,
-  imagline: Z_,
-  imagpart: J_,
-  imath: Q_,
-  Im: Y_,
-  imof: X_,
-  imped: K_,
-  Implies: eb,
-  incare: nb,
+const ws = "Á", vs = "á", xs = "Ă", As = "ă", Ss = "∾", Ls = "∿", Cs = "∾̳", Es = "Â", Ts = "â", Ds = "´", qs = "А", js = "а", Rs = "Æ", Ns = "æ", Ps = "⁡", Is = "𝔄", Os = "𝔞", Fs = "À", Ms = "à", Bs = "ℵ", $s = "ℵ", zs = "Α", Gs = "α", Us = "Ā", Hs = "ā", Vs = "⨿", Ws = "&", Zs = "&", Js = "⩕", Qs = "⩓", Ys = "∧", Xs = "⩜", Ks = "⩘", er = "⩚", nr = "∠", tr = "⦤", or = "∠", sr = "⦨", rr = "⦩", cr = "⦪", ar = "⦫", ir = "⦬", lr = "⦭", ur = "⦮", pr = "⦯", hr = "∡", dr = "∟", fr = "⊾", mr = "⦝", gr = "∢", _r = "Å", br = "⍼", kr = "Ą", yr = "ą", wr = "𝔸", vr = "𝕒", xr = "⩯", Ar = "≈", Sr = "⩰", Lr = "≊", Cr = "≋", Er = "'", Tr = "⁡", Dr = "≈", qr = "≊", jr = "Å", Rr = "å", Nr = "𝒜", Pr = "𝒶", Ir = "≔", Or = "*", Fr = "≈", Mr = "≍", Br = "Ã", $r = "ã", zr = "Ä", Gr = "ä", Ur = "∳", Hr = "⨑", Vr = "≌", Wr = "϶", Zr = "‵", Jr = "∽", Qr = "⋍", Yr = "∖", Xr = "⫧", Kr = "⊽", ec = "⌅", nc = "⌆", tc = "⌅", oc = "⎵", sc = "⎶", rc = "≌", cc = "Б", ac = "б", ic = "„", lc = "∵", uc = "∵", pc = "∵", hc = "⦰", dc = "϶", fc = "ℬ", mc = "ℬ", gc = "Β", _c = "β", bc = "ℶ", kc = "≬", yc = "𝔅", wc = "𝔟", vc = "⋂", xc = "◯", Ac = "⋃", Sc = "⨀", Lc = "⨁", Cc = "⨂", Ec = "⨆", Tc = "★", Dc = "▽", qc = "△", jc = "⨄", Rc = "⋁", Nc = "⋀", Pc = "⤍", Ic = "⧫", Oc = "▪", Fc = "▴", Mc = "▾", Bc = "◂", $c = "▸", zc = "␣", Gc = "▒", Uc = "░", Hc = "▓", Vc = "█", Wc = "=⃥", Zc = "≡⃥", Jc = "⫭", Qc = "⌐", Yc = "𝔹", Xc = "𝕓", Kc = "⊥", ea = "⊥", na = "⋈", ta = "⧉", oa = "┐", sa = "╕", ra = "╖", ca = "╗", aa = "┌", ia = "╒", la = "╓", ua = "╔", pa = "─", ha = "═", da = "┬", fa = "╤", ma = "╥", ga = "╦", _a = "┴", ba = "╧", ka = "╨", ya = "╩", wa = "⊟", va = "⊞", xa = "⊠", Aa = "┘", Sa = "╛", La = "╜", Ca = "╝", Ea = "└", Ta = "╘", Da = "╙", qa = "╚", ja = "│", Ra = "║", Na = "┼", Pa = "╪", Ia = "╫", Oa = "╬", Fa = "┤", Ma = "╡", Ba = "╢", $a = "╣", za = "├", Ga = "╞", Ua = "╟", Ha = "╠", Va = "‵", Wa = "˘", Za = "˘", Ja = "¦", Qa = "𝒷", Ya = "ℬ", Xa = "⁏", Ka = "∽", ei = "⋍", ni = "⧅", ti = "\\", oi = "⟈", si = "•", ri = "•", ci = "≎", ai = "⪮", ii = "≏", li = "≎", ui = "≏", pi = "Ć", hi = "ć", di = "⩄", fi = "⩉", mi = "⩋", gi = "∩", _i = "⋒", bi = "⩇", ki = "⩀", yi = "ⅅ", wi = "∩︀", vi = "⁁", xi = "ˇ", Ai = "ℭ", Si = "⩍", Li = "Č", Ci = "č", Ei = "Ç", Ti = "ç", Di = "Ĉ", qi = "ĉ", ji = "∰", Ri = "⩌", Ni = "⩐", Pi = "Ċ", Ii = "ċ", Oi = "¸", Fi = "¸", Mi = "⦲", Bi = "¢", $i = "·", zi = "·", Gi = "𝔠", Ui = "ℭ", Hi = "Ч", Vi = "ч", Wi = "✓", Zi = "✓", Ji = "Χ", Qi = "χ", Yi = "ˆ", Xi = "≗", Ki = "↺", el = "↻", nl = "⊛", tl = "⊚", ol = "⊝", sl = "⊙", rl = "®", cl = "Ⓢ", al = "⊖", il = "⊕", ll = "⊗", ul = "○", pl = "⧃", hl = "≗", dl = "⨐", fl = "⫯", ml = "⧂", gl = "∲", _l = "”", bl = "’", kl = "♣", yl = "♣", wl = ":", vl = "∷", xl = "⩴", Al = "≔", Sl = "≔", Ll = ",", Cl = "@", El = "∁", Tl = "∘", Dl = "∁", ql = "ℂ", jl = "≅", Rl = "⩭", Nl = "≡", Pl = "∮", Il = "∯", Ol = "∮", Fl = "𝕔", Ml = "ℂ", Bl = "∐", $l = "∐", zl = "©", Gl = "©", Ul = "℗", Hl = "∳", Vl = "↵", Wl = "✗", Zl = "⨯", Jl = "𝒞", Ql = "𝒸", Yl = "⫏", Xl = "⫑", Kl = "⫐", eu = "⫒", nu = "⋯", tu = "⤸", ou = "⤵", su = "⋞", ru = "⋟", cu = "↶", au = "⤽", iu = "⩈", lu = "⩆", uu = "≍", pu = "∪", hu = "⋓", du = "⩊", fu = "⊍", mu = "⩅", gu = "∪︀", _u = "↷", bu = "⤼", ku = "⋞", yu = "⋟", wu = "⋎", vu = "⋏", xu = "¤", Au = "↶", Su = "↷", Lu = "⋎", Cu = "⋏", Eu = "∲", Tu = "∱", Du = "⌭", qu = "†", ju = "‡", Ru = "ℸ", Nu = "↓", Pu = "↡", Iu = "⇓", Ou = "‐", Fu = "⫤", Mu = "⊣", Bu = "⤏", $u = "˝", zu = "Ď", Gu = "ď", Uu = "Д", Hu = "д", Vu = "‡", Wu = "⇊", Zu = "ⅅ", Ju = "ⅆ", Qu = "⤑", Yu = "⩷", Xu = "°", Ku = "∇", ep = "Δ", np = "δ", tp = "⦱", op = "⥿", sp = "𝔇", rp = "𝔡", cp = "⥥", ap = "⇃", ip = "⇂", lp = "´", up = "˙", pp = "˝", hp = "`", dp = "˜", fp = "⋄", mp = "⋄", gp = "⋄", _p = "♦", bp = "♦", kp = "¨", yp = "ⅆ", wp = "ϝ", vp = "⋲", xp = "÷", Ap = "÷", Sp = "⋇", Lp = "⋇", Cp = "Ђ", Ep = "ђ", Tp = "⌞", Dp = "⌍", qp = "$", jp = "𝔻", Rp = "𝕕", Np = "¨", Pp = "˙", Ip = "⃜", Op = "≐", Fp = "≑", Mp = "≐", Bp = "∸", $p = "∔", zp = "⊡", Gp = "⌆", Up = "∯", Hp = "¨", Vp = "⇓", Wp = "⇐", Zp = "⇔", Jp = "⫤", Qp = "⟸", Yp = "⟺", Xp = "⟹", Kp = "⇒", eh = "⊨", nh = "⇑", th = "⇕", oh = "∥", sh = "⤓", rh = "↓", ch = "↓", ah = "⇓", ih = "⇵", lh = "̑", uh = "⇊", ph = "⇃", hh = "⇂", dh = "⥐", fh = "⥞", mh = "⥖", gh = "↽", _h = "⥟", bh = "⥗", kh = "⇁", yh = "↧", wh = "⊤", vh = "⤐", xh = "⌟", Ah = "⌌", Sh = "𝒟", Lh = "𝒹", Ch = "Ѕ", Eh = "ѕ", Th = "⧶", Dh = "Đ", qh = "đ", jh = "⋱", Rh = "▿", Nh = "▾", Ph = "⇵", Ih = "⥯", Oh = "⦦", Fh = "Џ", Mh = "џ", Bh = "⟿", $h = "É", zh = "é", Gh = "⩮", Uh = "Ě", Hh = "ě", Vh = "Ê", Wh = "ê", Zh = "≖", Jh = "≕", Qh = "Э", Yh = "э", Xh = "⩷", Kh = "Ė", ed = "ė", nd = "≑", td = "ⅇ", od = "≒", sd = "𝔈", rd = "𝔢", cd = "⪚", ad = "È", id = "è", ld = "⪖", ud = "⪘", pd = "⪙", hd = "∈", dd = "⏧", fd = "ℓ", md = "⪕", gd = "⪗", _d = "Ē", bd = "ē", kd = "∅", yd = "∅", wd = "◻", vd = "∅", xd = "▫", Ad = " ", Sd = " ", Ld = " ", Cd = "Ŋ", Ed = "ŋ", Td = " ", Dd = "Ę", qd = "ę", jd = "𝔼", Rd = "𝕖", Nd = "⋕", Pd = "⧣", Id = "⩱", Od = "ε", Fd = "Ε", Md = "ε", Bd = "ϵ", $d = "≖", zd = "≕", Gd = "≂", Ud = "⪖", Hd = "⪕", Vd = "⩵", Wd = "=", Zd = "≂", Jd = "≟", Qd = "⇌", Yd = "≡", Xd = "⩸", Kd = "⧥", ef = "⥱", nf = "≓", tf = "ℯ", of = "ℰ", sf = "≐", rf = "⩳", cf = "≂", af = "Η", lf = "η", uf = "Ð", pf = "ð", hf = "Ë", df = "ë", ff = "€", mf = "!", gf = "∃", _f = "∃", bf = "ℰ", kf = "ⅇ", yf = "ⅇ", wf = "≒", vf = "Ф", xf = "ф", Af = "♀", Sf = "ﬃ", Lf = "ﬀ", Cf = "ﬄ", Ef = "𝔉", Tf = "𝔣", Df = "ﬁ", qf = "◼", jf = "▪", Rf = "fj", Nf = "♭", Pf = "ﬂ", If = "▱", Of = "ƒ", Ff = "𝔽", Mf = "𝕗", Bf = "∀", $f = "∀", zf = "⋔", Gf = "⫙", Uf = "ℱ", Hf = "⨍", Vf = "½", Wf = "⅓", Zf = "¼", Jf = "⅕", Qf = "⅙", Yf = "⅛", Xf = "⅔", Kf = "⅖", em = "¾", nm = "⅗", tm = "⅜", om = "⅘", sm = "⅚", rm = "⅝", cm = "⅞", am = "⁄", im = "⌢", lm = "𝒻", um = "ℱ", pm = "ǵ", hm = "Γ", dm = "γ", fm = "Ϝ", mm = "ϝ", gm = "⪆", _m = "Ğ", bm = "ğ", km = "Ģ", ym = "Ĝ", wm = "ĝ", vm = "Г", xm = "г", Am = "Ġ", Sm = "ġ", Lm = "≥", Cm = "≧", Em = "⪌", Tm = "⋛", Dm = "≥", qm = "≧", jm = "⩾", Rm = "⪩", Nm = "⩾", Pm = "⪀", Im = "⪂", Om = "⪄", Fm = "⋛︀", Mm = "⪔", Bm = "𝔊", $m = "𝔤", zm = "≫", Gm = "⋙", Um = "⋙", Hm = "ℷ", Vm = "Ѓ", Wm = "ѓ", Zm = "⪥", Jm = "≷", Qm = "⪒", Ym = "⪤", Xm = "⪊", Km = "⪊", eg = "⪈", ng = "≩", tg = "⪈", og = "≩", sg = "⋧", rg = "𝔾", cg = "𝕘", ag = "`", ig = "≥", lg = "⋛", ug = "≧", pg = "⪢", hg = "≷", dg = "⩾", fg = "≳", mg = "𝒢", gg = "ℊ", _g = "≳", bg = "⪎", kg = "⪐", yg = "⪧", wg = "⩺", vg = ">", xg = ">", Ag = "≫", Sg = "⋗", Lg = "⦕", Cg = "⩼", Eg = "⪆", Tg = "⥸", Dg = "⋗", qg = "⋛", jg = "⪌", Rg = "≷", Ng = "≳", Pg = "≩︀", Ig = "≩︀", Og = "ˇ", Fg = " ", Mg = "½", Bg = "ℋ", $g = "Ъ", zg = "ъ", Gg = "⥈", Ug = "↔", Hg = "⇔", Vg = "↭", Wg = "^", Zg = "ℏ", Jg = "Ĥ", Qg = "ĥ", Yg = "♥", Xg = "♥", Kg = "…", e_ = "⊹", n_ = "𝔥", t_ = "ℌ", o_ = "ℋ", s_ = "⤥", r_ = "⤦", c_ = "⇿", a_ = "∻", i_ = "↩", l_ = "↪", u_ = "𝕙", p_ = "ℍ", h_ = "―", d_ = "─", f_ = "𝒽", m_ = "ℋ", g_ = "ℏ", __ = "Ħ", b_ = "ħ", k_ = "≎", y_ = "≏", w_ = "⁃", v_ = "‐", x_ = "Í", A_ = "í", S_ = "⁣", L_ = "Î", C_ = "î", E_ = "И", T_ = "и", D_ = "İ", q_ = "Е", j_ = "е", R_ = "¡", N_ = "⇔", P_ = "𝔦", I_ = "ℑ", O_ = "Ì", F_ = "ì", M_ = "ⅈ", B_ = "⨌", $_ = "∭", z_ = "⧜", G_ = "℩", U_ = "Ĳ", H_ = "ĳ", V_ = "Ī", W_ = "ī", Z_ = "ℑ", J_ = "ⅈ", Q_ = "ℐ", Y_ = "ℑ", X_ = "ı", K_ = "ℑ", eb = "⊷", nb = "Ƶ", tb = "⇒", ob = "℅", sb = "∞", rb = "⧝", cb = "ı", ab = "⊺", ib = "∫", lb = "∬", ub = "ℤ", pb = "∫", hb = "⊺", db = "⋂", fb = "⨗", mb = "⨼", gb = "⁣", _b = "⁢", bb = "Ё", kb = "ё", yb = "Į", wb = "į", vb = "𝕀", xb = "𝕚", Ab = "Ι", Sb = "ι", Lb = "⨼", Cb = "¿", Eb = "𝒾", Tb = "ℐ", Db = "∈", qb = "⋵", jb = "⋹", Rb = "⋴", Nb = "⋳", Pb = "∈", Ib = "⁢", Ob = "Ĩ", Fb = "ĩ", Mb = "І", Bb = "і", $b = "Ï", zb = "ï", Gb = "Ĵ", Ub = "ĵ", Hb = "Й", Vb = "й", Wb = "𝔍", Zb = "𝔧", Jb = "ȷ", Qb = "𝕁", Yb = "𝕛", Xb = "𝒥", Kb = "𝒿", ek = "Ј", nk = "ј", tk = "Є", ok = "є", sk = "Κ", rk = "κ", ck = "ϰ", ak = "Ķ", ik = "ķ", lk = "К", uk = "к", pk = "𝔎", hk = "𝔨", dk = "ĸ", fk = "Х", mk = "х", gk = "Ќ", _k = "ќ", bk = "𝕂", kk = "𝕜", yk = "𝒦", wk = "𝓀", vk = "⇚", xk = "Ĺ", Ak = "ĺ", Sk = "⦴", Lk = "ℒ", Ck = "Λ", Ek = "λ", Tk = "⟨", Dk = "⟪", qk = "⦑", jk = "⟨", Rk = "⪅", Nk = "ℒ", Pk = "«", Ik = "⇤", Ok = "⤟", Fk = "←", Mk = "↞", Bk = "⇐", $k = "⤝", zk = "↩", Gk = "↫", Uk = "⤹", Hk = "⥳", Vk = "↢", Wk = "⤙", Zk = "⤛", Jk = "⪫", Qk = "⪭", Yk = "⪭︀", Xk = "⤌", Kk = "⤎", ey = "❲", ny = "{", ty = "[", oy = "⦋", sy = "⦏", ry = "⦍", cy = "Ľ", ay = "ľ", iy = "Ļ", ly = "ļ", uy = "⌈", py = "{", hy = "Л", dy = "л", fy = "⤶", my = "“", gy = "„", _y = "⥧", by = "⥋", ky = "↲", yy = "≤", wy = "≦", vy = "⟨", xy = "⇤", Ay = "←", Sy = "←", Ly = "⇐", Cy = "⇆", Ey = "↢", Ty = "⌈", Dy = "⟦", qy = "⥡", jy = "⥙", Ry = "⇃", Ny = "⌊", Py = "↽", Iy = "↼", Oy = "⇇", Fy = "↔", My = "↔", By = "⇔", $y = "⇆", zy = "⇋", Gy = "↭", Uy = "⥎", Hy = "↤", Vy = "⊣", Wy = "⥚", Zy = "⋋", Jy = "⧏", Qy = "⊲", Yy = "⊴", Xy = "⥑", Ky = "⥠", ew = "⥘", nw = "↿", tw = "⥒", ow = "↼", sw = "⪋", rw = "⋚", cw = "≤", aw = "≦", iw = "⩽", lw = "⪨", uw = "⩽", pw = "⩿", hw = "⪁", dw = "⪃", fw = "⋚︀", mw = "⪓", gw = "⪅", _w = "⋖", bw = "⋚", kw = "⪋", yw = "⋚", ww = "≦", vw = "≶", xw = "≶", Aw = "⪡", Sw = "≲", Lw = "⩽", Cw = "≲", Ew = "⥼", Tw = "⌊", Dw = "𝔏", qw = "𝔩", jw = "≶", Rw = "⪑", Nw = "⥢", Pw = "↽", Iw = "↼", Ow = "⥪", Fw = "▄", Mw = "Љ", Bw = "љ", $w = "⇇", zw = "≪", Gw = "⋘", Uw = "⌞", Hw = "⇚", Vw = "⥫", Ww = "◺", Zw = "Ŀ", Jw = "ŀ", Qw = "⎰", Yw = "⎰", Xw = "⪉", Kw = "⪉", e0 = "⪇", n0 = "≨", t0 = "⪇", o0 = "≨", s0 = "⋦", r0 = "⟬", c0 = "⇽", a0 = "⟦", i0 = "⟵", l0 = "⟵", u0 = "⟸", p0 = "⟷", h0 = "⟷", d0 = "⟺", f0 = "⟼", m0 = "⟶", g0 = "⟶", _0 = "⟹", b0 = "↫", k0 = "↬", y0 = "⦅", w0 = "𝕃", v0 = "𝕝", x0 = "⨭", A0 = "⨴", S0 = "∗", L0 = "_", C0 = "↙", E0 = "↘", T0 = "◊", D0 = "◊", q0 = "⧫", j0 = "(", R0 = "⦓", N0 = "⇆", P0 = "⌟", I0 = "⇋", O0 = "⥭", F0 = "‎", M0 = "⊿", B0 = "‹", $0 = "𝓁", z0 = "ℒ", G0 = "↰", U0 = "↰", H0 = "≲", V0 = "⪍", W0 = "⪏", Z0 = "[", J0 = "‘", Q0 = "‚", Y0 = "Ł", X0 = "ł", K0 = "⪦", ev = "⩹", nv = "<", tv = "<", ov = "≪", sv = "⋖", rv = "⋋", cv = "⋉", av = "⥶", iv = "⩻", lv = "◃", uv = "⊴", pv = "◂", hv = "⦖", dv = "⥊", fv = "⥦", mv = "≨︀", gv = "≨︀", _v = "¯", bv = "♂", kv = "✠", yv = "✠", wv = "↦", vv = "↦", xv = "↧", Av = "↤", Sv = "↥", Lv = "▮", Cv = "⨩", Ev = "М", Tv = "м", Dv = "—", qv = "∺", jv = "∡", Rv = " ", Nv = "ℳ", Pv = "𝔐", Iv = "𝔪", Ov = "℧", Fv = "µ", Mv = "*", Bv = "⫰", $v = "∣", zv = "·", Gv = "⊟", Uv = "−", Hv = "∸", Vv = "⨪", Wv = "∓", Zv = "⫛", Jv = "…", Qv = "∓", Yv = "⊧", Xv = "𝕄", Kv = "𝕞", e1 = "∓", n1 = "𝓂", t1 = "ℳ", o1 = "∾", s1 = "Μ", r1 = "μ", c1 = "⊸", a1 = "⊸", i1 = "∇", l1 = "Ń", u1 = "ń", p1 = "∠⃒", h1 = "≉", d1 = "⩰̸", f1 = "≋̸", m1 = "ŉ", g1 = "≉", _1 = "♮", b1 = "ℕ", k1 = "♮", y1 = " ", w1 = "≎̸", v1 = "≏̸", x1 = "⩃", A1 = "Ň", S1 = "ň", L1 = "Ņ", C1 = "ņ", E1 = "≇", T1 = "⩭̸", D1 = "⩂", q1 = "Н", j1 = "н", R1 = "–", N1 = "⤤", P1 = "↗", I1 = "⇗", O1 = "↗", F1 = "≠", M1 = "≐̸", B1 = "​", $1 = "​", z1 = "​", G1 = "​", U1 = "≢", H1 = "⤨", V1 = "≂̸", W1 = "≫", Z1 = "≪", J1 = `
+`, Q1 = "∄", Y1 = "∄", X1 = "𝔑", K1 = "𝔫", ex = "≧̸", nx = "≱", tx = "≱", ox = "≧̸", sx = "⩾̸", rx = "⩾̸", cx = "⋙̸", ax = "≵", ix = "≫⃒", lx = "≯", ux = "≯", px = "≫̸", hx = "↮", dx = "⇎", fx = "⫲", mx = "∋", gx = "⋼", _x = "⋺", bx = "∋", kx = "Њ", yx = "њ", wx = "↚", vx = "⇍", xx = "‥", Ax = "≦̸", Sx = "≰", Lx = "↚", Cx = "⇍", Ex = "↮", Tx = "⇎", Dx = "≰", qx = "≦̸", jx = "⩽̸", Rx = "⩽̸", Nx = "≮", Px = "⋘̸", Ix = "≴", Ox = "≪⃒", Fx = "≮", Mx = "⋪", Bx = "⋬", $x = "≪̸", zx = "∤", Gx = "⁠", Ux = " ", Hx = "𝕟", Vx = "ℕ", Wx = "⫬", Zx = "¬", Jx = "≢", Qx = "≭", Yx = "∦", Xx = "∉", Kx = "≠", eA = "≂̸", nA = "∄", tA = "≯", oA = "≱", sA = "≧̸", rA = "≫̸", cA = "≹", aA = "⩾̸", iA = "≵", lA = "≎̸", uA = "≏̸", pA = "∉", hA = "⋵̸", dA = "⋹̸", fA = "∉", mA = "⋷", gA = "⋶", _A = "⧏̸", bA = "⋪", kA = "⋬", yA = "≮", wA = "≰", vA = "≸", xA = "≪̸", AA = "⩽̸", SA = "≴", LA = "⪢̸", CA = "⪡̸", EA = "∌", TA = "∌", DA = "⋾", qA = "⋽", jA = "⊀", RA = "⪯̸", NA = "⋠", PA = "∌", IA = "⧐̸", OA = "⋫", FA = "⋭", MA = "⊏̸", BA = "⋢", $A = "⊐̸", zA = "⋣", GA = "⊂⃒", UA = "⊈", HA = "⊁", VA = "⪰̸", WA = "⋡", ZA = "≿̸", JA = "⊃⃒", QA = "⊉", YA = "≁", XA = "≄", KA = "≇", eS = "≉", nS = "∤", tS = "∦", oS = "∦", sS = "⫽⃥", rS = "∂̸", cS = "⨔", aS = "⊀", iS = "⋠", lS = "⊀", uS = "⪯̸", pS = "⪯̸", hS = "⤳̸", dS = "↛", fS = "⇏", mS = "↝̸", gS = "↛", _S = "⇏", bS = "⋫", kS = "⋭", yS = "⊁", wS = "⋡", vS = "⪰̸", xS = "𝒩", AS = "𝓃", SS = "∤", LS = "∦", CS = "≁", ES = "≄", TS = "≄", DS = "∤", qS = "∦", jS = "⋢", RS = "⋣", NS = "⊄", PS = "⫅̸", IS = "⊈", OS = "⊂⃒", FS = "⊈", MS = "⫅̸", BS = "⊁", $S = "⪰̸", zS = "⊅", GS = "⫆̸", US = "⊉", HS = "⊃⃒", VS = "⊉", WS = "⫆̸", ZS = "≹", JS = "Ñ", QS = "ñ", YS = "≸", XS = "⋪", KS = "⋬", eL = "⋫", nL = "⋭", tL = "Ν", oL = "ν", sL = "#", rL = "№", cL = " ", aL = "≍⃒", iL = "⊬", lL = "⊭", uL = "⊮", pL = "⊯", hL = "≥⃒", dL = ">⃒", fL = "⤄", mL = "⧞", gL = "⤂", _L = "≤⃒", bL = "<⃒", kL = "⊴⃒", yL = "⤃", wL = "⊵⃒", vL = "∼⃒", xL = "⤣", AL = "↖", SL = "⇖", LL = "↖", CL = "⤧", EL = "Ó", TL = "ó", DL = "⊛", qL = "Ô", jL = "ô", RL = "⊚", NL = "О", PL = "о", IL = "⊝", OL = "Ő", FL = "ő", ML = "⨸", BL = "⊙", $L = "⦼", zL = "Œ", GL = "œ", UL = "⦿", HL = "𝔒", VL = "𝔬", WL = "˛", ZL = "Ò", JL = "ò", QL = "⧁", YL = "⦵", XL = "Ω", KL = "∮", eC = "↺", nC = "⦾", tC = "⦻", oC = "‾", sC = "⧀", rC = "Ō", cC = "ō", aC = "Ω", iC = "ω", lC = "Ο", uC = "ο", pC = "⦶", hC = "⊖", dC = "𝕆", fC = "𝕠", mC = "⦷", gC = "“", _C = "‘", bC = "⦹", kC = "⊕", yC = "↻", wC = "⩔", vC = "∨", xC = "⩝", AC = "ℴ", SC = "ℴ", LC = "ª", CC = "º", EC = "⊶", TC = "⩖", DC = "⩗", qC = "⩛", jC = "Ⓢ", RC = "𝒪", NC = "ℴ", PC = "Ø", IC = "ø", OC = "⊘", FC = "Õ", MC = "õ", BC = "⨶", $C = "⨷", zC = "⊗", GC = "Ö", UC = "ö", HC = "⌽", VC = "‾", WC = "⏞", ZC = "⎴", JC = "⏜", QC = "¶", YC = "∥", XC = "∥", KC = "⫳", eE = "⫽", nE = "∂", tE = "∂", oE = "П", sE = "п", rE = "%", cE = ".", aE = "‰", iE = "⊥", lE = "‱", uE = "𝔓", pE = "𝔭", hE = "Φ", dE = "φ", fE = "ϕ", mE = "ℳ", gE = "☎", _E = "Π", bE = "π", kE = "⋔", yE = "ϖ", wE = "ℏ", vE = "ℎ", xE = "ℏ", AE = "⨣", SE = "⊞", LE = "⨢", CE = "+", EE = "∔", TE = "⨥", DE = "⩲", qE = "±", jE = "±", RE = "⨦", NE = "⨧", PE = "±", IE = "ℌ", OE = "⨕", FE = "𝕡", ME = "ℙ", BE = "£", $E = "⪷", zE = "⪻", GE = "≺", UE = "≼", HE = "⪷", VE = "≺", WE = "≼", ZE = "≺", JE = "⪯", QE = "≼", YE = "≾", XE = "⪯", KE = "⪹", eT = "⪵", nT = "⋨", tT = "⪯", oT = "⪳", sT = "≾", rT = "′", cT = "″", aT = "ℙ", iT = "⪹", lT = "⪵", uT = "⋨", pT = "∏", hT = "∏", dT = "⌮", fT = "⌒", mT = "⌓", gT = "∝", _T = "∝", bT = "∷", kT = "∝", yT = "≾", wT = "⊰", vT = "𝒫", xT = "𝓅", AT = "Ψ", ST = "ψ", LT = " ", CT = "𝔔", ET = "𝔮", TT = "⨌", DT = "𝕢", qT = "ℚ", jT = "⁗", RT = "𝒬", NT = "𝓆", PT = "ℍ", IT = "⨖", OT = "?", FT = "≟", MT = '"', BT = '"', $T = "⇛", zT = "∽̱", GT = "Ŕ", UT = "ŕ", HT = "√", VT = "⦳", WT = "⟩", ZT = "⟫", JT = "⦒", QT = "⦥", YT = "⟩", XT = "»", KT = "⥵", eD = "⇥", nD = "⤠", tD = "⤳", oD = "→", sD = "↠", rD = "⇒", cD = "⤞", aD = "↪", iD = "↬", lD = "⥅", uD = "⥴", pD = "⤖", hD = "↣", dD = "↝", fD = "⤚", mD = "⤜", gD = "∶", _D = "ℚ", bD = "⤍", kD = "⤏", yD = "⤐", wD = "❳", vD = "}", xD = "]", AD = "⦌", SD = "⦎", LD = "⦐", CD = "Ř", ED = "ř", TD = "Ŗ", DD = "ŗ", qD = "⌉", jD = "}", RD = "Р", ND = "р", PD = "⤷", ID = "⥩", OD = "”", FD = "”", MD = "↳", BD = "ℜ", $D = "ℛ", zD = "ℜ", GD = "ℝ", UD = "ℜ", HD = "▭", VD = "®", WD = "®", ZD = "∋", JD = "⇋", QD = "⥯", YD = "⥽", XD = "⌋", KD = "𝔯", eq = "ℜ", nq = "⥤", tq = "⇁", oq = "⇀", sq = "⥬", rq = "Ρ", cq = "ρ", aq = "ϱ", iq = "⟩", lq = "⇥", uq = "→", pq = "→", hq = "⇒", dq = "⇄", fq = "↣", mq = "⌉", gq = "⟧", _q = "⥝", bq = "⥕", kq = "⇂", yq = "⌋", wq = "⇁", vq = "⇀", xq = "⇄", Aq = "⇌", Sq = "⇉", Lq = "↝", Cq = "↦", Eq = "⊢", Tq = "⥛", Dq = "⋌", qq = "⧐", jq = "⊳", Rq = "⊵", Nq = "⥏", Pq = "⥜", Iq = "⥔", Oq = "↾", Fq = "⥓", Mq = "⇀", Bq = "˚", $q = "≓", zq = "⇄", Gq = "⇌", Uq = "‏", Hq = "⎱", Vq = "⎱", Wq = "⫮", Zq = "⟭", Jq = "⇾", Qq = "⟧", Yq = "⦆", Xq = "𝕣", Kq = "ℝ", ej = "⨮", nj = "⨵", tj = "⥰", oj = ")", sj = "⦔", rj = "⨒", cj = "⇉", aj = "⇛", ij = "›", lj = "𝓇", uj = "ℛ", pj = "↱", hj = "↱", dj = "]", fj = "’", mj = "’", gj = "⋌", _j = "⋊", bj = "▹", kj = "⊵", yj = "▸", wj = "⧎", vj = "⧴", xj = "⥨", Aj = "℞", Sj = "Ś", Lj = "ś", Cj = "‚", Ej = "⪸", Tj = "Š", Dj = "š", qj = "⪼", jj = "≻", Rj = "≽", Nj = "⪰", Pj = "⪴", Ij = "Ş", Oj = "ş", Fj = "Ŝ", Mj = "ŝ", Bj = "⪺", $j = "⪶", zj = "⋩", Gj = "⨓", Uj = "≿", Hj = "С", Vj = "с", Wj = "⊡", Zj = "⋅", Jj = "⩦", Qj = "⤥", Yj = "↘", Xj = "⇘", Kj = "↘", e2 = "§", n2 = ";", t2 = "⤩", o2 = "∖", s2 = "∖", r2 = "✶", c2 = "𝔖", a2 = "𝔰", i2 = "⌢", l2 = "♯", u2 = "Щ", p2 = "щ", h2 = "Ш", d2 = "ш", f2 = "↓", m2 = "←", g2 = "∣", _2 = "∥", b2 = "→", k2 = "↑", y2 = "­", w2 = "Σ", v2 = "σ", x2 = "ς", A2 = "ς", S2 = "∼", L2 = "⩪", C2 = "≃", E2 = "≃", T2 = "⪞", D2 = "⪠", q2 = "⪝", j2 = "⪟", R2 = "≆", N2 = "⨤", P2 = "⥲", I2 = "←", O2 = "∘", F2 = "∖", M2 = "⨳", B2 = "⧤", $2 = "∣", z2 = "⌣", G2 = "⪪", U2 = "⪬", H2 = "⪬︀", V2 = "Ь", W2 = "ь", Z2 = "⌿", J2 = "⧄", Q2 = "/", Y2 = "𝕊", X2 = "𝕤", K2 = "♠", eR = "♠", nR = "∥", tR = "⊓", oR = "⊓︀", sR = "⊔", rR = "⊔︀", cR = "√", aR = "⊏", iR = "⊑", lR = "⊏", uR = "⊑", pR = "⊐", hR = "⊒", dR = "⊐", fR = "⊒", mR = "□", gR = "□", _R = "⊓", bR = "⊏", kR = "⊑", yR = "⊐", wR = "⊒", vR = "⊔", xR = "▪", AR = "□", SR = "▪", LR = "→", CR = "𝒮", ER = "𝓈", TR = "∖", DR = "⌣", qR = "⋆", jR = "⋆", RR = "☆", NR = "★", PR = "ϵ", IR = "ϕ", OR = "¯", FR = "⊂", MR = "⋐", BR = "⪽", $R = "⫅", zR = "⊆", GR = "⫃", UR = "⫁", HR = "⫋", VR = "⊊", WR = "⪿", ZR = "⥹", JR = "⊂", QR = "⋐", YR = "⊆", XR = "⫅", KR = "⊆", eN = "⊊", nN = "⫋", tN = "⫇", oN = "⫕", sN = "⫓", rN = "⪸", cN = "≻", aN = "≽", iN = "≻", lN = "⪰", uN = "≽", pN = "≿", hN = "⪰", dN = "⪺", fN = "⪶", mN = "⋩", gN = "≿", _N = "∋", bN = "∑", kN = "∑", yN = "♪", wN = "¹", vN = "²", xN = "³", AN = "⊃", SN = "⋑", LN = "⪾", CN = "⫘", EN = "⫆", TN = "⊇", DN = "⫄", qN = "⊃", jN = "⊇", RN = "⟉", NN = "⫗", PN = "⥻", IN = "⫂", ON = "⫌", FN = "⊋", MN = "⫀", BN = "⊃", $N = "⋑", zN = "⊇", GN = "⫆", UN = "⊋", HN = "⫌", VN = "⫈", WN = "⫔", ZN = "⫖", JN = "⤦", QN = "↙", YN = "⇙", XN = "↙", KN = "⤪", eP = "ß", nP = "	", tP = "⌖", oP = "Τ", sP = "τ", rP = "⎴", cP = "Ť", aP = "ť", iP = "Ţ", lP = "ţ", uP = "Т", pP = "т", hP = "⃛", dP = "⌕", fP = "𝔗", mP = "𝔱", gP = "∴", _P = "∴", bP = "∴", kP = "Θ", yP = "θ", wP = "ϑ", vP = "ϑ", xP = "≈", AP = "∼", SP = "  ", LP = " ", CP = " ", EP = "≈", TP = "∼", DP = "Þ", qP = "þ", jP = "˜", RP = "∼", NP = "≃", PP = "≅", IP = "≈", OP = "⨱", FP = "⊠", MP = "×", BP = "⨰", $P = "∭", zP = "⤨", GP = "⌶", UP = "⫱", HP = "⊤", VP = "𝕋", WP = "𝕥", ZP = "⫚", JP = "⤩", QP = "‴", YP = "™", XP = "™", KP = "▵", eI = "▿", nI = "◃", tI = "⊴", oI = "≜", sI = "▹", rI = "⊵", cI = "◬", aI = "≜", iI = "⨺", lI = "⃛", uI = "⨹", pI = "⧍", hI = "⨻", dI = "⏢", fI = "𝒯", mI = "𝓉", gI = "Ц", _I = "ц", bI = "Ћ", kI = "ћ", yI = "Ŧ", wI = "ŧ", vI = "≬", xI = "↞", AI = "↠", SI = "Ú", LI = "ú", CI = "↑", EI = "↟", TI = "⇑", DI = "⥉", qI = "Ў", jI = "ў", RI = "Ŭ", NI = "ŭ", PI = "Û", II = "û", OI = "У", FI = "у", MI = "⇅", BI = "Ű", $I = "ű", zI = "⥮", GI = "⥾", UI = "𝔘", HI = "𝔲", VI = "Ù", WI = "ù", ZI = "⥣", JI = "↿", QI = "↾", YI = "▀", XI = "⌜", KI = "⌜", eO = "⌏", nO = "◸", tO = "Ū", oO = "ū", sO = "¨", rO = "_", cO = "⏟", aO = "⎵", iO = "⏝", lO = "⋃", uO = "⊎", pO = "Ų", hO = "ų", dO = "𝕌", fO = "𝕦", mO = "⤒", gO = "↑", _O = "↑", bO = "⇑", kO = "⇅", yO = "↕", wO = "↕", vO = "⇕", xO = "⥮", AO = "↿", SO = "↾", LO = "⊎", CO = "↖", EO = "↗", TO = "υ", DO = "ϒ", qO = "ϒ", jO = "Υ", RO = "υ", NO = "↥", PO = "⊥", IO = "⇈", OO = "⌝", FO = "⌝", MO = "⌎", BO = "Ů", $O = "ů", zO = "◹", GO = "𝒰", UO = "𝓊", HO = "⋰", VO = "Ũ", WO = "ũ", ZO = "▵", JO = "▴", QO = "⇈", YO = "Ü", XO = "ü", KO = "⦧", eF = "⦜", nF = "ϵ", tF = "ϰ", oF = "∅", sF = "ϕ", rF = "ϖ", cF = "∝", aF = "↕", iF = "⇕", lF = "ϱ", uF = "ς", pF = "⊊︀", hF = "⫋︀", dF = "⊋︀", fF = "⫌︀", mF = "ϑ", gF = "⊲", _F = "⊳", bF = "⫨", kF = "⫫", yF = "⫩", wF = "В", vF = "в", xF = "⊢", AF = "⊨", SF = "⊩", LF = "⊫", CF = "⫦", EF = "⊻", TF = "∨", DF = "⋁", qF = "≚", jF = "⋮", RF = "|", NF = "‖", PF = "|", IF = "‖", OF = "∣", FF = "|", MF = "❘", BF = "≀", $F = " ", zF = "𝔙", GF = "𝔳", UF = "⊲", HF = "⊂⃒", VF = "⊃⃒", WF = "𝕍", ZF = "𝕧", JF = "∝", QF = "⊳", YF = "𝒱", XF = "𝓋", KF = "⫋︀", e3 = "⊊︀", n3 = "⫌︀", t3 = "⊋︀", o3 = "⊪", s3 = "⦚", r3 = "Ŵ", c3 = "ŵ", a3 = "⩟", i3 = "∧", l3 = "⋀", u3 = "≙", p3 = "℘", h3 = "𝔚", d3 = "𝔴", f3 = "𝕎", m3 = "𝕨", g3 = "℘", _3 = "≀", b3 = "≀", k3 = "𝒲", y3 = "𝓌", w3 = "⋂", v3 = "◯", x3 = "⋃", A3 = "▽", S3 = "𝔛", L3 = "𝔵", C3 = "⟷", E3 = "⟺", T3 = "Ξ", D3 = "ξ", q3 = "⟵", j3 = "⟸", R3 = "⟼", N3 = "⋻", P3 = "⨀", I3 = "𝕏", O3 = "𝕩", F3 = "⨁", M3 = "⨂", B3 = "⟶", $3 = "⟹", z3 = "𝒳", G3 = "𝓍", U3 = "⨆", H3 = "⨄", V3 = "△", W3 = "⋁", Z3 = "⋀", J3 = "Ý", Q3 = "ý", Y3 = "Я", X3 = "я", K3 = "Ŷ", eM = "ŷ", nM = "Ы", tM = "ы", oM = "¥", sM = "𝔜", rM = "𝔶", cM = "Ї", aM = "ї", iM = "𝕐", lM = "𝕪", uM = "𝒴", pM = "𝓎", hM = "Ю", dM = "ю", fM = "ÿ", mM = "Ÿ", gM = "Ź", _M = "ź", bM = "Ž", kM = "ž", yM = "З", wM = "з", vM = "Ż", xM = "ż", AM = "ℨ", SM = "​", LM = "Ζ", CM = "ζ", EM = "𝔷", TM = "ℨ", DM = "Ж", qM = "ж", jM = "⇝", RM = "𝕫", NM = "ℤ", PM = "𝒵", IM = "𝓏", OM = "‍", FM = "‌", MM = {
+  Aacute: ws,
+  aacute: vs,
+  Abreve: xs,
+  abreve: As,
+  ac: Ss,
+  acd: Ls,
+  acE: Cs,
+  Acirc: Es,
+  acirc: Ts,
+  acute: Ds,
+  Acy: qs,
+  acy: js,
+  AElig: Rs,
+  aelig: Ns,
+  af: Ps,
+  Afr: Is,
+  afr: Os,
+  Agrave: Fs,
+  agrave: Ms,
+  alefsym: Bs,
+  aleph: $s,
+  Alpha: zs,
+  alpha: Gs,
+  Amacr: Us,
+  amacr: Hs,
+  amalg: Vs,
+  amp: Ws,
+  AMP: Zs,
+  andand: Js,
+  And: Qs,
+  and: Ys,
+  andd: Xs,
+  andslope: Ks,
+  andv: er,
+  ang: nr,
+  ange: tr,
+  angle: or,
+  angmsdaa: sr,
+  angmsdab: rr,
+  angmsdac: cr,
+  angmsdad: ar,
+  angmsdae: ir,
+  angmsdaf: lr,
+  angmsdag: ur,
+  angmsdah: pr,
+  angmsd: hr,
+  angrt: dr,
+  angrtvb: fr,
+  angrtvbd: mr,
+  angsph: gr,
+  angst: _r,
+  angzarr: br,
+  Aogon: kr,
+  aogon: yr,
+  Aopf: wr,
+  aopf: vr,
+  apacir: xr,
+  ap: Ar,
+  apE: Sr,
+  ape: Lr,
+  apid: Cr,
+  apos: Er,
+  ApplyFunction: Tr,
+  approx: Dr,
+  approxeq: qr,
+  Aring: jr,
+  aring: Rr,
+  Ascr: Nr,
+  ascr: Pr,
+  Assign: Ir,
+  ast: Or,
+  asymp: Fr,
+  asympeq: Mr,
+  Atilde: Br,
+  atilde: $r,
+  Auml: zr,
+  auml: Gr,
+  awconint: Ur,
+  awint: Hr,
+  backcong: Vr,
+  backepsilon: Wr,
+  backprime: Zr,
+  backsim: Jr,
+  backsimeq: Qr,
+  Backslash: Yr,
+  Barv: Xr,
+  barvee: Kr,
+  barwed: ec,
+  Barwed: nc,
+  barwedge: tc,
+  bbrk: oc,
+  bbrktbrk: sc,
+  bcong: rc,
+  Bcy: cc,
+  bcy: ac,
+  bdquo: ic,
+  becaus: lc,
+  because: uc,
+  Because: pc,
+  bemptyv: hc,
+  bepsi: dc,
+  bernou: fc,
+  Bernoullis: mc,
+  Beta: gc,
+  beta: _c,
+  beth: bc,
+  between: kc,
+  Bfr: yc,
+  bfr: wc,
+  bigcap: vc,
+  bigcirc: xc,
+  bigcup: Ac,
+  bigodot: Sc,
+  bigoplus: Lc,
+  bigotimes: Cc,
+  bigsqcup: Ec,
+  bigstar: Tc,
+  bigtriangledown: Dc,
+  bigtriangleup: qc,
+  biguplus: jc,
+  bigvee: Rc,
+  bigwedge: Nc,
+  bkarow: Pc,
+  blacklozenge: Ic,
+  blacksquare: Oc,
+  blacktriangle: Fc,
+  blacktriangledown: Mc,
+  blacktriangleleft: Bc,
+  blacktriangleright: $c,
+  blank: zc,
+  blk12: Gc,
+  blk14: Uc,
+  blk34: Hc,
+  block: Vc,
+  bne: Wc,
+  bnequiv: Zc,
+  bNot: Jc,
+  bnot: Qc,
+  Bopf: Yc,
+  bopf: Xc,
+  bot: Kc,
+  bottom: ea,
+  bowtie: na,
+  boxbox: ta,
+  boxdl: oa,
+  boxdL: sa,
+  boxDl: ra,
+  boxDL: ca,
+  boxdr: aa,
+  boxdR: ia,
+  boxDr: la,
+  boxDR: ua,
+  boxh: pa,
+  boxH: ha,
+  boxhd: da,
+  boxHd: fa,
+  boxhD: ma,
+  boxHD: ga,
+  boxhu: _a,
+  boxHu: ba,
+  boxhU: ka,
+  boxHU: ya,
+  boxminus: wa,
+  boxplus: va,
+  boxtimes: xa,
+  boxul: Aa,
+  boxuL: Sa,
+  boxUl: La,
+  boxUL: Ca,
+  boxur: Ea,
+  boxuR: Ta,
+  boxUr: Da,
+  boxUR: qa,
+  boxv: ja,
+  boxV: Ra,
+  boxvh: Na,
+  boxvH: Pa,
+  boxVh: Ia,
+  boxVH: Oa,
+  boxvl: Fa,
+  boxvL: Ma,
+  boxVl: Ba,
+  boxVL: $a,
+  boxvr: za,
+  boxvR: Ga,
+  boxVr: Ua,
+  boxVR: Ha,
+  bprime: Va,
+  breve: Wa,
+  Breve: Za,
+  brvbar: Ja,
+  bscr: Qa,
+  Bscr: Ya,
+  bsemi: Xa,
+  bsim: Ka,
+  bsime: ei,
+  bsolb: ni,
+  bsol: ti,
+  bsolhsub: oi,
+  bull: si,
+  bullet: ri,
+  bump: ci,
+  bumpE: ai,
+  bumpe: ii,
+  Bumpeq: li,
+  bumpeq: ui,
+  Cacute: pi,
+  cacute: hi,
+  capand: di,
+  capbrcup: fi,
+  capcap: mi,
+  cap: gi,
+  Cap: _i,
+  capcup: bi,
+  capdot: ki,
+  CapitalDifferentialD: yi,
+  caps: wi,
+  caret: vi,
+  caron: xi,
+  Cayleys: Ai,
+  ccaps: Si,
+  Ccaron: Li,
+  ccaron: Ci,
+  Ccedil: Ei,
+  ccedil: Ti,
+  Ccirc: Di,
+  ccirc: qi,
+  Cconint: ji,
+  ccups: Ri,
+  ccupssm: Ni,
+  Cdot: Pi,
+  cdot: Ii,
+  cedil: Oi,
+  Cedilla: Fi,
+  cemptyv: Mi,
+  cent: Bi,
+  centerdot: $i,
+  CenterDot: zi,
+  cfr: Gi,
+  Cfr: Ui,
+  CHcy: Hi,
+  chcy: Vi,
+  check: Wi,
+  checkmark: Zi,
+  Chi: Ji,
+  chi: Qi,
+  circ: Yi,
+  circeq: Xi,
+  circlearrowleft: Ki,
+  circlearrowright: el,
+  circledast: nl,
+  circledcirc: tl,
+  circleddash: ol,
+  CircleDot: sl,
+  circledR: rl,
+  circledS: cl,
+  CircleMinus: al,
+  CirclePlus: il,
+  CircleTimes: ll,
+  cir: ul,
+  cirE: pl,
+  cire: hl,
+  cirfnint: dl,
+  cirmid: fl,
+  cirscir: ml,
+  ClockwiseContourIntegral: gl,
+  CloseCurlyDoubleQuote: _l,
+  CloseCurlyQuote: bl,
+  clubs: kl,
+  clubsuit: yl,
+  colon: wl,
+  Colon: vl,
+  Colone: xl,
+  colone: Al,
+  coloneq: Sl,
+  comma: Ll,
+  commat: Cl,
+  comp: El,
+  compfn: Tl,
+  complement: Dl,
+  complexes: ql,
+  cong: jl,
+  congdot: Rl,
+  Congruent: Nl,
+  conint: Pl,
+  Conint: Il,
+  ContourIntegral: Ol,
+  copf: Fl,
+  Copf: Ml,
+  coprod: Bl,
+  Coproduct: $l,
+  copy: zl,
+  COPY: Gl,
+  copysr: Ul,
+  CounterClockwiseContourIntegral: Hl,
+  crarr: Vl,
+  cross: Wl,
+  Cross: Zl,
+  Cscr: Jl,
+  cscr: Ql,
+  csub: Yl,
+  csube: Xl,
+  csup: Kl,
+  csupe: eu,
+  ctdot: nu,
+  cudarrl: tu,
+  cudarrr: ou,
+  cuepr: su,
+  cuesc: ru,
+  cularr: cu,
+  cularrp: au,
+  cupbrcap: iu,
+  cupcap: lu,
+  CupCap: uu,
+  cup: pu,
+  Cup: hu,
+  cupcup: du,
+  cupdot: fu,
+  cupor: mu,
+  cups: gu,
+  curarr: _u,
+  curarrm: bu,
+  curlyeqprec: ku,
+  curlyeqsucc: yu,
+  curlyvee: wu,
+  curlywedge: vu,
+  curren: xu,
+  curvearrowleft: Au,
+  curvearrowright: Su,
+  cuvee: Lu,
+  cuwed: Cu,
+  cwconint: Eu,
+  cwint: Tu,
+  cylcty: Du,
+  dagger: qu,
+  Dagger: ju,
+  daleth: Ru,
+  darr: Nu,
+  Darr: Pu,
+  dArr: Iu,
+  dash: Ou,
+  Dashv: Fu,
+  dashv: Mu,
+  dbkarow: Bu,
+  dblac: $u,
+  Dcaron: zu,
+  dcaron: Gu,
+  Dcy: Uu,
+  dcy: Hu,
+  ddagger: Vu,
+  ddarr: Wu,
+  DD: Zu,
+  dd: Ju,
+  DDotrahd: Qu,
+  ddotseq: Yu,
+  deg: Xu,
+  Del: Ku,
+  Delta: ep,
+  delta: np,
+  demptyv: tp,
+  dfisht: op,
+  Dfr: sp,
+  dfr: rp,
+  dHar: cp,
+  dharl: ap,
+  dharr: ip,
+  DiacriticalAcute: lp,
+  DiacriticalDot: up,
+  DiacriticalDoubleAcute: pp,
+  DiacriticalGrave: hp,
+  DiacriticalTilde: dp,
+  diam: fp,
+  diamond: mp,
+  Diamond: gp,
+  diamondsuit: _p,
+  diams: bp,
+  die: kp,
+  DifferentialD: yp,
+  digamma: wp,
+  disin: vp,
+  div: xp,
+  divide: Ap,
+  divideontimes: Sp,
+  divonx: Lp,
+  DJcy: Cp,
+  djcy: Ep,
+  dlcorn: Tp,
+  dlcrop: Dp,
+  dollar: qp,
+  Dopf: jp,
+  dopf: Rp,
+  Dot: Np,
+  dot: Pp,
+  DotDot: Ip,
+  doteq: Op,
+  doteqdot: Fp,
+  DotEqual: Mp,
+  dotminus: Bp,
+  dotplus: $p,
+  dotsquare: zp,
+  doublebarwedge: Gp,
+  DoubleContourIntegral: Up,
+  DoubleDot: Hp,
+  DoubleDownArrow: Vp,
+  DoubleLeftArrow: Wp,
+  DoubleLeftRightArrow: Zp,
+  DoubleLeftTee: Jp,
+  DoubleLongLeftArrow: Qp,
+  DoubleLongLeftRightArrow: Yp,
+  DoubleLongRightArrow: Xp,
+  DoubleRightArrow: Kp,
+  DoubleRightTee: eh,
+  DoubleUpArrow: nh,
+  DoubleUpDownArrow: th,
+  DoubleVerticalBar: oh,
+  DownArrowBar: sh,
+  downarrow: rh,
+  DownArrow: ch,
+  Downarrow: ah,
+  DownArrowUpArrow: ih,
+  DownBreve: lh,
+  downdownarrows: uh,
+  downharpoonleft: ph,
+  downharpoonright: hh,
+  DownLeftRightVector: dh,
+  DownLeftTeeVector: fh,
+  DownLeftVectorBar: mh,
+  DownLeftVector: gh,
+  DownRightTeeVector: _h,
+  DownRightVectorBar: bh,
+  DownRightVector: kh,
+  DownTeeArrow: yh,
+  DownTee: wh,
+  drbkarow: vh,
+  drcorn: xh,
+  drcrop: Ah,
+  Dscr: Sh,
+  dscr: Lh,
+  DScy: Ch,
+  dscy: Eh,
+  dsol: Th,
+  Dstrok: Dh,
+  dstrok: qh,
+  dtdot: jh,
+  dtri: Rh,
+  dtrif: Nh,
+  duarr: Ph,
+  duhar: Ih,
+  dwangle: Oh,
+  DZcy: Fh,
+  dzcy: Mh,
+  dzigrarr: Bh,
+  Eacute: $h,
+  eacute: zh,
+  easter: Gh,
+  Ecaron: Uh,
+  ecaron: Hh,
+  Ecirc: Vh,
+  ecirc: Wh,
+  ecir: Zh,
+  ecolon: Jh,
+  Ecy: Qh,
+  ecy: Yh,
+  eDDot: Xh,
+  Edot: Kh,
+  edot: ed,
+  eDot: nd,
+  ee: td,
+  efDot: od,
+  Efr: sd,
+  efr: rd,
+  eg: cd,
+  Egrave: ad,
+  egrave: id,
+  egs: ld,
+  egsdot: ud,
+  el: pd,
+  Element: hd,
+  elinters: dd,
+  ell: fd,
+  els: md,
+  elsdot: gd,
+  Emacr: _d,
+  emacr: bd,
+  empty: kd,
+  emptyset: yd,
+  EmptySmallSquare: wd,
+  emptyv: vd,
+  EmptyVerySmallSquare: xd,
+  emsp13: Ad,
+  emsp14: Sd,
+  emsp: Ld,
+  ENG: Cd,
+  eng: Ed,
+  ensp: Td,
+  Eogon: Dd,
+  eogon: qd,
+  Eopf: jd,
+  eopf: Rd,
+  epar: Nd,
+  eparsl: Pd,
+  eplus: Id,
+  epsi: Od,
+  Epsilon: Fd,
+  epsilon: Md,
+  epsiv: Bd,
+  eqcirc: $d,
+  eqcolon: zd,
+  eqsim: Gd,
+  eqslantgtr: Ud,
+  eqslantless: Hd,
+  Equal: Vd,
+  equals: Wd,
+  EqualTilde: Zd,
+  equest: Jd,
+  Equilibrium: Qd,
+  equiv: Yd,
+  equivDD: Xd,
+  eqvparsl: Kd,
+  erarr: ef,
+  erDot: nf,
+  escr: tf,
+  Escr: of,
+  esdot: sf,
+  Esim: rf,
+  esim: cf,
+  Eta: af,
+  eta: lf,
+  ETH: uf,
+  eth: pf,
+  Euml: hf,
+  euml: df,
+  euro: ff,
+  excl: mf,
+  exist: gf,
+  Exists: _f,
+  expectation: bf,
+  exponentiale: kf,
+  ExponentialE: yf,
+  fallingdotseq: wf,
+  Fcy: vf,
+  fcy: xf,
+  female: Af,
+  ffilig: Sf,
+  fflig: Lf,
+  ffllig: Cf,
+  Ffr: Ef,
+  ffr: Tf,
+  filig: Df,
+  FilledSmallSquare: qf,
+  FilledVerySmallSquare: jf,
+  fjlig: Rf,
+  flat: Nf,
+  fllig: Pf,
+  fltns: If,
+  fnof: Of,
+  Fopf: Ff,
+  fopf: Mf,
+  forall: Bf,
+  ForAll: $f,
+  fork: zf,
+  forkv: Gf,
+  Fouriertrf: Uf,
+  fpartint: Hf,
+  frac12: Vf,
+  frac13: Wf,
+  frac14: Zf,
+  frac15: Jf,
+  frac16: Qf,
+  frac18: Yf,
+  frac23: Xf,
+  frac25: Kf,
+  frac34: em,
+  frac35: nm,
+  frac38: tm,
+  frac45: om,
+  frac56: sm,
+  frac58: rm,
+  frac78: cm,
+  frasl: am,
+  frown: im,
+  fscr: lm,
+  Fscr: um,
+  gacute: pm,
+  Gamma: hm,
+  gamma: dm,
+  Gammad: fm,
+  gammad: mm,
+  gap: gm,
+  Gbreve: _m,
+  gbreve: bm,
+  Gcedil: km,
+  Gcirc: ym,
+  gcirc: wm,
+  Gcy: vm,
+  gcy: xm,
+  Gdot: Am,
+  gdot: Sm,
+  ge: Lm,
+  gE: Cm,
+  gEl: Em,
+  gel: Tm,
+  geq: Dm,
+  geqq: qm,
+  geqslant: jm,
+  gescc: Rm,
+  ges: Nm,
+  gesdot: Pm,
+  gesdoto: Im,
+  gesdotol: Om,
+  gesl: Fm,
+  gesles: Mm,
+  Gfr: Bm,
+  gfr: $m,
+  gg: zm,
+  Gg: Gm,
+  ggg: Um,
+  gimel: Hm,
+  GJcy: Vm,
+  gjcy: Wm,
+  gla: Zm,
+  gl: Jm,
+  glE: Qm,
+  glj: Ym,
+  gnap: Xm,
+  gnapprox: Km,
+  gne: eg,
+  gnE: ng,
+  gneq: tg,
+  gneqq: og,
+  gnsim: sg,
+  Gopf: rg,
+  gopf: cg,
+  grave: ag,
+  GreaterEqual: ig,
+  GreaterEqualLess: lg,
+  GreaterFullEqual: ug,
+  GreaterGreater: pg,
+  GreaterLess: hg,
+  GreaterSlantEqual: dg,
+  GreaterTilde: fg,
+  Gscr: mg,
+  gscr: gg,
+  gsim: _g,
+  gsime: bg,
+  gsiml: kg,
+  gtcc: yg,
+  gtcir: wg,
+  gt: vg,
+  GT: xg,
+  Gt: Ag,
+  gtdot: Sg,
+  gtlPar: Lg,
+  gtquest: Cg,
+  gtrapprox: Eg,
+  gtrarr: Tg,
+  gtrdot: Dg,
+  gtreqless: qg,
+  gtreqqless: jg,
+  gtrless: Rg,
+  gtrsim: Ng,
+  gvertneqq: Pg,
+  gvnE: Ig,
+  Hacek: Og,
+  hairsp: Fg,
+  half: Mg,
+  hamilt: Bg,
+  HARDcy: $g,
+  hardcy: zg,
+  harrcir: Gg,
+  harr: Ug,
+  hArr: Hg,
+  harrw: Vg,
+  Hat: Wg,
+  hbar: Zg,
+  Hcirc: Jg,
+  hcirc: Qg,
+  hearts: Yg,
+  heartsuit: Xg,
+  hellip: Kg,
+  hercon: e_,
+  hfr: n_,
+  Hfr: t_,
+  HilbertSpace: o_,
+  hksearow: s_,
+  hkswarow: r_,
+  hoarr: c_,
+  homtht: a_,
+  hookleftarrow: i_,
+  hookrightarrow: l_,
+  hopf: u_,
+  Hopf: p_,
+  horbar: h_,
+  HorizontalLine: d_,
+  hscr: f_,
+  Hscr: m_,
+  hslash: g_,
+  Hstrok: __,
+  hstrok: b_,
+  HumpDownHump: k_,
+  HumpEqual: y_,
+  hybull: w_,
+  hyphen: v_,
+  Iacute: x_,
+  iacute: A_,
+  ic: S_,
+  Icirc: L_,
+  icirc: C_,
+  Icy: E_,
+  icy: T_,
+  Idot: D_,
+  IEcy: q_,
+  iecy: j_,
+  iexcl: R_,
+  iff: N_,
+  ifr: P_,
+  Ifr: I_,
+  Igrave: O_,
+  igrave: F_,
+  ii: M_,
+  iiiint: B_,
+  iiint: $_,
+  iinfin: z_,
+  iiota: G_,
+  IJlig: U_,
+  ijlig: H_,
+  Imacr: V_,
+  imacr: W_,
+  image: Z_,
+  ImaginaryI: J_,
+  imagline: Q_,
+  imagpart: Y_,
+  imath: X_,
+  Im: K_,
+  imof: eb,
+  imped: nb,
+  Implies: tb,
+  incare: ob,
   in: "∈",
-  infin: tb,
-  infintie: ob,
-  inodot: sb,
-  intcal: rb,
-  int: cb,
-  Int: ab,
-  integers: ib,
-  Integral: lb,
-  intercal: ub,
-  Intersection: pb,
-  intlarhk: hb,
-  intprod: db,
-  InvisibleComma: fb,
-  InvisibleTimes: mb,
-  IOcy: gb,
-  iocy: _b,
-  Iogon: bb,
-  iogon: kb,
-  Iopf: yb,
-  iopf: wb,
-  Iota: vb,
-  iota: xb,
-  iprod: Ab,
-  iquest: Sb,
-  iscr: Lb,
-  Iscr: Cb,
-  isin: Eb,
-  isindot: Tb,
-  isinE: Db,
-  isins: qb,
-  isinsv: jb,
-  isinv: Rb,
-  it: Nb,
-  Itilde: Pb,
-  itilde: Ib,
-  Iukcy: Ob,
-  iukcy: Fb,
-  Iuml: Mb,
-  iuml: Bb,
-  Jcirc: zb,
-  jcirc: $b,
-  Jcy: Gb,
-  jcy: Ub,
-  Jfr: Hb,
-  jfr: Vb,
-  jmath: Wb,
-  Jopf: Zb,
-  jopf: Jb,
-  Jscr: Qb,
-  jscr: Yb,
-  Jsercy: Xb,
-  jsercy: Kb,
-  Jukcy: ek,
-  jukcy: nk,
-  Kappa: tk,
-  kappa: ok,
-  kappav: sk,
-  Kcedil: rk,
-  kcedil: ck,
-  Kcy: ak,
-  kcy: ik,
-  Kfr: lk,
-  kfr: uk,
-  kgreen: pk,
-  KHcy: hk,
-  khcy: dk,
-  KJcy: fk,
-  kjcy: mk,
-  Kopf: gk,
-  kopf: _k,
-  Kscr: bk,
-  kscr: kk,
-  lAarr: yk,
-  Lacute: wk,
-  lacute: vk,
-  laemptyv: xk,
-  lagran: Ak,
-  Lambda: Sk,
-  lambda: Lk,
-  lang: Ck,
-  Lang: Ek,
-  langd: Tk,
-  langle: Dk,
-  lap: qk,
-  Laplacetrf: jk,
-  laquo: Rk,
-  larrb: Nk,
-  larrbfs: Pk,
-  larr: Ik,
-  Larr: Ok,
-  lArr: Fk,
-  larrfs: Mk,
-  larrhk: Bk,
-  larrlp: zk,
-  larrpl: $k,
-  larrsim: Gk,
-  larrtl: Uk,
-  latail: Hk,
-  lAtail: Vk,
-  lat: Wk,
-  late: Zk,
-  lates: Jk,
-  lbarr: Qk,
-  lBarr: Yk,
-  lbbrk: Xk,
-  lbrace: Kk,
-  lbrack: ey,
-  lbrke: ny,
-  lbrksld: ty,
-  lbrkslu: oy,
-  Lcaron: sy,
-  lcaron: ry,
-  Lcedil: cy,
-  lcedil: ay,
-  lceil: iy,
-  lcub: ly,
-  Lcy: uy,
-  lcy: py,
-  ldca: hy,
-  ldquo: dy,
-  ldquor: fy,
-  ldrdhar: my,
-  ldrushar: gy,
-  ldsh: _y,
-  le: by,
-  lE: ky,
-  LeftAngleBracket: yy,
-  LeftArrowBar: wy,
-  leftarrow: vy,
-  LeftArrow: xy,
-  Leftarrow: Ay,
-  LeftArrowRightArrow: Sy,
-  leftarrowtail: Ly,
-  LeftCeiling: Cy,
-  LeftDoubleBracket: Ey,
-  LeftDownTeeVector: Ty,
-  LeftDownVectorBar: Dy,
-  LeftDownVector: qy,
-  LeftFloor: jy,
-  leftharpoondown: Ry,
-  leftharpoonup: Ny,
-  leftleftarrows: Py,
-  leftrightarrow: Iy,
-  LeftRightArrow: Oy,
-  Leftrightarrow: Fy,
-  leftrightarrows: My,
-  leftrightharpoons: By,
-  leftrightsquigarrow: zy,
-  LeftRightVector: $y,
-  LeftTeeArrow: Gy,
-  LeftTee: Uy,
-  LeftTeeVector: Hy,
-  leftthreetimes: Vy,
-  LeftTriangleBar: Wy,
-  LeftTriangle: Zy,
-  LeftTriangleEqual: Jy,
-  LeftUpDownVector: Qy,
-  LeftUpTeeVector: Yy,
-  LeftUpVectorBar: Xy,
-  LeftUpVector: Ky,
-  LeftVectorBar: ew,
-  LeftVector: nw,
-  lEg: tw,
-  leg: ow,
-  leq: sw,
-  leqq: rw,
-  leqslant: cw,
-  lescc: aw,
-  les: iw,
-  lesdot: lw,
-  lesdoto: uw,
-  lesdotor: pw,
-  lesg: hw,
-  lesges: dw,
-  lessapprox: fw,
-  lessdot: mw,
-  lesseqgtr: gw,
-  lesseqqgtr: _w,
-  LessEqualGreater: bw,
-  LessFullEqual: kw,
-  LessGreater: yw,
-  lessgtr: ww,
-  LessLess: vw,
-  lesssim: xw,
-  LessSlantEqual: Aw,
-  LessTilde: Sw,
-  lfisht: Lw,
-  lfloor: Cw,
-  Lfr: Ew,
-  lfr: Tw,
-  lg: Dw,
-  lgE: qw,
-  lHar: jw,
-  lhard: Rw,
-  lharu: Nw,
-  lharul: Pw,
-  lhblk: Iw,
-  LJcy: Ow,
-  ljcy: Fw,
-  llarr: Mw,
-  ll: Bw,
-  Ll: zw,
-  llcorner: $w,
-  Lleftarrow: Gw,
-  llhard: Uw,
-  lltri: Hw,
-  Lmidot: Vw,
-  lmidot: Ww,
-  lmoustache: Zw,
-  lmoust: Jw,
-  lnap: Qw,
-  lnapprox: Yw,
-  lne: Xw,
-  lnE: Kw,
-  lneq: e0,
-  lneqq: n0,
-  lnsim: t0,
-  loang: o0,
-  loarr: s0,
-  lobrk: r0,
-  longleftarrow: c0,
-  LongLeftArrow: a0,
-  Longleftarrow: i0,
-  longleftrightarrow: l0,
-  LongLeftRightArrow: u0,
-  Longleftrightarrow: p0,
-  longmapsto: h0,
-  longrightarrow: d0,
-  LongRightArrow: f0,
-  Longrightarrow: m0,
-  looparrowleft: g0,
-  looparrowright: _0,
-  lopar: b0,
-  Lopf: k0,
-  lopf: y0,
-  loplus: w0,
-  lotimes: v0,
-  lowast: x0,
-  lowbar: A0,
-  LowerLeftArrow: S0,
-  LowerRightArrow: L0,
-  loz: C0,
-  lozenge: E0,
-  lozf: T0,
-  lpar: D0,
-  lparlt: q0,
-  lrarr: j0,
-  lrcorner: R0,
-  lrhar: N0,
-  lrhard: P0,
-  lrm: I0,
-  lrtri: O0,
-  lsaquo: F0,
-  lscr: M0,
-  Lscr: B0,
-  lsh: z0,
-  Lsh: $0,
-  lsim: G0,
-  lsime: U0,
-  lsimg: H0,
-  lsqb: V0,
-  lsquo: W0,
-  lsquor: Z0,
-  Lstrok: J0,
-  lstrok: Q0,
-  ltcc: Y0,
-  ltcir: X0,
-  lt: K0,
-  LT: ev,
-  Lt: nv,
-  ltdot: tv,
-  lthree: ov,
-  ltimes: sv,
-  ltlarr: rv,
-  ltquest: cv,
-  ltri: av,
-  ltrie: iv,
-  ltrif: lv,
-  ltrPar: uv,
-  lurdshar: pv,
-  luruhar: hv,
-  lvertneqq: dv,
-  lvnE: fv,
-  macr: mv,
-  male: gv,
-  malt: _v,
-  maltese: bv,
+  infin: sb,
+  infintie: rb,
+  inodot: cb,
+  intcal: ab,
+  int: ib,
+  Int: lb,
+  integers: ub,
+  Integral: pb,
+  intercal: hb,
+  Intersection: db,
+  intlarhk: fb,
+  intprod: mb,
+  InvisibleComma: gb,
+  InvisibleTimes: _b,
+  IOcy: bb,
+  iocy: kb,
+  Iogon: yb,
+  iogon: wb,
+  Iopf: vb,
+  iopf: xb,
+  Iota: Ab,
+  iota: Sb,
+  iprod: Lb,
+  iquest: Cb,
+  iscr: Eb,
+  Iscr: Tb,
+  isin: Db,
+  isindot: qb,
+  isinE: jb,
+  isins: Rb,
+  isinsv: Nb,
+  isinv: Pb,
+  it: Ib,
+  Itilde: Ob,
+  itilde: Fb,
+  Iukcy: Mb,
+  iukcy: Bb,
+  Iuml: $b,
+  iuml: zb,
+  Jcirc: Gb,
+  jcirc: Ub,
+  Jcy: Hb,
+  jcy: Vb,
+  Jfr: Wb,
+  jfr: Zb,
+  jmath: Jb,
+  Jopf: Qb,
+  jopf: Yb,
+  Jscr: Xb,
+  jscr: Kb,
+  Jsercy: ek,
+  jsercy: nk,
+  Jukcy: tk,
+  jukcy: ok,
+  Kappa: sk,
+  kappa: rk,
+  kappav: ck,
+  Kcedil: ak,
+  kcedil: ik,
+  Kcy: lk,
+  kcy: uk,
+  Kfr: pk,
+  kfr: hk,
+  kgreen: dk,
+  KHcy: fk,
+  khcy: mk,
+  KJcy: gk,
+  kjcy: _k,
+  Kopf: bk,
+  kopf: kk,
+  Kscr: yk,
+  kscr: wk,
+  lAarr: vk,
+  Lacute: xk,
+  lacute: Ak,
+  laemptyv: Sk,
+  lagran: Lk,
+  Lambda: Ck,
+  lambda: Ek,
+  lang: Tk,
+  Lang: Dk,
+  langd: qk,
+  langle: jk,
+  lap: Rk,
+  Laplacetrf: Nk,
+  laquo: Pk,
+  larrb: Ik,
+  larrbfs: Ok,
+  larr: Fk,
+  Larr: Mk,
+  lArr: Bk,
+  larrfs: $k,
+  larrhk: zk,
+  larrlp: Gk,
+  larrpl: Uk,
+  larrsim: Hk,
+  larrtl: Vk,
+  latail: Wk,
+  lAtail: Zk,
+  lat: Jk,
+  late: Qk,
+  lates: Yk,
+  lbarr: Xk,
+  lBarr: Kk,
+  lbbrk: ey,
+  lbrace: ny,
+  lbrack: ty,
+  lbrke: oy,
+  lbrksld: sy,
+  lbrkslu: ry,
+  Lcaron: cy,
+  lcaron: ay,
+  Lcedil: iy,
+  lcedil: ly,
+  lceil: uy,
+  lcub: py,
+  Lcy: hy,
+  lcy: dy,
+  ldca: fy,
+  ldquo: my,
+  ldquor: gy,
+  ldrdhar: _y,
+  ldrushar: by,
+  ldsh: ky,
+  le: yy,
+  lE: wy,
+  LeftAngleBracket: vy,
+  LeftArrowBar: xy,
+  leftarrow: Ay,
+  LeftArrow: Sy,
+  Leftarrow: Ly,
+  LeftArrowRightArrow: Cy,
+  leftarrowtail: Ey,
+  LeftCeiling: Ty,
+  LeftDoubleBracket: Dy,
+  LeftDownTeeVector: qy,
+  LeftDownVectorBar: jy,
+  LeftDownVector: Ry,
+  LeftFloor: Ny,
+  leftharpoondown: Py,
+  leftharpoonup: Iy,
+  leftleftarrows: Oy,
+  leftrightarrow: Fy,
+  LeftRightArrow: My,
+  Leftrightarrow: By,
+  leftrightarrows: $y,
+  leftrightharpoons: zy,
+  leftrightsquigarrow: Gy,
+  LeftRightVector: Uy,
+  LeftTeeArrow: Hy,
+  LeftTee: Vy,
+  LeftTeeVector: Wy,
+  leftthreetimes: Zy,
+  LeftTriangleBar: Jy,
+  LeftTriangle: Qy,
+  LeftTriangleEqual: Yy,
+  LeftUpDownVector: Xy,
+  LeftUpTeeVector: Ky,
+  LeftUpVectorBar: ew,
+  LeftUpVector: nw,
+  LeftVectorBar: tw,
+  LeftVector: ow,
+  lEg: sw,
+  leg: rw,
+  leq: cw,
+  leqq: aw,
+  leqslant: iw,
+  lescc: lw,
+  les: uw,
+  lesdot: pw,
+  lesdoto: hw,
+  lesdotor: dw,
+  lesg: fw,
+  lesges: mw,
+  lessapprox: gw,
+  lessdot: _w,
+  lesseqgtr: bw,
+  lesseqqgtr: kw,
+  LessEqualGreater: yw,
+  LessFullEqual: ww,
+  LessGreater: vw,
+  lessgtr: xw,
+  LessLess: Aw,
+  lesssim: Sw,
+  LessSlantEqual: Lw,
+  LessTilde: Cw,
+  lfisht: Ew,
+  lfloor: Tw,
+  Lfr: Dw,
+  lfr: qw,
+  lg: jw,
+  lgE: Rw,
+  lHar: Nw,
+  lhard: Pw,
+  lharu: Iw,
+  lharul: Ow,
+  lhblk: Fw,
+  LJcy: Mw,
+  ljcy: Bw,
+  llarr: $w,
+  ll: zw,
+  Ll: Gw,
+  llcorner: Uw,
+  Lleftarrow: Hw,
+  llhard: Vw,
+  lltri: Ww,
+  Lmidot: Zw,
+  lmidot: Jw,
+  lmoustache: Qw,
+  lmoust: Yw,
+  lnap: Xw,
+  lnapprox: Kw,
+  lne: e0,
+  lnE: n0,
+  lneq: t0,
+  lneqq: o0,
+  lnsim: s0,
+  loang: r0,
+  loarr: c0,
+  lobrk: a0,
+  longleftarrow: i0,
+  LongLeftArrow: l0,
+  Longleftarrow: u0,
+  longleftrightarrow: p0,
+  LongLeftRightArrow: h0,
+  Longleftrightarrow: d0,
+  longmapsto: f0,
+  longrightarrow: m0,
+  LongRightArrow: g0,
+  Longrightarrow: _0,
+  looparrowleft: b0,
+  looparrowright: k0,
+  lopar: y0,
+  Lopf: w0,
+  lopf: v0,
+  loplus: x0,
+  lotimes: A0,
+  lowast: S0,
+  lowbar: L0,
+  LowerLeftArrow: C0,
+  LowerRightArrow: E0,
+  loz: T0,
+  lozenge: D0,
+  lozf: q0,
+  lpar: j0,
+  lparlt: R0,
+  lrarr: N0,
+  lrcorner: P0,
+  lrhar: I0,
+  lrhard: O0,
+  lrm: F0,
+  lrtri: M0,
+  lsaquo: B0,
+  lscr: $0,
+  Lscr: z0,
+  lsh: G0,
+  Lsh: U0,
+  lsim: H0,
+  lsime: V0,
+  lsimg: W0,
+  lsqb: Z0,
+  lsquo: J0,
+  lsquor: Q0,
+  Lstrok: Y0,
+  lstrok: X0,
+  ltcc: K0,
+  ltcir: ev,
+  lt: nv,
+  LT: tv,
+  Lt: ov,
+  ltdot: sv,
+  lthree: rv,
+  ltimes: cv,
+  ltlarr: av,
+  ltquest: iv,
+  ltri: lv,
+  ltrie: uv,
+  ltrif: pv,
+  ltrPar: hv,
+  lurdshar: dv,
+  luruhar: fv,
+  lvertneqq: mv,
+  lvnE: gv,
+  macr: _v,
+  male: bv,
+  malt: kv,
+  maltese: yv,
   Map: "⤅",
-  map: kv,
-  mapsto: yv,
-  mapstodown: wv,
-  mapstoleft: vv,
-  mapstoup: xv,
-  marker: Av,
-  mcomma: Sv,
-  Mcy: Lv,
-  mcy: Cv,
-  mdash: Ev,
-  mDDot: Tv,
-  measuredangle: Dv,
-  MediumSpace: qv,
-  Mellintrf: jv,
-  Mfr: Rv,
-  mfr: Nv,
-  mho: Pv,
-  micro: Iv,
-  midast: Ov,
-  midcir: Fv,
-  mid: Mv,
-  middot: Bv,
-  minusb: zv,
-  minus: $v,
-  minusd: Gv,
-  minusdu: Uv,
-  MinusPlus: Hv,
-  mlcp: Vv,
-  mldr: Wv,
-  mnplus: Zv,
-  models: Jv,
-  Mopf: Qv,
-  mopf: Yv,
-  mp: Xv,
-  mscr: Kv,
-  Mscr: e1,
-  mstpos: n1,
-  Mu: t1,
-  mu: o1,
-  multimap: s1,
-  mumap: r1,
-  nabla: c1,
-  Nacute: a1,
-  nacute: i1,
-  nang: l1,
-  nap: u1,
-  napE: p1,
-  napid: h1,
-  napos: d1,
-  napprox: f1,
-  natural: m1,
-  naturals: g1,
-  natur: _1,
-  nbsp: b1,
-  nbump: k1,
-  nbumpe: y1,
-  ncap: w1,
-  Ncaron: v1,
-  ncaron: x1,
-  Ncedil: A1,
-  ncedil: S1,
-  ncong: L1,
-  ncongdot: C1,
-  ncup: E1,
-  Ncy: T1,
-  ncy: D1,
-  ndash: q1,
-  nearhk: j1,
-  nearr: R1,
-  neArr: N1,
-  nearrow: P1,
-  ne: I1,
-  nedot: O1,
-  NegativeMediumSpace: F1,
-  NegativeThickSpace: M1,
-  NegativeThinSpace: B1,
-  NegativeVeryThinSpace: z1,
-  nequiv: $1,
-  nesear: G1,
-  nesim: U1,
-  NestedGreaterGreater: H1,
-  NestedLessLess: V1,
-  NewLine: W1,
-  nexist: Z1,
-  nexists: J1,
-  Nfr: Q1,
-  nfr: Y1,
-  ngE: X1,
-  nge: K1,
-  ngeq: ex,
-  ngeqq: nx,
-  ngeqslant: tx,
-  nges: ox,
-  nGg: sx,
-  ngsim: rx,
-  nGt: cx,
-  ngt: ax,
-  ngtr: ix,
-  nGtv: lx,
-  nharr: ux,
-  nhArr: px,
-  nhpar: hx,
-  ni: dx,
-  nis: fx,
-  nisd: mx,
-  niv: gx,
-  NJcy: _x,
-  njcy: bx,
-  nlarr: kx,
-  nlArr: yx,
-  nldr: wx,
-  nlE: vx,
-  nle: xx,
-  nleftarrow: Ax,
-  nLeftarrow: Sx,
-  nleftrightarrow: Lx,
-  nLeftrightarrow: Cx,
-  nleq: Ex,
-  nleqq: Tx,
-  nleqslant: Dx,
-  nles: qx,
-  nless: jx,
-  nLl: Rx,
-  nlsim: Nx,
-  nLt: Px,
-  nlt: Ix,
-  nltri: Ox,
-  nltrie: Fx,
-  nLtv: Mx,
-  nmid: Bx,
-  NoBreak: zx,
-  NonBreakingSpace: $x,
-  nopf: Gx,
-  Nopf: Ux,
-  Not: Hx,
-  not: Vx,
-  NotCongruent: Wx,
-  NotCupCap: Zx,
-  NotDoubleVerticalBar: Jx,
-  NotElement: Qx,
-  NotEqual: Yx,
-  NotEqualTilde: Xx,
-  NotExists: Kx,
-  NotGreater: eA,
-  NotGreaterEqual: nA,
-  NotGreaterFullEqual: tA,
-  NotGreaterGreater: oA,
-  NotGreaterLess: sA,
-  NotGreaterSlantEqual: rA,
-  NotGreaterTilde: cA,
-  NotHumpDownHump: aA,
-  NotHumpEqual: iA,
-  notin: lA,
-  notindot: uA,
-  notinE: pA,
-  notinva: hA,
-  notinvb: dA,
-  notinvc: fA,
-  NotLeftTriangleBar: mA,
-  NotLeftTriangle: gA,
-  NotLeftTriangleEqual: _A,
-  NotLess: bA,
-  NotLessEqual: kA,
-  NotLessGreater: yA,
-  NotLessLess: wA,
-  NotLessSlantEqual: vA,
-  NotLessTilde: xA,
-  NotNestedGreaterGreater: AA,
-  NotNestedLessLess: SA,
-  notni: LA,
-  notniva: CA,
-  notnivb: EA,
-  notnivc: TA,
-  NotPrecedes: DA,
-  NotPrecedesEqual: qA,
-  NotPrecedesSlantEqual: jA,
-  NotReverseElement: RA,
-  NotRightTriangleBar: NA,
-  NotRightTriangle: PA,
-  NotRightTriangleEqual: IA,
-  NotSquareSubset: OA,
-  NotSquareSubsetEqual: FA,
-  NotSquareSuperset: MA,
-  NotSquareSupersetEqual: BA,
-  NotSubset: zA,
-  NotSubsetEqual: $A,
-  NotSucceeds: GA,
-  NotSucceedsEqual: UA,
-  NotSucceedsSlantEqual: HA,
-  NotSucceedsTilde: VA,
-  NotSuperset: WA,
-  NotSupersetEqual: ZA,
-  NotTilde: JA,
-  NotTildeEqual: QA,
-  NotTildeFullEqual: YA,
-  NotTildeTilde: XA,
-  NotVerticalBar: KA,
-  nparallel: eS,
-  npar: nS,
-  nparsl: tS,
-  npart: oS,
-  npolint: sS,
-  npr: rS,
-  nprcue: cS,
-  nprec: aS,
-  npreceq: iS,
-  npre: lS,
-  nrarrc: uS,
-  nrarr: pS,
-  nrArr: hS,
-  nrarrw: dS,
-  nrightarrow: fS,
-  nRightarrow: mS,
-  nrtri: gS,
-  nrtrie: _S,
-  nsc: bS,
-  nsccue: kS,
-  nsce: yS,
-  Nscr: wS,
-  nscr: vS,
-  nshortmid: xS,
-  nshortparallel: AS,
-  nsim: SS,
-  nsime: LS,
-  nsimeq: CS,
-  nsmid: ES,
-  nspar: TS,
-  nsqsube: DS,
-  nsqsupe: qS,
-  nsub: jS,
-  nsubE: RS,
-  nsube: NS,
-  nsubset: PS,
-  nsubseteq: IS,
-  nsubseteqq: OS,
-  nsucc: FS,
-  nsucceq: MS,
-  nsup: BS,
-  nsupE: zS,
-  nsupe: $S,
-  nsupset: GS,
-  nsupseteq: US,
-  nsupseteqq: HS,
-  ntgl: VS,
-  Ntilde: WS,
-  ntilde: ZS,
-  ntlg: JS,
-  ntriangleleft: QS,
-  ntrianglelefteq: YS,
-  ntriangleright: XS,
-  ntrianglerighteq: KS,
-  Nu: eL,
-  nu: nL,
-  num: tL,
-  numero: oL,
-  numsp: sL,
-  nvap: rL,
-  nvdash: cL,
-  nvDash: aL,
-  nVdash: iL,
-  nVDash: lL,
-  nvge: uL,
-  nvgt: pL,
-  nvHarr: hL,
-  nvinfin: dL,
-  nvlArr: fL,
-  nvle: mL,
-  nvlt: gL,
-  nvltrie: _L,
-  nvrArr: bL,
-  nvrtrie: kL,
-  nvsim: yL,
-  nwarhk: wL,
-  nwarr: vL,
-  nwArr: xL,
-  nwarrow: AL,
-  nwnear: SL,
-  Oacute: LL,
-  oacute: CL,
-  oast: EL,
-  Ocirc: TL,
-  ocirc: DL,
-  ocir: qL,
-  Ocy: jL,
-  ocy: RL,
-  odash: NL,
-  Odblac: PL,
-  odblac: IL,
-  odiv: OL,
-  odot: FL,
-  odsold: ML,
-  OElig: BL,
-  oelig: zL,
-  ofcir: $L,
-  Ofr: GL,
-  ofr: UL,
-  ogon: HL,
-  Ograve: VL,
-  ograve: WL,
-  ogt: ZL,
-  ohbar: JL,
-  ohm: QL,
-  oint: YL,
-  olarr: XL,
-  olcir: KL,
-  olcross: eC,
-  oline: nC,
-  olt: tC,
-  Omacr: oC,
-  omacr: sC,
-  Omega: rC,
-  omega: cC,
-  Omicron: aC,
-  omicron: iC,
-  omid: lC,
-  ominus: uC,
-  Oopf: pC,
-  oopf: hC,
-  opar: dC,
-  OpenCurlyDoubleQuote: fC,
-  OpenCurlyQuote: mC,
-  operp: gC,
-  oplus: _C,
-  orarr: bC,
-  Or: kC,
-  or: yC,
-  ord: wC,
-  order: vC,
-  orderof: xC,
-  ordf: AC,
-  ordm: SC,
-  origof: LC,
-  oror: CC,
-  orslope: EC,
-  orv: TC,
-  oS: DC,
-  Oscr: qC,
-  oscr: jC,
-  Oslash: RC,
-  oslash: NC,
-  osol: PC,
-  Otilde: IC,
-  otilde: OC,
-  otimesas: FC,
-  Otimes: MC,
-  otimes: BC,
-  Ouml: zC,
-  ouml: $C,
-  ovbar: GC,
-  OverBar: UC,
-  OverBrace: HC,
-  OverBracket: VC,
-  OverParenthesis: WC,
-  para: ZC,
-  parallel: JC,
-  par: QC,
-  parsim: YC,
-  parsl: XC,
-  part: KC,
-  PartialD: eE,
-  Pcy: nE,
-  pcy: tE,
-  percnt: oE,
-  period: sE,
-  permil: rE,
-  perp: cE,
-  pertenk: aE,
-  Pfr: iE,
-  pfr: lE,
-  Phi: uE,
-  phi: pE,
-  phiv: hE,
-  phmmat: dE,
-  phone: fE,
-  Pi: mE,
-  pi: gE,
-  pitchfork: _E,
-  piv: bE,
-  planck: kE,
-  planckh: yE,
-  plankv: wE,
-  plusacir: vE,
-  plusb: xE,
-  pluscir: AE,
-  plus: SE,
-  plusdo: LE,
-  plusdu: CE,
-  pluse: EE,
-  PlusMinus: TE,
-  plusmn: DE,
-  plussim: qE,
-  plustwo: jE,
-  pm: RE,
-  Poincareplane: NE,
-  pointint: PE,
-  popf: IE,
-  Popf: OE,
-  pound: FE,
-  prap: ME,
-  Pr: BE,
-  pr: zE,
-  prcue: $E,
-  precapprox: GE,
-  prec: UE,
-  preccurlyeq: HE,
-  Precedes: VE,
-  PrecedesEqual: WE,
-  PrecedesSlantEqual: ZE,
-  PrecedesTilde: JE,
-  preceq: QE,
-  precnapprox: YE,
-  precneqq: XE,
-  precnsim: KE,
-  pre: eT,
-  prE: nT,
-  precsim: tT,
-  prime: oT,
-  Prime: sT,
-  primes: rT,
-  prnap: cT,
-  prnE: aT,
-  prnsim: iT,
-  prod: lT,
-  Product: uT,
-  profalar: pT,
-  profline: hT,
-  profsurf: dT,
-  prop: fT,
-  Proportional: mT,
-  Proportion: gT,
-  propto: _T,
-  prsim: bT,
-  prurel: kT,
-  Pscr: yT,
-  pscr: wT,
-  Psi: vT,
-  psi: xT,
-  puncsp: AT,
-  Qfr: ST,
-  qfr: LT,
-  qint: CT,
-  qopf: ET,
-  Qopf: TT,
-  qprime: DT,
-  Qscr: qT,
-  qscr: jT,
-  quaternions: RT,
-  quatint: NT,
-  quest: PT,
-  questeq: IT,
-  quot: OT,
-  QUOT: FT,
-  rAarr: MT,
-  race: BT,
-  Racute: zT,
-  racute: $T,
-  radic: GT,
-  raemptyv: UT,
-  rang: HT,
-  Rang: VT,
-  rangd: WT,
-  range: ZT,
-  rangle: JT,
-  raquo: QT,
-  rarrap: YT,
-  rarrb: XT,
-  rarrbfs: KT,
-  rarrc: eD,
-  rarr: nD,
-  Rarr: tD,
-  rArr: oD,
-  rarrfs: sD,
-  rarrhk: rD,
-  rarrlp: cD,
-  rarrpl: aD,
-  rarrsim: iD,
-  Rarrtl: lD,
-  rarrtl: uD,
-  rarrw: pD,
-  ratail: hD,
-  rAtail: dD,
-  ratio: fD,
-  rationals: mD,
-  rbarr: gD,
-  rBarr: _D,
-  RBarr: bD,
-  rbbrk: kD,
-  rbrace: yD,
-  rbrack: wD,
-  rbrke: vD,
-  rbrksld: xD,
-  rbrkslu: AD,
-  Rcaron: SD,
-  rcaron: LD,
-  Rcedil: CD,
-  rcedil: ED,
-  rceil: TD,
-  rcub: DD,
-  Rcy: qD,
-  rcy: jD,
-  rdca: RD,
-  rdldhar: ND,
-  rdquo: PD,
-  rdquor: ID,
-  rdsh: OD,
-  real: FD,
-  realine: MD,
-  realpart: BD,
-  reals: zD,
-  Re: $D,
-  rect: GD,
-  reg: UD,
-  REG: HD,
-  ReverseElement: VD,
-  ReverseEquilibrium: WD,
-  ReverseUpEquilibrium: ZD,
-  rfisht: JD,
-  rfloor: QD,
-  rfr: YD,
-  Rfr: XD,
-  rHar: KD,
-  rhard: eq,
-  rharu: nq,
-  rharul: tq,
-  Rho: oq,
-  rho: sq,
-  rhov: rq,
-  RightAngleBracket: cq,
-  RightArrowBar: aq,
-  rightarrow: iq,
-  RightArrow: lq,
-  Rightarrow: uq,
-  RightArrowLeftArrow: pq,
-  rightarrowtail: hq,
-  RightCeiling: dq,
-  RightDoubleBracket: fq,
-  RightDownTeeVector: mq,
-  RightDownVectorBar: gq,
-  RightDownVector: _q,
-  RightFloor: bq,
-  rightharpoondown: kq,
-  rightharpoonup: yq,
-  rightleftarrows: wq,
-  rightleftharpoons: vq,
-  rightrightarrows: xq,
-  rightsquigarrow: Aq,
-  RightTeeArrow: Sq,
-  RightTee: Lq,
-  RightTeeVector: Cq,
-  rightthreetimes: Eq,
-  RightTriangleBar: Tq,
-  RightTriangle: Dq,
-  RightTriangleEqual: qq,
-  RightUpDownVector: jq,
-  RightUpTeeVector: Rq,
-  RightUpVectorBar: Nq,
-  RightUpVector: Pq,
-  RightVectorBar: Iq,
-  RightVector: Oq,
-  ring: Fq,
-  risingdotseq: Mq,
-  rlarr: Bq,
-  rlhar: zq,
-  rlm: $q,
-  rmoustache: Gq,
-  rmoust: Uq,
-  rnmid: Hq,
-  roang: Vq,
-  roarr: Wq,
-  robrk: Zq,
-  ropar: Jq,
-  ropf: Qq,
-  Ropf: Yq,
-  roplus: Xq,
-  rotimes: Kq,
-  RoundImplies: ej,
-  rpar: nj,
-  rpargt: tj,
-  rppolint: oj,
-  rrarr: sj,
-  Rrightarrow: rj,
-  rsaquo: cj,
-  rscr: aj,
-  Rscr: ij,
-  rsh: lj,
-  Rsh: uj,
-  rsqb: pj,
-  rsquo: hj,
-  rsquor: dj,
-  rthree: fj,
-  rtimes: mj,
-  rtri: gj,
-  rtrie: _j,
-  rtrif: bj,
-  rtriltri: kj,
-  RuleDelayed: yj,
-  ruluhar: wj,
-  rx: vj,
-  Sacute: xj,
-  sacute: Aj,
-  sbquo: Sj,
-  scap: Lj,
-  Scaron: Cj,
-  scaron: Ej,
-  Sc: Tj,
-  sc: Dj,
-  sccue: qj,
-  sce: jj,
-  scE: Rj,
-  Scedil: Nj,
-  scedil: Pj,
-  Scirc: Ij,
-  scirc: Oj,
-  scnap: Fj,
-  scnE: Mj,
-  scnsim: Bj,
-  scpolint: zj,
-  scsim: $j,
-  Scy: Gj,
-  scy: Uj,
-  sdotb: Hj,
-  sdot: Vj,
-  sdote: Wj,
-  searhk: Zj,
-  searr: Jj,
-  seArr: Qj,
-  searrow: Yj,
-  sect: Xj,
-  semi: Kj,
-  seswar: e2,
-  setminus: n2,
-  setmn: t2,
-  sext: o2,
-  Sfr: s2,
-  sfr: r2,
-  sfrown: c2,
-  sharp: a2,
-  SHCHcy: i2,
-  shchcy: l2,
-  SHcy: u2,
-  shcy: p2,
-  ShortDownArrow: h2,
-  ShortLeftArrow: d2,
-  shortmid: f2,
-  shortparallel: m2,
-  ShortRightArrow: g2,
-  ShortUpArrow: _2,
-  shy: b2,
-  Sigma: k2,
-  sigma: y2,
-  sigmaf: w2,
-  sigmav: v2,
-  sim: x2,
-  simdot: A2,
-  sime: S2,
-  simeq: L2,
-  simg: C2,
-  simgE: E2,
-  siml: T2,
-  simlE: D2,
-  simne: q2,
-  simplus: j2,
-  simrarr: R2,
-  slarr: N2,
-  SmallCircle: P2,
-  smallsetminus: I2,
-  smashp: O2,
-  smeparsl: F2,
-  smid: M2,
-  smile: B2,
-  smt: z2,
-  smte: $2,
-  smtes: G2,
-  SOFTcy: U2,
-  softcy: H2,
-  solbar: V2,
-  solb: W2,
-  sol: Z2,
-  Sopf: J2,
-  sopf: Q2,
-  spades: Y2,
-  spadesuit: X2,
-  spar: K2,
-  sqcap: eR,
-  sqcaps: nR,
-  sqcup: tR,
-  sqcups: oR,
-  Sqrt: sR,
-  sqsub: rR,
-  sqsube: cR,
-  sqsubset: aR,
-  sqsubseteq: iR,
-  sqsup: lR,
-  sqsupe: uR,
-  sqsupset: pR,
-  sqsupseteq: hR,
-  square: dR,
-  Square: fR,
-  SquareIntersection: mR,
-  SquareSubset: gR,
-  SquareSubsetEqual: _R,
-  SquareSuperset: bR,
-  SquareSupersetEqual: kR,
-  SquareUnion: yR,
-  squarf: wR,
-  squ: vR,
-  squf: xR,
-  srarr: AR,
-  Sscr: SR,
-  sscr: LR,
-  ssetmn: CR,
-  ssmile: ER,
-  sstarf: TR,
-  Star: DR,
-  star: qR,
-  starf: jR,
-  straightepsilon: RR,
-  straightphi: NR,
-  strns: PR,
-  sub: IR,
-  Sub: OR,
-  subdot: FR,
-  subE: MR,
-  sube: BR,
-  subedot: zR,
-  submult: $R,
-  subnE: GR,
-  subne: UR,
-  subplus: HR,
-  subrarr: VR,
-  subset: WR,
-  Subset: ZR,
-  subseteq: JR,
-  subseteqq: QR,
-  SubsetEqual: YR,
-  subsetneq: XR,
-  subsetneqq: KR,
-  subsim: eN,
-  subsub: nN,
-  subsup: tN,
-  succapprox: oN,
-  succ: sN,
-  succcurlyeq: rN,
-  Succeeds: cN,
-  SucceedsEqual: aN,
-  SucceedsSlantEqual: iN,
-  SucceedsTilde: lN,
-  succeq: uN,
-  succnapprox: pN,
-  succneqq: hN,
-  succnsim: dN,
-  succsim: fN,
-  SuchThat: mN,
-  sum: gN,
-  Sum: _N,
-  sung: bN,
-  sup1: kN,
-  sup2: yN,
-  sup3: wN,
-  sup: vN,
-  Sup: xN,
-  supdot: AN,
-  supdsub: SN,
-  supE: LN,
-  supe: CN,
-  supedot: EN,
-  Superset: TN,
-  SupersetEqual: DN,
-  suphsol: qN,
-  suphsub: jN,
-  suplarr: RN,
-  supmult: NN,
-  supnE: PN,
-  supne: IN,
-  supplus: ON,
-  supset: FN,
-  Supset: MN,
-  supseteq: BN,
-  supseteqq: zN,
-  supsetneq: $N,
-  supsetneqq: GN,
-  supsim: UN,
-  supsub: HN,
-  supsup: VN,
-  swarhk: WN,
-  swarr: ZN,
-  swArr: JN,
-  swarrow: QN,
-  swnwar: YN,
-  szlig: XN,
-  Tab: KN,
-  target: eP,
-  Tau: nP,
-  tau: tP,
-  tbrk: oP,
-  Tcaron: sP,
-  tcaron: rP,
-  Tcedil: cP,
-  tcedil: aP,
-  Tcy: iP,
-  tcy: lP,
-  tdot: uP,
-  telrec: pP,
-  Tfr: hP,
-  tfr: dP,
-  there4: fP,
-  therefore: mP,
-  Therefore: gP,
-  Theta: _P,
-  theta: bP,
-  thetasym: kP,
-  thetav: yP,
-  thickapprox: wP,
-  thicksim: vP,
-  ThickSpace: xP,
-  ThinSpace: AP,
-  thinsp: SP,
-  thkap: LP,
-  thksim: CP,
-  THORN: EP,
-  thorn: TP,
-  tilde: DP,
-  Tilde: qP,
-  TildeEqual: jP,
-  TildeFullEqual: RP,
-  TildeTilde: NP,
-  timesbar: PP,
-  timesb: IP,
-  times: OP,
-  timesd: FP,
-  tint: MP,
-  toea: BP,
-  topbot: zP,
-  topcir: $P,
-  top: GP,
-  Topf: UP,
-  topf: HP,
-  topfork: VP,
-  tosa: WP,
-  tprime: ZP,
-  trade: JP,
-  TRADE: QP,
-  triangle: YP,
-  triangledown: XP,
-  triangleleft: KP,
-  trianglelefteq: eI,
-  triangleq: nI,
-  triangleright: tI,
-  trianglerighteq: oI,
-  tridot: sI,
-  trie: rI,
-  triminus: cI,
-  TripleDot: aI,
-  triplus: iI,
-  trisb: lI,
-  tritime: uI,
-  trpezium: pI,
-  Tscr: hI,
-  tscr: dI,
-  TScy: fI,
-  tscy: mI,
-  TSHcy: gI,
-  tshcy: _I,
-  Tstrok: bI,
-  tstrok: kI,
-  twixt: yI,
-  twoheadleftarrow: wI,
-  twoheadrightarrow: vI,
-  Uacute: xI,
-  uacute: AI,
-  uarr: SI,
-  Uarr: LI,
-  uArr: CI,
-  Uarrocir: EI,
-  Ubrcy: TI,
-  ubrcy: DI,
-  Ubreve: qI,
-  ubreve: jI,
-  Ucirc: RI,
-  ucirc: NI,
-  Ucy: PI,
-  ucy: II,
-  udarr: OI,
-  Udblac: FI,
-  udblac: MI,
-  udhar: BI,
-  ufisht: zI,
-  Ufr: $I,
-  ufr: GI,
-  Ugrave: UI,
-  ugrave: HI,
-  uHar: VI,
-  uharl: WI,
-  uharr: ZI,
-  uhblk: JI,
-  ulcorn: QI,
-  ulcorner: YI,
-  ulcrop: XI,
-  ultri: KI,
-  Umacr: eO,
-  umacr: nO,
-  uml: tO,
-  UnderBar: oO,
-  UnderBrace: sO,
-  UnderBracket: rO,
-  UnderParenthesis: cO,
-  Union: aO,
-  UnionPlus: iO,
-  Uogon: lO,
-  uogon: uO,
-  Uopf: pO,
-  uopf: hO,
-  UpArrowBar: dO,
-  uparrow: fO,
-  UpArrow: mO,
-  Uparrow: gO,
-  UpArrowDownArrow: _O,
-  updownarrow: bO,
-  UpDownArrow: kO,
-  Updownarrow: yO,
-  UpEquilibrium: wO,
-  upharpoonleft: vO,
-  upharpoonright: xO,
-  uplus: AO,
-  UpperLeftArrow: SO,
-  UpperRightArrow: LO,
-  upsi: CO,
-  Upsi: EO,
-  upsih: TO,
-  Upsilon: DO,
-  upsilon: qO,
-  UpTeeArrow: jO,
-  UpTee: RO,
-  upuparrows: NO,
-  urcorn: PO,
-  urcorner: IO,
-  urcrop: OO,
-  Uring: FO,
-  uring: MO,
-  urtri: BO,
-  Uscr: zO,
-  uscr: $O,
-  utdot: GO,
-  Utilde: UO,
-  utilde: HO,
-  utri: VO,
-  utrif: WO,
-  uuarr: ZO,
-  Uuml: JO,
-  uuml: QO,
-  uwangle: YO,
-  vangrt: XO,
-  varepsilon: KO,
-  varkappa: eF,
-  varnothing: nF,
-  varphi: tF,
-  varpi: oF,
-  varpropto: sF,
-  varr: rF,
-  vArr: cF,
-  varrho: aF,
-  varsigma: iF,
-  varsubsetneq: lF,
-  varsubsetneqq: uF,
-  varsupsetneq: pF,
-  varsupsetneqq: hF,
-  vartheta: dF,
-  vartriangleleft: fF,
-  vartriangleright: mF,
-  vBar: gF,
-  Vbar: _F,
-  vBarv: bF,
-  Vcy: kF,
-  vcy: yF,
-  vdash: wF,
-  vDash: vF,
-  Vdash: xF,
-  VDash: AF,
-  Vdashl: SF,
-  veebar: LF,
-  vee: CF,
-  Vee: EF,
-  veeeq: TF,
-  vellip: DF,
-  verbar: qF,
-  Verbar: jF,
-  vert: RF,
-  Vert: NF,
-  VerticalBar: PF,
-  VerticalLine: IF,
-  VerticalSeparator: OF,
-  VerticalTilde: FF,
-  VeryThinSpace: MF,
-  Vfr: BF,
-  vfr: zF,
-  vltri: $F,
-  vnsub: GF,
-  vnsup: UF,
-  Vopf: HF,
-  vopf: VF,
-  vprop: WF,
-  vrtri: ZF,
-  Vscr: JF,
-  vscr: QF,
-  vsubnE: YF,
-  vsubne: XF,
-  vsupnE: KF,
-  vsupne: e3,
-  Vvdash: n3,
-  vzigzag: t3,
-  Wcirc: o3,
-  wcirc: s3,
-  wedbar: r3,
-  wedge: c3,
-  Wedge: a3,
-  wedgeq: i3,
-  weierp: l3,
-  Wfr: u3,
-  wfr: p3,
-  Wopf: h3,
-  wopf: d3,
-  wp: f3,
-  wr: m3,
-  wreath: g3,
-  Wscr: _3,
-  wscr: b3,
-  xcap: k3,
-  xcirc: y3,
-  xcup: w3,
-  xdtri: v3,
-  Xfr: x3,
-  xfr: A3,
-  xharr: S3,
-  xhArr: L3,
-  Xi: C3,
-  xi: E3,
-  xlarr: T3,
-  xlArr: D3,
-  xmap: q3,
-  xnis: j3,
-  xodot: R3,
-  Xopf: N3,
-  xopf: P3,
-  xoplus: I3,
-  xotime: O3,
-  xrarr: F3,
-  xrArr: M3,
-  Xscr: B3,
-  xscr: z3,
-  xsqcup: $3,
-  xuplus: G3,
-  xutri: U3,
-  xvee: H3,
-  xwedge: V3,
-  Yacute: W3,
-  yacute: Z3,
-  YAcy: J3,
-  yacy: Q3,
-  Ycirc: Y3,
-  ycirc: X3,
-  Ycy: K3,
-  ycy: eM,
-  yen: nM,
-  Yfr: tM,
-  yfr: oM,
-  YIcy: sM,
-  yicy: rM,
-  Yopf: cM,
-  yopf: aM,
-  Yscr: iM,
-  yscr: lM,
-  YUcy: uM,
-  yucy: pM,
-  yuml: hM,
-  Yuml: dM,
-  Zacute: fM,
-  zacute: mM,
-  Zcaron: gM,
-  zcaron: _M,
-  Zcy: bM,
-  zcy: kM,
-  Zdot: yM,
-  zdot: wM,
-  zeetrf: vM,
-  ZeroWidthSpace: xM,
-  Zeta: AM,
-  zeta: SM,
-  zfr: LM,
-  Zfr: CM,
-  ZHcy: EM,
-  zhcy: TM,
-  zigrarr: DM,
-  zopf: qM,
-  Zopf: jM,
-  Zscr: RM,
-  zscr: NM,
-  zwj: PM,
-  zwnj: IM
+  map: wv,
+  mapsto: vv,
+  mapstodown: xv,
+  mapstoleft: Av,
+  mapstoup: Sv,
+  marker: Lv,
+  mcomma: Cv,
+  Mcy: Ev,
+  mcy: Tv,
+  mdash: Dv,
+  mDDot: qv,
+  measuredangle: jv,
+  MediumSpace: Rv,
+  Mellintrf: Nv,
+  Mfr: Pv,
+  mfr: Iv,
+  mho: Ov,
+  micro: Fv,
+  midast: Mv,
+  midcir: Bv,
+  mid: $v,
+  middot: zv,
+  minusb: Gv,
+  minus: Uv,
+  minusd: Hv,
+  minusdu: Vv,
+  MinusPlus: Wv,
+  mlcp: Zv,
+  mldr: Jv,
+  mnplus: Qv,
+  models: Yv,
+  Mopf: Xv,
+  mopf: Kv,
+  mp: e1,
+  mscr: n1,
+  Mscr: t1,
+  mstpos: o1,
+  Mu: s1,
+  mu: r1,
+  multimap: c1,
+  mumap: a1,
+  nabla: i1,
+  Nacute: l1,
+  nacute: u1,
+  nang: p1,
+  nap: h1,
+  napE: d1,
+  napid: f1,
+  napos: m1,
+  napprox: g1,
+  natural: _1,
+  naturals: b1,
+  natur: k1,
+  nbsp: y1,
+  nbump: w1,
+  nbumpe: v1,
+  ncap: x1,
+  Ncaron: A1,
+  ncaron: S1,
+  Ncedil: L1,
+  ncedil: C1,
+  ncong: E1,
+  ncongdot: T1,
+  ncup: D1,
+  Ncy: q1,
+  ncy: j1,
+  ndash: R1,
+  nearhk: N1,
+  nearr: P1,
+  neArr: I1,
+  nearrow: O1,
+  ne: F1,
+  nedot: M1,
+  NegativeMediumSpace: B1,
+  NegativeThickSpace: $1,
+  NegativeThinSpace: z1,
+  NegativeVeryThinSpace: G1,
+  nequiv: U1,
+  nesear: H1,
+  nesim: V1,
+  NestedGreaterGreater: W1,
+  NestedLessLess: Z1,
+  NewLine: J1,
+  nexist: Q1,
+  nexists: Y1,
+  Nfr: X1,
+  nfr: K1,
+  ngE: ex,
+  nge: nx,
+  ngeq: tx,
+  ngeqq: ox,
+  ngeqslant: sx,
+  nges: rx,
+  nGg: cx,
+  ngsim: ax,
+  nGt: ix,
+  ngt: lx,
+  ngtr: ux,
+  nGtv: px,
+  nharr: hx,
+  nhArr: dx,
+  nhpar: fx,
+  ni: mx,
+  nis: gx,
+  nisd: _x,
+  niv: bx,
+  NJcy: kx,
+  njcy: yx,
+  nlarr: wx,
+  nlArr: vx,
+  nldr: xx,
+  nlE: Ax,
+  nle: Sx,
+  nleftarrow: Lx,
+  nLeftarrow: Cx,
+  nleftrightarrow: Ex,
+  nLeftrightarrow: Tx,
+  nleq: Dx,
+  nleqq: qx,
+  nleqslant: jx,
+  nles: Rx,
+  nless: Nx,
+  nLl: Px,
+  nlsim: Ix,
+  nLt: Ox,
+  nlt: Fx,
+  nltri: Mx,
+  nltrie: Bx,
+  nLtv: $x,
+  nmid: zx,
+  NoBreak: Gx,
+  NonBreakingSpace: Ux,
+  nopf: Hx,
+  Nopf: Vx,
+  Not: Wx,
+  not: Zx,
+  NotCongruent: Jx,
+  NotCupCap: Qx,
+  NotDoubleVerticalBar: Yx,
+  NotElement: Xx,
+  NotEqual: Kx,
+  NotEqualTilde: eA,
+  NotExists: nA,
+  NotGreater: tA,
+  NotGreaterEqual: oA,
+  NotGreaterFullEqual: sA,
+  NotGreaterGreater: rA,
+  NotGreaterLess: cA,
+  NotGreaterSlantEqual: aA,
+  NotGreaterTilde: iA,
+  NotHumpDownHump: lA,
+  NotHumpEqual: uA,
+  notin: pA,
+  notindot: hA,
+  notinE: dA,
+  notinva: fA,
+  notinvb: mA,
+  notinvc: gA,
+  NotLeftTriangleBar: _A,
+  NotLeftTriangle: bA,
+  NotLeftTriangleEqual: kA,
+  NotLess: yA,
+  NotLessEqual: wA,
+  NotLessGreater: vA,
+  NotLessLess: xA,
+  NotLessSlantEqual: AA,
+  NotLessTilde: SA,
+  NotNestedGreaterGreater: LA,
+  NotNestedLessLess: CA,
+  notni: EA,
+  notniva: TA,
+  notnivb: DA,
+  notnivc: qA,
+  NotPrecedes: jA,
+  NotPrecedesEqual: RA,
+  NotPrecedesSlantEqual: NA,
+  NotReverseElement: PA,
+  NotRightTriangleBar: IA,
+  NotRightTriangle: OA,
+  NotRightTriangleEqual: FA,
+  NotSquareSubset: MA,
+  NotSquareSubsetEqual: BA,
+  NotSquareSuperset: $A,
+  NotSquareSupersetEqual: zA,
+  NotSubset: GA,
+  NotSubsetEqual: UA,
+  NotSucceeds: HA,
+  NotSucceedsEqual: VA,
+  NotSucceedsSlantEqual: WA,
+  NotSucceedsTilde: ZA,
+  NotSuperset: JA,
+  NotSupersetEqual: QA,
+  NotTilde: YA,
+  NotTildeEqual: XA,
+  NotTildeFullEqual: KA,
+  NotTildeTilde: eS,
+  NotVerticalBar: nS,
+  nparallel: tS,
+  npar: oS,
+  nparsl: sS,
+  npart: rS,
+  npolint: cS,
+  npr: aS,
+  nprcue: iS,
+  nprec: lS,
+  npreceq: uS,
+  npre: pS,
+  nrarrc: hS,
+  nrarr: dS,
+  nrArr: fS,
+  nrarrw: mS,
+  nrightarrow: gS,
+  nRightarrow: _S,
+  nrtri: bS,
+  nrtrie: kS,
+  nsc: yS,
+  nsccue: wS,
+  nsce: vS,
+  Nscr: xS,
+  nscr: AS,
+  nshortmid: SS,
+  nshortparallel: LS,
+  nsim: CS,
+  nsime: ES,
+  nsimeq: TS,
+  nsmid: DS,
+  nspar: qS,
+  nsqsube: jS,
+  nsqsupe: RS,
+  nsub: NS,
+  nsubE: PS,
+  nsube: IS,
+  nsubset: OS,
+  nsubseteq: FS,
+  nsubseteqq: MS,
+  nsucc: BS,
+  nsucceq: $S,
+  nsup: zS,
+  nsupE: GS,
+  nsupe: US,
+  nsupset: HS,
+  nsupseteq: VS,
+  nsupseteqq: WS,
+  ntgl: ZS,
+  Ntilde: JS,
+  ntilde: QS,
+  ntlg: YS,
+  ntriangleleft: XS,
+  ntrianglelefteq: KS,
+  ntriangleright: eL,
+  ntrianglerighteq: nL,
+  Nu: tL,
+  nu: oL,
+  num: sL,
+  numero: rL,
+  numsp: cL,
+  nvap: aL,
+  nvdash: iL,
+  nvDash: lL,
+  nVdash: uL,
+  nVDash: pL,
+  nvge: hL,
+  nvgt: dL,
+  nvHarr: fL,
+  nvinfin: mL,
+  nvlArr: gL,
+  nvle: _L,
+  nvlt: bL,
+  nvltrie: kL,
+  nvrArr: yL,
+  nvrtrie: wL,
+  nvsim: vL,
+  nwarhk: xL,
+  nwarr: AL,
+  nwArr: SL,
+  nwarrow: LL,
+  nwnear: CL,
+  Oacute: EL,
+  oacute: TL,
+  oast: DL,
+  Ocirc: qL,
+  ocirc: jL,
+  ocir: RL,
+  Ocy: NL,
+  ocy: PL,
+  odash: IL,
+  Odblac: OL,
+  odblac: FL,
+  odiv: ML,
+  odot: BL,
+  odsold: $L,
+  OElig: zL,
+  oelig: GL,
+  ofcir: UL,
+  Ofr: HL,
+  ofr: VL,
+  ogon: WL,
+  Ograve: ZL,
+  ograve: JL,
+  ogt: QL,
+  ohbar: YL,
+  ohm: XL,
+  oint: KL,
+  olarr: eC,
+  olcir: nC,
+  olcross: tC,
+  oline: oC,
+  olt: sC,
+  Omacr: rC,
+  omacr: cC,
+  Omega: aC,
+  omega: iC,
+  Omicron: lC,
+  omicron: uC,
+  omid: pC,
+  ominus: hC,
+  Oopf: dC,
+  oopf: fC,
+  opar: mC,
+  OpenCurlyDoubleQuote: gC,
+  OpenCurlyQuote: _C,
+  operp: bC,
+  oplus: kC,
+  orarr: yC,
+  Or: wC,
+  or: vC,
+  ord: xC,
+  order: AC,
+  orderof: SC,
+  ordf: LC,
+  ordm: CC,
+  origof: EC,
+  oror: TC,
+  orslope: DC,
+  orv: qC,
+  oS: jC,
+  Oscr: RC,
+  oscr: NC,
+  Oslash: PC,
+  oslash: IC,
+  osol: OC,
+  Otilde: FC,
+  otilde: MC,
+  otimesas: BC,
+  Otimes: $C,
+  otimes: zC,
+  Ouml: GC,
+  ouml: UC,
+  ovbar: HC,
+  OverBar: VC,
+  OverBrace: WC,
+  OverBracket: ZC,
+  OverParenthesis: JC,
+  para: QC,
+  parallel: YC,
+  par: XC,
+  parsim: KC,
+  parsl: eE,
+  part: nE,
+  PartialD: tE,
+  Pcy: oE,
+  pcy: sE,
+  percnt: rE,
+  period: cE,
+  permil: aE,
+  perp: iE,
+  pertenk: lE,
+  Pfr: uE,
+  pfr: pE,
+  Phi: hE,
+  phi: dE,
+  phiv: fE,
+  phmmat: mE,
+  phone: gE,
+  Pi: _E,
+  pi: bE,
+  pitchfork: kE,
+  piv: yE,
+  planck: wE,
+  planckh: vE,
+  plankv: xE,
+  plusacir: AE,
+  plusb: SE,
+  pluscir: LE,
+  plus: CE,
+  plusdo: EE,
+  plusdu: TE,
+  pluse: DE,
+  PlusMinus: qE,
+  plusmn: jE,
+  plussim: RE,
+  plustwo: NE,
+  pm: PE,
+  Poincareplane: IE,
+  pointint: OE,
+  popf: FE,
+  Popf: ME,
+  pound: BE,
+  prap: $E,
+  Pr: zE,
+  pr: GE,
+  prcue: UE,
+  precapprox: HE,
+  prec: VE,
+  preccurlyeq: WE,
+  Precedes: ZE,
+  PrecedesEqual: JE,
+  PrecedesSlantEqual: QE,
+  PrecedesTilde: YE,
+  preceq: XE,
+  precnapprox: KE,
+  precneqq: eT,
+  precnsim: nT,
+  pre: tT,
+  prE: oT,
+  precsim: sT,
+  prime: rT,
+  Prime: cT,
+  primes: aT,
+  prnap: iT,
+  prnE: lT,
+  prnsim: uT,
+  prod: pT,
+  Product: hT,
+  profalar: dT,
+  profline: fT,
+  profsurf: mT,
+  prop: gT,
+  Proportional: _T,
+  Proportion: bT,
+  propto: kT,
+  prsim: yT,
+  prurel: wT,
+  Pscr: vT,
+  pscr: xT,
+  Psi: AT,
+  psi: ST,
+  puncsp: LT,
+  Qfr: CT,
+  qfr: ET,
+  qint: TT,
+  qopf: DT,
+  Qopf: qT,
+  qprime: jT,
+  Qscr: RT,
+  qscr: NT,
+  quaternions: PT,
+  quatint: IT,
+  quest: OT,
+  questeq: FT,
+  quot: MT,
+  QUOT: BT,
+  rAarr: $T,
+  race: zT,
+  Racute: GT,
+  racute: UT,
+  radic: HT,
+  raemptyv: VT,
+  rang: WT,
+  Rang: ZT,
+  rangd: JT,
+  range: QT,
+  rangle: YT,
+  raquo: XT,
+  rarrap: KT,
+  rarrb: eD,
+  rarrbfs: nD,
+  rarrc: tD,
+  rarr: oD,
+  Rarr: sD,
+  rArr: rD,
+  rarrfs: cD,
+  rarrhk: aD,
+  rarrlp: iD,
+  rarrpl: lD,
+  rarrsim: uD,
+  Rarrtl: pD,
+  rarrtl: hD,
+  rarrw: dD,
+  ratail: fD,
+  rAtail: mD,
+  ratio: gD,
+  rationals: _D,
+  rbarr: bD,
+  rBarr: kD,
+  RBarr: yD,
+  rbbrk: wD,
+  rbrace: vD,
+  rbrack: xD,
+  rbrke: AD,
+  rbrksld: SD,
+  rbrkslu: LD,
+  Rcaron: CD,
+  rcaron: ED,
+  Rcedil: TD,
+  rcedil: DD,
+  rceil: qD,
+  rcub: jD,
+  Rcy: RD,
+  rcy: ND,
+  rdca: PD,
+  rdldhar: ID,
+  rdquo: OD,
+  rdquor: FD,
+  rdsh: MD,
+  real: BD,
+  realine: $D,
+  realpart: zD,
+  reals: GD,
+  Re: UD,
+  rect: HD,
+  reg: VD,
+  REG: WD,
+  ReverseElement: ZD,
+  ReverseEquilibrium: JD,
+  ReverseUpEquilibrium: QD,
+  rfisht: YD,
+  rfloor: XD,
+  rfr: KD,
+  Rfr: eq,
+  rHar: nq,
+  rhard: tq,
+  rharu: oq,
+  rharul: sq,
+  Rho: rq,
+  rho: cq,
+  rhov: aq,
+  RightAngleBracket: iq,
+  RightArrowBar: lq,
+  rightarrow: uq,
+  RightArrow: pq,
+  Rightarrow: hq,
+  RightArrowLeftArrow: dq,
+  rightarrowtail: fq,
+  RightCeiling: mq,
+  RightDoubleBracket: gq,
+  RightDownTeeVector: _q,
+  RightDownVectorBar: bq,
+  RightDownVector: kq,
+  RightFloor: yq,
+  rightharpoondown: wq,
+  rightharpoonup: vq,
+  rightleftarrows: xq,
+  rightleftharpoons: Aq,
+  rightrightarrows: Sq,
+  rightsquigarrow: Lq,
+  RightTeeArrow: Cq,
+  RightTee: Eq,
+  RightTeeVector: Tq,
+  rightthreetimes: Dq,
+  RightTriangleBar: qq,
+  RightTriangle: jq,
+  RightTriangleEqual: Rq,
+  RightUpDownVector: Nq,
+  RightUpTeeVector: Pq,
+  RightUpVectorBar: Iq,
+  RightUpVector: Oq,
+  RightVectorBar: Fq,
+  RightVector: Mq,
+  ring: Bq,
+  risingdotseq: $q,
+  rlarr: zq,
+  rlhar: Gq,
+  rlm: Uq,
+  rmoustache: Hq,
+  rmoust: Vq,
+  rnmid: Wq,
+  roang: Zq,
+  roarr: Jq,
+  robrk: Qq,
+  ropar: Yq,
+  ropf: Xq,
+  Ropf: Kq,
+  roplus: ej,
+  rotimes: nj,
+  RoundImplies: tj,
+  rpar: oj,
+  rpargt: sj,
+  rppolint: rj,
+  rrarr: cj,
+  Rrightarrow: aj,
+  rsaquo: ij,
+  rscr: lj,
+  Rscr: uj,
+  rsh: pj,
+  Rsh: hj,
+  rsqb: dj,
+  rsquo: fj,
+  rsquor: mj,
+  rthree: gj,
+  rtimes: _j,
+  rtri: bj,
+  rtrie: kj,
+  rtrif: yj,
+  rtriltri: wj,
+  RuleDelayed: vj,
+  ruluhar: xj,
+  rx: Aj,
+  Sacute: Sj,
+  sacute: Lj,
+  sbquo: Cj,
+  scap: Ej,
+  Scaron: Tj,
+  scaron: Dj,
+  Sc: qj,
+  sc: jj,
+  sccue: Rj,
+  sce: Nj,
+  scE: Pj,
+  Scedil: Ij,
+  scedil: Oj,
+  Scirc: Fj,
+  scirc: Mj,
+  scnap: Bj,
+  scnE: $j,
+  scnsim: zj,
+  scpolint: Gj,
+  scsim: Uj,
+  Scy: Hj,
+  scy: Vj,
+  sdotb: Wj,
+  sdot: Zj,
+  sdote: Jj,
+  searhk: Qj,
+  searr: Yj,
+  seArr: Xj,
+  searrow: Kj,
+  sect: e2,
+  semi: n2,
+  seswar: t2,
+  setminus: o2,
+  setmn: s2,
+  sext: r2,
+  Sfr: c2,
+  sfr: a2,
+  sfrown: i2,
+  sharp: l2,
+  SHCHcy: u2,
+  shchcy: p2,
+  SHcy: h2,
+  shcy: d2,
+  ShortDownArrow: f2,
+  ShortLeftArrow: m2,
+  shortmid: g2,
+  shortparallel: _2,
+  ShortRightArrow: b2,
+  ShortUpArrow: k2,
+  shy: y2,
+  Sigma: w2,
+  sigma: v2,
+  sigmaf: x2,
+  sigmav: A2,
+  sim: S2,
+  simdot: L2,
+  sime: C2,
+  simeq: E2,
+  simg: T2,
+  simgE: D2,
+  siml: q2,
+  simlE: j2,
+  simne: R2,
+  simplus: N2,
+  simrarr: P2,
+  slarr: I2,
+  SmallCircle: O2,
+  smallsetminus: F2,
+  smashp: M2,
+  smeparsl: B2,
+  smid: $2,
+  smile: z2,
+  smt: G2,
+  smte: U2,
+  smtes: H2,
+  SOFTcy: V2,
+  softcy: W2,
+  solbar: Z2,
+  solb: J2,
+  sol: Q2,
+  Sopf: Y2,
+  sopf: X2,
+  spades: K2,
+  spadesuit: eR,
+  spar: nR,
+  sqcap: tR,
+  sqcaps: oR,
+  sqcup: sR,
+  sqcups: rR,
+  Sqrt: cR,
+  sqsub: aR,
+  sqsube: iR,
+  sqsubset: lR,
+  sqsubseteq: uR,
+  sqsup: pR,
+  sqsupe: hR,
+  sqsupset: dR,
+  sqsupseteq: fR,
+  square: mR,
+  Square: gR,
+  SquareIntersection: _R,
+  SquareSubset: bR,
+  SquareSubsetEqual: kR,
+  SquareSuperset: yR,
+  SquareSupersetEqual: wR,
+  SquareUnion: vR,
+  squarf: xR,
+  squ: AR,
+  squf: SR,
+  srarr: LR,
+  Sscr: CR,
+  sscr: ER,
+  ssetmn: TR,
+  ssmile: DR,
+  sstarf: qR,
+  Star: jR,
+  star: RR,
+  starf: NR,
+  straightepsilon: PR,
+  straightphi: IR,
+  strns: OR,
+  sub: FR,
+  Sub: MR,
+  subdot: BR,
+  subE: $R,
+  sube: zR,
+  subedot: GR,
+  submult: UR,
+  subnE: HR,
+  subne: VR,
+  subplus: WR,
+  subrarr: ZR,
+  subset: JR,
+  Subset: QR,
+  subseteq: YR,
+  subseteqq: XR,
+  SubsetEqual: KR,
+  subsetneq: eN,
+  subsetneqq: nN,
+  subsim: tN,
+  subsub: oN,
+  subsup: sN,
+  succapprox: rN,
+  succ: cN,
+  succcurlyeq: aN,
+  Succeeds: iN,
+  SucceedsEqual: lN,
+  SucceedsSlantEqual: uN,
+  SucceedsTilde: pN,
+  succeq: hN,
+  succnapprox: dN,
+  succneqq: fN,
+  succnsim: mN,
+  succsim: gN,
+  SuchThat: _N,
+  sum: bN,
+  Sum: kN,
+  sung: yN,
+  sup1: wN,
+  sup2: vN,
+  sup3: xN,
+  sup: AN,
+  Sup: SN,
+  supdot: LN,
+  supdsub: CN,
+  supE: EN,
+  supe: TN,
+  supedot: DN,
+  Superset: qN,
+  SupersetEqual: jN,
+  suphsol: RN,
+  suphsub: NN,
+  suplarr: PN,
+  supmult: IN,
+  supnE: ON,
+  supne: FN,
+  supplus: MN,
+  supset: BN,
+  Supset: $N,
+  supseteq: zN,
+  supseteqq: GN,
+  supsetneq: UN,
+  supsetneqq: HN,
+  supsim: VN,
+  supsub: WN,
+  supsup: ZN,
+  swarhk: JN,
+  swarr: QN,
+  swArr: YN,
+  swarrow: XN,
+  swnwar: KN,
+  szlig: eP,
+  Tab: nP,
+  target: tP,
+  Tau: oP,
+  tau: sP,
+  tbrk: rP,
+  Tcaron: cP,
+  tcaron: aP,
+  Tcedil: iP,
+  tcedil: lP,
+  Tcy: uP,
+  tcy: pP,
+  tdot: hP,
+  telrec: dP,
+  Tfr: fP,
+  tfr: mP,
+  there4: gP,
+  therefore: _P,
+  Therefore: bP,
+  Theta: kP,
+  theta: yP,
+  thetasym: wP,
+  thetav: vP,
+  thickapprox: xP,
+  thicksim: AP,
+  ThickSpace: SP,
+  ThinSpace: LP,
+  thinsp: CP,
+  thkap: EP,
+  thksim: TP,
+  THORN: DP,
+  thorn: qP,
+  tilde: jP,
+  Tilde: RP,
+  TildeEqual: NP,
+  TildeFullEqual: PP,
+  TildeTilde: IP,
+  timesbar: OP,
+  timesb: FP,
+  times: MP,
+  timesd: BP,
+  tint: $P,
+  toea: zP,
+  topbot: GP,
+  topcir: UP,
+  top: HP,
+  Topf: VP,
+  topf: WP,
+  topfork: ZP,
+  tosa: JP,
+  tprime: QP,
+  trade: YP,
+  TRADE: XP,
+  triangle: KP,
+  triangledown: eI,
+  triangleleft: nI,
+  trianglelefteq: tI,
+  triangleq: oI,
+  triangleright: sI,
+  trianglerighteq: rI,
+  tridot: cI,
+  trie: aI,
+  triminus: iI,
+  TripleDot: lI,
+  triplus: uI,
+  trisb: pI,
+  tritime: hI,
+  trpezium: dI,
+  Tscr: fI,
+  tscr: mI,
+  TScy: gI,
+  tscy: _I,
+  TSHcy: bI,
+  tshcy: kI,
+  Tstrok: yI,
+  tstrok: wI,
+  twixt: vI,
+  twoheadleftarrow: xI,
+  twoheadrightarrow: AI,
+  Uacute: SI,
+  uacute: LI,
+  uarr: CI,
+  Uarr: EI,
+  uArr: TI,
+  Uarrocir: DI,
+  Ubrcy: qI,
+  ubrcy: jI,
+  Ubreve: RI,
+  ubreve: NI,
+  Ucirc: PI,
+  ucirc: II,
+  Ucy: OI,
+  ucy: FI,
+  udarr: MI,
+  Udblac: BI,
+  udblac: $I,
+  udhar: zI,
+  ufisht: GI,
+  Ufr: UI,
+  ufr: HI,
+  Ugrave: VI,
+  ugrave: WI,
+  uHar: ZI,
+  uharl: JI,
+  uharr: QI,
+  uhblk: YI,
+  ulcorn: XI,
+  ulcorner: KI,
+  ulcrop: eO,
+  ultri: nO,
+  Umacr: tO,
+  umacr: oO,
+  uml: sO,
+  UnderBar: rO,
+  UnderBrace: cO,
+  UnderBracket: aO,
+  UnderParenthesis: iO,
+  Union: lO,
+  UnionPlus: uO,
+  Uogon: pO,
+  uogon: hO,
+  Uopf: dO,
+  uopf: fO,
+  UpArrowBar: mO,
+  uparrow: gO,
+  UpArrow: _O,
+  Uparrow: bO,
+  UpArrowDownArrow: kO,
+  updownarrow: yO,
+  UpDownArrow: wO,
+  Updownarrow: vO,
+  UpEquilibrium: xO,
+  upharpoonleft: AO,
+  upharpoonright: SO,
+  uplus: LO,
+  UpperLeftArrow: CO,
+  UpperRightArrow: EO,
+  upsi: TO,
+  Upsi: DO,
+  upsih: qO,
+  Upsilon: jO,
+  upsilon: RO,
+  UpTeeArrow: NO,
+  UpTee: PO,
+  upuparrows: IO,
+  urcorn: OO,
+  urcorner: FO,
+  urcrop: MO,
+  Uring: BO,
+  uring: $O,
+  urtri: zO,
+  Uscr: GO,
+  uscr: UO,
+  utdot: HO,
+  Utilde: VO,
+  utilde: WO,
+  utri: ZO,
+  utrif: JO,
+  uuarr: QO,
+  Uuml: YO,
+  uuml: XO,
+  uwangle: KO,
+  vangrt: eF,
+  varepsilon: nF,
+  varkappa: tF,
+  varnothing: oF,
+  varphi: sF,
+  varpi: rF,
+  varpropto: cF,
+  varr: aF,
+  vArr: iF,
+  varrho: lF,
+  varsigma: uF,
+  varsubsetneq: pF,
+  varsubsetneqq: hF,
+  varsupsetneq: dF,
+  varsupsetneqq: fF,
+  vartheta: mF,
+  vartriangleleft: gF,
+  vartriangleright: _F,
+  vBar: bF,
+  Vbar: kF,
+  vBarv: yF,
+  Vcy: wF,
+  vcy: vF,
+  vdash: xF,
+  vDash: AF,
+  Vdash: SF,
+  VDash: LF,
+  Vdashl: CF,
+  veebar: EF,
+  vee: TF,
+  Vee: DF,
+  veeeq: qF,
+  vellip: jF,
+  verbar: RF,
+  Verbar: NF,
+  vert: PF,
+  Vert: IF,
+  VerticalBar: OF,
+  VerticalLine: FF,
+  VerticalSeparator: MF,
+  VerticalTilde: BF,
+  VeryThinSpace: $F,
+  Vfr: zF,
+  vfr: GF,
+  vltri: UF,
+  vnsub: HF,
+  vnsup: VF,
+  Vopf: WF,
+  vopf: ZF,
+  vprop: JF,
+  vrtri: QF,
+  Vscr: YF,
+  vscr: XF,
+  vsubnE: KF,
+  vsubne: e3,
+  vsupnE: n3,
+  vsupne: t3,
+  Vvdash: o3,
+  vzigzag: s3,
+  Wcirc: r3,
+  wcirc: c3,
+  wedbar: a3,
+  wedge: i3,
+  Wedge: l3,
+  wedgeq: u3,
+  weierp: p3,
+  Wfr: h3,
+  wfr: d3,
+  Wopf: f3,
+  wopf: m3,
+  wp: g3,
+  wr: _3,
+  wreath: b3,
+  Wscr: k3,
+  wscr: y3,
+  xcap: w3,
+  xcirc: v3,
+  xcup: x3,
+  xdtri: A3,
+  Xfr: S3,
+  xfr: L3,
+  xharr: C3,
+  xhArr: E3,
+  Xi: T3,
+  xi: D3,
+  xlarr: q3,
+  xlArr: j3,
+  xmap: R3,
+  xnis: N3,
+  xodot: P3,
+  Xopf: I3,
+  xopf: O3,
+  xoplus: F3,
+  xotime: M3,
+  xrarr: B3,
+  xrArr: $3,
+  Xscr: z3,
+  xscr: G3,
+  xsqcup: U3,
+  xuplus: H3,
+  xutri: V3,
+  xvee: W3,
+  xwedge: Z3,
+  Yacute: J3,
+  yacute: Q3,
+  YAcy: Y3,
+  yacy: X3,
+  Ycirc: K3,
+  ycirc: eM,
+  Ycy: nM,
+  ycy: tM,
+  yen: oM,
+  Yfr: sM,
+  yfr: rM,
+  YIcy: cM,
+  yicy: aM,
+  Yopf: iM,
+  yopf: lM,
+  Yscr: uM,
+  yscr: pM,
+  YUcy: hM,
+  yucy: dM,
+  yuml: fM,
+  Yuml: mM,
+  Zacute: gM,
+  zacute: _M,
+  Zcaron: bM,
+  zcaron: kM,
+  Zcy: yM,
+  zcy: wM,
+  Zdot: vM,
+  zdot: xM,
+  zeetrf: AM,
+  ZeroWidthSpace: SM,
+  Zeta: LM,
+  zeta: CM,
+  zfr: EM,
+  Zfr: TM,
+  ZHcy: DM,
+  zhcy: qM,
+  zigrarr: jM,
+  zopf: RM,
+  Zopf: NM,
+  Zscr: PM,
+  zscr: IM,
+  zwj: OM,
+  zwnj: FM
 };
-var mo = OM, Kn = /[!-#%-\*,-\/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4E\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD803[\uDF55-\uDF59]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD806[\uDC3B\uDE3F-\uDE46\uDE9A-\uDE9C\uDE9E-\uDEA2]|\uD807[\uDC41-\uDC45\uDC70\uDC71\uDEF7\uDEF8]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD81B[\uDE97-\uDE9A]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/, $e = {}, ft = {};
-function FM(n) {
-  var e, t, o = ft[n];
+var _o = MM, et = /[!-#%-\*,-\/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4E\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD803[\uDF55-\uDF59]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD806[\uDC3B\uDE3F-\uDE46\uDE9A-\uDE9C\uDE9E-\uDEA2]|\uD807[\uDC41-\uDC45\uDC70\uDC71\uDEF7\uDEF8]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD81B[\uDE97-\uDE9A]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/, ze = {}, mt = {};
+function BM(n) {
+  var e, t, o = mt[n];
   if (o)
     return o;
-  for (o = ft[n] = [], e = 0; e < 128; e++)
+  for (o = mt[n] = [], e = 0; e < 128; e++)
     t = String.fromCharCode(e), /^[0-9a-z]$/i.test(t) ? o.push(t) : o.push("%" + ("0" + e.toString(16).toUpperCase()).slice(-2));
   for (e = 0; e < n.length; e++)
     o[n.charCodeAt(e)] = n[e];
   return o;
 }
-function hn(n, e, t) {
+function dn(n, e, t) {
   var o, r, s, a, c, l = "";
-  for (typeof e != "string" && (t = e, e = hn.defaultChars), typeof t > "u" && (t = !0), c = FM(e), o = 0, r = n.length; o < r; o++) {
+  for (typeof e != "string" && (t = e, e = dn.defaultChars), typeof t > "u" && (t = !0), c = BM(e), o = 0, r = n.length; o < r; o++) {
     if (s = n.charCodeAt(o), t && s === 37 && o + 2 < r && /^[0-9a-f]{2}$/i.test(n.slice(o + 1, o + 3))) {
       l += n.slice(o, o + 3), o += 2;
       continue;
@@ -2345,22 +2345,22 @@ function hn(n, e, t) {
   }
   return l;
 }
-hn.defaultChars = ";/?:@&=+$,-_.!~*'()#";
-hn.componentChars = "-_.!~*'()";
-var MM = hn, mt = {};
-function BM(n) {
-  var e, t, o = mt[n];
+dn.defaultChars = ";/?:@&=+$,-_.!~*'()#";
+dn.componentChars = "-_.!~*'()";
+var $M = dn, gt = {};
+function zM(n) {
+  var e, t, o = gt[n];
   if (o)
     return o;
-  for (o = mt[n] = [], e = 0; e < 128; e++)
+  for (o = gt[n] = [], e = 0; e < 128; e++)
     t = String.fromCharCode(e), o.push(t);
   for (e = 0; e < n.length; e++)
     t = n.charCodeAt(e), o[t] = "%" + ("0" + t.toString(16).toUpperCase()).slice(-2);
   return o;
 }
-function dn(n, e) {
+function fn(n, e) {
   var t;
-  return typeof e != "string" && (e = dn.defaultChars), t = BM(e), n.replace(/(%[a-f0-9]{2})+/gi, function(o) {
+  return typeof e != "string" && (e = fn.defaultChars), t = zM(e), n.replace(/(%[a-f0-9]{2})+/gi, function(o) {
     var r, s, a, c, l, i, p, h = "";
     for (r = 0, s = o.length; r < s; r += 3) {
       if (a = parseInt(o.slice(r + 1, r + 3), 16), a < 128) {
@@ -2384,20 +2384,20 @@ function dn(n, e) {
     return h;
   });
 }
-dn.defaultChars = ";/?:@&=+$,#";
-dn.componentChars = "";
-var zM = dn, $M = function(e) {
+fn.defaultChars = ";/?:@&=+$,#";
+fn.componentChars = "";
+var GM = fn, UM = function(e) {
   var t = "";
   return t += e.protocol || "", t += e.slashes ? "//" : "", t += e.auth ? e.auth + "@" : "", e.hostname && e.hostname.indexOf(":") !== -1 ? t += "[" + e.hostname + "]" : t += e.hostname || "", t += e.port ? ":" + e.port : "", t += e.pathname || "", t += e.search || "", t += e.hash || "", t;
 };
 function rn() {
   this.protocol = null, this.slashes = null, this.auth = null, this.port = null, this.hostname = null, this.hash = null, this.search = null, this.pathname = null;
 }
-var GM = /^([a-z0-9.+-]+:)/i, UM = /:[0-9]*$/, HM = /^(\/\/?(?!\/)[^\?\s]*)(\?[^\s]*)?$/, VM = ["<", ">", '"', "`", " ", "\r", `
-`, "	"], WM = ["{", "}", "|", "\\", "^", "`"].concat(VM), ZM = ["'"].concat(WM), gt = ["%", "/", "?", ";", "#"].concat(ZM), _t = ["/", "?", "#"], JM = 255, bt = /^[+a-z0-9A-Z_-]{0,63}$/, QM = /^([+a-z0-9A-Z_-]{0,63})(.*)$/, kt = {
+var HM = /^([a-z0-9.+-]+:)/i, VM = /:[0-9]*$/, WM = /^(\/\/?(?!\/)[^\?\s]*)(\?[^\s]*)?$/, ZM = ["<", ">", '"', "`", " ", "\r", `
+`, "	"], JM = ["{", "}", "|", "\\", "^", "`"].concat(ZM), QM = ["'"].concat(JM), _t = ["%", "/", "?", ";", "#"].concat(QM), bt = ["/", "?", "#"], YM = 255, kt = /^[+a-z0-9A-Z_-]{0,63}$/, XM = /^([+a-z0-9A-Z_-]{0,63})(.*)$/, yt = {
   javascript: !0,
   "javascript:": !0
-}, yt = {
+}, wt = {
   http: !0,
   https: !0,
   ftp: !0,
@@ -2409,7 +2409,7 @@ var GM = /^([a-z0-9.+-]+:)/i, UM = /:[0-9]*$/, HM = /^(\/\/?(?!\/)[^\?\s]*)(\?[^
   "gopher:": !0,
   "file:": !0
 };
-function YM(n, e) {
+function KM(n, e) {
   if (n && n instanceof rn)
     return n;
   var t = new rn();
@@ -2418,18 +2418,18 @@ function YM(n, e) {
 rn.prototype.parse = function(n, e) {
   var t, o, r, s, a, c = n;
   if (c = c.trim(), !e && n.split("#").length === 1) {
-    var l = HM.exec(c);
+    var l = WM.exec(c);
     if (l)
       return this.pathname = l[1], l[2] && (this.search = l[2]), this;
   }
-  var i = GM.exec(c);
-  if (i && (i = i[0], r = i.toLowerCase(), this.protocol = i, c = c.substr(i.length)), (e || i || c.match(/^\/\/[^@\/]+@[^@\/]+/)) && (a = c.substr(0, 2) === "//", a && !(i && kt[i]) && (c = c.substr(2), this.slashes = !0)), !kt[i] && (a || i && !yt[i])) {
+  var i = HM.exec(c);
+  if (i && (i = i[0], r = i.toLowerCase(), this.protocol = i, c = c.substr(i.length)), (e || i || c.match(/^\/\/[^@\/]+@[^@\/]+/)) && (a = c.substr(0, 2) === "//", a && !(i && yt[i]) && (c = c.substr(2), this.slashes = !0)), !yt[i] && (a || i && !wt[i])) {
     var p = -1;
-    for (t = 0; t < _t.length; t++)
-      s = c.indexOf(_t[t]), s !== -1 && (p === -1 || s < p) && (p = s);
+    for (t = 0; t < bt.length; t++)
+      s = c.indexOf(bt[t]), s !== -1 && (p === -1 || s < p) && (p = s);
     var h, d;
-    for (p === -1 ? d = c.lastIndexOf("@") : d = c.lastIndexOf("@", p), d !== -1 && (h = c.slice(0, d), c = c.slice(d + 1), this.auth = h), p = -1, t = 0; t < gt.length; t++)
-      s = c.indexOf(gt[t]), s !== -1 && (p === -1 || s < p) && (p = s);
+    for (p === -1 ? d = c.lastIndexOf("@") : d = c.lastIndexOf("@", p), d !== -1 && (h = c.slice(0, d), c = c.slice(d + 1), this.auth = h), p = -1, t = 0; t < _t.length; t++)
+      s = c.indexOf(_t[t]), s !== -1 && (p === -1 || s < p) && (p = s);
     p === -1 && (p = c.length), c[p - 1] === ":" && p--;
     var f = c.slice(0, p);
     c = c.slice(p), this.parseHost(f), this.hostname = this.hostname || "";
@@ -2438,52 +2438,52 @@ rn.prototype.parse = function(n, e) {
       var L = this.hostname.split(/\./);
       for (t = 0, o = L.length; t < o; t++) {
         var S = L[t];
-        if (S && !S.match(bt)) {
+        if (S && !S.match(kt)) {
           for (var b = "", k = 0, w = S.length; k < w; k++)
             S.charCodeAt(k) > 127 ? b += "x" : b += S[k];
-          if (!b.match(bt)) {
-            var C = L.slice(0, t), y = L.slice(t + 1), u = S.match(QM);
+          if (!b.match(kt)) {
+            var C = L.slice(0, t), y = L.slice(t + 1), u = S.match(XM);
             u && (C.push(u[1]), y.unshift(u[2])), y.length && (c = y.join(".") + c), this.hostname = C.join(".");
             break;
           }
         }
       }
     }
-    this.hostname.length > JM && (this.hostname = ""), m && (this.hostname = this.hostname.substr(1, this.hostname.length - 2));
+    this.hostname.length > YM && (this.hostname = ""), m && (this.hostname = this.hostname.substr(1, this.hostname.length - 2));
   }
   var g = c.indexOf("#");
   g !== -1 && (this.hash = c.substr(g), c = c.slice(0, g));
   var x = c.indexOf("?");
-  return x !== -1 && (this.search = c.substr(x), c = c.slice(0, x)), c && (this.pathname = c), yt[r] && this.hostname && !this.pathname && (this.pathname = ""), this;
+  return x !== -1 && (this.search = c.substr(x), c = c.slice(0, x)), c && (this.pathname = c), wt[r] && this.hostname && !this.pathname && (this.pathname = ""), this;
 };
 rn.prototype.parseHost = function(n) {
-  var e = UM.exec(n);
+  var e = VM.exec(n);
   e && (e = e[0], e !== ":" && (this.port = e.substr(1)), n = n.substr(0, n.length - e.length)), n && (this.hostname = n);
 };
-var XM = YM;
-$e.encode = MM;
-$e.decode = zM;
-$e.format = $M;
-$e.parse = XM;
-var Le = {}, Sn, wt;
-function go() {
-  return wt || (wt = 1, Sn = /[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/), Sn;
-}
-var Ln, vt;
-function _o() {
-  return vt || (vt = 1, Ln = /[\0-\x1F\x7F-\x9F]/), Ln;
+var eB = KM;
+ze.encode = $M;
+ze.decode = GM;
+ze.format = UM;
+ze.parse = eB;
+var Le = {}, Ln, vt;
+function bo() {
+  return vt || (vt = 1, Ln = /[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/), Ln;
 }
 var Cn, xt;
-function KM() {
-  return xt || (xt = 1, Cn = /[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/), Cn;
+function ko() {
+  return xt || (xt = 1, Cn = /[\0-\x1F\x7F-\x9F]/), Cn;
 }
 var En, At;
-function bo() {
-  return At || (At = 1, En = /[ \xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/), En;
+function nB() {
+  return At || (At = 1, En = /[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/), En;
 }
-var St;
-function eB() {
-  return St || (St = 1, Le.Any = go(), Le.Cc = _o(), Le.Cf = KM(), Le.P = Kn, Le.Z = bo()), Le;
+var Tn, St;
+function yo() {
+  return St || (St = 1, Tn = /[ \xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/), Tn;
+}
+var Lt;
+function tB() {
+  return Lt || (Lt = 1, Le.Any = bo(), Le.Cc = ko(), Le.Cf = nB(), Le.P = et, Le.Z = yo()), Le;
 }
 (function(n) {
   function e(T) {
@@ -2522,7 +2522,7 @@ function eB() {
     }
     return String.fromCharCode(T);
   }
-  var i = /\\([!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~])/g, p = /&([a-z#][a-z0-9]{1,31});/gi, h = new RegExp(i.source + "|" + p.source, "gi"), d = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i, f = mo;
+  var i = /\\([!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~])/g, p = /&([a-z#][a-z0-9]{1,31});/gi, h = new RegExp(i.source + "|" + p.source, "gi"), d = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i, f = _o;
   function m(T, q) {
     var R = 0;
     return r(f, q) ? f[q] : q.charCodeAt(0) === 35 && d.test(q) && (R = q[1].toLowerCase() === "x" ? parseInt(q.slice(2), 16) : parseInt(q.slice(1), 10), c(R)) ? l(R) : T;
@@ -2578,7 +2578,7 @@ function eB() {
     }
     return !1;
   }
-  var v = Kn;
+  var v = et;
   function A(T) {
     return v.test(T);
   }
@@ -2624,9 +2624,9 @@ function eB() {
   function D(T) {
     return T = T.trim().replace(/\s+/g, " "), "ẞ".toLowerCase() === "Ṿ" && (T = T.replace(/ẞ/g, "ß")), T.toLowerCase().toUpperCase();
   }
-  n.lib = {}, n.lib.mdurl = $e, n.lib.ucmicro = eB(), n.assign = s, n.isString = t, n.has = r, n.unescapeMd = L, n.unescapeAll = S, n.isValidEntityCode = c, n.fromCodePoint = l, n.escapeHtml = y, n.arrayReplaceAt = a, n.isSpace = x, n.isWhiteSpace = _, n.isMdAsciiPunct = E, n.isPunctChar = A, n.escapeRE = g, n.normalizeReference = D;
+  n.lib = {}, n.lib.mdurl = ze, n.lib.ucmicro = tB(), n.assign = s, n.isString = t, n.has = r, n.unescapeMd = L, n.unescapeAll = S, n.isValidEntityCode = c, n.fromCodePoint = l, n.escapeHtml = y, n.arrayReplaceAt = a, n.isSpace = x, n.isWhiteSpace = _, n.isMdAsciiPunct = E, n.isPunctChar = A, n.escapeRE = g, n.normalizeReference = D;
 })(B);
-var fn = {}, nB = function(e, t, o) {
+var mn = {}, oB = function(e, t, o) {
   var r, s, a, c, l = -1, i = e.posMax, p = e.pos;
   for (e.pos = t + 1, r = 1; e.pos < i; ) {
     if (a = e.src.charCodeAt(e.pos), a === 93 && (r--, r === 0)) {
@@ -2641,7 +2641,7 @@ var fn = {}, nB = function(e, t, o) {
     }
   }
   return s && (l = e.pos), e.pos = p, l;
-}, Lt = B.unescapeAll, tB = function(e, t, o) {
+}, Ct = B.unescapeAll, sB = function(e, t, o) {
   var r, s, a = 0, c = t, l = {
     ok: !1,
     pos: 0,
@@ -2653,7 +2653,7 @@ var fn = {}, nB = function(e, t, o) {
       if (r = e.charCodeAt(t), r === 10 || r === 60)
         return l;
       if (r === 62)
-        return l.pos = t + 1, l.str = Lt(e.slice(c + 1, t)), l.ok = !0, l;
+        return l.pos = t + 1, l.str = Ct(e.slice(c + 1, t)), l.ok = !0, l;
       if (r === 92 && t + 1 < o) {
         t += 2;
         continue;
@@ -2678,8 +2678,8 @@ var fn = {}, nB = function(e, t, o) {
     }
     t++;
   }
-  return c === t || s !== 0 || (l.str = Lt(e.slice(c, t)), l.lines = a, l.pos = t, l.ok = !0), l;
-}, oB = B.unescapeAll, sB = function(e, t, o) {
+  return c === t || s !== 0 || (l.str = Ct(e.slice(c, t)), l.lines = a, l.pos = t, l.ok = !0), l;
+}, rB = B.unescapeAll, cB = function(e, t, o) {
   var r, s, a = 0, c = t, l = {
     ok: !1,
     pos: 0,
@@ -2690,28 +2690,28 @@ var fn = {}, nB = function(e, t, o) {
     return l;
   for (t++, s === 40 && (s = 41); t < o; ) {
     if (r = e.charCodeAt(t), r === s)
-      return l.pos = t + 1, l.lines = a, l.str = oB(e.slice(c + 1, t)), l.ok = !0, l;
+      return l.pos = t + 1, l.lines = a, l.str = rB(e.slice(c + 1, t)), l.ok = !0, l;
     if (r === 40 && s === 41)
       return l;
     r === 10 ? a++ : r === 92 && t + 1 < o && (t++, e.charCodeAt(t) === 10 && a++), t++;
   }
   return l;
 };
-fn.parseLinkLabel = nB;
-fn.parseLinkDestination = tB;
-fn.parseLinkTitle = sB;
-var rB = B.assign, cB = B.unescapeAll, qe = B.escapeHtml, pe = {};
-pe.code_inline = function(n, e, t, o, r) {
+mn.parseLinkLabel = oB;
+mn.parseLinkDestination = sB;
+mn.parseLinkTitle = cB;
+var aB = B.assign, iB = B.unescapeAll, qe = B.escapeHtml, he = {};
+he.code_inline = function(n, e, t, o, r) {
   var s = n[e];
   return "<code" + r.renderAttrs(s) + ">" + qe(n[e].content) + "</code>";
 };
-pe.code_block = function(n, e, t, o, r) {
+he.code_block = function(n, e, t, o, r) {
   var s = n[e];
   return "<pre" + r.renderAttrs(s) + "><code>" + qe(n[e].content) + `</code></pre>
 `;
 };
-pe.fence = function(n, e, t, o, r) {
-  var s = n[e], a = s.info ? cB(s.info).trim() : "", c = "", l = "", i, p, h, d, f;
+he.fence = function(n, e, t, o, r) {
+  var s = n[e], a = s.info ? iB(s.info).trim() : "", c = "", l = "", i, p, h, d, f;
   return a && (h = a.split(/(\s+)/g), c = h[0], l = h.slice(2).join("")), t.highlight ? i = t.highlight(s.content, c, l) || qe(s.content) : i = qe(s.content), i.indexOf("<pre") === 0 ? i + `
 ` : a ? (p = s.attrIndex("class"), d = s.attrs ? s.attrs.slice() : [], p < 0 ? d.push(["class", t.langPrefix + c]) : (d[p] = d[p].slice(), d[p][1] += " " + t.langPrefix + c), f = {
     attrs: d
@@ -2719,32 +2719,32 @@ pe.fence = function(n, e, t, o, r) {
 `) : "<pre><code" + r.renderAttrs(s) + ">" + i + `</code></pre>
 `;
 };
-pe.image = function(n, e, t, o, r) {
+he.image = function(n, e, t, o, r) {
   var s = n[e];
   return s.attrs[s.attrIndex("alt")][1] = r.renderInlineAsText(s.children, t, o), r.renderToken(n, e, t);
 };
-pe.hardbreak = function(n, e, t) {
+he.hardbreak = function(n, e, t) {
   return t.xhtmlOut ? `<br />
 ` : `<br>
 `;
 };
-pe.softbreak = function(n, e, t) {
+he.softbreak = function(n, e, t) {
   return t.breaks ? t.xhtmlOut ? `<br />
 ` : `<br>
 ` : `
 `;
 };
-pe.text = function(n, e) {
+he.text = function(n, e) {
   return qe(n[e].content);
 };
-pe.html_block = function(n, e) {
+he.html_block = function(n, e) {
   return n[e].content;
 };
-pe.html_inline = function(n, e) {
+he.html_inline = function(n, e) {
   return n[e].content;
 };
 function Ge() {
-  this.rules = rB({}, pe);
+  this.rules = aB({}, he);
 }
 Ge.prototype.renderAttrs = function(e) {
   var t, o, r;
@@ -2777,7 +2777,7 @@ Ge.prototype.render = function(n, e, t) {
     s = n[o].type, s === "inline" ? a += this.renderInline(n[o].children, e, t) : typeof c[s] < "u" ? a += c[n[o].type](n, o, e, t, this) : a += this.renderToken(n, o, e, t);
   return a;
 };
-var aB = Ge;
+var lB = Ge;
 function ae() {
   this.__rules__ = [], this.__cache__ = null;
 }
@@ -2870,25 +2870,25 @@ ae.prototype.disable = function(n, e) {
 ae.prototype.getRules = function(n) {
   return this.__cache__ === null && this.__compile__(), this.__cache__[n] || [];
 };
-var et = ae, iB = /\r\n?|\n/g, lB = /\0/g, uB = function(e) {
+var nt = ae, uB = /\r\n?|\n/g, pB = /\0/g, hB = function(e) {
   var t;
-  t = e.src.replace(iB, `
-`), t = t.replace(lB, "�"), e.src = t;
-}, pB = function(e) {
+  t = e.src.replace(uB, `
+`), t = t.replace(pB, "�"), e.src = t;
+}, dB = function(e) {
   var t;
   e.inlineMode ? (t = new e.Token("inline", "", 0), t.content = e.src, t.map = [0, 1], t.children = [], e.tokens.push(t)) : e.md.block.parse(e.src, e.md, e.env, e.tokens);
-}, hB = function(e) {
+}, fB = function(e) {
   var t = e.tokens, o, r, s;
   for (r = 0, s = t.length; r < s; r++)
     o = t[r], o.type === "inline" && e.md.inline.parse(o.content, e.md, e.env, o.children);
-}, dB = B.arrayReplaceAt;
-function fB(n) {
+}, mB = B.arrayReplaceAt;
+function gB(n) {
   return /^<a[>\s]/i.test(n);
 }
-function mB(n) {
+function _B(n) {
   return /^<\/a\s*>/i.test(n);
 }
-var gB = function(e) {
+var bB = function(e) {
   var t, o, r, s, a, c, l, i, p, h, d, f, m, L, S, b, k = e.tokens, w;
   if (e.md.options.linkify) {
     for (o = 0, r = k.length; o < r; o++)
@@ -2899,41 +2899,41 @@ var gB = function(e) {
               t--;
             continue;
           }
-          if (c.type === "html_inline" && (fB(c.content) && m > 0 && m--, mB(c.content) && m++), !(m > 0) && c.type === "text" && e.md.linkify.test(c.content)) {
+          if (c.type === "html_inline" && (gB(c.content) && m > 0 && m--, _B(c.content) && m++), !(m > 0) && c.type === "text" && e.md.linkify.test(c.content)) {
             for (p = c.content, w = e.md.linkify.match(p), l = [], f = c.level, d = 0, w.length > 0 && w[0].index === 0 && t > 0 && s[t - 1].type === "text_special" && (w = w.slice(1)), i = 0; i < w.length; i++)
               L = w[i].url, S = e.md.normalizeLink(L), e.md.validateLink(S) && (b = w[i].text, w[i].schema ? w[i].schema === "mailto:" && !/^mailto:/i.test(b) ? b = e.md.normalizeLinkText("mailto:" + b).replace(/^mailto:/, "") : b = e.md.normalizeLinkText(b) : b = e.md.normalizeLinkText("http://" + b).replace(/^http:\/\//, ""), h = w[i].index, h > d && (a = new e.Token("text", "", 0), a.content = p.slice(d, h), a.level = f, l.push(a)), a = new e.Token("link_open", "a", 1), a.attrs = [["href", S]], a.level = f++, a.markup = "linkify", a.info = "auto", l.push(a), a = new e.Token("text", "", 0), a.content = b, a.level = f, l.push(a), a = new e.Token("link_close", "a", -1), a.level = --f, a.markup = "linkify", a.info = "auto", l.push(a), d = w[i].lastIndex);
-            d < p.length && (a = new e.Token("text", "", 0), a.content = p.slice(d), a.level = f, l.push(a)), k[o].children = s = dB(s, t, l);
+            d < p.length && (a = new e.Token("text", "", 0), a.content = p.slice(d), a.level = f, l.push(a)), k[o].children = s = mB(s, t, l);
           }
         }
   }
-}, ko = /\+-|\.\.|\?\?\?\?|!!!!|,,|--/, _B = /\((c|tm|r)\)/i, bB = /\((c|tm|r)\)/ig, kB = {
+}, wo = /\+-|\.\.|\?\?\?\?|!!!!|,,|--/, kB = /\((c|tm|r)\)/i, yB = /\((c|tm|r)\)/ig, wB = {
   c: "©",
   r: "®",
   tm: "™"
 };
-function yB(n, e) {
-  return kB[e.toLowerCase()];
+function vB(n, e) {
+  return wB[e.toLowerCase()];
 }
-function wB(n) {
+function xB(n) {
   var e, t, o = 0;
   for (e = n.length - 1; e >= 0; e--)
-    t = n[e], t.type === "text" && !o && (t.content = t.content.replace(bB, yB)), t.type === "link_open" && t.info === "auto" && o--, t.type === "link_close" && t.info === "auto" && o++;
+    t = n[e], t.type === "text" && !o && (t.content = t.content.replace(yB, vB)), t.type === "link_open" && t.info === "auto" && o--, t.type === "link_close" && t.info === "auto" && o++;
 }
-function vB(n) {
+function AB(n) {
   var e, t, o = 0;
   for (e = n.length - 1; e >= 0; e--)
-    t = n[e], t.type === "text" && !o && ko.test(t.content) && (t.content = t.content.replace(/\+-/g, "±").replace(/\.{2,}/g, "…").replace(/([?!])…/g, "$1..").replace(/([?!]){4,}/g, "$1$1$1").replace(/,{2,}/g, ",").replace(/(^|[^-])---(?=[^-]|$)/mg, "$1—").replace(/(^|\s)--(?=\s|$)/mg, "$1–").replace(/(^|[^-\s])--(?=[^-\s]|$)/mg, "$1–")), t.type === "link_open" && t.info === "auto" && o--, t.type === "link_close" && t.info === "auto" && o++;
+    t = n[e], t.type === "text" && !o && wo.test(t.content) && (t.content = t.content.replace(/\+-/g, "±").replace(/\.{2,}/g, "…").replace(/([?!])…/g, "$1..").replace(/([?!]){4,}/g, "$1$1$1").replace(/,{2,}/g, ",").replace(/(^|[^-])---(?=[^-]|$)/mg, "$1—").replace(/(^|\s)--(?=\s|$)/mg, "$1–").replace(/(^|[^-\s])--(?=[^-\s]|$)/mg, "$1–")), t.type === "link_open" && t.info === "auto" && o--, t.type === "link_close" && t.info === "auto" && o++;
 }
-var xB = function(e) {
+var SB = function(e) {
   var t;
   if (e.md.options.typographer)
     for (t = e.tokens.length - 1; t >= 0; t--)
-      e.tokens[t].type === "inline" && (_B.test(e.tokens[t].content) && wB(e.tokens[t].children), ko.test(e.tokens[t].content) && vB(e.tokens[t].children));
-}, Ct = B.isWhiteSpace, Et = B.isPunctChar, Tt = B.isMdAsciiPunct, AB = /['"]/, Dt = /['"]/g, qt = "’";
+      e.tokens[t].type === "inline" && (kB.test(e.tokens[t].content) && xB(e.tokens[t].children), wo.test(e.tokens[t].content) && AB(e.tokens[t].children));
+}, Et = B.isWhiteSpace, Tt = B.isPunctChar, Dt = B.isMdAsciiPunct, LB = /['"]/, qt = /['"]/g, jt = "’";
 function en(n, e, t) {
   return n.slice(0, e) + t + n.slice(e + 1);
 }
-function SB(n, e) {
+function CB(n, e) {
   var t, o, r, s, a, c, l, i, p, h, d, f, m, L, S, b, k, w, C, y, u;
   for (C = [], t = 0; t < n.length; t++) {
     for (o = n[t], l = n[t].level, k = C.length - 1; k >= 0 && !(C[k].level <= l); k--)
@@ -2941,7 +2941,7 @@ function SB(n, e) {
     if (C.length = k + 1, o.type === "text") {
       r = o.content, a = 0, c = r.length;
       e:
-        for (; a < c && (Dt.lastIndex = a, s = Dt.exec(r), !!s); ) {
+        for (; a < c && (qt.lastIndex = a, s = qt.exec(r), !!s); ) {
           if (S = b = !0, a = s.index + 1, w = s[0] === "'", p = 32, s.index - 1 >= 0)
             p = r.charCodeAt(s.index - 1);
           else
@@ -2958,8 +2958,8 @@ function SB(n, e) {
                 h = n[k].content.charCodeAt(0);
                 break;
               }
-          if (d = Tt(p) || Et(String.fromCharCode(p)), f = Tt(h) || Et(String.fromCharCode(h)), m = Ct(p), L = Ct(h), L ? S = !1 : f && (m || d || (S = !1)), m ? b = !1 : d && (L || f || (b = !1)), h === 34 && s[0] === '"' && p >= 48 && p <= 57 && (b = S = !1), S && b && (S = d, b = f), !S && !b) {
-            w && (o.content = en(o.content, s.index, qt));
+          if (d = Dt(p) || Tt(String.fromCharCode(p)), f = Dt(h) || Tt(String.fromCharCode(h)), m = Et(p), L = Et(h), L ? S = !1 : f && (m || d || (S = !1)), m ? b = !1 : d && (L || f || (b = !1)), h === 34 && s[0] === '"' && p >= 48 && p <= 57 && (b = S = !1), S && b && (S = d, b = f), !S && !b) {
+            w && (o.content = en(o.content, s.index, jt));
             continue;
           }
           if (b) {
@@ -2978,17 +2978,17 @@ function SB(n, e) {
             pos: s.index,
             single: w,
             level: l
-          }) : b && w && (o.content = en(o.content, s.index, qt));
+          }) : b && w && (o.content = en(o.content, s.index, jt));
         }
     }
   }
 }
-var LB = function(e) {
+var EB = function(e) {
   var t;
   if (e.md.options.typographer)
     for (t = e.tokens.length - 1; t >= 0; t--)
-      e.tokens[t].type !== "inline" || !AB.test(e.tokens[t].content) || SB(e.tokens[t].children, e);
-}, CB = function(e) {
+      e.tokens[t].type !== "inline" || !LB.test(e.tokens[t].content) || CB(e.tokens[t].children, e);
+}, TB = function(e) {
   var t, o, r, s, a, c, l = e.tokens;
   for (t = 0, o = l.length; t < o; t++)
     if (l[t].type === "inline") {
@@ -3026,54 +3026,54 @@ Ue.prototype.attrJoin = function(e, t) {
   var o = this.attrIndex(e);
   o < 0 ? this.attrPush([e, t]) : this.attrs[o][1] = this.attrs[o][1] + " " + t;
 };
-var nt = Ue, EB = nt;
-function yo(n, e, t) {
+var tt = Ue, DB = tt;
+function vo(n, e, t) {
   this.src = n, this.env = t, this.tokens = [], this.inlineMode = !1, this.md = e;
 }
-yo.prototype.Token = EB;
-var TB = yo, DB = et, Tn = [
-  ["normalize", uB],
-  ["block", pB],
-  ["inline", hB],
-  ["linkify", gB],
-  ["replacements", xB],
-  ["smartquotes", LB],
+vo.prototype.Token = DB;
+var qB = vo, jB = nt, Dn = [
+  ["normalize", hB],
+  ["block", dB],
+  ["inline", fB],
+  ["linkify", bB],
+  ["replacements", SB],
+  ["smartquotes", EB],
   // `text_join` finds `text_special` tokens (for escape sequences)
   // and joins them with the rest of the text
-  ["text_join", CB]
+  ["text_join", TB]
 ];
-function tt() {
-  this.ruler = new DB();
-  for (var n = 0; n < Tn.length; n++)
-    this.ruler.push(Tn[n][0], Tn[n][1]);
+function ot() {
+  this.ruler = new jB();
+  for (var n = 0; n < Dn.length; n++)
+    this.ruler.push(Dn[n][0], Dn[n][1]);
 }
-tt.prototype.process = function(n) {
+ot.prototype.process = function(n) {
   var e, t, o;
   for (o = this.ruler.getRules(""), e = 0, t = o.length; e < t; e++)
     o[e](n);
 };
-tt.prototype.State = TB;
-var qB = tt, Dn = B.isSpace;
-function qn(n, e) {
+ot.prototype.State = qB;
+var RB = ot, qn = B.isSpace;
+function jn(n, e) {
   var t = n.bMarks[e] + n.tShift[e], o = n.eMarks[e];
   return n.src.slice(t, o);
 }
-function jt(n) {
+function Rt(n) {
   var e = [], t = 0, o = n.length, r, s = !1, a = 0, c = "";
   for (r = n.charCodeAt(t); t < o; )
     r === 124 && (s ? (c += n.substring(a, t - 1), a = t) : (e.push(c + n.substring(a, t)), c = "", a = t + 1)), s = r === 92, t++, r = n.charCodeAt(t);
   return e.push(c + n.substring(a)), e;
 }
-var jB = function(e, t, o, r) {
+var NB = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d, f, m, L, S, b, k, w, C, y, u;
-  if (t + 2 > o || (p = t + 1, e.sCount[p] < e.blkIndent) || e.sCount[p] - e.blkIndent >= 4 || (c = e.bMarks[p] + e.tShift[p], c >= e.eMarks[p]) || (y = e.src.charCodeAt(c++), y !== 124 && y !== 45 && y !== 58) || c >= e.eMarks[p] || (u = e.src.charCodeAt(c++), u !== 124 && u !== 45 && u !== 58 && !Dn(u)) || y === 45 && Dn(u))
+  if (t + 2 > o || (p = t + 1, e.sCount[p] < e.blkIndent) || e.sCount[p] - e.blkIndent >= 4 || (c = e.bMarks[p] + e.tShift[p], c >= e.eMarks[p]) || (y = e.src.charCodeAt(c++), y !== 124 && y !== 45 && y !== 58) || c >= e.eMarks[p] || (u = e.src.charCodeAt(c++), u !== 124 && u !== 45 && u !== 58 && !qn(u)) || y === 45 && qn(u))
     return !1;
   for (; c < e.eMarks[p]; ) {
-    if (s = e.src.charCodeAt(c), s !== 124 && s !== 45 && s !== 58 && !Dn(s))
+    if (s = e.src.charCodeAt(c), s !== 124 && s !== 45 && s !== 58 && !qn(s))
       return !1;
     c++;
   }
-  for (a = qn(e, t + 1), h = a.split("|"), m = [], l = 0; l < h.length; l++) {
+  for (a = jn(e, t + 1), h = a.split("|"), m = [], l = 0; l < h.length; l++) {
     if (L = h[l].trim(), !L) {
       if (l === 0 || l === h.length - 1)
         continue;
@@ -3083,7 +3083,7 @@ var jB = function(e, t, o, r) {
       return !1;
     L.charCodeAt(L.length - 1) === 58 ? m.push(L.charCodeAt(0) === 58 ? "center" : "right") : L.charCodeAt(0) === 58 ? m.push("left") : m.push("");
   }
-  if (a = qn(e, t).trim(), a.indexOf("|") === -1 || e.sCount[t] - e.blkIndent >= 4 || (h = jt(a), h.length && h[0] === "" && h.shift(), h.length && h[h.length - 1] === "" && h.pop(), d = h.length, d === 0 || d !== m.length))
+  if (a = jn(e, t).trim(), a.indexOf("|") === -1 || e.sCount[t] - e.blkIndent >= 4 || (h = Rt(a), h.length && h[0] === "" && h.shift(), h.length && h[h.length - 1] === "" && h.pop(), d = h.length, d === 0 || d !== m.length))
     return !1;
   if (r)
     return !0;
@@ -3095,14 +3095,14 @@ var jB = function(e, t, o, r) {
         w = !0;
         break;
       }
-    if (w || (a = qn(e, p).trim(), !a) || e.sCount[p] - e.blkIndent >= 4)
+    if (w || (a = jn(e, p).trim(), !a) || e.sCount[p] - e.blkIndent >= 4)
       break;
-    for (h = jt(a), h.length && h[0] === "" && h.shift(), h.length && h[h.length - 1] === "" && h.pop(), p === t + 2 && (f = e.push("tbody_open", "tbody", 1), f.map = b = [t + 2, 0]), f = e.push("tr_open", "tr", 1), f.map = [p, p + 1], l = 0; l < d; l++)
+    for (h = Rt(a), h.length && h[0] === "" && h.shift(), h.length && h[h.length - 1] === "" && h.pop(), p === t + 2 && (f = e.push("tbody_open", "tbody", 1), f.map = b = [t + 2, 0]), f = e.push("tr_open", "tr", 1), f.map = [p, p + 1], l = 0; l < d; l++)
       f = e.push("td_open", "td", 1), m[l] && (f.attrs = [["style", "text-align:" + m[l]]]), f = e.push("inline", "", 0), f.content = h[l] ? h[l].trim() : "", f.children = [], f = e.push("td_close", "td", -1);
     f = e.push("tr_close", "tr", -1);
   }
   return b && (f = e.push("tbody_close", "tbody", -1), b[1] = p), f = e.push("table_close", "table", -1), S[1] = p, e.parentType = k, e.line = p, !0;
-}, RB = function(e, t, o) {
+}, PB = function(e, t, o) {
   var r, s, a;
   if (e.sCount[t] - e.blkIndent < 4)
     return !1;
@@ -3119,7 +3119,7 @@ var jB = function(e, t, o, r) {
   }
   return e.line = s, a = e.push("code_block", "code", 0), a.content = e.getLines(t, s, 4 + e.blkIndent, !1) + `
 `, a.map = [t, e.line], !0;
-}, NB = function(e, t, o, r) {
+}, IB = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d = !1, f = e.bMarks[t] + e.tShift[t], m = e.eMarks[t];
   if (e.sCount[t] - e.blkIndent >= 4 || f + 3 > m || (s = e.src.charCodeAt(f), s !== 126 && s !== 96) || (i = f, f = e.skipChars(f, s), a = f - i, a < 3) || (h = e.src.slice(i, f), c = e.src.slice(f, m), s === 96 && c.indexOf(String.fromCharCode(s)) >= 0))
     return !1;
@@ -3131,19 +3131,19 @@ var jB = function(e, t, o, r) {
       break;
     }
   return a = e.sCount[t], e.line = l + (d ? 1 : 0), p = e.push("fence", "code", 0), p.info = c, p.content = e.getLines(t + 1, l, a, !0), p.markup = h, p.map = [t, e.line], !0;
-}, Rt = B.isSpace, PB = function(e, t, o, r) {
+}, Nt = B.isSpace, OB = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d, f, m, L, S, b, k, w, C, y, u, g, x, _ = e.lineMax, v = e.bMarks[t] + e.tShift[t], A = e.eMarks[t];
   if (e.sCount[t] - e.blkIndent >= 4 || e.src.charCodeAt(v++) !== 62)
     return !1;
   if (r)
     return !0;
-  for (l = f = e.sCount[t] + 1, e.src.charCodeAt(v) === 32 ? (v++, l++, f++, s = !1, C = !0) : e.src.charCodeAt(v) === 9 ? (C = !0, (e.bsCount[t] + f) % 4 === 3 ? (v++, l++, f++, s = !1) : s = !0) : C = !1, m = [e.bMarks[t]], e.bMarks[t] = v; v < A && (a = e.src.charCodeAt(v), Rt(a)); ) {
+  for (l = f = e.sCount[t] + 1, e.src.charCodeAt(v) === 32 ? (v++, l++, f++, s = !1, C = !0) : e.src.charCodeAt(v) === 9 ? (C = !0, (e.bsCount[t] + f) % 4 === 3 ? (v++, l++, f++, s = !1) : s = !0) : C = !1, m = [e.bMarks[t]], e.bMarks[t] = v; v < A && (a = e.src.charCodeAt(v), Nt(a)); ) {
     a === 9 ? f += 4 - (f + e.bsCount[t] + (s ? 1 : 0)) % 4 : f++;
     v++;
   }
   for (L = [e.bsCount[t]], e.bsCount[t] = e.sCount[t] + 1 + (C ? 1 : 0), p = v >= A, k = [e.sCount[t]], e.sCount[t] = f - l, w = [e.tShift[t]], e.tShift[t] = v - e.bMarks[t], u = e.md.block.ruler.getRules("blockquote"), b = e.parentType, e.parentType = "blockquote", d = t + 1; d < o && (x = e.sCount[d] < e.blkIndent, v = e.bMarks[d] + e.tShift[d], A = e.eMarks[d], !(v >= A)); d++) {
     if (e.src.charCodeAt(v++) === 62 && !x) {
-      for (l = f = e.sCount[d] + 1, e.src.charCodeAt(v) === 32 ? (v++, l++, f++, s = !1, C = !0) : e.src.charCodeAt(v) === 9 ? (C = !0, (e.bsCount[d] + f) % 4 === 3 ? (v++, l++, f++, s = !1) : s = !0) : C = !1, m.push(e.bMarks[d]), e.bMarks[d] = v; v < A && (a = e.src.charCodeAt(v), Rt(a)); ) {
+      for (l = f = e.sCount[d] + 1, e.src.charCodeAt(v) === 32 ? (v++, l++, f++, s = !1, C = !0) : e.src.charCodeAt(v) === 9 ? (C = !0, (e.bsCount[d] + f) % 4 === 3 ? (v++, l++, f++, s = !1) : s = !0) : C = !1, m.push(e.bMarks[d]), e.bMarks[d] = v; v < A && (a = e.src.charCodeAt(v), Nt(a)); ) {
         a === 9 ? f += 4 - (f + e.bsCount[d] + (s ? 1 : 0)) % 4 : f++;
         v++;
       }
@@ -3166,22 +3166,22 @@ var jB = function(e, t, o, r) {
   for (S = e.blkIndent, e.blkIndent = 0, g = e.push("blockquote_open", "blockquote", 1), g.markup = ">", g.map = h = [t, 0], e.md.block.tokenize(e, t, d), g = e.push("blockquote_close", "blockquote", -1), g.markup = ">", e.lineMax = _, e.parentType = b, h[1] = e.line, c = 0; c < w.length; c++)
     e.bMarks[c + t] = m[c], e.tShift[c + t] = w[c], e.sCount[c + t] = k[c], e.bsCount[c + t] = L[c];
   return e.blkIndent = S, !0;
-}, IB = B.isSpace, OB = function(e, t, o, r) {
+}, FB = B.isSpace, MB = function(e, t, o, r) {
   var s, a, c, l, i = e.bMarks[t] + e.tShift[t], p = e.eMarks[t];
   if (e.sCount[t] - e.blkIndent >= 4 || (s = e.src.charCodeAt(i++), s !== 42 && s !== 45 && s !== 95))
     return !1;
   for (a = 1; i < p; ) {
-    if (c = e.src.charCodeAt(i++), c !== s && !IB(c))
+    if (c = e.src.charCodeAt(i++), c !== s && !FB(c))
       return !1;
     c === s && a++;
   }
   return a < 3 ? !1 : (r || (e.line = t + 1, l = e.push("hr", "hr", 0), l.map = [t, e.line], l.markup = Array(a + 1).join(String.fromCharCode(s))), !0);
-}, wo = B.isSpace;
-function Nt(n, e) {
-  var t, o, r, s;
-  return o = n.bMarks[e] + n.tShift[e], r = n.eMarks[e], t = n.src.charCodeAt(o++), t !== 42 && t !== 45 && t !== 43 || o < r && (s = n.src.charCodeAt(o), !wo(s)) ? -1 : o;
-}
+}, xo = B.isSpace;
 function Pt(n, e) {
+  var t, o, r, s;
+  return o = n.bMarks[e] + n.tShift[e], r = n.eMarks[e], t = n.src.charCodeAt(o++), t !== 42 && t !== 45 && t !== 43 || o < r && (s = n.src.charCodeAt(o), !xo(s)) ? -1 : o;
+}
+function It(n, e) {
   var t, o = n.bMarks[e] + n.tShift[e], r = o, s = n.eMarks[e];
   if (r + 1 >= s || (t = n.src.charCodeAt(r++), t < 48 || t > 57))
     return -1;
@@ -3197,21 +3197,21 @@ function Pt(n, e) {
       break;
     return -1;
   }
-  return r < s && (t = n.src.charCodeAt(r), !wo(t)) ? -1 : r;
+  return r < s && (t = n.src.charCodeAt(r), !xo(t)) ? -1 : r;
 }
-function FB(n, e) {
+function BB(n, e) {
   var t, o, r = n.level + 2;
   for (t = e + 2, o = n.tokens.length - 2; t < o; t++)
     n.tokens[t].level === r && n.tokens[t].type === "paragraph_open" && (n.tokens[t + 2].hidden = !0, n.tokens[t].hidden = !0, t += 2);
 }
-var MB = function(e, t, o, r) {
+var $B = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d, f, m, L, S, b, k, w, C, y, u, g, x, _, v, A, E, D, T, q, R, F = !1, M = !0;
   if (e.sCount[t] - e.blkIndent >= 4 || e.listIndent >= 0 && e.sCount[t] - e.listIndent >= 4 && e.sCount[t] < e.blkIndent)
     return !1;
-  if (r && e.parentType === "paragraph" && e.sCount[t] >= e.blkIndent && (F = !0), (A = Pt(e, t)) >= 0) {
+  if (r && e.parentType === "paragraph" && e.sCount[t] >= e.blkIndent && (F = !0), (A = It(e, t)) >= 0) {
     if (h = !0, D = e.bMarks[t] + e.tShift[t], b = Number(e.src.slice(D, A - 1)), F && b !== 1)
       return !1;
-  } else if ((A = Nt(e, t)) >= 0)
+  } else if ((A = Pt(e, t)) >= 0)
     h = !1;
   else
     return !1;
@@ -3239,16 +3239,16 @@ var MB = function(e, t, o, r) {
     if (T)
       break;
     if (h) {
-      if (A = Pt(e, w), A < 0)
+      if (A = It(e, w), A < 0)
         break;
       D = e.bMarks[w] + e.tShift[w];
-    } else if (A = Nt(e, w), A < 0)
+    } else if (A = Pt(e, w), A < 0)
       break;
     if (S !== e.src.charCodeAt(A - 1))
       break;
   }
-  return h ? R = e.push("ordered_list_close", "ol", -1) : R = e.push("bullet_list_close", "ul", -1), R.markup = String.fromCharCode(S), m[1] = w, e.line = w, e.parentType = u, M && FB(e, L), !0;
-}, BB = B.normalizeReference, nn = B.isSpace, zB = function(e, t, o, r) {
+  return h ? R = e.push("ordered_list_close", "ol", -1) : R = e.push("bullet_list_close", "ul", -1), R.markup = String.fromCharCode(S), m[1] = w, e.line = w, e.parentType = u, M && BB(e, L), !0;
+}, zB = B.normalizeReference, nn = B.isSpace, GB = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d, f, m, L, S, b, k, w, C, y = 0, u = e.bMarks[t] + e.tShift[t], g = e.eMarks[t], x = t + 1;
   if (e.sCount[t] - e.blkIndent >= 4 || e.src.charCodeAt(u) !== 91)
     return !1;
@@ -3296,8 +3296,8 @@ var MB = function(e, t, o, r) {
   if (u < g && b.charCodeAt(u) !== 10 && C)
     for (C = "", u = a, y = c; u < g && (s = b.charCodeAt(u), !!nn(s)); )
       u++;
-  return u < g && b.charCodeAt(u) !== 10 || (d = BB(b.slice(1, f)), !d) ? !1 : (r || (typeof e.env.references > "u" && (e.env.references = {}), typeof e.env.references[d] > "u" && (e.env.references[d] = { title: C, href: i }), e.parentType = m, e.line = t + y + 1), !0);
-}, $B = [
+  return u < g && b.charCodeAt(u) !== 10 || (d = zB(b.slice(1, f)), !d) ? !1 : (r || (typeof e.env.references > "u" && (e.env.references = {}), typeof e.env.references[d] > "u" && (e.env.references[d] = { title: C, href: i }), e.parentType = m, e.line = t + y + 1), !0);
+}, UB = [
   "address",
   "article",
   "aside",
@@ -3360,18 +3360,18 @@ var MB = function(e, t, o, r) {
   "tr",
   "track",
   "ul"
-], mn = {}, GB = "[a-zA-Z_:][a-zA-Z0-9:._-]*", UB = "[^\"'=<>`\\x00-\\x20]+", HB = "'[^']*'", VB = '"[^"]*"', WB = "(?:" + UB + "|" + HB + "|" + VB + ")", ZB = "(?:\\s+" + GB + "(?:\\s*=\\s*" + WB + ")?)", vo = "<[A-Za-z][A-Za-z0-9\\-]*" + ZB + "*\\s*\\/?>", xo = "<\\/[A-Za-z][A-Za-z0-9\\-]*\\s*>", JB = "<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->", QB = "<[?][\\s\\S]*?[?]>", YB = "<![A-Z]+\\s+[^>]*>", XB = "<!\\[CDATA\\[[\\s\\S]*?\\]\\]>", KB = new RegExp("^(?:" + vo + "|" + xo + "|" + JB + "|" + QB + "|" + YB + "|" + XB + ")"), ez = new RegExp("^(?:" + vo + "|" + xo + ")");
-mn.HTML_TAG_RE = KB;
-mn.HTML_OPEN_CLOSE_TAG_RE = ez;
-var nz = $B, tz = mn.HTML_OPEN_CLOSE_TAG_RE, Ie = [
+], gn = {}, HB = "[a-zA-Z_:][a-zA-Z0-9:._-]*", VB = "[^\"'=<>`\\x00-\\x20]+", WB = "'[^']*'", ZB = '"[^"]*"', JB = "(?:" + VB + "|" + WB + "|" + ZB + ")", QB = "(?:\\s+" + HB + "(?:\\s*=\\s*" + JB + ")?)", Ao = "<[A-Za-z][A-Za-z0-9\\-]*" + QB + "*\\s*\\/?>", So = "<\\/[A-Za-z][A-Za-z0-9\\-]*\\s*>", YB = "<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->", XB = "<[?][\\s\\S]*?[?]>", KB = "<![A-Z]+\\s+[^>]*>", e$ = "<!\\[CDATA\\[[\\s\\S]*?\\]\\]>", n$ = new RegExp("^(?:" + Ao + "|" + So + "|" + YB + "|" + XB + "|" + KB + "|" + e$ + ")"), t$ = new RegExp("^(?:" + Ao + "|" + So + ")");
+gn.HTML_TAG_RE = n$;
+gn.HTML_OPEN_CLOSE_TAG_RE = t$;
+var o$ = UB, s$ = gn.HTML_OPEN_CLOSE_TAG_RE, Ie = [
   [/^<(script|pre|style|textarea)(?=(\s|>|$))/i, /<\/(script|pre|style|textarea)>/i, !0],
   [/^<!--/, /-->/, !0],
   [/^<\?/, /\?>/, !0],
   [/^<![A-Z]/, />/, !0],
   [/^<!\[CDATA\[/, /\]\]>/, !0],
-  [new RegExp("^</?(" + nz.join("|") + ")(?=(\\s|/?>|$))", "i"), /^$/, !0],
-  [new RegExp(tz.source + "\\s*$"), /^$/, !1]
-], oz = function(e, t, o, r) {
+  [new RegExp("^</?(" + o$.join("|") + ")(?=(\\s|/?>|$))", "i"), /^$/, !0],
+  [new RegExp(s$.source + "\\s*$"), /^$/, !1]
+], r$ = function(e, t, o, r) {
   var s, a, c, l, i = e.bMarks[t] + e.tShift[t], p = e.eMarks[t];
   if (e.sCount[t] - e.blkIndent >= 4 || !e.md.options.html || e.src.charCodeAt(i) !== 60)
     return !1;
@@ -3389,14 +3389,14 @@ var nz = $B, tz = mn.HTML_OPEN_CLOSE_TAG_RE, Ie = [
       }
   }
   return e.line = a, c = e.push("html_block", "", 0), c.map = [t, a], c.content = e.getLines(t, a, e.blkIndent, !0), !0;
-}, It = B.isSpace, sz = function(e, t, o, r) {
+}, Ot = B.isSpace, c$ = function(e, t, o, r) {
   var s, a, c, l, i = e.bMarks[t] + e.tShift[t], p = e.eMarks[t];
   if (e.sCount[t] - e.blkIndent >= 4 || (s = e.src.charCodeAt(i), s !== 35 || i >= p))
     return !1;
   for (a = 1, s = e.src.charCodeAt(++i); s === 35 && i < p && a <= 6; )
     a++, s = e.src.charCodeAt(++i);
-  return a > 6 || i < p && !It(s) ? !1 : (r || (p = e.skipSpacesBack(p, i), c = e.skipCharsBack(p, 35, i), c > i && It(e.src.charCodeAt(c - 1)) && (p = c), e.line = t + 1, l = e.push("heading_open", "h" + String(a), 1), l.markup = "########".slice(0, a), l.map = [t, e.line], l = e.push("inline", "", 0), l.content = e.src.slice(i, p).trim(), l.map = [t, e.line], l.children = [], l = e.push("heading_close", "h" + String(a), -1), l.markup = "########".slice(0, a)), !0);
-}, rz = function(e, t, o) {
+  return a > 6 || i < p && !Ot(s) ? !1 : (r || (p = e.skipSpacesBack(p, i), c = e.skipCharsBack(p, 35, i), c > i && Ot(e.src.charCodeAt(c - 1)) && (p = c), e.line = t + 1, l = e.push("heading_open", "h" + String(a), 1), l.markup = "########".slice(0, a), l.map = [t, e.line], l = e.push("inline", "", 0), l.content = e.src.slice(i, p).trim(), l.map = [t, e.line], l.children = [], l = e.push("heading_close", "h" + String(a), -1), l.markup = "########".slice(0, a)), !0);
+}, a$ = function(e, t, o) {
   var r, s, a, c, l, i, p, h, d, f = t + 1, m, L = e.md.block.ruler.getRules("paragraph");
   if (e.sCount[t] - e.blkIndent >= 4)
     return !1;
@@ -3417,7 +3417,7 @@ var nz = $B, tz = mn.HTML_OPEN_CLOSE_TAG_RE, Ie = [
       }
     }
   return h ? (r = e.getLines(t, f, e.blkIndent, !1).trim(), e.line = f + 1, l = e.push("heading_open", "h" + String(h), 1), l.markup = String.fromCharCode(d), l.map = [t, e.line], l = e.push("inline", "", 0), l.content = r, l.map = [t, e.line - 1], l.children = [], l = e.push("heading_close", "h" + String(h), -1), l.markup = String.fromCharCode(d), e.parentType = m, !0) : !1;
-}, cz = function(e, t) {
+}, i$ = function(e, t) {
   var o, r, s, a, c, l, i = t + 1, p = e.md.block.ruler.getRules("paragraph"), h = e.lineMax;
   for (l = e.parentType, e.parentType = "paragraph"; i < h && !e.isEmpty(i); i++)
     if (!(e.sCount[i] - e.blkIndent > 3) && !(e.sCount[i] < 0)) {
@@ -3430,12 +3430,12 @@ var nz = $B, tz = mn.HTML_OPEN_CLOSE_TAG_RE, Ie = [
         break;
     }
   return o = e.getLines(t, i, e.blkIndent, !1).trim(), e.line = i, c = e.push("paragraph_open", "p", 1), c.map = [t, e.line], c = e.push("inline", "", 0), c.content = o, c.map = [t, e.line], c.children = [], c = e.push("paragraph_close", "p", -1), e.parentType = l, !0;
-}, Ao = nt, gn = B.isSpace;
-function he(n, e, t, o) {
+}, Lo = tt, _n = B.isSpace;
+function de(n, e, t, o) {
   var r, s, a, c, l, i, p, h;
   for (this.src = n, this.md = e, this.env = t, this.tokens = o, this.bMarks = [], this.eMarks = [], this.tShift = [], this.sCount = [], this.bsCount = [], this.blkIndent = 0, this.line = 0, this.lineMax = 0, this.tight = !1, this.ddIndent = -1, this.listIndent = -1, this.parentType = "root", this.level = 0, this.result = "", s = this.src, h = !1, a = c = i = p = 0, l = s.length; c < l; c++) {
     if (r = s.charCodeAt(c), !h)
-      if (gn(r)) {
+      if (_n(r)) {
         i++, r === 9 ? p += 4 - p % 4 : p++;
         continue;
       } else
@@ -3444,37 +3444,37 @@ function he(n, e, t, o) {
   }
   this.bMarks.push(s.length), this.eMarks.push(s.length), this.tShift.push(0), this.sCount.push(0), this.bsCount.push(0), this.lineMax = this.bMarks.length - 1;
 }
-he.prototype.push = function(n, e, t) {
-  var o = new Ao(n, e, t);
+de.prototype.push = function(n, e, t) {
+  var o = new Lo(n, e, t);
   return o.block = !0, t < 0 && this.level--, o.level = this.level, t > 0 && this.level++, this.tokens.push(o), o;
 };
-he.prototype.isEmpty = function(e) {
+de.prototype.isEmpty = function(e) {
   return this.bMarks[e] + this.tShift[e] >= this.eMarks[e];
 };
-he.prototype.skipEmptyLines = function(e) {
+de.prototype.skipEmptyLines = function(e) {
   for (var t = this.lineMax; e < t && !(this.bMarks[e] + this.tShift[e] < this.eMarks[e]); e++)
     ;
   return e;
 };
-he.prototype.skipSpaces = function(e) {
-  for (var t, o = this.src.length; e < o && (t = this.src.charCodeAt(e), !!gn(t)); e++)
+de.prototype.skipSpaces = function(e) {
+  for (var t, o = this.src.length; e < o && (t = this.src.charCodeAt(e), !!_n(t)); e++)
     ;
   return e;
 };
-he.prototype.skipSpacesBack = function(e, t) {
+de.prototype.skipSpacesBack = function(e, t) {
   if (e <= t)
     return e;
   for (; e > t; )
-    if (!gn(this.src.charCodeAt(--e)))
+    if (!_n(this.src.charCodeAt(--e)))
       return e + 1;
   return e;
 };
-he.prototype.skipChars = function(e, t) {
+de.prototype.skipChars = function(e, t) {
   for (var o = this.src.length; e < o && this.src.charCodeAt(e) === t; e++)
     ;
   return e;
 };
-he.prototype.skipCharsBack = function(e, t, o) {
+de.prototype.skipCharsBack = function(e, t, o) {
   if (e <= o)
     return e;
   for (; e > o; )
@@ -3482,13 +3482,13 @@ he.prototype.skipCharsBack = function(e, t, o) {
       return e + 1;
   return e;
 };
-he.prototype.getLines = function(e, t, o, r) {
+de.prototype.getLines = function(e, t, o, r) {
   var s, a, c, l, i, p, h, d = e;
   if (e >= t)
     return "";
   for (p = new Array(t - e), s = 0; d < t; d++, s++) {
     for (a = 0, h = l = this.bMarks[d], d + 1 < t || r ? i = this.eMarks[d] + 1 : i = this.eMarks[d]; l < i && a < o; ) {
-      if (c = this.src.charCodeAt(l), gn(c))
+      if (c = this.src.charCodeAt(l), _n(c))
         c === 9 ? a += 4 - (a + this.bsCount[d]) % 4 : a++;
       else if (l - h < this.tShift[d])
         a++;
@@ -3500,28 +3500,28 @@ he.prototype.getLines = function(e, t, o, r) {
   }
   return p.join("");
 };
-he.prototype.Token = Ao;
-var az = he, iz = et, tn = [
+de.prototype.Token = Lo;
+var l$ = de, u$ = nt, tn = [
   // First 2 params - rule name & source. Secondary array - list of rules,
   // which can be terminated by this one.
-  ["table", jB, ["paragraph", "reference"]],
-  ["code", RB],
-  ["fence", NB, ["paragraph", "reference", "blockquote", "list"]],
-  ["blockquote", PB, ["paragraph", "reference", "blockquote", "list"]],
-  ["hr", OB, ["paragraph", "reference", "blockquote", "list"]],
-  ["list", MB, ["paragraph", "reference", "blockquote"]],
-  ["reference", zB],
-  ["html_block", oz, ["paragraph", "reference", "blockquote"]],
-  ["heading", sz, ["paragraph", "reference", "blockquote"]],
-  ["lheading", rz],
-  ["paragraph", cz]
+  ["table", NB, ["paragraph", "reference"]],
+  ["code", PB],
+  ["fence", IB, ["paragraph", "reference", "blockquote", "list"]],
+  ["blockquote", OB, ["paragraph", "reference", "blockquote", "list"]],
+  ["hr", MB, ["paragraph", "reference", "blockquote", "list"]],
+  ["list", $B, ["paragraph", "reference", "blockquote"]],
+  ["reference", GB],
+  ["html_block", r$, ["paragraph", "reference", "blockquote"]],
+  ["heading", c$, ["paragraph", "reference", "blockquote"]],
+  ["lheading", a$],
+  ["paragraph", i$]
 ];
-function _n() {
-  this.ruler = new iz();
+function bn() {
+  this.ruler = new u$();
   for (var n = 0; n < tn.length; n++)
     this.ruler.push(tn[n][0], tn[n][1], { alt: (tn[n][2] || []).slice() });
 }
-_n.prototype.tokenize = function(n, e, t) {
+bn.prototype.tokenize = function(n, e, t) {
   for (var o, r, s = this.ruler.getRules(""), a = s.length, c = e, l = !1, i = n.md.options.maxNesting; c < t && (n.line = c = n.skipEmptyLines(c), !(c >= t || n.sCount[c] < n.blkIndent)); ) {
     if (n.level >= i) {
       n.line = t;
@@ -3532,13 +3532,13 @@ _n.prototype.tokenize = function(n, e, t) {
     n.tight = !l, n.isEmpty(n.line - 1) && (l = !0), c = n.line, c < t && n.isEmpty(c) && (l = !0, c++, n.line = c);
   }
 };
-_n.prototype.parse = function(n, e, t, o) {
+bn.prototype.parse = function(n, e, t, o) {
   var r;
   n && (r = new this.State(n, e, t, o), this.tokenize(r, r.line, r.lineMax));
 };
-_n.prototype.State = az;
-var lz = _n;
-function uz(n) {
+bn.prototype.State = l$;
+var p$ = bn;
+function h$(n) {
   switch (n) {
     case 10:
     case 33:
@@ -3568,14 +3568,14 @@ function uz(n) {
       return !1;
   }
 }
-var pz = function(e, t) {
-  for (var o = e.pos; o < e.posMax && !uz(e.src.charCodeAt(o)); )
+var d$ = function(e, t) {
+  for (var o = e.pos; o < e.posMax && !h$(e.src.charCodeAt(o)); )
     o++;
   return o === e.pos ? !1 : (t || (e.pending += e.src.slice(e.pos, o)), e.pos = o, !0);
-}, hz = /(?:^|[^a-z0-9.+-])([a-z][a-z0-9.+-]*)$/i, dz = function(e, t) {
+}, f$ = /(?:^|[^a-z0-9.+-])([a-z][a-z0-9.+-]*)$/i, m$ = function(e, t) {
   var o, r, s, a, c, l, i, p;
-  return !e.md.options.linkify || e.linkLevel > 0 || (o = e.pos, r = e.posMax, o + 3 > r) || e.src.charCodeAt(o) !== 58 || e.src.charCodeAt(o + 1) !== 47 || e.src.charCodeAt(o + 2) !== 47 || (s = e.pending.match(hz), !s) || (a = s[1], c = e.md.linkify.matchAtStart(e.src.slice(o - a.length)), !c) || (l = c.url, l = l.replace(/\*+$/, ""), i = e.md.normalizeLink(l), !e.md.validateLink(i)) ? !1 : (t || (e.pending = e.pending.slice(0, -a.length), p = e.push("link_open", "a", 1), p.attrs = [["href", i]], p.markup = "linkify", p.info = "auto", p = e.push("text", "", 0), p.content = e.md.normalizeLinkText(l), p = e.push("link_close", "a", -1), p.markup = "linkify", p.info = "auto"), e.pos += l.length - a.length, !0);
-}, fz = B.isSpace, mz = function(e, t) {
+  return !e.md.options.linkify || e.linkLevel > 0 || (o = e.pos, r = e.posMax, o + 3 > r) || e.src.charCodeAt(o) !== 58 || e.src.charCodeAt(o + 1) !== 47 || e.src.charCodeAt(o + 2) !== 47 || (s = e.pending.match(f$), !s) || (a = s[1], c = e.md.linkify.matchAtStart(e.src.slice(o - a.length)), !c) || (l = c.url, l = l.replace(/\*+$/, ""), i = e.md.normalizeLink(l), !e.md.validateLink(i)) ? !1 : (t || (e.pending = e.pending.slice(0, -a.length), p = e.push("link_open", "a", 1), p.attrs = [["href", i]], p.markup = "linkify", p.info = "auto", p = e.push("text", "", 0), p.content = e.md.normalizeLinkText(l), p = e.push("link_close", "a", -1), p.markup = "linkify", p.info = "auto"), e.pos += l.length - a.length, !0);
+}, g$ = B.isSpace, _$ = function(e, t) {
   var o, r, s, a = e.pos;
   if (e.src.charCodeAt(a) !== 10)
     return !1;
@@ -3589,26 +3589,26 @@ var pz = function(e, t) {
         e.pending = e.pending.slice(0, -1), e.push("softbreak", "br", 0);
     else
       e.push("softbreak", "br", 0);
-  for (a++; a < r && fz(e.src.charCodeAt(a)); )
+  for (a++; a < r && g$(e.src.charCodeAt(a)); )
     a++;
   return e.pos = a, !0;
-}, gz = B.isSpace, ot = [];
-for (var Ot = 0; Ot < 256; Ot++)
-  ot.push(0);
+}, b$ = B.isSpace, st = [];
+for (var Ft = 0; Ft < 256; Ft++)
+  st.push(0);
 "\\!\"#$%&'()*+,./:;<=>?@[]^_`{|}~-".split("").forEach(function(n) {
-  ot[n.charCodeAt(0)] = 1;
+  st[n.charCodeAt(0)] = 1;
 });
-var _z = function(e, t) {
+var k$ = function(e, t) {
   var o, r, s, a, c, l = e.pos, i = e.posMax;
   if (e.src.charCodeAt(l) !== 92 || (l++, l >= i))
     return !1;
   if (o = e.src.charCodeAt(l), o === 10) {
-    for (t || e.push("hardbreak", "br", 0), l++; l < i && (o = e.src.charCodeAt(l), !!gz(o)); )
+    for (t || e.push("hardbreak", "br", 0), l++; l < i && (o = e.src.charCodeAt(l), !!b$(o)); )
       l++;
     return e.pos = l, !0;
   }
-  return a = e.src[l], o >= 55296 && o <= 56319 && l + 1 < i && (r = e.src.charCodeAt(l + 1), r >= 56320 && r <= 57343 && (a += e.src[l + 1], l++)), s = "\\" + a, t || (c = e.push("text_special", "", 0), o < 256 && ot[o] !== 0 ? c.content = a : c.content = s, c.markup = s, c.info = "escape"), e.pos = l + 1, !0;
-}, bz = function(e, t) {
+  return a = e.src[l], o >= 55296 && o <= 56319 && l + 1 < i && (r = e.src.charCodeAt(l + 1), r >= 56320 && r <= 57343 && (a += e.src[l + 1], l++)), s = "\\" + a, t || (c = e.push("text_special", "", 0), o < 256 && st[o] !== 0 ? c.content = a : c.content = s, c.markup = s, c.info = "escape"), e.pos = l + 1, !0;
+}, y$ = function(e, t) {
   var o, r, s, a, c, l, i, p, h = e.pos, d = e.src.charCodeAt(h);
   if (d !== 96)
     return !1;
@@ -3624,8 +3624,8 @@ var _z = function(e, t) {
     e.backticks[p] = c;
   }
   return e.backticksScanned = !0, t || (e.pending += s), e.pos += i, !0;
-}, bn = {};
-bn.tokenize = function(e, t) {
+}, kn = {};
+kn.tokenize = function(e, t) {
   var o, r, s, a, c, l = e.pos, i = e.src.charCodeAt(l);
   if (t || i !== 126 || (r = e.scanDelims(e.pos, !0), a = r.length, c = String.fromCharCode(i), a < 2))
     return !1;
@@ -3641,7 +3641,7 @@ bn.tokenize = function(e, t) {
     });
   return e.pos += r.length, !0;
 };
-function Ft(n, e) {
+function Mt(n, e) {
   var t, o, r, s, a, c = [], l = e.length;
   for (t = 0; t < l; t++)
     r = e[t], r.marker === 126 && r.end !== -1 && (s = e[r.end], a = n.tokens[r.token], a.type = "s_open", a.tag = "s", a.nesting = 1, a.markup = "~~", a.content = "", a = n.tokens[s.token], a.type = "s_close", a.tag = "s", a.nesting = -1, a.markup = "~~", a.content = "", n.tokens[s.token - 1].type === "text" && n.tokens[s.token - 1].content === "~" && c.push(s.token - 1));
@@ -3651,13 +3651,13 @@ function Ft(n, e) {
     o--, t !== o && (a = n.tokens[o], n.tokens[o] = n.tokens[t], n.tokens[t] = a);
   }
 }
-bn.postProcess = function(e) {
+kn.postProcess = function(e) {
   var t, o = e.tokens_meta, r = e.tokens_meta.length;
-  for (Ft(e, e.delimiters), t = 0; t < r; t++)
-    o[t] && o[t].delimiters && Ft(e, o[t].delimiters);
+  for (Mt(e, e.delimiters), t = 0; t < r; t++)
+    o[t] && o[t].delimiters && Mt(e, o[t].delimiters);
 };
-var kn = {};
-kn.tokenize = function(e, t) {
+var yn = {};
+yn.tokenize = function(e, t) {
   var o, r, s, a = e.pos, c = e.src.charCodeAt(a);
   if (t || c !== 95 && c !== 42)
     return !1;
@@ -3684,32 +3684,32 @@ kn.tokenize = function(e, t) {
     });
   return e.pos += r.length, !0;
 };
-function Mt(n, e) {
+function Bt(n, e) {
   var t, o, r, s, a, c, l = e.length;
   for (t = l - 1; t >= 0; t--)
     o = e[t], !(o.marker !== 95 && o.marker !== 42) && o.end !== -1 && (r = e[o.end], c = t > 0 && e[t - 1].end === o.end + 1 && // check that first two markers match and adjacent
     e[t - 1].marker === o.marker && e[t - 1].token === o.token - 1 && // check that last two markers are adjacent (we can safely assume they match)
     e[o.end + 1].token === r.token + 1, a = String.fromCharCode(o.marker), s = n.tokens[o.token], s.type = c ? "strong_open" : "em_open", s.tag = c ? "strong" : "em", s.nesting = 1, s.markup = c ? a + a : a, s.content = "", s = n.tokens[r.token], s.type = c ? "strong_close" : "em_close", s.tag = c ? "strong" : "em", s.nesting = -1, s.markup = c ? a + a : a, s.content = "", c && (n.tokens[e[t - 1].token].content = "", n.tokens[e[o.end + 1].token].content = "", t--));
 }
-kn.postProcess = function(e) {
+yn.postProcess = function(e) {
   var t, o = e.tokens_meta, r = e.tokens_meta.length;
-  for (Mt(e, e.delimiters), t = 0; t < r; t++)
-    o[t] && o[t].delimiters && Mt(e, o[t].delimiters);
+  for (Bt(e, e.delimiters), t = 0; t < r; t++)
+    o[t] && o[t].delimiters && Bt(e, o[t].delimiters);
 };
-var kz = B.normalizeReference, jn = B.isSpace, yz = function(e, t) {
+var w$ = B.normalizeReference, Rn = B.isSpace, v$ = function(e, t) {
   var o, r, s, a, c, l, i, p, h, d = "", f = "", m = e.pos, L = e.posMax, S = e.pos, b = !0;
   if (e.src.charCodeAt(e.pos) !== 91 || (c = e.pos + 1, a = e.md.helpers.parseLinkLabel(e, e.pos, !0), a < 0))
     return !1;
   if (l = a + 1, l < L && e.src.charCodeAt(l) === 40) {
-    for (b = !1, l++; l < L && (r = e.src.charCodeAt(l), !(!jn(r) && r !== 10)); l++)
+    for (b = !1, l++; l < L && (r = e.src.charCodeAt(l), !(!Rn(r) && r !== 10)); l++)
       ;
     if (l >= L)
       return !1;
     if (S = l, i = e.md.helpers.parseLinkDestination(e.src, l, e.posMax), i.ok) {
-      for (d = e.md.normalizeLink(i.str), e.md.validateLink(d) ? l = i.pos : d = "", S = l; l < L && (r = e.src.charCodeAt(l), !(!jn(r) && r !== 10)); l++)
+      for (d = e.md.normalizeLink(i.str), e.md.validateLink(d) ? l = i.pos : d = "", S = l; l < L && (r = e.src.charCodeAt(l), !(!Rn(r) && r !== 10)); l++)
         ;
       if (i = e.md.helpers.parseLinkTitle(e.src, l, e.posMax), l < L && S !== l && i.ok)
-        for (f = i.str, l = i.pos; l < L && (r = e.src.charCodeAt(l), !(!jn(r) && r !== 10)); l++)
+        for (f = i.str, l = i.pos; l < L && (r = e.src.charCodeAt(l), !(!Rn(r) && r !== 10)); l++)
           ;
     }
     (l >= L || e.src.charCodeAt(l) !== 41) && (b = !0), l++;
@@ -3717,24 +3717,24 @@ var kz = B.normalizeReference, jn = B.isSpace, yz = function(e, t) {
   if (b) {
     if (typeof e.env.references > "u")
       return !1;
-    if (l < L && e.src.charCodeAt(l) === 91 ? (S = l + 1, l = e.md.helpers.parseLinkLabel(e, l), l >= 0 ? s = e.src.slice(S, l++) : l = a + 1) : l = a + 1, s || (s = e.src.slice(c, a)), p = e.env.references[kz(s)], !p)
+    if (l < L && e.src.charCodeAt(l) === 91 ? (S = l + 1, l = e.md.helpers.parseLinkLabel(e, l), l >= 0 ? s = e.src.slice(S, l++) : l = a + 1) : l = a + 1, s || (s = e.src.slice(c, a)), p = e.env.references[w$(s)], !p)
       return e.pos = m, !1;
     d = p.href, f = p.title;
   }
   return t || (e.pos = c, e.posMax = a, h = e.push("link_open", "a", 1), h.attrs = o = [["href", d]], f && o.push(["title", f]), e.linkLevel++, e.md.inline.tokenize(e), e.linkLevel--, h = e.push("link_close", "a", -1)), e.pos = l, e.posMax = L, !0;
-}, wz = B.normalizeReference, Rn = B.isSpace, vz = function(e, t) {
+}, x$ = B.normalizeReference, Nn = B.isSpace, A$ = function(e, t) {
   var o, r, s, a, c, l, i, p, h, d, f, m, L, S = "", b = e.pos, k = e.posMax;
   if (e.src.charCodeAt(e.pos) !== 33 || e.src.charCodeAt(e.pos + 1) !== 91 || (l = e.pos + 2, c = e.md.helpers.parseLinkLabel(e, e.pos + 1, !1), c < 0))
     return !1;
   if (i = c + 1, i < k && e.src.charCodeAt(i) === 40) {
-    for (i++; i < k && (r = e.src.charCodeAt(i), !(!Rn(r) && r !== 10)); i++)
+    for (i++; i < k && (r = e.src.charCodeAt(i), !(!Nn(r) && r !== 10)); i++)
       ;
     if (i >= k)
       return !1;
-    for (L = i, h = e.md.helpers.parseLinkDestination(e.src, i, e.posMax), h.ok && (S = e.md.normalizeLink(h.str), e.md.validateLink(S) ? i = h.pos : S = ""), L = i; i < k && (r = e.src.charCodeAt(i), !(!Rn(r) && r !== 10)); i++)
+    for (L = i, h = e.md.helpers.parseLinkDestination(e.src, i, e.posMax), h.ok && (S = e.md.normalizeLink(h.str), e.md.validateLink(S) ? i = h.pos : S = ""), L = i; i < k && (r = e.src.charCodeAt(i), !(!Nn(r) && r !== 10)); i++)
       ;
     if (h = e.md.helpers.parseLinkTitle(e.src, i, e.posMax), i < k && L !== i && h.ok)
-      for (d = h.str, i = h.pos; i < k && (r = e.src.charCodeAt(i), !(!Rn(r) && r !== 10)); i++)
+      for (d = h.str, i = h.pos; i < k && (r = e.src.charCodeAt(i), !(!Nn(r) && r !== 10)); i++)
         ;
     else
       d = "";
@@ -3744,7 +3744,7 @@ var kz = B.normalizeReference, jn = B.isSpace, yz = function(e, t) {
   } else {
     if (typeof e.env.references > "u")
       return !1;
-    if (i < k && e.src.charCodeAt(i) === 91 ? (L = i + 1, i = e.md.helpers.parseLinkLabel(e, i), i >= 0 ? a = e.src.slice(L, i++) : i = c + 1) : i = c + 1, a || (a = e.src.slice(l, c)), p = e.env.references[wz(a)], !p)
+    if (i < k && e.src.charCodeAt(i) === 91 ? (L = i + 1, i = e.md.helpers.parseLinkLabel(e, i), i >= 0 ? a = e.src.slice(L, i++) : i = c + 1) : i = c + 1, a || (a = e.src.slice(l, c)), p = e.env.references[x$(a)], !p)
       return e.pos = b, !1;
     S = p.href, d = p.title;
   }
@@ -3754,7 +3754,7 @@ var kz = B.normalizeReference, jn = B.isSpace, yz = function(e, t) {
     e.env,
     m = []
   ), f = e.push("image", "img", 0), f.attrs = o = [["src", S], ["alt", ""]], f.children = m, f.content = s, d && o.push(["title", d])), e.pos = i, e.posMax = k, !0;
-}, xz = /^([a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)$/, Az = /^([a-zA-Z][a-zA-Z0-9+.\-]{1,31}):([^<>\x00-\x20]*)$/, Sz = function(e, t) {
+}, S$ = /^([a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)$/, L$ = /^([a-zA-Z][a-zA-Z0-9+.\-]{1,31}):([^<>\x00-\x20]*)$/, C$ = function(e, t) {
   var o, r, s, a, c, l, i = e.pos;
   if (e.src.charCodeAt(i) !== 60)
     return !1;
@@ -3764,33 +3764,33 @@ var kz = B.normalizeReference, jn = B.isSpace, yz = function(e, t) {
     if (a === 62)
       break;
   }
-  return o = e.src.slice(c + 1, i), Az.test(o) ? (r = e.md.normalizeLink(o), e.md.validateLink(r) ? (t || (s = e.push("link_open", "a", 1), s.attrs = [["href", r]], s.markup = "autolink", s.info = "auto", s = e.push("text", "", 0), s.content = e.md.normalizeLinkText(o), s = e.push("link_close", "a", -1), s.markup = "autolink", s.info = "auto"), e.pos += o.length + 2, !0) : !1) : xz.test(o) ? (r = e.md.normalizeLink("mailto:" + o), e.md.validateLink(r) ? (t || (s = e.push("link_open", "a", 1), s.attrs = [["href", r]], s.markup = "autolink", s.info = "auto", s = e.push("text", "", 0), s.content = e.md.normalizeLinkText(o), s = e.push("link_close", "a", -1), s.markup = "autolink", s.info = "auto"), e.pos += o.length + 2, !0) : !1) : !1;
-}, Lz = mn.HTML_TAG_RE;
-function Cz(n) {
+  return o = e.src.slice(c + 1, i), L$.test(o) ? (r = e.md.normalizeLink(o), e.md.validateLink(r) ? (t || (s = e.push("link_open", "a", 1), s.attrs = [["href", r]], s.markup = "autolink", s.info = "auto", s = e.push("text", "", 0), s.content = e.md.normalizeLinkText(o), s = e.push("link_close", "a", -1), s.markup = "autolink", s.info = "auto"), e.pos += o.length + 2, !0) : !1) : S$.test(o) ? (r = e.md.normalizeLink("mailto:" + o), e.md.validateLink(r) ? (t || (s = e.push("link_open", "a", 1), s.attrs = [["href", r]], s.markup = "autolink", s.info = "auto", s = e.push("text", "", 0), s.content = e.md.normalizeLinkText(o), s = e.push("link_close", "a", -1), s.markup = "autolink", s.info = "auto"), e.pos += o.length + 2, !0) : !1) : !1;
+}, E$ = gn.HTML_TAG_RE;
+function T$(n) {
   return /^<a[>\s]/i.test(n);
 }
-function Ez(n) {
+function D$(n) {
   return /^<\/a\s*>/i.test(n);
 }
-function Tz(n) {
+function q$(n) {
   var e = n | 32;
   return e >= 97 && e <= 122;
 }
-var Dz = function(e, t) {
+var j$ = function(e, t) {
   var o, r, s, a, c = e.pos;
-  return !e.md.options.html || (s = e.posMax, e.src.charCodeAt(c) !== 60 || c + 2 >= s) || (o = e.src.charCodeAt(c + 1), o !== 33 && o !== 63 && o !== 47 && !Tz(o)) || (r = e.src.slice(c).match(Lz), !r) ? !1 : (t || (a = e.push("html_inline", "", 0), a.content = e.src.slice(c, c + r[0].length), Cz(a.content) && e.linkLevel++, Ez(a.content) && e.linkLevel--), e.pos += r[0].length, !0);
-}, Bt = mo, qz = B.has, jz = B.isValidEntityCode, zt = B.fromCodePoint, Rz = /^&#((?:x[a-f0-9]{1,6}|[0-9]{1,7}));/i, Nz = /^&([a-z][a-z0-9]{1,31});/i, Pz = function(e, t) {
+  return !e.md.options.html || (s = e.posMax, e.src.charCodeAt(c) !== 60 || c + 2 >= s) || (o = e.src.charCodeAt(c + 1), o !== 33 && o !== 63 && o !== 47 && !q$(o)) || (r = e.src.slice(c).match(E$), !r) ? !1 : (t || (a = e.push("html_inline", "", 0), a.content = e.src.slice(c, c + r[0].length), T$(a.content) && e.linkLevel++, D$(a.content) && e.linkLevel--), e.pos += r[0].length, !0);
+}, $t = _o, R$ = B.has, N$ = B.isValidEntityCode, zt = B.fromCodePoint, P$ = /^&#((?:x[a-f0-9]{1,6}|[0-9]{1,7}));/i, I$ = /^&([a-z][a-z0-9]{1,31});/i, O$ = function(e, t) {
   var o, r, s, a, c = e.pos, l = e.posMax;
   if (e.src.charCodeAt(c) !== 38 || c + 1 >= l)
     return !1;
   if (o = e.src.charCodeAt(c + 1), o === 35) {
-    if (s = e.src.slice(c).match(Rz), s)
-      return t || (r = s[1][0].toLowerCase() === "x" ? parseInt(s[1].slice(1), 16) : parseInt(s[1], 10), a = e.push("text_special", "", 0), a.content = jz(r) ? zt(r) : zt(65533), a.markup = s[0], a.info = "entity"), e.pos += s[0].length, !0;
-  } else if (s = e.src.slice(c).match(Nz), s && qz(Bt, s[1]))
-    return t || (a = e.push("text_special", "", 0), a.content = Bt[s[1]], a.markup = s[0], a.info = "entity"), e.pos += s[0].length, !0;
+    if (s = e.src.slice(c).match(P$), s)
+      return t || (r = s[1][0].toLowerCase() === "x" ? parseInt(s[1].slice(1), 16) : parseInt(s[1], 10), a = e.push("text_special", "", 0), a.content = N$(r) ? zt(r) : zt(65533), a.markup = s[0], a.info = "entity"), e.pos += s[0].length, !0;
+  } else if (s = e.src.slice(c).match(I$), s && R$($t, s[1]))
+    return t || (a = e.push("text_special", "", 0), a.content = $t[s[1]], a.markup = s[0], a.info = "entity"), e.pos += s[0].length, !0;
   return !1;
 };
-function $t(n, e) {
+function Gt(n, e) {
   var t, o, r, s, a, c, l, i, p = {}, h = e.length;
   if (h) {
     var d = 0, f = -2, m = [];
@@ -3805,66 +3805,66 @@ function $t(n, e) {
       }
   }
 }
-var Iz = function(e) {
+var F$ = function(e) {
   var t, o = e.tokens_meta, r = e.tokens_meta.length;
-  for ($t(e, e.delimiters), t = 0; t < r; t++)
-    o[t] && o[t].delimiters && $t(e, o[t].delimiters);
-}, Oz = function(e) {
+  for (Gt(e, e.delimiters), t = 0; t < r; t++)
+    o[t] && o[t].delimiters && Gt(e, o[t].delimiters);
+}, M$ = function(e) {
   var t, o, r = 0, s = e.tokens, a = e.tokens.length;
   for (t = o = 0; t < a; t++)
     s[t].nesting < 0 && r--, s[t].level = r, s[t].nesting > 0 && r++, s[t].type === "text" && t + 1 < a && s[t + 1].type === "text" ? s[t + 1].content = s[t].content + s[t + 1].content : (t !== o && (s[o] = s[t]), o++);
   t !== o && (s.length = o);
-}, st = nt, Gt = B.isWhiteSpace, Ut = B.isPunctChar, Ht = B.isMdAsciiPunct;
+}, rt = tt, Ut = B.isWhiteSpace, Ht = B.isPunctChar, Vt = B.isMdAsciiPunct;
 function Ye(n, e, t, o) {
   this.src = n, this.env = t, this.md = e, this.tokens = o, this.tokens_meta = Array(o.length), this.pos = 0, this.posMax = this.src.length, this.level = 0, this.pending = "", this.pendingLevel = 0, this.cache = {}, this.delimiters = [], this._prev_delimiters = [], this.backticks = {}, this.backticksScanned = !1, this.linkLevel = 0;
 }
 Ye.prototype.pushPending = function() {
-  var n = new st("text", "", 0);
+  var n = new rt("text", "", 0);
   return n.content = this.pending, n.level = this.pendingLevel, this.tokens.push(n), this.pending = "", n;
 };
 Ye.prototype.push = function(n, e, t) {
   this.pending && this.pushPending();
-  var o = new st(n, e, t), r = null;
+  var o = new rt(n, e, t), r = null;
   return t < 0 && (this.level--, this.delimiters = this._prev_delimiters.pop()), o.level = this.level, t > 0 && (this.level++, this._prev_delimiters.push(this.delimiters), this.delimiters = [], r = { delimiters: this.delimiters }), this.pendingLevel = this.level, this.tokens.push(o), this.tokens_meta.push(r), o;
 };
 Ye.prototype.scanDelims = function(n, e) {
   var t = n, o, r, s, a, c, l, i, p, h, d = !0, f = !0, m = this.posMax, L = this.src.charCodeAt(n);
   for (o = n > 0 ? this.src.charCodeAt(n - 1) : 32; t < m && this.src.charCodeAt(t) === L; )
     t++;
-  return s = t - n, r = t < m ? this.src.charCodeAt(t) : 32, i = Ht(o) || Ut(String.fromCharCode(o)), h = Ht(r) || Ut(String.fromCharCode(r)), l = Gt(o), p = Gt(r), p ? d = !1 : h && (l || i || (d = !1)), l ? f = !1 : i && (p || h || (f = !1)), e ? (a = d, c = f) : (a = d && (!f || i), c = f && (!d || h)), {
+  return s = t - n, r = t < m ? this.src.charCodeAt(t) : 32, i = Vt(o) || Ht(String.fromCharCode(o)), h = Vt(r) || Ht(String.fromCharCode(r)), l = Ut(o), p = Ut(r), p ? d = !1 : h && (l || i || (d = !1)), l ? f = !1 : i && (p || h || (f = !1)), e ? (a = d, c = f) : (a = d && (!f || i), c = f && (!d || h)), {
     can_open: a,
     can_close: c,
     length: s
   };
 };
-Ye.prototype.Token = st;
-var Fz = Ye, Vt = et, Nn = [
-  ["text", pz],
-  ["linkify", dz],
-  ["newline", mz],
-  ["escape", _z],
-  ["backticks", bz],
-  ["strikethrough", bn.tokenize],
-  ["emphasis", kn.tokenize],
-  ["link", yz],
-  ["image", vz],
-  ["autolink", Sz],
-  ["html_inline", Dz],
-  ["entity", Pz]
-], Pn = [
-  ["balance_pairs", Iz],
-  ["strikethrough", bn.postProcess],
-  ["emphasis", kn.postProcess],
+Ye.prototype.Token = rt;
+var B$ = Ye, Wt = nt, Pn = [
+  ["text", d$],
+  ["linkify", m$],
+  ["newline", _$],
+  ["escape", k$],
+  ["backticks", y$],
+  ["strikethrough", kn.tokenize],
+  ["emphasis", yn.tokenize],
+  ["link", v$],
+  ["image", A$],
+  ["autolink", C$],
+  ["html_inline", j$],
+  ["entity", O$]
+], In = [
+  ["balance_pairs", F$],
+  ["strikethrough", kn.postProcess],
+  ["emphasis", yn.postProcess],
   // rules for pairs separate '**' into its own text tokens, which may be left unused,
   // rule below merges unused segments back with the rest of the text
-  ["fragments_join", Oz]
+  ["fragments_join", M$]
 ];
 function Xe() {
   var n;
-  for (this.ruler = new Vt(), n = 0; n < Nn.length; n++)
-    this.ruler.push(Nn[n][0], Nn[n][1]);
-  for (this.ruler2 = new Vt(), n = 0; n < Pn.length; n++)
-    this.ruler2.push(Pn[n][0], Pn[n][1]);
+  for (this.ruler = new Wt(), n = 0; n < Pn.length; n++)
+    this.ruler.push(Pn[n][0], Pn[n][1]);
+  for (this.ruler2 = new Wt(), n = 0; n < In.length; n++)
+    this.ruler2.push(In[n][0], In[n][1]);
 }
 Xe.prototype.skipToken = function(n) {
   var e, t, o = n.pos, r = this.ruler.getRules(""), s = r.length, a = n.md.options.maxNesting, c = n.cache;
@@ -3898,12 +3898,12 @@ Xe.prototype.parse = function(n, e, t, o) {
   for (this.tokenize(c), s = this.ruler2.getRules(""), a = s.length, r = 0; r < a; r++)
     s[r](c);
 };
-Xe.prototype.State = Fz;
-var Mz = Xe, In, Wt;
-function Bz() {
-  return Wt || (Wt = 1, In = function(n) {
+Xe.prototype.State = B$;
+var $$ = Xe, On, Zt;
+function z$() {
+  return Zt || (Zt = 1, On = function(n) {
     var e = {};
-    n = n || {}, e.src_Any = go().source, e.src_Cc = _o().source, e.src_Z = bo().source, e.src_P = Kn.source, e.src_ZPCc = [e.src_Z, e.src_P, e.src_Cc].join("|"), e.src_ZCc = [e.src_Z, e.src_Cc].join("|");
+    n = n || {}, e.src_Any = bo().source, e.src_Cc = ko().source, e.src_Z = yo().source, e.src_P = et.source, e.src_ZPCc = [e.src_Z, e.src_P, e.src_Cc].join("|"), e.src_ZCc = [e.src_Z, e.src_Cc].join("|");
     var t = "[><｜]";
     return e.src_pseudo_letter = "(?:(?!" + t + "|" + e.src_ZPCc + ")" + e.src_Any + ")", e.src_ip4 = "(?:(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)", e.src_auth = "(?:(?:(?!" + e.src_ZCc + "|[@/\\[\\]()]).)+@)?", e.src_port = "(?::(?:6(?:[0-4]\\d{3}|5(?:[0-4]\\d{2}|5(?:[0-2]\\d|3[0-5])))|[1-5]?\\d{1,4}))?", e.src_host_terminator = "(?=$|" + t + "|" + e.src_ZPCc + ")(?!" + (n["---"] ? "-(?!--)|" : "-|") + "_|:\\d|\\.-|\\.(?!$|" + e.src_ZPCc + "))", e.src_path = "(?:[/?#](?:(?!" + e.src_ZCc + "|" + t + `|[()[\\]{}.,"'?!\\-;]).|\\[(?:(?!` + e.src_ZCc + "|\\]).)*\\]|\\((?:(?!" + e.src_ZCc + "|[)]).)*\\)|\\{(?:(?!" + e.src_ZCc + '|[}]).)*\\}|\\"(?:(?!' + e.src_ZCc + `|["]).)+\\"|\\'(?:(?!` + e.src_ZCc + "|[']).)+\\'|\\'(?=" + e.src_pseudo_letter + "|[-])|\\.{2,}[a-zA-Z0-9%/&]|\\.(?!" + e.src_ZCc + "|[.]|$)|" + (n["---"] ? "\\-(?!--(?:[^-]|$))(?:-*)|" : "\\-+|") + ",(?!" + e.src_ZCc + "|$)|;(?!" + e.src_ZCc + "|$)|\\!+(?!" + e.src_ZCc + "|[!]|$)|\\?(?!" + e.src_ZCc + "|[?]|$))+|\\/)?", e.src_email_name = '[\\-;:&=\\+\\$,\\.a-zA-Z0-9_][\\-;:&=\\+\\$,\\"\\.a-zA-Z0-9_]*', e.src_xn = "xn--[a-z0-9\\-]{1,59}", e.src_domain_root = // Allow letters & digits (http://test1)
     "(?:" + e.src_xn + "|" + e.src_pseudo_letter + "{1,63})", e.src_domain = "(?:" + e.src_xn + "|(?:" + e.src_pseudo_letter + ")|(?:" + e.src_pseudo_letter + "(?:-|" + e.src_pseudo_letter + "){0,61}" + e.src_pseudo_letter + "))", e.src_host = "(?:(?:(?:(?:" + e.src_domain + ")\\.)*" + e.src_domain + "))", e.tpl_host_fuzzy = "(?:" + e.src_ip4 + "|(?:(?:(?:" + e.src_domain + ")\\.)+(?:%TLDS%)))", e.tpl_host_no_ip_fuzzy = "(?:(?:(?:" + e.src_domain + ")\\.)+(?:%TLDS%))", e.src_host_strict = e.src_host + e.src_host_terminator, e.tpl_host_fuzzy_strict = e.tpl_host_fuzzy + e.src_host_terminator, e.src_host_port_strict = e.src_host + e.src_port + e.src_host_terminator, e.tpl_host_port_fuzzy_strict = e.tpl_host_fuzzy + e.src_port + e.src_host_terminator, e.tpl_host_port_no_ip_fuzzy_strict = e.tpl_host_no_ip_fuzzy + e.src_port + e.src_host_terminator, e.tpl_host_fuzzy_test = "localhost|www\\.|\\.\\d{1,3}\\.|(?:\\.(?:%TLDS%)(?:" + e.src_ZPCc + "|>|$))", e.tpl_email_fuzzy = "(^|" + t + '|"|\\(|' + e.src_ZCc + ")(" + e.src_email_name + "@" + e.tpl_host_fuzzy_strict + ")", e.tpl_link_fuzzy = // Fuzzy link can't be prepended with .:/\- and non punctuation.
@@ -3911,9 +3911,9 @@ function Bz() {
     "(^|(?![.:/\\-_@])(?:[$+<=>^`|｜]|" + e.src_ZPCc + "))((?![$+<=>^`|｜])" + e.tpl_host_port_fuzzy_strict + e.src_path + ")", e.tpl_link_no_ip_fuzzy = // Fuzzy link can't be prepended with .:/\- and non punctuation.
     // but can start with > (markdown blockquote)
     "(^|(?![.:/\\-_@])(?:[$+<=>^`|｜]|" + e.src_ZPCc + "))((?![$+<=>^`|｜])" + e.tpl_host_port_no_ip_fuzzy_strict + e.src_path + ")", e;
-  }), In;
+  }), On;
 }
-function Hn(n) {
+function Wn(n) {
   var e = Array.prototype.slice.call(arguments, 1);
   return e.forEach(function(t) {
     t && Object.keys(t).forEach(function(o) {
@@ -3921,35 +3921,35 @@ function Hn(n) {
     });
   }), n;
 }
-function yn(n) {
+function wn(n) {
   return Object.prototype.toString.call(n);
 }
-function zz(n) {
-  return yn(n) === "[object String]";
+function G$(n) {
+  return wn(n) === "[object String]";
 }
-function $z(n) {
-  return yn(n) === "[object Object]";
+function U$(n) {
+  return wn(n) === "[object Object]";
 }
-function Gz(n) {
-  return yn(n) === "[object RegExp]";
+function H$(n) {
+  return wn(n) === "[object RegExp]";
 }
-function Zt(n) {
-  return yn(n) === "[object Function]";
+function Jt(n) {
+  return wn(n) === "[object Function]";
 }
-function Uz(n) {
+function V$(n) {
   return n.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
 }
-var So = {
+var Co = {
   fuzzyLink: !0,
   fuzzyEmail: !0,
   fuzzyIP: !1
 };
-function Hz(n) {
+function W$(n) {
   return Object.keys(n || {}).reduce(function(e, t) {
-    return e || So.hasOwnProperty(t);
+    return e || Co.hasOwnProperty(t);
   }, !1);
 }
-var Vz = {
+var Z$ = {
   "http:": {
     validate: function(n, e, t) {
       var o = n.slice(e);
@@ -3981,24 +3981,24 @@ var Vz = {
       )), t.re.mailto.test(o) ? o.match(t.re.mailto)[0].length : 0;
     }
   }
-}, Wz = "a[cdefgilmnoqrstuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrstuvwxyz]|n[acefgilopruz]|om|p[aefghklmnrstwy]|qa|r[eosuw]|s[abcdeghijklmnortuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]", Zz = "biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф".split("|");
-function Jz(n) {
+}, J$ = "a[cdefgilmnoqrstuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnoruvwxyz]|d[ejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrstuvwxyz]|n[acefgilopruz]|om|p[aefghklmnrstwy]|qa|r[eosuw]|s[abcdeghijklmnortuvxyz]|t[cdfghjklmnortvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw]", Q$ = "biz|com|edu|gov|net|org|pro|web|xxx|aero|asia|coop|info|museum|name|shop|рф".split("|");
+function Y$(n) {
   n.__index__ = -1, n.__text_cache__ = "";
 }
-function Qz(n) {
+function X$(n) {
   return function(e, t) {
     var o = e.slice(t);
     return n.test(o) ? o.match(n)[0].length : 0;
   };
 }
-function Jt() {
+function Qt() {
   return function(n, e) {
     e.normalize(n);
   };
 }
 function cn(n) {
-  var e = n.re = Bz()(n.__opts__), t = n.__tlds__.slice();
-  n.onCompile(), n.__tlds_replaced__ || t.push(Wz), t.push(e.src_xn), e.src_tlds = t.join("|");
+  var e = n.re = z$()(n.__opts__), t = n.__tlds__.slice();
+  n.onCompile(), n.__tlds_replaced__ || t.push(J$), t.push(e.src_xn), e.src_tlds = t.join("|");
   function o(c) {
     return c.replace("%TLDS%", e.src_tlds);
   }
@@ -4012,11 +4012,11 @@ function cn(n) {
     var l = n.__schemas__[c];
     if (l !== null) {
       var i = { validate: null, link: null };
-      if (n.__compiled__[c] = i, $z(l)) {
-        Gz(l.validate) ? i.validate = Qz(l.validate) : Zt(l.validate) ? i.validate = l.validate : s(c, l), Zt(l.normalize) ? i.normalize = l.normalize : l.normalize ? s(c, l) : i.normalize = Jt();
+      if (n.__compiled__[c] = i, U$(l)) {
+        H$(l.validate) ? i.validate = X$(l.validate) : Jt(l.validate) ? i.validate = l.validate : s(c, l), Jt(l.normalize) ? i.normalize = l.normalize : l.normalize ? s(c, l) : i.normalize = Qt();
         return;
       }
-      if (zz(l)) {
+      if (G$(l)) {
         r.push(c);
         return;
       }
@@ -4024,33 +4024,33 @@ function cn(n) {
     }
   }), r.forEach(function(c) {
     n.__compiled__[n.__schemas__[c]] && (n.__compiled__[c].validate = n.__compiled__[n.__schemas__[c]].validate, n.__compiled__[c].normalize = n.__compiled__[n.__schemas__[c]].normalize);
-  }), n.__compiled__[""] = { validate: null, normalize: Jt() };
+  }), n.__compiled__[""] = { validate: null, normalize: Qt() };
   var a = Object.keys(n.__compiled__).filter(function(c) {
     return c.length > 0 && n.__compiled__[c];
-  }).map(Uz).join("|");
+  }).map(V$).join("|");
   n.re.schema_test = RegExp("(^|(?!_)(?:[><｜]|" + e.src_ZPCc + "))(" + a + ")", "i"), n.re.schema_search = RegExp("(^|(?!_)(?:[><｜]|" + e.src_ZPCc + "))(" + a + ")", "ig"), n.re.schema_at_start = RegExp("^" + n.re.schema_search.source, "i"), n.re.pretest = RegExp(
     "(" + n.re.schema_test.source + ")|(" + n.re.host_fuzzy_test.source + ")|@",
     "i"
-  ), Jz(n);
+  ), Y$(n);
 }
-function Yz(n, e) {
+function K$(n, e) {
   var t = n.__index__, o = n.__last_index__, r = n.__text_cache__.slice(t, o);
   this.schema = n.__schema__.toLowerCase(), this.index = t + e, this.lastIndex = o + e, this.raw = r, this.text = r, this.url = r;
 }
-function Vn(n, e) {
-  var t = new Yz(n, e);
+function Zn(n, e) {
+  var t = new K$(n, e);
   return n.__compiled__[t.schema].normalize(t, n), t;
 }
 function te(n, e) {
   if (!(this instanceof te))
     return new te(n, e);
-  e || Hz(n) && (e = n, n = {}), this.__opts__ = Hn({}, So, e), this.__index__ = -1, this.__last_index__ = -1, this.__schema__ = "", this.__text_cache__ = "", this.__schemas__ = Hn({}, Vz, n), this.__compiled__ = {}, this.__tlds__ = Zz, this.__tlds_replaced__ = !1, this.re = {}, cn(this);
+  e || W$(n) && (e = n, n = {}), this.__opts__ = Wn({}, Co, e), this.__index__ = -1, this.__last_index__ = -1, this.__schema__ = "", this.__text_cache__ = "", this.__schemas__ = Wn({}, Z$, n), this.__compiled__ = {}, this.__tlds__ = Q$, this.__tlds_replaced__ = !1, this.re = {}, cn(this);
 }
 te.prototype.add = function(e, t) {
   return this.__schemas__[e] = t, cn(this), this;
 };
 te.prototype.set = function(e) {
-  return this.__opts__ = Hn(this.__opts__, e), this;
+  return this.__opts__ = Wn(this.__opts__, e), this;
 };
 te.prototype.test = function(e) {
   if (this.__text_cache__ = e, this.__index__ = -1, !e.length)
@@ -4073,9 +4073,9 @@ te.prototype.testSchemaAt = function(e, t, o) {
 };
 te.prototype.match = function(e) {
   var t = 0, o = [];
-  this.__index__ >= 0 && this.__text_cache__ === e && (o.push(Vn(this, t)), t = this.__last_index__);
+  this.__index__ >= 0 && this.__text_cache__ === e && (o.push(Zn(this, t)), t = this.__last_index__);
   for (var r = t ? e.slice(t) : e; this.test(r); )
-    o.push(Vn(this, t)), r = r.slice(this.__last_index__), t += this.__last_index__;
+    o.push(Zn(this, t)), r = r.slice(this.__last_index__), t += this.__last_index__;
   return o.length ? o : null;
 };
 te.prototype.matchAtStart = function(e) {
@@ -4085,7 +4085,7 @@ te.prototype.matchAtStart = function(e) {
   if (!t)
     return null;
   var o = this.testSchemaAt(e, t[2], t[0].length);
-  return o ? (this.__schema__ = t[2], this.__index__ = t.index + t[1].length, this.__last_index__ = t.index + t[0].length + o, Vn(this, 0)) : null;
+  return o ? (this.__schema__ = t[2], this.__index__ = t.index + t[1].length, this.__last_index__ = t.index + t[0].length + o, Zn(this, 0)) : null;
 };
 te.prototype.tlds = function(e, t) {
   return e = Array.isArray(e) ? e : [e], t ? (this.__tlds__ = this.__tlds__.concat(e).sort().filter(function(o, r, s) {
@@ -4097,30 +4097,30 @@ te.prototype.normalize = function(e) {
 };
 te.prototype.onCompile = function() {
 };
-var Xz = te;
-const Be = 2147483647, le = 36, rt = 1, Je = 26, Kz = 38, e$ = 700, Lo = 72, Co = 128, Eo = "-", n$ = /^xn--/, t$ = /[^\0-\x7F]/, o$ = /[\x2E\u3002\uFF0E\uFF61]/g, s$ = {
+var ez = te;
+const Be = 2147483647, ue = 36, ct = 1, Je = 26, nz = 38, tz = 700, Eo = 72, To = 128, Do = "-", oz = /^xn--/, sz = /[^\0-\x7F]/, rz = /[\x2E\u3002\uFF0E\uFF61]/g, cz = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
-}, On = le - rt, ue = Math.floor, Fn = String.fromCharCode;
+}, Fn = ue - ct, pe = Math.floor, Mn = String.fromCharCode;
 function be(n) {
-  throw new RangeError(s$[n]);
+  throw new RangeError(cz[n]);
 }
-function r$(n, e) {
+function az(n, e) {
   const t = [];
   let o = n.length;
   for (; o--; )
     t[o] = e(n[o]);
   return t;
 }
-function To(n, e) {
+function qo(n, e) {
   const t = n.split("@");
   let o = "";
-  t.length > 1 && (o = t[0] + "@", n = t[1]), n = n.replace(o$, ".");
-  const r = n.split("."), s = r$(r, e).join(".");
+  t.length > 1 && (o = t[0] + "@", n = t[1]), n = n.replace(rz, ".");
+  const r = n.split("."), s = az(r, e).join(".");
   return o + s;
 }
-function ct(n) {
+function at(n) {
   const e = [];
   let t = 0;
   const o = n.length;
@@ -4134,78 +4134,78 @@ function ct(n) {
   }
   return e;
 }
-const Do = (n) => String.fromCodePoint(...n), c$ = function(n) {
-  return n >= 48 && n < 58 ? 26 + (n - 48) : n >= 65 && n < 91 ? n - 65 : n >= 97 && n < 123 ? n - 97 : le;
-}, Qt = function(n, e) {
+const jo = (n) => String.fromCodePoint(...n), iz = function(n) {
+  return n >= 48 && n < 58 ? 26 + (n - 48) : n >= 65 && n < 91 ? n - 65 : n >= 97 && n < 123 ? n - 97 : ue;
+}, Yt = function(n, e) {
   return n + 22 + 75 * (n < 26) - ((e != 0) << 5);
-}, qo = function(n, e, t) {
+}, Ro = function(n, e, t) {
   let o = 0;
-  for (n = t ? ue(n / e$) : n >> 1, n += ue(n / e); n > On * Je >> 1; o += le)
-    n = ue(n / On);
-  return ue(o + (On + 1) * n / (n + Kz));
-}, at = function(n) {
+  for (n = t ? pe(n / tz) : n >> 1, n += pe(n / e); n > Fn * Je >> 1; o += ue)
+    n = pe(n / Fn);
+  return pe(o + (Fn + 1) * n / (n + nz));
+}, it = function(n) {
   const e = [], t = n.length;
-  let o = 0, r = Co, s = Lo, a = n.lastIndexOf(Eo);
+  let o = 0, r = To, s = Eo, a = n.lastIndexOf(Do);
   a < 0 && (a = 0);
   for (let c = 0; c < a; ++c)
     n.charCodeAt(c) >= 128 && be("not-basic"), e.push(n.charCodeAt(c));
   for (let c = a > 0 ? a + 1 : 0; c < t; ) {
     const l = o;
-    for (let p = 1, h = le; ; h += le) {
+    for (let p = 1, h = ue; ; h += ue) {
       c >= t && be("invalid-input");
-      const d = c$(n.charCodeAt(c++));
-      d >= le && be("invalid-input"), d > ue((Be - o) / p) && be("overflow"), o += d * p;
-      const f = h <= s ? rt : h >= s + Je ? Je : h - s;
+      const d = iz(n.charCodeAt(c++));
+      d >= ue && be("invalid-input"), d > pe((Be - o) / p) && be("overflow"), o += d * p;
+      const f = h <= s ? ct : h >= s + Je ? Je : h - s;
       if (d < f)
         break;
-      const m = le - f;
-      p > ue(Be / m) && be("overflow"), p *= m;
+      const m = ue - f;
+      p > pe(Be / m) && be("overflow"), p *= m;
     }
     const i = e.length + 1;
-    s = qo(o - l, i, l == 0), ue(o / i) > Be - r && be("overflow"), r += ue(o / i), o %= i, e.splice(o++, 0, r);
+    s = Ro(o - l, i, l == 0), pe(o / i) > Be - r && be("overflow"), r += pe(o / i), o %= i, e.splice(o++, 0, r);
   }
   return String.fromCodePoint(...e);
-}, it = function(n) {
+}, lt = function(n) {
   const e = [];
-  n = ct(n);
+  n = at(n);
   const t = n.length;
-  let o = Co, r = 0, s = Lo;
+  let o = To, r = 0, s = Eo;
   for (const l of n)
-    l < 128 && e.push(Fn(l));
+    l < 128 && e.push(Mn(l));
   const a = e.length;
   let c = a;
-  for (a && e.push(Eo); c < t; ) {
+  for (a && e.push(Do); c < t; ) {
     let l = Be;
     for (const p of n)
       p >= o && p < l && (l = p);
     const i = c + 1;
-    l - o > ue((Be - r) / i) && be("overflow"), r += (l - o) * i, o = l;
+    l - o > pe((Be - r) / i) && be("overflow"), r += (l - o) * i, o = l;
     for (const p of n)
       if (p < o && ++r > Be && be("overflow"), p === o) {
         let h = r;
-        for (let d = le; ; d += le) {
-          const f = d <= s ? rt : d >= s + Je ? Je : d - s;
+        for (let d = ue; ; d += ue) {
+          const f = d <= s ? ct : d >= s + Je ? Je : d - s;
           if (h < f)
             break;
-          const m = h - f, L = le - f;
+          const m = h - f, L = ue - f;
           e.push(
-            Fn(Qt(f + m % L, 0))
-          ), h = ue(m / L);
+            Mn(Yt(f + m % L, 0))
+          ), h = pe(m / L);
         }
-        e.push(Fn(Qt(h, 0))), s = qo(r, i, c === a), r = 0, ++c;
+        e.push(Mn(Yt(h, 0))), s = Ro(r, i, c === a), r = 0, ++c;
       }
     ++r, ++o;
   }
   return e.join("");
-}, jo = function(n) {
-  return To(n, function(e) {
-    return n$.test(e) ? at(e.slice(4).toLowerCase()) : e;
+}, No = function(n) {
+  return qo(n, function(e) {
+    return oz.test(e) ? it(e.slice(4).toLowerCase()) : e;
   });
-}, Ro = function(n) {
-  return To(n, function(e) {
-    return t$.test(e) ? "xn--" + it(e) : e;
+}, Po = function(n) {
+  return qo(n, function(e) {
+    return sz.test(e) ? "xn--" + lt(e) : e;
   });
-}, a$ = {
+}, lz = {
   /**
    * A string representing the current Punycode.js version number.
    * @memberOf punycode
@@ -4220,24 +4220,24 @@ const Do = (n) => String.fromCodePoint(...n), c$ = function(n) {
    * @type Object
    */
   ucs2: {
-    decode: ct,
-    encode: Do
+    decode: at,
+    encode: jo
   },
-  decode: at,
-  encode: it,
-  toASCII: Ro,
-  toUnicode: jo
-}, i$ = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  decode: it,
+  encode: lt,
+  toASCII: Po,
+  toUnicode: No
+}, uz = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  decode: at,
-  default: a$,
-  encode: it,
-  toASCII: Ro,
-  toUnicode: jo,
-  ucs2decode: ct,
-  ucs2encode: Do
-}, Symbol.toStringTag, { value: "Module" })), l$ = /* @__PURE__ */ bs(i$);
-var u$ = {
+  decode: it,
+  default: lz,
+  encode: lt,
+  toASCII: Po,
+  toUnicode: No,
+  ucs2decode: at,
+  ucs2encode: jo
+}, Symbol.toStringTag, { value: "Module" })), pz = /* @__PURE__ */ ys(uz);
+var hz = {
   options: {
     html: !1,
     // Enable HTML tags in source
@@ -4273,7 +4273,7 @@ var u$ = {
     block: {},
     inline: {}
   }
-}, p$ = {
+}, dz = {
   options: {
     html: !1,
     // Enable HTML tags in source
@@ -4328,7 +4328,7 @@ var u$ = {
       ]
     }
   }
-}, h$ = {
+}, fz = {
   options: {
     html: !0,
     // Enable HTML tags in source
@@ -4402,45 +4402,45 @@ var u$ = {
       ]
     }
   }
-}, Ze = B, d$ = fn, f$ = aB, m$ = qB, g$ = lz, _$ = Mz, b$ = Xz, Ee = $e, No = l$, k$ = {
-  default: u$,
-  zero: p$,
-  commonmark: h$
-}, y$ = /^(vbscript|javascript|file|data):/, w$ = /^data:image\/(gif|png|jpeg|webp);/;
-function v$(n) {
+}, Ze = B, mz = mn, gz = lB, _z = RB, bz = p$, kz = $$, yz = ez, Ee = ze, Io = pz, wz = {
+  default: hz,
+  zero: dz,
+  commonmark: fz
+}, vz = /^(vbscript|javascript|file|data):/, xz = /^data:image\/(gif|png|jpeg|webp);/;
+function Az(n) {
   var e = n.trim().toLowerCase();
-  return y$.test(e) ? !!w$.test(e) : !0;
+  return vz.test(e) ? !!xz.test(e) : !0;
 }
-var Po = ["http:", "https:", "mailto:"];
-function x$(n) {
+var Oo = ["http:", "https:", "mailto:"];
+function Sz(n) {
   var e = Ee.parse(n, !0);
-  if (e.hostname && (!e.protocol || Po.indexOf(e.protocol) >= 0))
+  if (e.hostname && (!e.protocol || Oo.indexOf(e.protocol) >= 0))
     try {
-      e.hostname = No.toASCII(e.hostname);
+      e.hostname = Io.toASCII(e.hostname);
     } catch {
     }
   return Ee.encode(Ee.format(e));
 }
-function A$(n) {
+function Lz(n) {
   var e = Ee.parse(n, !0);
-  if (e.hostname && (!e.protocol || Po.indexOf(e.protocol) >= 0))
+  if (e.hostname && (!e.protocol || Oo.indexOf(e.protocol) >= 0))
     try {
-      e.hostname = No.toUnicode(e.hostname);
+      e.hostname = Io.toUnicode(e.hostname);
     } catch {
     }
   return Ee.decode(Ee.format(e), Ee.decode.defaultChars + "%");
 }
-function re(n, e) {
-  if (!(this instanceof re))
-    return new re(n, e);
-  e || Ze.isString(n) || (e = n || {}, n = "default"), this.inline = new _$(), this.block = new g$(), this.core = new m$(), this.renderer = new f$(), this.linkify = new b$(), this.validateLink = v$, this.normalizeLink = x$, this.normalizeLinkText = A$, this.utils = Ze, this.helpers = Ze.assign({}, d$), this.options = {}, this.configure(n), e && this.set(e);
+function ce(n, e) {
+  if (!(this instanceof ce))
+    return new ce(n, e);
+  e || Ze.isString(n) || (e = n || {}, n = "default"), this.inline = new kz(), this.block = new bz(), this.core = new _z(), this.renderer = new gz(), this.linkify = new yz(), this.validateLink = Az, this.normalizeLink = Sz, this.normalizeLinkText = Lz, this.utils = Ze, this.helpers = Ze.assign({}, mz), this.options = {}, this.configure(n), e && this.set(e);
 }
-re.prototype.set = function(n) {
+ce.prototype.set = function(n) {
   return Ze.assign(this.options, n), this;
 };
-re.prototype.configure = function(n) {
+ce.prototype.configure = function(n) {
   var e = this, t;
-  if (Ze.isString(n) && (t = n, n = k$[t], !n))
+  if (Ze.isString(n) && (t = n, n = wz[t], !n))
     throw new Error('Wrong `markdown-it` preset "' + t + '", check name');
   if (!n)
     throw new Error("Wrong `markdown-it` preset, can't be empty");
@@ -4448,7 +4448,7 @@ re.prototype.configure = function(n) {
     n.components[o].rules && e[o].ruler.enableOnly(n.components[o].rules), n.components[o].rules2 && e[o].ruler2.enableOnly(n.components[o].rules2);
   }), this;
 };
-re.prototype.enable = function(n, e) {
+ce.prototype.enable = function(n, e) {
   var t = [];
   Array.isArray(n) || (n = [n]), ["core", "block", "inline"].forEach(function(r) {
     t = t.concat(this[r].ruler.enable(n, !0));
@@ -4460,7 +4460,7 @@ re.prototype.enable = function(n, e) {
     throw new Error("MarkdownIt. Failed to enable unknown rule(s): " + o);
   return this;
 };
-re.prototype.disable = function(n, e) {
+ce.prototype.disable = function(n, e) {
   var t = [];
   Array.isArray(n) || (n = [n]), ["core", "block", "inline"].forEach(function(r) {
     t = t.concat(this[r].ruler.disable(n, !0));
@@ -4472,70 +4472,70 @@ re.prototype.disable = function(n, e) {
     throw new Error("MarkdownIt. Failed to disable unknown rule(s): " + o);
   return this;
 };
-re.prototype.use = function(n) {
+ce.prototype.use = function(n) {
   var e = [this].concat(Array.prototype.slice.call(arguments, 1));
   return n.apply(n, e), this;
 };
-re.prototype.parse = function(n, e) {
+ce.prototype.parse = function(n, e) {
   if (typeof n != "string")
     throw new Error("Input data should be a String");
   var t = new this.core.State(n, this, e);
   return this.core.process(t), t.tokens;
 };
-re.prototype.render = function(n, e) {
+ce.prototype.render = function(n, e) {
   return e = e || {}, this.renderer.render(this.parse(n, e), this.options, e);
 };
-re.prototype.parseInline = function(n, e) {
+ce.prototype.parseInline = function(n, e) {
   var t = new this.core.State(n, this, e);
   return t.inlineMode = !0, this.core.process(t), t.tokens;
 };
-re.prototype.renderInline = function(n, e) {
+ce.prototype.renderInline = function(n, e) {
   return e = e || {}, this.renderer.render(this.parseInline(n, e), this.options, e);
 };
-var S$ = re, L$ = S$;
-const C$ = /* @__PURE__ */ pn(L$);
-var Yt = !1, ze = { false: "push", true: "unshift", after: "push", before: "unshift" }, an = { isPermalinkSymbol: !0 };
-function Wn(n, e, t, o) {
+var Cz = ce, Ez = Cz;
+const Tz = /* @__PURE__ */ hn(Ez);
+var Xt = !1, $e = { false: "push", true: "unshift", after: "push", before: "unshift" }, an = { isPermalinkSymbol: !0 };
+function Jn(n, e, t, o) {
   var r;
-  if (!Yt) {
+  if (!Xt) {
     var s = "Using deprecated markdown-it-anchor permalink option, see https://github.com/valeriangalliat/markdown-it-anchor#permalinks";
-    typeof process == "object" && process && process.emitWarning ? process.emitWarning(s) : console.warn(s), Yt = !0;
+    typeof process == "object" && process && process.emitWarning ? process.emitWarning(s) : console.warn(s), Xt = !0;
   }
   var a = [Object.assign(new t.Token("link_open", "a", 1), { attrs: [].concat(e.permalinkClass ? [["class", e.permalinkClass]] : [], [["href", e.permalinkHref(n, t)]], Object.entries(e.permalinkAttrs(n, t))) }), Object.assign(new t.Token("html_block", "", 0), { content: e.permalinkSymbol, meta: an }), new t.Token("link_close", "a", -1)];
-  e.permalinkSpace && t.tokens[o + 1].children[ze[e.permalinkBefore]](Object.assign(new t.Token("text", "", 0), { content: " " })), (r = t.tokens[o + 1].children)[ze[e.permalinkBefore]].apply(r, a);
+  e.permalinkSpace && t.tokens[o + 1].children[$e[e.permalinkBefore]](Object.assign(new t.Token("text", "", 0), { content: " " })), (r = t.tokens[o + 1].children)[$e[e.permalinkBefore]].apply(r, a);
 }
-function Io(n) {
+function Fo(n) {
   return "#" + n;
 }
-function Oo(n) {
+function Mo(n) {
   return {};
 }
-var E$ = { class: "header-anchor", symbol: "#", renderHref: Io, renderAttrs: Oo };
+var Dz = { class: "header-anchor", symbol: "#", renderHref: Fo, renderAttrs: Mo };
 function Ke(n) {
   function e(t) {
     return t = Object.assign({}, e.defaults, t), function(o, r, s, a) {
       return n(o, t, r, s, a);
     };
   }
-  return e.defaults = Object.assign({}, E$), e.renderPermalinkImpl = n, e;
+  return e.defaults = Object.assign({}, Dz), e.renderPermalinkImpl = n, e;
 }
-var wn = Ke(function(n, e, t, o, r) {
+var vn = Ke(function(n, e, t, o, r) {
   var s, a = [Object.assign(new o.Token("link_open", "a", 1), { attrs: [].concat(e.class ? [["class", e.class]] : [], [["href", e.renderHref(n, o)]], e.ariaHidden ? [["aria-hidden", "true"]] : [], Object.entries(e.renderAttrs(n, o))) }), Object.assign(new o.Token("html_inline", "", 0), { content: e.symbol, meta: an }), new o.Token("link_close", "a", -1)];
   if (e.space) {
     var c = typeof e.space == "string" ? e.space : " ";
-    o.tokens[r + 1].children[ze[e.placement]](Object.assign(new o.Token(typeof e.space == "string" ? "html_inline" : "text", "", 0), { content: c }));
+    o.tokens[r + 1].children[$e[e.placement]](Object.assign(new o.Token(typeof e.space == "string" ? "html_inline" : "text", "", 0), { content: c }));
   }
-  (s = o.tokens[r + 1].children)[ze[e.placement]].apply(s, a);
+  (s = o.tokens[r + 1].children)[$e[e.placement]].apply(s, a);
 });
-Object.assign(wn.defaults, { space: !0, placement: "after", ariaHidden: !1 });
-var Ce = Ke(wn.renderPermalinkImpl);
-Ce.defaults = Object.assign({}, wn.defaults, { ariaHidden: !0 });
-var Fo = Ke(function(n, e, t, o, r) {
+Object.assign(vn.defaults, { space: !0, placement: "after", ariaHidden: !1 });
+var Ce = Ke(vn.renderPermalinkImpl);
+Ce.defaults = Object.assign({}, vn.defaults, { ariaHidden: !0 });
+var Bo = Ke(function(n, e, t, o, r) {
   var s = [Object.assign(new o.Token("link_open", "a", 1), { attrs: [].concat(e.class ? [["class", e.class]] : [], [["href", e.renderHref(n, o)]], Object.entries(e.renderAttrs(n, o))) })].concat(e.safariReaderFix ? [new o.Token("span_open", "span", 1)] : [], o.tokens[r + 1].children, e.safariReaderFix ? [new o.Token("span_close", "span", -1)] : [], [new o.Token("link_close", "a", -1)]);
   o.tokens[r + 1] = Object.assign(new o.Token("inline", "", 0), { children: s });
 });
-Object.assign(Fo.defaults, { safariReaderFix: !1 });
-var Xt = Ke(function(n, e, t, o, r) {
+Object.assign(Bo.defaults, { safariReaderFix: !1 });
+var Kt = Ke(function(n, e, t, o, r) {
   var s;
   if (!["visually-hidden", "aria-label", "aria-describedby", "aria-labelledby"].includes(e.style))
     throw new Error("`permalink.linkAfterHeader` called with unknown style option `" + e.style + "`");
@@ -4551,9 +4551,9 @@ var Xt = Ke(function(n, e, t, o, r) {
   if (e.class && l.push(["class", e.class]), l.push(["href", e.renderHref(n, o)]), l.push.apply(l, Object.entries(e.renderAttrs(n, o))), e.style === "visually-hidden") {
     if (c.push(Object.assign(new o.Token("span_open", "span", 1), { attrs: [["class", e.visuallyHiddenClass]] }), Object.assign(new o.Token("text", "", 0), { content: e.assistiveText(a) }), new o.Token("span_close", "span", -1)), e.space) {
       var i = typeof e.space == "string" ? e.space : " ";
-      c[ze[e.placement]](Object.assign(new o.Token(typeof e.space == "string" ? "html_inline" : "text", "", 0), { content: i }));
+      c[$e[e.placement]](Object.assign(new o.Token(typeof e.space == "string" ? "html_inline" : "text", "", 0), { content: i }));
     }
-    c[ze[e.placement]](Object.assign(new o.Token("span_open", "span", 1), { attrs: [["aria-hidden", "true"]] }), Object.assign(new o.Token("html_inline", "", 0), { content: e.symbol, meta: an }), new o.Token("span_close", "span", -1));
+    c[$e[e.placement]](Object.assign(new o.Token("span_open", "span", 1), { attrs: [["aria-hidden", "true"]] }), Object.assign(new o.Token("html_inline", "", 0), { content: e.symbol, meta: an }), new o.Token("span_close", "span", -1));
   } else
     c.push(Object.assign(new o.Token("html_inline", "", 0), { content: e.symbol, meta: an }));
   e.style === "aria-label" ? l.push(["aria-label", e.assistiveText(a)]) : ["aria-describedby", "aria-labelledby"].includes(e.style) && l.push([e.style, n]);
@@ -4562,7 +4562,7 @@ var Xt = Ke(function(n, e, t, o, r) {
 ` })), o.tokens.splice(r + 3 + p.length + 1, 0, Object.assign(new o.Token("html_block", "", 0), { content: e.wrapper[1] + `
 ` })));
 });
-function Kt(n, e, t, o) {
+function eo(n, e, t, o) {
   var r = n, s = o;
   if (t && Object.prototype.hasOwnProperty.call(e, r))
     throw new Error("User defined `id` attribute `" + n + "` is not unique. Please fix it in your Markdown to continue.");
@@ -4582,12 +4582,12 @@ function Te(n, e) {
       var l = s[c];
       if (l.type === "heading_open" && a(Number(l.tag.substr(1)))) {
         var i = e.getTokensText(s[c + 1].children), p = l.attrGet("id");
-        p = p == null ? Kt(e.slugify(i), r, !1, e.uniqueSlugStartIndex) : Kt(p, r, !0, e.uniqueSlugStartIndex), l.attrSet("id", p), e.tabIndex !== !1 && l.attrSet("tabindex", "" + e.tabIndex), typeof e.permalink == "function" ? e.permalink(p, e, t, c) : (e.permalink || e.renderPermalink && e.renderPermalink !== Wn) && e.renderPermalink(p, e, t, c), c = s.indexOf(l), e.callback && e.callback(l, { slug: p, title: i });
+        p = p == null ? eo(e.slugify(i), r, !1, e.uniqueSlugStartIndex) : eo(p, r, !0, e.uniqueSlugStartIndex), l.attrSet("id", p), e.tabIndex !== !1 && l.attrSet("tabindex", "" + e.tabIndex), typeof e.permalink == "function" ? e.permalink(p, e, t, c) : (e.permalink || e.renderPermalink && e.renderPermalink !== Jn) && e.renderPermalink(p, e, t, c), c = s.indexOf(l), e.callback && e.callback(l, { slug: p, title: i });
       }
     }
   });
 }
-Object.assign(Xt.defaults, { style: "visually-hidden", space: !0, placement: "after", wrapper: null }), Te.permalink = { __proto__: null, legacy: Wn, renderHref: Io, renderAttrs: Oo, makePermalink: Ke, linkInsideHeader: wn, ariaHidden: Ce, headerLink: Fo, linkAfterHeader: Xt }, Te.defaults = { level: 1, slugify: function(n) {
+Object.assign(Kt.defaults, { style: "visually-hidden", space: !0, placement: "after", wrapper: null }), Te.permalink = { __proto__: null, legacy: Jn, renderHref: Fo, renderAttrs: Mo, makePermalink: Ke, linkInsideHeader: vn, ariaHidden: Ce, headerLink: Bo, linkAfterHeader: Kt }, Te.defaults = { level: 1, slugify: function(n) {
   return encodeURIComponent(String(n).trim().toLowerCase().replace(/\s+/g, "-"));
 }, uniqueSlugStartIndex: 1, tabIndex: "-1", getTokensText: function(n) {
   return n.filter(function(e) {
@@ -4595,7 +4595,7 @@ Object.assign(Xt.defaults, { style: "visually-hidden", space: !0, placement: "af
   }).map(function(e) {
     return e.content;
   }).join("");
-}, permalink: !1, renderPermalink: Wn, permalinkClass: Ce.defaults.class, permalinkSpace: Ce.defaults.space, permalinkSymbol: "¶", permalinkBefore: Ce.defaults.placement === "before", permalinkHref: Ce.defaults.renderHref, permalinkAttrs: Ce.defaults.renderAttrs }, Te.default = Te;
+}, permalink: !1, renderPermalink: Jn, permalinkClass: Ce.defaults.class, permalinkSpace: Ce.defaults.space, permalinkSymbol: "¶", permalinkBefore: Ce.defaults.placement === "before", permalinkHref: Ce.defaults.renderHref, permalinkAttrs: Ce.defaults.renderAttrs }, Te.default = Te;
 var ye = {};
 ye.getAttrs = function(n, e, t) {
   const o = /[^\t\n\f />"'=]/, r = " ", s = "=", a = ".", c = "#", l = [];
@@ -4689,15 +4689,15 @@ ye.hasDelimiters = function(n, e) {
   };
 };
 ye.removeDelimiter = function(n, e) {
-  const t = Zn(e.leftDelimiter), o = Zn(e.rightDelimiter), r = new RegExp(
+  const t = Qn(e.leftDelimiter), o = Qn(e.rightDelimiter), r = new RegExp(
     "[ \\n]?" + t + "[^" + t + o + "]+" + o + "$"
   ), s = n.search(r);
   return s !== -1 ? n.slice(0, s) : n;
 };
-function Zn(n) {
+function Qn(n) {
   return n.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
-ye.escapeRegExp = Zn;
+ye.escapeRegExp = Qn;
 ye.getMatchingOpeningToken = function(n, e) {
   if (n[e].type === "softbreak")
     return !1;
@@ -4709,20 +4709,20 @@ ye.getMatchingOpeningToken = function(n, e) {
       return n[e];
   return !1;
 };
-const T$ = /[&<>"]/, D$ = /[&<>"]/g, q$ = {
+const qz = /[&<>"]/, jz = /[&<>"]/g, Rz = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
   '"': "&quot;"
 };
-function j$(n) {
-  return q$[n];
+function Nz(n) {
+  return Rz[n];
 }
 ye.escapeHtml = function(n) {
-  return T$.test(n) ? n.replace(D$, j$) : n;
+  return qz.test(n) ? n.replace(jz, Nz) : n;
 };
 const I = ye;
-var R$ = (n) => {
+var Pz = (n) => {
   const e = new RegExp("^ {0,3}[-*_]{3,} ?" + I.escapeRegExp(n.leftDelimiter) + "[^" + I.escapeRegExp(n.rightDelimiter) + "]");
   return [
     {
@@ -4931,7 +4931,7 @@ var R$ = (n) => {
         const s = t[o].children[r], a = s.content, c = I.getAttrs(a, a.lastIndexOf(n.leftDelimiter), n);
         I.addAttrs(c, t[o - 2]);
         const l = a.slice(0, a.lastIndexOf(n.leftDelimiter));
-        s.content = eo(l) !== " " ? l : l.slice(0, -1);
+        s.content = no(l) !== " " ? l : l.slice(0, -1);
       }
     },
     {
@@ -5021,23 +5021,23 @@ var R$ = (n) => {
         const i = I.getMatchingOpeningToken(t, l);
         I.addAttrs(c, i);
         const p = a.slice(0, a.lastIndexOf(n.leftDelimiter));
-        s.content = eo(p) !== " " ? p : p.slice(0, -1);
+        s.content = no(p) !== " " ? p : p.slice(0, -1);
       }
     }
   ];
 };
-function eo(n) {
+function no(n) {
   return n.slice(-1)[0];
 }
-const N$ = R$, P$ = {
+const Iz = Pz, Oz = {
   leftDelimiter: "{",
   rightDelimiter: "}",
   allowedAttributes: []
 };
-var I$ = function(e, t) {
-  let o = Object.assign({}, P$);
+var Fz = function(e, t) {
+  let o = Object.assign({}, Oz);
   o = Object.assign(o, t);
-  const r = N$(o);
+  const r = Iz(o);
   function s(a) {
     const c = a.tokens;
     for (let l = 0; l < c.length; l++)
@@ -5045,14 +5045,14 @@ var I$ = function(e, t) {
         const p = r[i];
         let h = null;
         p.tests.every((f) => {
-          const m = Jn(c, l, f);
+          const m = Yn(c, l, f);
           return m.j !== null && (h = m.j), m.match;
         }) && (p.transform(c, l, h), (p.name === "inline attributes" || p.name === "inline nesting 0") && i--);
       }
   }
   e.core.ruler.before("linkify", "curly_attributes", s);
 };
-function Jn(n, e, t) {
+function Yn(n, e, t) {
   const o = {
     match: !1,
     j: null
@@ -5060,26 +5060,26 @@ function Jn(n, e, t) {
   }, r = t.shift !== void 0 ? e + t.shift : t.position;
   if (t.shift !== void 0 && r < 0)
     return o;
-  const s = M$(n, r);
+  const s = $z(n, r);
   if (s === void 0)
     return o;
   for (const a of Object.keys(t))
     if (!(a === "shift" || a === "position")) {
       if (s[a] === void 0)
         return o;
-      if (a === "children" && O$(t.children)) {
+      if (a === "children" && Mz(t.children)) {
         if (s.children.length === 0)
           return o;
         let c;
         const l = t.children, i = s.children;
         if (l.every((p) => p.position !== void 0)) {
-          if (c = l.every((p) => Jn(i, p.position, p).match), c) {
-            const p = B$(l).position;
+          if (c = l.every((p) => Yn(i, p.position, p).match), c) {
+            const p = zz(l).position;
             o.j = p >= 0 ? p : i.length + p;
           }
         } else
           for (let p = 0; p < i.length; p++)
-            if (c = l.every((h) => Jn(i, p, h).match), c) {
+            if (c = l.every((h) => Yn(i, p, h).match), c) {
               o.j = p;
               break;
             }
@@ -5099,7 +5099,7 @@ function Jn(n, e, t) {
             return o;
           break;
         case "object":
-          if (F$(t[a])) {
+          if (Bz(t[a])) {
             if (t[a].every((l) => l(s[a])) === !1)
               return o;
             break;
@@ -5110,1859 +5110,1859 @@ function Jn(n, e, t) {
     }
   return o.match = !0, o;
 }
-function O$(n) {
+function Mz(n) {
   return Array.isArray(n) && n.length && n.every((e) => typeof e == "object");
 }
-function F$(n) {
+function Bz(n) {
   return Array.isArray(n) && n.length && n.every((e) => typeof e == "function");
 }
-function M$(n, e) {
+function $z(n, e) {
   return e >= 0 ? n[e] : n[n.length + e];
 }
-function B$(n) {
+function zz(n) {
   return n.slice(-1)[0] || {};
 }
-const z$ = /* @__PURE__ */ pn(I$), $$ = "😀", G$ = "😃", U$ = "😄", H$ = "😁", V$ = "😆", W$ = "😆", Z$ = "😅", J$ = "🤣", Q$ = "😂", Y$ = "🙂", X$ = "🙃", K$ = "😉", e5 = "😊", n5 = "😇", t5 = "🥰", o5 = "😍", s5 = "🤩", r5 = "😘", c5 = "😗", a5 = "☺️", i5 = "😚", l5 = "😙", u5 = "🥲", p5 = "😋", h5 = "😛", d5 = "😜", f5 = "🤪", m5 = "😝", g5 = "🤑", _5 = "🤗", b5 = "🤭", k5 = "🤫", y5 = "🤔", w5 = "🤐", v5 = "🤨", x5 = "😐", A5 = "😑", S5 = "😶", L5 = "😏", C5 = "😒", E5 = "🙄", T5 = "😬", D5 = "🤥", q5 = "😌", j5 = "😔", R5 = "😪", N5 = "🤤", P5 = "😴", I5 = "😷", O5 = "🤒", F5 = "🤕", M5 = "🤢", B5 = "🤮", z5 = "🤧", $5 = "🥵", G5 = "🥶", U5 = "🥴", H5 = "😵", V5 = "🤯", W5 = "🤠", Z5 = "🥳", J5 = "🥸", Q5 = "😎", Y5 = "🤓", X5 = "🧐", K5 = "😕", e6 = "😟", n6 = "🙁", t6 = "☹️", o6 = "😮", s6 = "😯", r6 = "😲", c6 = "😳", a6 = "🥺", i6 = "😦", l6 = "😧", u6 = "😨", p6 = "😰", h6 = "😥", d6 = "😢", f6 = "😭", m6 = "😱", g6 = "😖", _6 = "😣", b6 = "😞", k6 = "😓", y6 = "😩", w6 = "😫", v6 = "🥱", x6 = "😤", A6 = "😡", S6 = "😡", L6 = "😠", C6 = "🤬", E6 = "😈", T6 = "👿", D6 = "💀", q6 = "☠️", j6 = "💩", R6 = "💩", N6 = "💩", P6 = "🤡", I6 = "👹", O6 = "👺", F6 = "👻", M6 = "👽", B6 = "👾", z6 = "🤖", $6 = "😺", G6 = "😸", U6 = "😹", H6 = "😻", V6 = "😼", W6 = "😽", Z6 = "🙀", J6 = "😿", Q6 = "😾", Y6 = "🙈", X6 = "🙉", K6 = "🙊", e4 = "💋", n4 = "💌", t4 = "💘", o4 = "💝", s4 = "💖", r4 = "💗", c4 = "💓", a4 = "💞", i4 = "💕", l4 = "💟", u4 = "❣️", p4 = "💔", h4 = "❤️", d4 = "🧡", f4 = "💛", m4 = "💚", g4 = "💙", _4 = "💜", b4 = "🤎", k4 = "🖤", y4 = "🤍", w4 = "💢", v4 = "💥", x4 = "💥", A4 = "💫", S4 = "💦", L4 = "💨", C4 = "🕳️", E4 = "💣", T4 = "💬", D4 = "👁️‍🗨️", q4 = "🗨️", j4 = "🗯️", R4 = "💭", N4 = "💤", P4 = "👋", I4 = "🤚", O4 = "🖐️", F4 = "✋", M4 = "✋", B4 = "🖖", z4 = "👌", $4 = "🤌", G4 = "🤏", U4 = "✌️", H4 = "🤞", V4 = "🤟", W4 = "🤘", Z4 = "🤙", J4 = "👈", Q4 = "👉", Y4 = "👆", X4 = "🖕", K4 = "🖕", e8 = "👇", n8 = "☝️", t8 = "👍", o8 = "👎", s8 = "✊", r8 = "✊", c8 = "👊", a8 = "👊", i8 = "👊", l8 = "🤛", u8 = "🤜", p8 = "👏", h8 = "🙌", d8 = "👐", f8 = "🤲", m8 = "🤝", g8 = "🙏", _8 = "✍️", b8 = "💅", k8 = "🤳", y8 = "💪", w8 = "🦾", v8 = "🦿", x8 = "🦵", A8 = "🦶", S8 = "👂", L8 = "🦻", C8 = "👃", E8 = "🧠", T8 = "🫀", D8 = "🫁", q8 = "🦷", j8 = "🦴", R8 = "👀", N8 = "👁️", P8 = "👅", I8 = "👄", O8 = "👶", F8 = "🧒", M8 = "👦", B8 = "👧", z8 = "🧑", $8 = "👱", G8 = "👨", U8 = "🧔", H8 = "👨‍🦰", V8 = "👨‍🦱", W8 = "👨‍🦳", Z8 = "👨‍🦲", J8 = "👩", Q8 = "👩‍🦰", Y8 = "🧑‍🦰", X8 = "👩‍🦱", K8 = "🧑‍🦱", eG = "👩‍🦳", nG = "🧑‍🦳", tG = "👩‍🦲", oG = "🧑‍🦲", sG = "👱‍♀️", rG = "👱‍♀️", cG = "👱‍♂️", aG = "🧓", iG = "👴", lG = "👵", uG = "🙍", pG = "🙍‍♂️", hG = "🙍‍♀️", dG = "🙎", fG = "🙎‍♂️", mG = "🙎‍♀️", gG = "🙅", _G = "🙅‍♂️", bG = "🙅‍♂️", kG = "🙅‍♀️", yG = "🙅‍♀️", wG = "🙆", vG = "🙆‍♂️", xG = "🙆‍♀️", AG = "💁", SG = "💁", LG = "💁‍♂️", CG = "💁‍♂️", EG = "💁‍♀️", TG = "💁‍♀️", DG = "🙋", qG = "🙋‍♂️", jG = "🙋‍♀️", RG = "🧏", NG = "🧏‍♂️", PG = "🧏‍♀️", IG = "🙇", OG = "🙇‍♂️", FG = "🙇‍♀️", MG = "🤦", BG = "🤦‍♂️", zG = "🤦‍♀️", $G = "🤷", GG = "🤷‍♂️", UG = "🤷‍♀️", HG = "🧑‍⚕️", VG = "👨‍⚕️", WG = "👩‍⚕️", ZG = "🧑‍🎓", JG = "👨‍🎓", QG = "👩‍🎓", YG = "🧑‍🏫", XG = "👨‍🏫", KG = "👩‍🏫", eU = "🧑‍⚖️", nU = "👨‍⚖️", tU = "👩‍⚖️", oU = "🧑‍🌾", sU = "👨‍🌾", rU = "👩‍🌾", cU = "🧑‍🍳", aU = "👨‍🍳", iU = "👩‍🍳", lU = "🧑‍🔧", uU = "👨‍🔧", pU = "👩‍🔧", hU = "🧑‍🏭", dU = "👨‍🏭", fU = "👩‍🏭", mU = "🧑‍💼", gU = "👨‍💼", _U = "👩‍💼", bU = "🧑‍🔬", kU = "👨‍🔬", yU = "👩‍🔬", wU = "🧑‍💻", vU = "👨‍💻", xU = "👩‍💻", AU = "🧑‍🎤", SU = "👨‍🎤", LU = "👩‍🎤", CU = "🧑‍🎨", EU = "👨‍🎨", TU = "👩‍🎨", DU = "🧑‍✈️", qU = "👨‍✈️", jU = "👩‍✈️", RU = "🧑‍🚀", NU = "👨‍🚀", PU = "👩‍🚀", IU = "🧑‍🚒", OU = "👨‍🚒", FU = "👩‍🚒", MU = "👮", BU = "👮", zU = "👮‍♂️", $U = "👮‍♀️", GU = "🕵️", UU = "🕵️‍♂️", HU = "🕵️‍♀️", VU = "💂", WU = "💂‍♂️", ZU = "💂‍♀️", JU = "🥷", QU = "👷", YU = "👷‍♂️", XU = "👷‍♀️", KU = "🤴", e9 = "👸", n9 = "👳", t9 = "👳‍♂️", o9 = "👳‍♀️", s9 = "👲", r9 = "🧕", c9 = "🤵", a9 = "🤵‍♂️", i9 = "🤵‍♀️", l9 = "👰", u9 = "👰‍♂️", p9 = "👰‍♀️", h9 = "👰‍♀️", d9 = "🤰", f9 = "🤱", m9 = "👩‍🍼", g9 = "👨‍🍼", _9 = "🧑‍🍼", b9 = "👼", k9 = "🎅", y9 = "🤶", w9 = "🧑‍🎄", v9 = "🦸", x9 = "🦸‍♂️", A9 = "🦸‍♀️", S9 = "🦹", L9 = "🦹‍♂️", C9 = "🦹‍♀️", E9 = "🧙", T9 = "🧙‍♂️", D9 = "🧙‍♀️", q9 = "🧚", j9 = "🧚‍♂️", R9 = "🧚‍♀️", N9 = "🧛", P9 = "🧛‍♂️", I9 = "🧛‍♀️", O9 = "🧜", F9 = "🧜‍♂️", M9 = "🧜‍♀️", B9 = "🧝", z9 = "🧝‍♂️", $9 = "🧝‍♀️", G9 = "🧞", U9 = "🧞‍♂️", H9 = "🧞‍♀️", V9 = "🧟", W9 = "🧟‍♂️", Z9 = "🧟‍♀️", J9 = "💆", Q9 = "💆‍♂️", Y9 = "💆‍♀️", X9 = "💇", K9 = "💇‍♂️", e7 = "💇‍♀️", n7 = "🚶", t7 = "🚶‍♂️", o7 = "🚶‍♀️", s7 = "🧍", r7 = "🧍‍♂️", c7 = "🧍‍♀️", a7 = "🧎", i7 = "🧎‍♂️", l7 = "🧎‍♀️", u7 = "🧑‍🦯", p7 = "👨‍🦯", h7 = "👩‍🦯", d7 = "🧑‍🦼", f7 = "👨‍🦼", m7 = "👩‍🦼", g7 = "🧑‍🦽", _7 = "👨‍🦽", b7 = "👩‍🦽", k7 = "🏃", y7 = "🏃", w7 = "🏃‍♂️", v7 = "🏃‍♀️", x7 = "💃", A7 = "💃", S7 = "🕺", L7 = "🕴️", C7 = "👯", E7 = "👯‍♂️", T7 = "👯‍♀️", D7 = "🧖", q7 = "🧖‍♂️", j7 = "🧖‍♀️", R7 = "🧗", N7 = "🧗‍♂️", P7 = "🧗‍♀️", I7 = "🤺", O7 = "🏇", F7 = "⛷️", M7 = "🏂", B7 = "🏌️", z7 = "🏌️‍♂️", $7 = "🏌️‍♀️", G7 = "🏄", U7 = "🏄‍♂️", H7 = "🏄‍♀️", V7 = "🚣", W7 = "🚣‍♂️", Z7 = "🚣‍♀️", J7 = "🏊", Q7 = "🏊‍♂️", Y7 = "🏊‍♀️", X7 = "⛹️", K7 = "⛹️‍♂️", eH = "⛹️‍♂️", nH = "⛹️‍♀️", tH = "⛹️‍♀️", oH = "🏋️", sH = "🏋️‍♂️", rH = "🏋️‍♀️", cH = "🚴", aH = "🚴‍♂️", iH = "🚴‍♀️", lH = "🚵", uH = "🚵‍♂️", pH = "🚵‍♀️", hH = "🤸", dH = "🤸‍♂️", fH = "🤸‍♀️", mH = "🤼", gH = "🤼‍♂️", _H = "🤼‍♀️", bH = "🤽", kH = "🤽‍♂️", yH = "🤽‍♀️", wH = "🤾", vH = "🤾‍♂️", xH = "🤾‍♀️", AH = "🤹", SH = "🤹‍♂️", LH = "🤹‍♀️", CH = "🧘", EH = "🧘‍♂️", TH = "🧘‍♀️", DH = "🛀", qH = "🛌", jH = "🧑‍🤝‍🧑", RH = "👭", NH = "👫", PH = "👬", IH = "💏", OH = "👩‍❤️‍💋‍👨", FH = "👨‍❤️‍💋‍👨", MH = "👩‍❤️‍💋‍👩", BH = "💑", zH = "👩‍❤️‍👨", $H = "👨‍❤️‍👨", GH = "👩‍❤️‍👩", UH = "👪", HH = "👨‍👩‍👦", VH = "👨‍👩‍👧", WH = "👨‍👩‍👧‍👦", ZH = "👨‍👩‍👦‍👦", JH = "👨‍👩‍👧‍👧", QH = "👨‍👨‍👦", YH = "👨‍👨‍👧", XH = "👨‍👨‍👧‍👦", KH = "👨‍👨‍👦‍👦", eV = "👨‍👨‍👧‍👧", nV = "👩‍👩‍👦", tV = "👩‍👩‍👧", oV = "👩‍👩‍👧‍👦", sV = "👩‍👩‍👦‍👦", rV = "👩‍👩‍👧‍👧", cV = "👨‍👦", aV = "👨‍👦‍👦", iV = "👨‍👧", lV = "👨‍👧‍👦", uV = "👨‍👧‍👧", pV = "👩‍👦", hV = "👩‍👦‍👦", dV = "👩‍👧", fV = "👩‍👧‍👦", mV = "👩‍👧‍👧", gV = "🗣️", _V = "👤", bV = "👥", kV = "🫂", yV = "👣", wV = "🐵", vV = "🐒", xV = "🦍", AV = "🦧", SV = "🐶", LV = "🐕", CV = "🦮", EV = "🐕‍🦺", TV = "🐩", DV = "🐺", qV = "🦊", jV = "🦝", RV = "🐱", NV = "🐈", PV = "🐈‍⬛", IV = "🦁", OV = "🐯", FV = "🐅", MV = "🐆", BV = "🐴", zV = "🐎", $V = "🦄", GV = "🦓", UV = "🦌", HV = "🦬", VV = "🐮", WV = "🐂", ZV = "🐃", JV = "🐄", QV = "🐷", YV = "🐖", XV = "🐗", KV = "🐽", eW = "🐏", nW = "🐑", tW = "🐐", oW = "🐪", sW = "🐫", rW = "🦙", cW = "🦒", aW = "🐘", iW = "🦣", lW = "🦏", uW = "🦛", pW = "🐭", hW = "🐁", dW = "🐀", fW = "🐹", mW = "🐰", gW = "🐇", _W = "🐿️", bW = "🦫", kW = "🦔", yW = "🦇", wW = "🐻", vW = "🐻‍❄️", xW = "🐨", AW = "🐼", SW = "🦥", LW = "🦦", CW = "🦨", EW = "🦘", TW = "🦡", DW = "🐾", qW = "🐾", jW = "🦃", RW = "🐔", NW = "🐓", PW = "🐣", IW = "🐤", OW = "🐥", FW = "🐦", MW = "🐧", BW = "🕊️", zW = "🦅", $W = "🦆", GW = "🦢", UW = "🦉", HW = "🦤", VW = "🪶", WW = "🦩", ZW = "🦚", JW = "🦜", QW = "🐸", YW = "🐊", XW = "🐢", KW = "🦎", eZ = "🐍", nZ = "🐲", tZ = "🐉", oZ = "🦕", sZ = "🐳", rZ = "🐋", cZ = "🐬", aZ = "🐬", iZ = "🦭", lZ = "🐟", uZ = "🐠", pZ = "🐡", hZ = "🦈", dZ = "🐙", fZ = "🐚", mZ = "🐌", gZ = "🦋", _Z = "🐛", bZ = "🐜", kZ = "🐝", yZ = "🐝", wZ = "🪲", vZ = "🐞", xZ = "🦗", AZ = "🪳", SZ = "🕷️", LZ = "🕸️", CZ = "🦂", EZ = "🦟", TZ = "🪰", DZ = "🪱", qZ = "🦠", jZ = "💐", RZ = "🌸", NZ = "💮", PZ = "🏵️", IZ = "🌹", OZ = "🥀", FZ = "🌺", MZ = "🌻", BZ = "🌼", zZ = "🌷", $Z = "🌱", GZ = "🪴", UZ = "🌲", HZ = "🌳", VZ = "🌴", WZ = "🌵", ZZ = "🌾", JZ = "🌿", QZ = "☘️", YZ = "🍀", XZ = "🍁", KZ = "🍂", eJ = "🍃", nJ = "🍇", tJ = "🍈", oJ = "🍉", sJ = "🍊", rJ = "🍊", cJ = "🍊", aJ = "🍋", iJ = "🍌", lJ = "🍍", uJ = "🥭", pJ = "🍎", hJ = "🍏", dJ = "🍐", fJ = "🍑", mJ = "🍒", gJ = "🍓", _J = "🫐", bJ = "🥝", kJ = "🍅", yJ = "🫒", wJ = "🥥", vJ = "🥑", xJ = "🍆", AJ = "🥔", SJ = "🥕", LJ = "🌽", CJ = "🌶️", EJ = "🫑", TJ = "🥒", DJ = "🥬", qJ = "🥦", jJ = "🧄", RJ = "🧅", NJ = "🍄", PJ = "🥜", IJ = "🌰", OJ = "🍞", FJ = "🥐", MJ = "🥖", BJ = "🫓", zJ = "🥨", $J = "🥯", GJ = "🥞", UJ = "🧇", HJ = "🧀", VJ = "🍖", WJ = "🍗", ZJ = "🥩", JJ = "🥓", QJ = "🍔", YJ = "🍟", XJ = "🍕", KJ = "🌭", eQ = "🥪", nQ = "🌮", tQ = "🌯", oQ = "🫔", sQ = "🥙", rQ = "🧆", cQ = "🥚", aQ = "🍳", iQ = "🥘", lQ = "🍲", uQ = "🫕", pQ = "🥣", hQ = "🥗", dQ = "🍿", fQ = "🧈", mQ = "🧂", gQ = "🥫", _Q = "🍱", bQ = "🍘", kQ = "🍙", yQ = "🍚", wQ = "🍛", vQ = "🍜", xQ = "🍝", AQ = "🍠", SQ = "🍢", LQ = "🍣", CQ = "🍤", EQ = "🍥", TQ = "🥮", DQ = "🍡", qQ = "🥟", jQ = "🥠", RQ = "🥡", NQ = "🦀", PQ = "🦞", IQ = "🦐", OQ = "🦑", FQ = "🦪", MQ = "🍦", BQ = "🍧", zQ = "🍨", $Q = "🍩", GQ = "🍪", UQ = "🎂", HQ = "🍰", VQ = "🧁", WQ = "🥧", ZQ = "🍫", JQ = "🍬", QQ = "🍭", YQ = "🍮", XQ = "🍯", KQ = "🍼", eY = "🥛", nY = "☕", tY = "🫖", oY = "🍵", sY = "🍶", rY = "🍾", cY = "🍷", aY = "🍸", iY = "🍹", lY = "🍺", uY = "🍻", pY = "🥂", hY = "🥃", dY = "🥤", fY = "🧋", mY = "🧃", gY = "🧉", _Y = "🧊", bY = "🥢", kY = "🍽️", yY = "🍴", wY = "🥄", vY = "🔪", xY = "🔪", AY = "🏺", SY = "🌍", LY = "🌎", CY = "🌏", EY = "🌐", TY = "🗺️", DY = "🗾", qY = "🧭", jY = "🏔️", RY = "⛰️", NY = "🌋", PY = "🗻", IY = "🏕️", OY = "🏖️", FY = "🏜️", MY = "🏝️", BY = "🏞️", zY = "🏟️", $Y = "🏛️", GY = "🏗️", UY = "🧱", HY = "🪨", VY = "🪵", WY = "🛖", ZY = "🏘️", JY = "🏚️", QY = "🏠", YY = "🏡", XY = "🏢", KY = "🏣", eX = "🏤", nX = "🏥", tX = "🏦", oX = "🏨", sX = "🏩", rX = "🏪", cX = "🏫", aX = "🏬", iX = "🏭", lX = "🏯", uX = "🏰", pX = "💒", hX = "🗼", dX = "🗽", fX = "⛪", mX = "🕌", gX = "🛕", _X = "🕍", bX = "⛩️", kX = "🕋", yX = "⛲", wX = "⛺", vX = "🌁", xX = "🌃", AX = "🏙️", SX = "🌄", LX = "🌅", CX = "🌆", EX = "🌇", TX = "🌉", DX = "♨️", qX = "🎠", jX = "🎡", RX = "🎢", NX = "💈", PX = "🎪", IX = "🚂", OX = "🚃", FX = "🚄", MX = "🚅", BX = "🚆", zX = "🚇", $X = "🚈", GX = "🚉", UX = "🚊", HX = "🚝", VX = "🚞", WX = "🚋", ZX = "🚌", JX = "🚍", QX = "🚎", YX = "🚐", XX = "🚑", KX = "🚒", eK = "🚓", nK = "🚔", tK = "🚕", oK = "🚖", sK = "🚗", rK = "🚗", cK = "🚘", aK = "🚙", iK = "🛻", lK = "🚚", uK = "🚛", pK = "🚜", hK = "🏎️", dK = "🏍️", fK = "🛵", mK = "🦽", gK = "🦼", _K = "🛺", bK = "🚲", kK = "🛴", yK = "🛹", wK = "🛼", vK = "🚏", xK = "🛣️", AK = "🛤️", SK = "🛢️", LK = "⛽", CK = "🚨", EK = "🚥", TK = "🚦", DK = "🛑", qK = "🚧", jK = "⚓", RK = "⛵", NK = "⛵", PK = "🛶", IK = "🚤", OK = "🛳️", FK = "⛴️", MK = "🛥️", BK = "🚢", zK = "✈️", $K = "🛩️", GK = "🛫", UK = "🛬", HK = "🪂", VK = "💺", WK = "🚁", ZK = "🚟", JK = "🚠", QK = "🚡", YK = "🛰️", XK = "🚀", KK = "🛸", eee = "🛎️", nee = "🧳", tee = "⌛", oee = "⏳", see = "⌚", ree = "⏰", cee = "⏱️", aee = "⏲️", iee = "🕰️", lee = "🕛", uee = "🕧", pee = "🕐", hee = "🕜", dee = "🕑", fee = "🕝", mee = "🕒", gee = "🕞", _ee = "🕓", bee = "🕟", kee = "🕔", yee = "🕠", wee = "🕕", vee = "🕡", xee = "🕖", Aee = "🕢", See = "🕗", Lee = "🕣", Cee = "🕘", Eee = "🕤", Tee = "🕙", Dee = "🕥", qee = "🕚", jee = "🕦", Ree = "🌑", Nee = "🌒", Pee = "🌓", Iee = "🌔", Oee = "🌔", Fee = "🌕", Mee = "🌖", Bee = "🌗", zee = "🌘", $ee = "🌙", Gee = "🌚", Uee = "🌛", Hee = "🌜", Vee = "🌡️", Wee = "☀️", Zee = "🌝", Jee = "🌞", Qee = "🪐", Yee = "⭐", Xee = "🌟", Kee = "🌠", ene = "🌌", nne = "☁️", tne = "⛅", one = "⛈️", sne = "🌤️", rne = "🌥️", cne = "🌦️", ane = "🌧️", ine = "🌨️", lne = "🌩️", une = "🌪️", pne = "🌫️", hne = "🌬️", dne = "🌀", fne = "🌈", mne = "🌂", gne = "☂️", _ne = "☔", bne = "⛱️", kne = "⚡", yne = "❄️", wne = "☃️", vne = "⛄", xne = "☄️", Ane = "🔥", Sne = "💧", Lne = "🌊", Cne = "🎃", Ene = "🎄", Tne = "🎆", Dne = "🎇", qne = "🧨", jne = "✨", Rne = "🎈", Nne = "🎉", Pne = "🎊", Ine = "🎋", One = "🎍", Fne = "🎎", Mne = "🎏", Bne = "🎐", zne = "🎑", $ne = "🧧", Gne = "🎀", Une = "🎁", Hne = "🎗️", Vne = "🎟️", Wne = "🎫", Zne = "🎖️", Jne = "🏆", Qne = "🏅", Yne = "⚽", Xne = "⚾", Kne = "🥎", ete = "🏀", nte = "🏐", tte = "🏈", ote = "🏉", ste = "🎾", rte = "🥏", cte = "🎳", ate = "🏏", ite = "🏑", lte = "🏒", ute = "🥍", pte = "🏓", hte = "🏸", dte = "🥊", fte = "🥋", mte = "🥅", gte = "⛳", _te = "⛸️", bte = "🎣", kte = "🤿", yte = "🎽", wte = "🎿", vte = "🛷", xte = "🥌", Ate = "🎯", Ste = "🪀", Lte = "🪁", Cte = "🔮", Ete = "🪄", Tte = "🧿", Dte = "🎮", qte = "🕹️", jte = "🎰", Rte = "🎲", Nte = "🧩", Pte = "🧸", Ite = "🪅", Ote = "🪆", Fte = "♠️", Mte = "♥️", Bte = "♦️", zte = "♣️", $te = "♟️", Gte = "🃏", Ute = "🀄", Hte = "🎴", Vte = "🎭", Wte = "🖼️", Zte = "🎨", Jte = "🧵", Qte = "🪡", Yte = "🧶", Xte = "🪢", Kte = "👓", eoe = "🕶️", noe = "🥽", toe = "🥼", ooe = "🦺", soe = "👔", roe = "👕", coe = "👕", aoe = "👖", ioe = "🧣", loe = "🧤", uoe = "🧥", poe = "🧦", hoe = "👗", doe = "👘", foe = "🥻", moe = "🩱", goe = "🩲", _oe = "🩳", boe = "👙", koe = "👚", yoe = "👛", woe = "👜", voe = "👝", xoe = "🛍️", Aoe = "🎒", Soe = "🩴", Loe = "👞", Coe = "👞", Eoe = "👟", Toe = "🥾", Doe = "🥿", qoe = "👠", joe = "👡", Roe = "🩰", Noe = "👢", Poe = "👑", Ioe = "👒", Ooe = "🎩", Foe = "🎓", Moe = "🧢", Boe = "🪖", zoe = "⛑️", $oe = "📿", Goe = "💄", Uoe = "💍", Hoe = "💎", Voe = "🔇", Woe = "🔈", Zoe = "🔉", Joe = "🔊", Qoe = "📢", Yoe = "📣", Xoe = "📯", Koe = "🔔", ese = "🔕", nse = "🎼", tse = "🎵", ose = "🎶", sse = "🎙️", rse = "🎚️", cse = "🎛️", ase = "🎤", ise = "🎧", lse = "📻", use = "🎷", pse = "🪗", hse = "🎸", dse = "🎹", fse = "🎺", mse = "🎻", gse = "🪕", _se = "🥁", bse = "🪘", kse = "📱", yse = "📲", wse = "☎️", vse = "☎️", xse = "📞", Ase = "📟", Sse = "📠", Lse = "🔋", Cse = "🔌", Ese = "💻", Tse = "🖥️", Dse = "🖨️", qse = "⌨️", jse = "🖱️", Rse = "🖲️", Nse = "💽", Pse = "💾", Ise = "💿", Ose = "📀", Fse = "🧮", Mse = "🎥", Bse = "🎞️", zse = "📽️", $se = "🎬", Gse = "📺", Use = "📷", Hse = "📸", Vse = "📹", Wse = "📼", Zse = "🔍", Jse = "🔎", Qse = "🕯️", Yse = "💡", Xse = "🔦", Kse = "🏮", ere = "🏮", nre = "🪔", tre = "📔", ore = "📕", sre = "📖", rre = "📖", cre = "📗", are = "📘", ire = "📙", lre = "📚", ure = "📓", pre = "📒", hre = "📃", dre = "📜", fre = "📄", mre = "📰", gre = "🗞️", _re = "📑", bre = "🔖", kre = "🏷️", yre = "💰", wre = "🪙", vre = "💴", xre = "💵", Are = "💶", Sre = "💷", Lre = "💸", Cre = "💳", Ere = "🧾", Tre = "💹", Dre = "✉️", qre = "📧", jre = "📨", Rre = "📩", Nre = "📤", Pre = "📥", Ire = "📫", Ore = "📪", Fre = "📬", Mre = "📭", Bre = "📮", zre = "🗳️", $re = "✏️", Gre = "✒️", Ure = "🖋️", Hre = "🖊️", Vre = "🖌️", Wre = "🖍️", Zre = "📝", Jre = "📝", Qre = "💼", Yre = "📁", Xre = "📂", Kre = "🗂️", ece = "📅", nce = "📆", tce = "🗒️", oce = "🗓️", sce = "📇", rce = "📈", cce = "📉", ace = "📊", ice = "📋", lce = "📌", uce = "📍", pce = "📎", hce = "🖇️", dce = "📏", fce = "📐", mce = "✂️", gce = "🗃️", _ce = "🗄️", bce = "🗑️", kce = "🔒", yce = "🔓", wce = "🔏", vce = "🔐", xce = "🔑", Ace = "🗝️", Sce = "🔨", Lce = "🪓", Cce = "⛏️", Ece = "⚒️", Tce = "🛠️", Dce = "🗡️", qce = "⚔️", jce = "🔫", Rce = "🪃", Nce = "🏹", Pce = "🛡️", Ice = "🪚", Oce = "🔧", Fce = "🪛", Mce = "🔩", Bce = "⚙️", zce = "🗜️", $ce = "⚖️", Gce = "🦯", Uce = "🔗", Hce = "⛓️", Vce = "🪝", Wce = "🧰", Zce = "🧲", Jce = "🪜", Qce = "⚗️", Yce = "🧪", Xce = "🧫", Kce = "🧬", eae = "🔬", nae = "🔭", tae = "📡", oae = "💉", sae = "🩸", rae = "💊", cae = "🩹", aae = "🩺", iae = "🚪", lae = "🛗", uae = "🪞", pae = "🪟", hae = "🛏️", dae = "🛋️", fae = "🪑", mae = "🚽", gae = "🪠", _ae = "🚿", bae = "🛁", kae = "🪤", yae = "🪒", wae = "🧴", vae = "🧷", xae = "🧹", Aae = "🧺", Sae = "🧻", Lae = "🪣", Cae = "🧼", Eae = "🪥", Tae = "🧽", Dae = "🧯", qae = "🛒", jae = "🚬", Rae = "⚰️", Nae = "🪦", Pae = "⚱️", Iae = "🗿", Oae = "🪧", Fae = "🏧", Mae = "🚮", Bae = "🚰", zae = "♿", $ae = "🚹", Gae = "🚺", Uae = "🚻", Hae = "🚼", Vae = "🚾", Wae = "🛂", Zae = "🛃", Jae = "🛄", Qae = "🛅", Yae = "⚠️", Xae = "🚸", Kae = "⛔", eie = "🚫", nie = "🚳", tie = "🚭", oie = "🚯", sie = "🚷", rie = "📵", cie = "🔞", aie = "☢️", iie = "☣️", lie = "⬆️", uie = "↗️", pie = "➡️", hie = "↘️", die = "⬇️", fie = "↙️", mie = "⬅️", gie = "↖️", _ie = "↕️", bie = "↔️", kie = "↩️", yie = "↪️", wie = "⤴️", vie = "⤵️", xie = "🔃", Aie = "🔄", Sie = "🔙", Lie = "🔚", Cie = "🔛", Eie = "🔜", Tie = "🔝", Die = "🛐", qie = "⚛️", jie = "🕉️", Rie = "✡️", Nie = "☸️", Pie = "☯️", Iie = "✝️", Oie = "☦️", Fie = "☪️", Mie = "☮️", Bie = "🕎", zie = "🔯", $ie = "♈", Gie = "♉", Uie = "♊", Hie = "♋", Vie = "♌", Wie = "♍", Zie = "♎", Jie = "♏", Qie = "♐", Yie = "♑", Xie = "♒", Kie = "♓", ele = "⛎", nle = "🔀", tle = "🔁", ole = "🔂", sle = "▶️", rle = "⏩", cle = "⏭️", ale = "⏯️", ile = "◀️", lle = "⏪", ule = "⏮️", ple = "🔼", hle = "⏫", dle = "🔽", fle = "⏬", mle = "⏸️", gle = "⏹️", _le = "⏺️", ble = "⏏️", kle = "🎦", yle = "🔅", wle = "🔆", vle = "📶", xle = "📳", Ale = "📴", Sle = "♀️", Lle = "♂️", Cle = "⚧️", Ele = "✖️", Tle = "➕", Dle = "➖", qle = "➗", jle = "♾️", Rle = "‼️", Nle = "⁉️", Ple = "❓", Ile = "❔", Ole = "❕", Fle = "❗", Mle = "❗", Ble = "〰️", zle = "💱", $le = "💲", Gle = "⚕️", Ule = "♻️", Hle = "⚜️", Vle = "🔱", Wle = "📛", Zle = "🔰", Jle = "⭕", Qle = "✅", Yle = "☑️", Xle = "✔️", Kle = "❌", eue = "❎", nue = "➰", tue = "➿", oue = "〽️", sue = "✳️", rue = "✴️", cue = "❇️", aue = "©️", iue = "®️", lue = "™️", uue = "#️⃣", pue = "*️⃣", hue = "0️⃣", due = "1️⃣", fue = "2️⃣", mue = "3️⃣", gue = "4️⃣", _ue = "5️⃣", bue = "6️⃣", kue = "7️⃣", yue = "8️⃣", wue = "9️⃣", vue = "🔟", xue = "🔠", Aue = "🔡", Sue = "🔣", Lue = "🔤", Cue = "🅰️", Eue = "🆎", Tue = "🅱️", Due = "🆑", que = "🆒", jue = "🆓", Rue = "ℹ️", Nue = "🆔", Pue = "Ⓜ️", Iue = "🆖", Oue = "🅾️", Fue = "🆗", Mue = "🅿️", Bue = "🆘", zue = "🆙", $ue = "🆚", Gue = "🈁", Uue = "🈂️", Hue = "🉐", Vue = "🉑", Wue = "㊗️", Zue = "㊙️", Jue = "🈵", Que = "🔴", Yue = "🟠", Xue = "🟡", Kue = "🟢", epe = "🔵", npe = "🟣", tpe = "🟤", ope = "⚫", spe = "⚪", rpe = "🟥", cpe = "🟧", ape = "🟨", ipe = "🟩", lpe = "🟦", upe = "🟪", ppe = "🟫", hpe = "⬛", dpe = "⬜", fpe = "◼️", mpe = "◻️", gpe = "◾", _pe = "◽", bpe = "▪️", kpe = "▫️", ype = "🔶", wpe = "🔷", vpe = "🔸", xpe = "🔹", Ape = "🔺", Spe = "🔻", Lpe = "💠", Cpe = "🔘", Epe = "🔳", Tpe = "🔲", Dpe = "🏁", qpe = "🚩", jpe = "🎌", Rpe = "🏴", Npe = "🏳️", Ppe = "🏳️‍🌈", Ipe = "🏳️‍⚧️", Ope = "🏴‍☠️", Fpe = "🇦🇨", Mpe = "🇦🇩", Bpe = "🇦🇪", zpe = "🇦🇫", $pe = "🇦🇬", Gpe = "🇦🇮", Upe = "🇦🇱", Hpe = "🇦🇲", Vpe = "🇦🇴", Wpe = "🇦🇶", Zpe = "🇦🇷", Jpe = "🇦🇸", Qpe = "🇦🇹", Ype = "🇦🇺", Xpe = "🇦🇼", Kpe = "🇦🇽", ehe = "🇦🇿", nhe = "🇧🇦", the = "🇧🇧", ohe = "🇧🇩", she = "🇧🇪", rhe = "🇧🇫", che = "🇧🇬", ahe = "🇧🇭", ihe = "🇧🇮", lhe = "🇧🇯", uhe = "🇧🇱", phe = "🇧🇲", hhe = "🇧🇳", dhe = "🇧🇴", fhe = "🇧🇶", mhe = "🇧🇷", ghe = "🇧🇸", _he = "🇧🇹", bhe = "🇧🇻", khe = "🇧🇼", yhe = "🇧🇾", whe = "🇧🇿", vhe = "🇨🇦", xhe = "🇨🇨", Ahe = "🇨🇩", She = "🇨🇫", Lhe = "🇨🇬", Che = "🇨🇭", Ehe = "🇨🇮", The = "🇨🇰", Dhe = "🇨🇱", qhe = "🇨🇲", jhe = "🇨🇳", Rhe = "🇨🇴", Nhe = "🇨🇵", Phe = "🇨🇷", Ihe = "🇨🇺", Ohe = "🇨🇻", Fhe = "🇨🇼", Mhe = "🇨🇽", Bhe = "🇨🇾", zhe = "🇨🇿", $he = "🇩🇪", Ghe = "🇩🇬", Uhe = "🇩🇯", Hhe = "🇩🇰", Vhe = "🇩🇲", Whe = "🇩🇴", Zhe = "🇩🇿", Jhe = "🇪🇦", Qhe = "🇪🇨", Yhe = "🇪🇪", Xhe = "🇪🇬", Khe = "🇪🇭", ede = "🇪🇷", nde = "🇪🇸", tde = "🇪🇹", ode = "🇪🇺", sde = "🇪🇺", rde = "🇫🇮", cde = "🇫🇯", ade = "🇫🇰", ide = "🇫🇲", lde = "🇫🇴", ude = "🇫🇷", pde = "🇬🇦", hde = "🇬🇧", dde = "🇬🇧", fde = "🇬🇩", mde = "🇬🇪", gde = "🇬🇫", _de = "🇬🇬", bde = "🇬🇭", kde = "🇬🇮", yde = "🇬🇱", wde = "🇬🇲", vde = "🇬🇳", xde = "🇬🇵", Ade = "🇬🇶", Sde = "🇬🇷", Lde = "🇬🇸", Cde = "🇬🇹", Ede = "🇬🇺", Tde = "🇬🇼", Dde = "🇬🇾", qde = "🇭🇰", jde = "🇭🇲", Rde = "🇭🇳", Nde = "🇭🇷", Pde = "🇭🇹", Ide = "🇭🇺", Ode = "🇮🇨", Fde = "🇮🇩", Mde = "🇮🇪", Bde = "🇮🇱", zde = "🇮🇲", $de = "🇮🇳", Gde = "🇮🇴", Ude = "🇮🇶", Hde = "🇮🇷", Vde = "🇮🇸", Wde = "🇮🇹", Zde = "🇯🇪", Jde = "🇯🇲", Qde = "🇯🇴", Yde = "🇯🇵", Xde = "🇰🇪", Kde = "🇰🇬", efe = "🇰🇭", nfe = "🇰🇮", tfe = "🇰🇲", ofe = "🇰🇳", sfe = "🇰🇵", rfe = "🇰🇷", cfe = "🇰🇼", afe = "🇰🇾", ife = "🇰🇿", lfe = "🇱🇦", ufe = "🇱🇧", pfe = "🇱🇨", hfe = "🇱🇮", dfe = "🇱🇰", ffe = "🇱🇷", mfe = "🇱🇸", gfe = "🇱🇹", _fe = "🇱🇺", bfe = "🇱🇻", kfe = "🇱🇾", yfe = "🇲🇦", wfe = "🇲🇨", vfe = "🇲🇩", xfe = "🇲🇪", Afe = "🇲🇫", Sfe = "🇲🇬", Lfe = "🇲🇭", Cfe = "🇲🇰", Efe = "🇲🇱", Tfe = "🇲🇲", Dfe = "🇲🇳", qfe = "🇲🇴", jfe = "🇲🇵", Rfe = "🇲🇶", Nfe = "🇲🇷", Pfe = "🇲🇸", Ife = "🇲🇹", Ofe = "🇲🇺", Ffe = "🇲🇻", Mfe = "🇲🇼", Bfe = "🇲🇽", zfe = "🇲🇾", $fe = "🇲🇿", Gfe = "🇳🇦", Ufe = "🇳🇨", Hfe = "🇳🇪", Vfe = "🇳🇫", Wfe = "🇳🇬", Zfe = "🇳🇮", Jfe = "🇳🇱", Qfe = "🇳🇴", Yfe = "🇳🇵", Xfe = "🇳🇷", Kfe = "🇳🇺", eme = "🇳🇿", nme = "🇴🇲", tme = "🇵🇦", ome = "🇵🇪", sme = "🇵🇫", rme = "🇵🇬", cme = "🇵🇭", ame = "🇵🇰", ime = "🇵🇱", lme = "🇵🇲", ume = "🇵🇳", pme = "🇵🇷", hme = "🇵🇸", dme = "🇵🇹", fme = "🇵🇼", mme = "🇵🇾", gme = "🇶🇦", _me = "🇷🇪", bme = "🇷🇴", kme = "🇷🇸", yme = "🇷🇺", wme = "🇷🇼", vme = "🇸🇦", xme = "🇸🇧", Ame = "🇸🇨", Sme = "🇸🇩", Lme = "🇸🇪", Cme = "🇸🇬", Eme = "🇸🇭", Tme = "🇸🇮", Dme = "🇸🇯", qme = "🇸🇰", jme = "🇸🇱", Rme = "🇸🇲", Nme = "🇸🇳", Pme = "🇸🇴", Ime = "🇸🇷", Ome = "🇸🇸", Fme = "🇸🇹", Mme = "🇸🇻", Bme = "🇸🇽", zme = "🇸🇾", $me = "🇸🇿", Gme = "🇹🇦", Ume = "🇹🇨", Hme = "🇹🇩", Vme = "🇹🇫", Wme = "🇹🇬", Zme = "🇹🇭", Jme = "🇹🇯", Qme = "🇹🇰", Yme = "🇹🇱", Xme = "🇹🇲", Kme = "🇹🇳", ege = "🇹🇴", nge = "🇹🇷", tge = "🇹🇹", oge = "🇹🇻", sge = "🇹🇼", rge = "🇹🇿", cge = "🇺🇦", age = "🇺🇬", ige = "🇺🇲", lge = "🇺🇳", uge = "🇺🇸", pge = "🇺🇾", hge = "🇺🇿", dge = "🇻🇦", fge = "🇻🇨", mge = "🇻🇪", gge = "🇻🇬", _ge = "🇻🇮", bge = "🇻🇳", kge = "🇻🇺", yge = "🇼🇫", wge = "🇼🇸", vge = "🇽🇰", xge = "🇾🇪", Age = "🇾🇹", Sge = "🇿🇦", Lge = "🇿🇲", Cge = "🇿🇼", Ege = "🏴󠁧󠁢󠁥󠁮󠁧󠁿", Tge = "🏴󠁧󠁢󠁳󠁣󠁴󠁿", Dge = "🏴󠁧󠁢󠁷󠁬󠁳󠁿", qge = {
+const Gz = /* @__PURE__ */ hn(Fz), Uz = "😀", Hz = "😃", Vz = "😄", Wz = "😁", Zz = "😆", Jz = "😆", Qz = "😅", Yz = "🤣", Xz = "😂", Kz = "🙂", e5 = "🙃", n5 = "😉", t5 = "😊", o5 = "😇", s5 = "🥰", r5 = "😍", c5 = "🤩", a5 = "😘", i5 = "😗", l5 = "☺️", u5 = "😚", p5 = "😙", h5 = "🥲", d5 = "😋", f5 = "😛", m5 = "😜", g5 = "🤪", _5 = "😝", b5 = "🤑", k5 = "🤗", y5 = "🤭", w5 = "🤫", v5 = "🤔", x5 = "🤐", A5 = "🤨", S5 = "😐", L5 = "😑", C5 = "😶", E5 = "😏", T5 = "😒", D5 = "🙄", q5 = "😬", j5 = "🤥", R5 = "😌", N5 = "😔", P5 = "😪", I5 = "🤤", O5 = "😴", F5 = "😷", M5 = "🤒", B5 = "🤕", $5 = "🤢", z5 = "🤮", G5 = "🤧", U5 = "🥵", H5 = "🥶", V5 = "🥴", W5 = "😵", Z5 = "🤯", J5 = "🤠", Q5 = "🥳", Y5 = "🥸", X5 = "😎", K5 = "🤓", e6 = "🧐", n6 = "😕", t6 = "😟", o6 = "🙁", s6 = "☹️", r6 = "😮", c6 = "😯", a6 = "😲", i6 = "😳", l6 = "🥺", u6 = "😦", p6 = "😧", h6 = "😨", d6 = "😰", f6 = "😥", m6 = "😢", g6 = "😭", _6 = "😱", b6 = "😖", k6 = "😣", y6 = "😞", w6 = "😓", v6 = "😩", x6 = "😫", A6 = "🥱", S6 = "😤", L6 = "😡", C6 = "😡", E6 = "😠", T6 = "🤬", D6 = "😈", q6 = "👿", j6 = "💀", R6 = "☠️", N6 = "💩", P6 = "💩", I6 = "💩", O6 = "🤡", F6 = "👹", M6 = "👺", B6 = "👻", $6 = "👽", z6 = "👾", G6 = "🤖", U6 = "😺", H6 = "😸", V6 = "😹", W6 = "😻", Z6 = "😼", J6 = "😽", Q6 = "🙀", Y6 = "😿", X6 = "😾", K6 = "🙈", e4 = "🙉", n4 = "🙊", t4 = "💋", o4 = "💌", s4 = "💘", r4 = "💝", c4 = "💖", a4 = "💗", i4 = "💓", l4 = "💞", u4 = "💕", p4 = "💟", h4 = "❣️", d4 = "💔", f4 = "❤️", m4 = "🧡", g4 = "💛", _4 = "💚", b4 = "💙", k4 = "💜", y4 = "🤎", w4 = "🖤", v4 = "🤍", x4 = "💢", A4 = "💥", S4 = "💥", L4 = "💫", C4 = "💦", E4 = "💨", T4 = "🕳️", D4 = "💣", q4 = "💬", j4 = "👁️‍🗨️", R4 = "🗨️", N4 = "🗯️", P4 = "💭", I4 = "💤", O4 = "👋", F4 = "🤚", M4 = "🖐️", B4 = "✋", $4 = "✋", z4 = "🖖", G4 = "👌", U4 = "🤌", H4 = "🤏", V4 = "✌️", W4 = "🤞", Z4 = "🤟", J4 = "🤘", Q4 = "🤙", Y4 = "👈", X4 = "👉", K4 = "👆", e8 = "🖕", n8 = "🖕", t8 = "👇", o8 = "☝️", s8 = "👍", r8 = "👎", c8 = "✊", a8 = "✊", i8 = "👊", l8 = "👊", u8 = "👊", p8 = "🤛", h8 = "🤜", d8 = "👏", f8 = "🙌", m8 = "👐", g8 = "🤲", _8 = "🤝", b8 = "🙏", k8 = "✍️", y8 = "💅", w8 = "🤳", v8 = "💪", x8 = "🦾", A8 = "🦿", S8 = "🦵", L8 = "🦶", C8 = "👂", E8 = "🦻", T8 = "👃", D8 = "🧠", q8 = "🫀", j8 = "🫁", R8 = "🦷", N8 = "🦴", P8 = "👀", I8 = "👁️", O8 = "👅", F8 = "👄", M8 = "👶", B8 = "🧒", $8 = "👦", z8 = "👧", G8 = "🧑", U8 = "👱", H8 = "👨", V8 = "🧔", W8 = "👨‍🦰", Z8 = "👨‍🦱", J8 = "👨‍🦳", Q8 = "👨‍🦲", Y8 = "👩", X8 = "👩‍🦰", K8 = "🧑‍🦰", eG = "👩‍🦱", nG = "🧑‍🦱", tG = "👩‍🦳", oG = "🧑‍🦳", sG = "👩‍🦲", rG = "🧑‍🦲", cG = "👱‍♀️", aG = "👱‍♀️", iG = "👱‍♂️", lG = "🧓", uG = "👴", pG = "👵", hG = "🙍", dG = "🙍‍♂️", fG = "🙍‍♀️", mG = "🙎", gG = "🙎‍♂️", _G = "🙎‍♀️", bG = "🙅", kG = "🙅‍♂️", yG = "🙅‍♂️", wG = "🙅‍♀️", vG = "🙅‍♀️", xG = "🙆", AG = "🙆‍♂️", SG = "🙆‍♀️", LG = "💁", CG = "💁", EG = "💁‍♂️", TG = "💁‍♂️", DG = "💁‍♀️", qG = "💁‍♀️", jG = "🙋", RG = "🙋‍♂️", NG = "🙋‍♀️", PG = "🧏", IG = "🧏‍♂️", OG = "🧏‍♀️", FG = "🙇", MG = "🙇‍♂️", BG = "🙇‍♀️", $G = "🤦", zG = "🤦‍♂️", GG = "🤦‍♀️", UG = "🤷", HG = "🤷‍♂️", VG = "🤷‍♀️", WG = "🧑‍⚕️", ZG = "👨‍⚕️", JG = "👩‍⚕️", QG = "🧑‍🎓", YG = "👨‍🎓", XG = "👩‍🎓", KG = "🧑‍🏫", eU = "👨‍🏫", nU = "👩‍🏫", tU = "🧑‍⚖️", oU = "👨‍⚖️", sU = "👩‍⚖️", rU = "🧑‍🌾", cU = "👨‍🌾", aU = "👩‍🌾", iU = "🧑‍🍳", lU = "👨‍🍳", uU = "👩‍🍳", pU = "🧑‍🔧", hU = "👨‍🔧", dU = "👩‍🔧", fU = "🧑‍🏭", mU = "👨‍🏭", gU = "👩‍🏭", _U = "🧑‍💼", bU = "👨‍💼", kU = "👩‍💼", yU = "🧑‍🔬", wU = "👨‍🔬", vU = "👩‍🔬", xU = "🧑‍💻", AU = "👨‍💻", SU = "👩‍💻", LU = "🧑‍🎤", CU = "👨‍🎤", EU = "👩‍🎤", TU = "🧑‍🎨", DU = "👨‍🎨", qU = "👩‍🎨", jU = "🧑‍✈️", RU = "👨‍✈️", NU = "👩‍✈️", PU = "🧑‍🚀", IU = "👨‍🚀", OU = "👩‍🚀", FU = "🧑‍🚒", MU = "👨‍🚒", BU = "👩‍🚒", $U = "👮", zU = "👮", GU = "👮‍♂️", UU = "👮‍♀️", HU = "🕵️", VU = "🕵️‍♂️", WU = "🕵️‍♀️", ZU = "💂", JU = "💂‍♂️", QU = "💂‍♀️", YU = "🥷", XU = "👷", KU = "👷‍♂️", e9 = "👷‍♀️", n9 = "🤴", t9 = "👸", o9 = "👳", s9 = "👳‍♂️", r9 = "👳‍♀️", c9 = "👲", a9 = "🧕", i9 = "🤵", l9 = "🤵‍♂️", u9 = "🤵‍♀️", p9 = "👰", h9 = "👰‍♂️", d9 = "👰‍♀️", f9 = "👰‍♀️", m9 = "🤰", g9 = "🤱", _9 = "👩‍🍼", b9 = "👨‍🍼", k9 = "🧑‍🍼", y9 = "👼", w9 = "🎅", v9 = "🤶", x9 = "🧑‍🎄", A9 = "🦸", S9 = "🦸‍♂️", L9 = "🦸‍♀️", C9 = "🦹", E9 = "🦹‍♂️", T9 = "🦹‍♀️", D9 = "🧙", q9 = "🧙‍♂️", j9 = "🧙‍♀️", R9 = "🧚", N9 = "🧚‍♂️", P9 = "🧚‍♀️", I9 = "🧛", O9 = "🧛‍♂️", F9 = "🧛‍♀️", M9 = "🧜", B9 = "🧜‍♂️", $9 = "🧜‍♀️", z9 = "🧝", G9 = "🧝‍♂️", U9 = "🧝‍♀️", H9 = "🧞", V9 = "🧞‍♂️", W9 = "🧞‍♀️", Z9 = "🧟", J9 = "🧟‍♂️", Q9 = "🧟‍♀️", Y9 = "💆", X9 = "💆‍♂️", K9 = "💆‍♀️", e7 = "💇", n7 = "💇‍♂️", t7 = "💇‍♀️", o7 = "🚶", s7 = "🚶‍♂️", r7 = "🚶‍♀️", c7 = "🧍", a7 = "🧍‍♂️", i7 = "🧍‍♀️", l7 = "🧎", u7 = "🧎‍♂️", p7 = "🧎‍♀️", h7 = "🧑‍🦯", d7 = "👨‍🦯", f7 = "👩‍🦯", m7 = "🧑‍🦼", g7 = "👨‍🦼", _7 = "👩‍🦼", b7 = "🧑‍🦽", k7 = "👨‍🦽", y7 = "👩‍🦽", w7 = "🏃", v7 = "🏃", x7 = "🏃‍♂️", A7 = "🏃‍♀️", S7 = "💃", L7 = "💃", C7 = "🕺", E7 = "🕴️", T7 = "👯", D7 = "👯‍♂️", q7 = "👯‍♀️", j7 = "🧖", R7 = "🧖‍♂️", N7 = "🧖‍♀️", P7 = "🧗", I7 = "🧗‍♂️", O7 = "🧗‍♀️", F7 = "🤺", M7 = "🏇", B7 = "⛷️", $7 = "🏂", z7 = "🏌️", G7 = "🏌️‍♂️", U7 = "🏌️‍♀️", H7 = "🏄", V7 = "🏄‍♂️", W7 = "🏄‍♀️", Z7 = "🚣", J7 = "🚣‍♂️", Q7 = "🚣‍♀️", Y7 = "🏊", X7 = "🏊‍♂️", K7 = "🏊‍♀️", eH = "⛹️", nH = "⛹️‍♂️", tH = "⛹️‍♂️", oH = "⛹️‍♀️", sH = "⛹️‍♀️", rH = "🏋️", cH = "🏋️‍♂️", aH = "🏋️‍♀️", iH = "🚴", lH = "🚴‍♂️", uH = "🚴‍♀️", pH = "🚵", hH = "🚵‍♂️", dH = "🚵‍♀️", fH = "🤸", mH = "🤸‍♂️", gH = "🤸‍♀️", _H = "🤼", bH = "🤼‍♂️", kH = "🤼‍♀️", yH = "🤽", wH = "🤽‍♂️", vH = "🤽‍♀️", xH = "🤾", AH = "🤾‍♂️", SH = "🤾‍♀️", LH = "🤹", CH = "🤹‍♂️", EH = "🤹‍♀️", TH = "🧘", DH = "🧘‍♂️", qH = "🧘‍♀️", jH = "🛀", RH = "🛌", NH = "🧑‍🤝‍🧑", PH = "👭", IH = "👫", OH = "👬", FH = "💏", MH = "👩‍❤️‍💋‍👨", BH = "👨‍❤️‍💋‍👨", $H = "👩‍❤️‍💋‍👩", zH = "💑", GH = "👩‍❤️‍👨", UH = "👨‍❤️‍👨", HH = "👩‍❤️‍👩", VH = "👪", WH = "👨‍👩‍👦", ZH = "👨‍👩‍👧", JH = "👨‍👩‍👧‍👦", QH = "👨‍👩‍👦‍👦", YH = "👨‍👩‍👧‍👧", XH = "👨‍👨‍👦", KH = "👨‍👨‍👧", eV = "👨‍👨‍👧‍👦", nV = "👨‍👨‍👦‍👦", tV = "👨‍👨‍👧‍👧", oV = "👩‍👩‍👦", sV = "👩‍👩‍👧", rV = "👩‍👩‍👧‍👦", cV = "👩‍👩‍👦‍👦", aV = "👩‍👩‍👧‍👧", iV = "👨‍👦", lV = "👨‍👦‍👦", uV = "👨‍👧", pV = "👨‍👧‍👦", hV = "👨‍👧‍👧", dV = "👩‍👦", fV = "👩‍👦‍👦", mV = "👩‍👧", gV = "👩‍👧‍👦", _V = "👩‍👧‍👧", bV = "🗣️", kV = "👤", yV = "👥", wV = "🫂", vV = "👣", xV = "🐵", AV = "🐒", SV = "🦍", LV = "🦧", CV = "🐶", EV = "🐕", TV = "🦮", DV = "🐕‍🦺", qV = "🐩", jV = "🐺", RV = "🦊", NV = "🦝", PV = "🐱", IV = "🐈", OV = "🐈‍⬛", FV = "🦁", MV = "🐯", BV = "🐅", $V = "🐆", zV = "🐴", GV = "🐎", UV = "🦄", HV = "🦓", VV = "🦌", WV = "🦬", ZV = "🐮", JV = "🐂", QV = "🐃", YV = "🐄", XV = "🐷", KV = "🐖", eW = "🐗", nW = "🐽", tW = "🐏", oW = "🐑", sW = "🐐", rW = "🐪", cW = "🐫", aW = "🦙", iW = "🦒", lW = "🐘", uW = "🦣", pW = "🦏", hW = "🦛", dW = "🐭", fW = "🐁", mW = "🐀", gW = "🐹", _W = "🐰", bW = "🐇", kW = "🐿️", yW = "🦫", wW = "🦔", vW = "🦇", xW = "🐻", AW = "🐻‍❄️", SW = "🐨", LW = "🐼", CW = "🦥", EW = "🦦", TW = "🦨", DW = "🦘", qW = "🦡", jW = "🐾", RW = "🐾", NW = "🦃", PW = "🐔", IW = "🐓", OW = "🐣", FW = "🐤", MW = "🐥", BW = "🐦", $W = "🐧", zW = "🕊️", GW = "🦅", UW = "🦆", HW = "🦢", VW = "🦉", WW = "🦤", ZW = "🪶", JW = "🦩", QW = "🦚", YW = "🦜", XW = "🐸", KW = "🐊", eZ = "🐢", nZ = "🦎", tZ = "🐍", oZ = "🐲", sZ = "🐉", rZ = "🦕", cZ = "🐳", aZ = "🐋", iZ = "🐬", lZ = "🐬", uZ = "🦭", pZ = "🐟", hZ = "🐠", dZ = "🐡", fZ = "🦈", mZ = "🐙", gZ = "🐚", _Z = "🐌", bZ = "🦋", kZ = "🐛", yZ = "🐜", wZ = "🐝", vZ = "🐝", xZ = "🪲", AZ = "🐞", SZ = "🦗", LZ = "🪳", CZ = "🕷️", EZ = "🕸️", TZ = "🦂", DZ = "🦟", qZ = "🪰", jZ = "🪱", RZ = "🦠", NZ = "💐", PZ = "🌸", IZ = "💮", OZ = "🏵️", FZ = "🌹", MZ = "🥀", BZ = "🌺", $Z = "🌻", zZ = "🌼", GZ = "🌷", UZ = "🌱", HZ = "🪴", VZ = "🌲", WZ = "🌳", ZZ = "🌴", JZ = "🌵", QZ = "🌾", YZ = "🌿", XZ = "☘️", KZ = "🍀", eJ = "🍁", nJ = "🍂", tJ = "🍃", oJ = "🍇", sJ = "🍈", rJ = "🍉", cJ = "🍊", aJ = "🍊", iJ = "🍊", lJ = "🍋", uJ = "🍌", pJ = "🍍", hJ = "🥭", dJ = "🍎", fJ = "🍏", mJ = "🍐", gJ = "🍑", _J = "🍒", bJ = "🍓", kJ = "🫐", yJ = "🥝", wJ = "🍅", vJ = "🫒", xJ = "🥥", AJ = "🥑", SJ = "🍆", LJ = "🥔", CJ = "🥕", EJ = "🌽", TJ = "🌶️", DJ = "🫑", qJ = "🥒", jJ = "🥬", RJ = "🥦", NJ = "🧄", PJ = "🧅", IJ = "🍄", OJ = "🥜", FJ = "🌰", MJ = "🍞", BJ = "🥐", $J = "🥖", zJ = "🫓", GJ = "🥨", UJ = "🥯", HJ = "🥞", VJ = "🧇", WJ = "🧀", ZJ = "🍖", JJ = "🍗", QJ = "🥩", YJ = "🥓", XJ = "🍔", KJ = "🍟", eQ = "🍕", nQ = "🌭", tQ = "🥪", oQ = "🌮", sQ = "🌯", rQ = "🫔", cQ = "🥙", aQ = "🧆", iQ = "🥚", lQ = "🍳", uQ = "🥘", pQ = "🍲", hQ = "🫕", dQ = "🥣", fQ = "🥗", mQ = "🍿", gQ = "🧈", _Q = "🧂", bQ = "🥫", kQ = "🍱", yQ = "🍘", wQ = "🍙", vQ = "🍚", xQ = "🍛", AQ = "🍜", SQ = "🍝", LQ = "🍠", CQ = "🍢", EQ = "🍣", TQ = "🍤", DQ = "🍥", qQ = "🥮", jQ = "🍡", RQ = "🥟", NQ = "🥠", PQ = "🥡", IQ = "🦀", OQ = "🦞", FQ = "🦐", MQ = "🦑", BQ = "🦪", $Q = "🍦", zQ = "🍧", GQ = "🍨", UQ = "🍩", HQ = "🍪", VQ = "🎂", WQ = "🍰", ZQ = "🧁", JQ = "🥧", QQ = "🍫", YQ = "🍬", XQ = "🍭", KQ = "🍮", eY = "🍯", nY = "🍼", tY = "🥛", oY = "☕", sY = "🫖", rY = "🍵", cY = "🍶", aY = "🍾", iY = "🍷", lY = "🍸", uY = "🍹", pY = "🍺", hY = "🍻", dY = "🥂", fY = "🥃", mY = "🥤", gY = "🧋", _Y = "🧃", bY = "🧉", kY = "🧊", yY = "🥢", wY = "🍽️", vY = "🍴", xY = "🥄", AY = "🔪", SY = "🔪", LY = "🏺", CY = "🌍", EY = "🌎", TY = "🌏", DY = "🌐", qY = "🗺️", jY = "🗾", RY = "🧭", NY = "🏔️", PY = "⛰️", IY = "🌋", OY = "🗻", FY = "🏕️", MY = "🏖️", BY = "🏜️", $Y = "🏝️", zY = "🏞️", GY = "🏟️", UY = "🏛️", HY = "🏗️", VY = "🧱", WY = "🪨", ZY = "🪵", JY = "🛖", QY = "🏘️", YY = "🏚️", XY = "🏠", KY = "🏡", eX = "🏢", nX = "🏣", tX = "🏤", oX = "🏥", sX = "🏦", rX = "🏨", cX = "🏩", aX = "🏪", iX = "🏫", lX = "🏬", uX = "🏭", pX = "🏯", hX = "🏰", dX = "💒", fX = "🗼", mX = "🗽", gX = "⛪", _X = "🕌", bX = "🛕", kX = "🕍", yX = "⛩️", wX = "🕋", vX = "⛲", xX = "⛺", AX = "🌁", SX = "🌃", LX = "🏙️", CX = "🌄", EX = "🌅", TX = "🌆", DX = "🌇", qX = "🌉", jX = "♨️", RX = "🎠", NX = "🎡", PX = "🎢", IX = "💈", OX = "🎪", FX = "🚂", MX = "🚃", BX = "🚄", $X = "🚅", zX = "🚆", GX = "🚇", UX = "🚈", HX = "🚉", VX = "🚊", WX = "🚝", ZX = "🚞", JX = "🚋", QX = "🚌", YX = "🚍", XX = "🚎", KX = "🚐", eK = "🚑", nK = "🚒", tK = "🚓", oK = "🚔", sK = "🚕", rK = "🚖", cK = "🚗", aK = "🚗", iK = "🚘", lK = "🚙", uK = "🛻", pK = "🚚", hK = "🚛", dK = "🚜", fK = "🏎️", mK = "🏍️", gK = "🛵", _K = "🦽", bK = "🦼", kK = "🛺", yK = "🚲", wK = "🛴", vK = "🛹", xK = "🛼", AK = "🚏", SK = "🛣️", LK = "🛤️", CK = "🛢️", EK = "⛽", TK = "🚨", DK = "🚥", qK = "🚦", jK = "🛑", RK = "🚧", NK = "⚓", PK = "⛵", IK = "⛵", OK = "🛶", FK = "🚤", MK = "🛳️", BK = "⛴️", $K = "🛥️", zK = "🚢", GK = "✈️", UK = "🛩️", HK = "🛫", VK = "🛬", WK = "🪂", ZK = "💺", JK = "🚁", QK = "🚟", YK = "🚠", XK = "🚡", KK = "🛰️", eee = "🚀", nee = "🛸", tee = "🛎️", oee = "🧳", see = "⌛", ree = "⏳", cee = "⌚", aee = "⏰", iee = "⏱️", lee = "⏲️", uee = "🕰️", pee = "🕛", hee = "🕧", dee = "🕐", fee = "🕜", mee = "🕑", gee = "🕝", _ee = "🕒", bee = "🕞", kee = "🕓", yee = "🕟", wee = "🕔", vee = "🕠", xee = "🕕", Aee = "🕡", See = "🕖", Lee = "🕢", Cee = "🕗", Eee = "🕣", Tee = "🕘", Dee = "🕤", qee = "🕙", jee = "🕥", Ree = "🕚", Nee = "🕦", Pee = "🌑", Iee = "🌒", Oee = "🌓", Fee = "🌔", Mee = "🌔", Bee = "🌕", $ee = "🌖", zee = "🌗", Gee = "🌘", Uee = "🌙", Hee = "🌚", Vee = "🌛", Wee = "🌜", Zee = "🌡️", Jee = "☀️", Qee = "🌝", Yee = "🌞", Xee = "🪐", Kee = "⭐", ene = "🌟", nne = "🌠", tne = "🌌", one = "☁️", sne = "⛅", rne = "⛈️", cne = "🌤️", ane = "🌥️", ine = "🌦️", lne = "🌧️", une = "🌨️", pne = "🌩️", hne = "🌪️", dne = "🌫️", fne = "🌬️", mne = "🌀", gne = "🌈", _ne = "🌂", bne = "☂️", kne = "☔", yne = "⛱️", wne = "⚡", vne = "❄️", xne = "☃️", Ane = "⛄", Sne = "☄️", Lne = "🔥", Cne = "💧", Ene = "🌊", Tne = "🎃", Dne = "🎄", qne = "🎆", jne = "🎇", Rne = "🧨", Nne = "✨", Pne = "🎈", Ine = "🎉", One = "🎊", Fne = "🎋", Mne = "🎍", Bne = "🎎", $ne = "🎏", zne = "🎐", Gne = "🎑", Une = "🧧", Hne = "🎀", Vne = "🎁", Wne = "🎗️", Zne = "🎟️", Jne = "🎫", Qne = "🎖️", Yne = "🏆", Xne = "🏅", Kne = "⚽", ete = "⚾", nte = "🥎", tte = "🏀", ote = "🏐", ste = "🏈", rte = "🏉", cte = "🎾", ate = "🥏", ite = "🎳", lte = "🏏", ute = "🏑", pte = "🏒", hte = "🥍", dte = "🏓", fte = "🏸", mte = "🥊", gte = "🥋", _te = "🥅", bte = "⛳", kte = "⛸️", yte = "🎣", wte = "🤿", vte = "🎽", xte = "🎿", Ate = "🛷", Ste = "🥌", Lte = "🎯", Cte = "🪀", Ete = "🪁", Tte = "🔮", Dte = "🪄", qte = "🧿", jte = "🎮", Rte = "🕹️", Nte = "🎰", Pte = "🎲", Ite = "🧩", Ote = "🧸", Fte = "🪅", Mte = "🪆", Bte = "♠️", $te = "♥️", zte = "♦️", Gte = "♣️", Ute = "♟️", Hte = "🃏", Vte = "🀄", Wte = "🎴", Zte = "🎭", Jte = "🖼️", Qte = "🎨", Yte = "🧵", Xte = "🪡", Kte = "🧶", eoe = "🪢", noe = "👓", toe = "🕶️", ooe = "🥽", soe = "🥼", roe = "🦺", coe = "👔", aoe = "👕", ioe = "👕", loe = "👖", uoe = "🧣", poe = "🧤", hoe = "🧥", doe = "🧦", foe = "👗", moe = "👘", goe = "🥻", _oe = "🩱", boe = "🩲", koe = "🩳", yoe = "👙", woe = "👚", voe = "👛", xoe = "👜", Aoe = "👝", Soe = "🛍️", Loe = "🎒", Coe = "🩴", Eoe = "👞", Toe = "👞", Doe = "👟", qoe = "🥾", joe = "🥿", Roe = "👠", Noe = "👡", Poe = "🩰", Ioe = "👢", Ooe = "👑", Foe = "👒", Moe = "🎩", Boe = "🎓", $oe = "🧢", zoe = "🪖", Goe = "⛑️", Uoe = "📿", Hoe = "💄", Voe = "💍", Woe = "💎", Zoe = "🔇", Joe = "🔈", Qoe = "🔉", Yoe = "🔊", Xoe = "📢", Koe = "📣", ese = "📯", nse = "🔔", tse = "🔕", ose = "🎼", sse = "🎵", rse = "🎶", cse = "🎙️", ase = "🎚️", ise = "🎛️", lse = "🎤", use = "🎧", pse = "📻", hse = "🎷", dse = "🪗", fse = "🎸", mse = "🎹", gse = "🎺", _se = "🎻", bse = "🪕", kse = "🥁", yse = "🪘", wse = "📱", vse = "📲", xse = "☎️", Ase = "☎️", Sse = "📞", Lse = "📟", Cse = "📠", Ese = "🔋", Tse = "🔌", Dse = "💻", qse = "🖥️", jse = "🖨️", Rse = "⌨️", Nse = "🖱️", Pse = "🖲️", Ise = "💽", Ose = "💾", Fse = "💿", Mse = "📀", Bse = "🧮", $se = "🎥", zse = "🎞️", Gse = "📽️", Use = "🎬", Hse = "📺", Vse = "📷", Wse = "📸", Zse = "📹", Jse = "📼", Qse = "🔍", Yse = "🔎", Xse = "🕯️", Kse = "💡", ere = "🔦", nre = "🏮", tre = "🏮", ore = "🪔", sre = "📔", rre = "📕", cre = "📖", are = "📖", ire = "📗", lre = "📘", ure = "📙", pre = "📚", hre = "📓", dre = "📒", fre = "📃", mre = "📜", gre = "📄", _re = "📰", bre = "🗞️", kre = "📑", yre = "🔖", wre = "🏷️", vre = "💰", xre = "🪙", Are = "💴", Sre = "💵", Lre = "💶", Cre = "💷", Ere = "💸", Tre = "💳", Dre = "🧾", qre = "💹", jre = "✉️", Rre = "📧", Nre = "📨", Pre = "📩", Ire = "📤", Ore = "📥", Fre = "📫", Mre = "📪", Bre = "📬", $re = "📭", zre = "📮", Gre = "🗳️", Ure = "✏️", Hre = "✒️", Vre = "🖋️", Wre = "🖊️", Zre = "🖌️", Jre = "🖍️", Qre = "📝", Yre = "📝", Xre = "💼", Kre = "📁", ece = "📂", nce = "🗂️", tce = "📅", oce = "📆", sce = "🗒️", rce = "🗓️", cce = "📇", ace = "📈", ice = "📉", lce = "📊", uce = "📋", pce = "📌", hce = "📍", dce = "📎", fce = "🖇️", mce = "📏", gce = "📐", _ce = "✂️", bce = "🗃️", kce = "🗄️", yce = "🗑️", wce = "🔒", vce = "🔓", xce = "🔏", Ace = "🔐", Sce = "🔑", Lce = "🗝️", Cce = "🔨", Ece = "🪓", Tce = "⛏️", Dce = "⚒️", qce = "🛠️", jce = "🗡️", Rce = "⚔️", Nce = "🔫", Pce = "🪃", Ice = "🏹", Oce = "🛡️", Fce = "🪚", Mce = "🔧", Bce = "🪛", $ce = "🔩", zce = "⚙️", Gce = "🗜️", Uce = "⚖️", Hce = "🦯", Vce = "🔗", Wce = "⛓️", Zce = "🪝", Jce = "🧰", Qce = "🧲", Yce = "🪜", Xce = "⚗️", Kce = "🧪", eae = "🧫", nae = "🧬", tae = "🔬", oae = "🔭", sae = "📡", rae = "💉", cae = "🩸", aae = "💊", iae = "🩹", lae = "🩺", uae = "🚪", pae = "🛗", hae = "🪞", dae = "🪟", fae = "🛏️", mae = "🛋️", gae = "🪑", _ae = "🚽", bae = "🪠", kae = "🚿", yae = "🛁", wae = "🪤", vae = "🪒", xae = "🧴", Aae = "🧷", Sae = "🧹", Lae = "🧺", Cae = "🧻", Eae = "🪣", Tae = "🧼", Dae = "🪥", qae = "🧽", jae = "🧯", Rae = "🛒", Nae = "🚬", Pae = "⚰️", Iae = "🪦", Oae = "⚱️", Fae = "🗿", Mae = "🪧", Bae = "🏧", $ae = "🚮", zae = "🚰", Gae = "♿", Uae = "🚹", Hae = "🚺", Vae = "🚻", Wae = "🚼", Zae = "🚾", Jae = "🛂", Qae = "🛃", Yae = "🛄", Xae = "🛅", Kae = "⚠️", eie = "🚸", nie = "⛔", tie = "🚫", oie = "🚳", sie = "🚭", rie = "🚯", cie = "🚷", aie = "📵", iie = "🔞", lie = "☢️", uie = "☣️", pie = "⬆️", hie = "↗️", die = "➡️", fie = "↘️", mie = "⬇️", gie = "↙️", _ie = "⬅️", bie = "↖️", kie = "↕️", yie = "↔️", wie = "↩️", vie = "↪️", xie = "⤴️", Aie = "⤵️", Sie = "🔃", Lie = "🔄", Cie = "🔙", Eie = "🔚", Tie = "🔛", Die = "🔜", qie = "🔝", jie = "🛐", Rie = "⚛️", Nie = "🕉️", Pie = "✡️", Iie = "☸️", Oie = "☯️", Fie = "✝️", Mie = "☦️", Bie = "☪️", $ie = "☮️", zie = "🕎", Gie = "🔯", Uie = "♈", Hie = "♉", Vie = "♊", Wie = "♋", Zie = "♌", Jie = "♍", Qie = "♎", Yie = "♏", Xie = "♐", Kie = "♑", ele = "♒", nle = "♓", tle = "⛎", ole = "🔀", sle = "🔁", rle = "🔂", cle = "▶️", ale = "⏩", ile = "⏭️", lle = "⏯️", ule = "◀️", ple = "⏪", hle = "⏮️", dle = "🔼", fle = "⏫", mle = "🔽", gle = "⏬", _le = "⏸️", ble = "⏹️", kle = "⏺️", yle = "⏏️", wle = "🎦", vle = "🔅", xle = "🔆", Ale = "📶", Sle = "📳", Lle = "📴", Cle = "♀️", Ele = "♂️", Tle = "⚧️", Dle = "✖️", qle = "➕", jle = "➖", Rle = "➗", Nle = "♾️", Ple = "‼️", Ile = "⁉️", Ole = "❓", Fle = "❔", Mle = "❕", Ble = "❗", $le = "❗", zle = "〰️", Gle = "💱", Ule = "💲", Hle = "⚕️", Vle = "♻️", Wle = "⚜️", Zle = "🔱", Jle = "📛", Qle = "🔰", Yle = "⭕", Xle = "✅", Kle = "☑️", eue = "✔️", nue = "❌", tue = "❎", oue = "➰", sue = "➿", rue = "〽️", cue = "✳️", aue = "✴️", iue = "❇️", lue = "©️", uue = "®️", pue = "™️", hue = "#️⃣", due = "*️⃣", fue = "0️⃣", mue = "1️⃣", gue = "2️⃣", _ue = "3️⃣", bue = "4️⃣", kue = "5️⃣", yue = "6️⃣", wue = "7️⃣", vue = "8️⃣", xue = "9️⃣", Aue = "🔟", Sue = "🔠", Lue = "🔡", Cue = "🔣", Eue = "🔤", Tue = "🅰️", Due = "🆎", que = "🅱️", jue = "🆑", Rue = "🆒", Nue = "🆓", Pue = "ℹ️", Iue = "🆔", Oue = "Ⓜ️", Fue = "🆖", Mue = "🅾️", Bue = "🆗", $ue = "🅿️", zue = "🆘", Gue = "🆙", Uue = "🆚", Hue = "🈁", Vue = "🈂️", Wue = "🉐", Zue = "🉑", Jue = "㊗️", Que = "㊙️", Yue = "🈵", Xue = "🔴", Kue = "🟠", epe = "🟡", npe = "🟢", tpe = "🔵", ope = "🟣", spe = "🟤", rpe = "⚫", cpe = "⚪", ape = "🟥", ipe = "🟧", lpe = "🟨", upe = "🟩", ppe = "🟦", hpe = "🟪", dpe = "🟫", fpe = "⬛", mpe = "⬜", gpe = "◼️", _pe = "◻️", bpe = "◾", kpe = "◽", ype = "▪️", wpe = "▫️", vpe = "🔶", xpe = "🔷", Ape = "🔸", Spe = "🔹", Lpe = "🔺", Cpe = "🔻", Epe = "💠", Tpe = "🔘", Dpe = "🔳", qpe = "🔲", jpe = "🏁", Rpe = "🚩", Npe = "🎌", Ppe = "🏴", Ipe = "🏳️", Ope = "🏳️‍🌈", Fpe = "🏳️‍⚧️", Mpe = "🏴‍☠️", Bpe = "🇦🇨", $pe = "🇦🇩", zpe = "🇦🇪", Gpe = "🇦🇫", Upe = "🇦🇬", Hpe = "🇦🇮", Vpe = "🇦🇱", Wpe = "🇦🇲", Zpe = "🇦🇴", Jpe = "🇦🇶", Qpe = "🇦🇷", Ype = "🇦🇸", Xpe = "🇦🇹", Kpe = "🇦🇺", ehe = "🇦🇼", nhe = "🇦🇽", the = "🇦🇿", ohe = "🇧🇦", she = "🇧🇧", rhe = "🇧🇩", che = "🇧🇪", ahe = "🇧🇫", ihe = "🇧🇬", lhe = "🇧🇭", uhe = "🇧🇮", phe = "🇧🇯", hhe = "🇧🇱", dhe = "🇧🇲", fhe = "🇧🇳", mhe = "🇧🇴", ghe = "🇧🇶", _he = "🇧🇷", bhe = "🇧🇸", khe = "🇧🇹", yhe = "🇧🇻", whe = "🇧🇼", vhe = "🇧🇾", xhe = "🇧🇿", Ahe = "🇨🇦", She = "🇨🇨", Lhe = "🇨🇩", Che = "🇨🇫", Ehe = "🇨🇬", The = "🇨🇭", Dhe = "🇨🇮", qhe = "🇨🇰", jhe = "🇨🇱", Rhe = "🇨🇲", Nhe = "🇨🇳", Phe = "🇨🇴", Ihe = "🇨🇵", Ohe = "🇨🇷", Fhe = "🇨🇺", Mhe = "🇨🇻", Bhe = "🇨🇼", $he = "🇨🇽", zhe = "🇨🇾", Ghe = "🇨🇿", Uhe = "🇩🇪", Hhe = "🇩🇬", Vhe = "🇩🇯", Whe = "🇩🇰", Zhe = "🇩🇲", Jhe = "🇩🇴", Qhe = "🇩🇿", Yhe = "🇪🇦", Xhe = "🇪🇨", Khe = "🇪🇪", ede = "🇪🇬", nde = "🇪🇭", tde = "🇪🇷", ode = "🇪🇸", sde = "🇪🇹", rde = "🇪🇺", cde = "🇪🇺", ade = "🇫🇮", ide = "🇫🇯", lde = "🇫🇰", ude = "🇫🇲", pde = "🇫🇴", hde = "🇫🇷", dde = "🇬🇦", fde = "🇬🇧", mde = "🇬🇧", gde = "🇬🇩", _de = "🇬🇪", bde = "🇬🇫", kde = "🇬🇬", yde = "🇬🇭", wde = "🇬🇮", vde = "🇬🇱", xde = "🇬🇲", Ade = "🇬🇳", Sde = "🇬🇵", Lde = "🇬🇶", Cde = "🇬🇷", Ede = "🇬🇸", Tde = "🇬🇹", Dde = "🇬🇺", qde = "🇬🇼", jde = "🇬🇾", Rde = "🇭🇰", Nde = "🇭🇲", Pde = "🇭🇳", Ide = "🇭🇷", Ode = "🇭🇹", Fde = "🇭🇺", Mde = "🇮🇨", Bde = "🇮🇩", $de = "🇮🇪", zde = "🇮🇱", Gde = "🇮🇲", Ude = "🇮🇳", Hde = "🇮🇴", Vde = "🇮🇶", Wde = "🇮🇷", Zde = "🇮🇸", Jde = "🇮🇹", Qde = "🇯🇪", Yde = "🇯🇲", Xde = "🇯🇴", Kde = "🇯🇵", efe = "🇰🇪", nfe = "🇰🇬", tfe = "🇰🇭", ofe = "🇰🇮", sfe = "🇰🇲", rfe = "🇰🇳", cfe = "🇰🇵", afe = "🇰🇷", ife = "🇰🇼", lfe = "🇰🇾", ufe = "🇰🇿", pfe = "🇱🇦", hfe = "🇱🇧", dfe = "🇱🇨", ffe = "🇱🇮", mfe = "🇱🇰", gfe = "🇱🇷", _fe = "🇱🇸", bfe = "🇱🇹", kfe = "🇱🇺", yfe = "🇱🇻", wfe = "🇱🇾", vfe = "🇲🇦", xfe = "🇲🇨", Afe = "🇲🇩", Sfe = "🇲🇪", Lfe = "🇲🇫", Cfe = "🇲🇬", Efe = "🇲🇭", Tfe = "🇲🇰", Dfe = "🇲🇱", qfe = "🇲🇲", jfe = "🇲🇳", Rfe = "🇲🇴", Nfe = "🇲🇵", Pfe = "🇲🇶", Ife = "🇲🇷", Ofe = "🇲🇸", Ffe = "🇲🇹", Mfe = "🇲🇺", Bfe = "🇲🇻", $fe = "🇲🇼", zfe = "🇲🇽", Gfe = "🇲🇾", Ufe = "🇲🇿", Hfe = "🇳🇦", Vfe = "🇳🇨", Wfe = "🇳🇪", Zfe = "🇳🇫", Jfe = "🇳🇬", Qfe = "🇳🇮", Yfe = "🇳🇱", Xfe = "🇳🇴", Kfe = "🇳🇵", eme = "🇳🇷", nme = "🇳🇺", tme = "🇳🇿", ome = "🇴🇲", sme = "🇵🇦", rme = "🇵🇪", cme = "🇵🇫", ame = "🇵🇬", ime = "🇵🇭", lme = "🇵🇰", ume = "🇵🇱", pme = "🇵🇲", hme = "🇵🇳", dme = "🇵🇷", fme = "🇵🇸", mme = "🇵🇹", gme = "🇵🇼", _me = "🇵🇾", bme = "🇶🇦", kme = "🇷🇪", yme = "🇷🇴", wme = "🇷🇸", vme = "🇷🇺", xme = "🇷🇼", Ame = "🇸🇦", Sme = "🇸🇧", Lme = "🇸🇨", Cme = "🇸🇩", Eme = "🇸🇪", Tme = "🇸🇬", Dme = "🇸🇭", qme = "🇸🇮", jme = "🇸🇯", Rme = "🇸🇰", Nme = "🇸🇱", Pme = "🇸🇲", Ime = "🇸🇳", Ome = "🇸🇴", Fme = "🇸🇷", Mme = "🇸🇸", Bme = "🇸🇹", $me = "🇸🇻", zme = "🇸🇽", Gme = "🇸🇾", Ume = "🇸🇿", Hme = "🇹🇦", Vme = "🇹🇨", Wme = "🇹🇩", Zme = "🇹🇫", Jme = "🇹🇬", Qme = "🇹🇭", Yme = "🇹🇯", Xme = "🇹🇰", Kme = "🇹🇱", ege = "🇹🇲", nge = "🇹🇳", tge = "🇹🇴", oge = "🇹🇷", sge = "🇹🇹", rge = "🇹🇻", cge = "🇹🇼", age = "🇹🇿", ige = "🇺🇦", lge = "🇺🇬", uge = "🇺🇲", pge = "🇺🇳", hge = "🇺🇸", dge = "🇺🇾", fge = "🇺🇿", mge = "🇻🇦", gge = "🇻🇨", _ge = "🇻🇪", bge = "🇻🇬", kge = "🇻🇮", yge = "🇻🇳", wge = "🇻🇺", vge = "🇼🇫", xge = "🇼🇸", Age = "🇽🇰", Sge = "🇾🇪", Lge = "🇾🇹", Cge = "🇿🇦", Ege = "🇿🇲", Tge = "🇿🇼", Dge = "🏴󠁧󠁢󠁥󠁮󠁧󠁿", qge = "🏴󠁧󠁢󠁳󠁣󠁴󠁿", jge = "🏴󠁧󠁢󠁷󠁬󠁳󠁿", Rge = {
   100: "💯",
   1234: "🔢",
-  grinning: $$,
-  smiley: G$,
-  smile: U$,
-  grin: H$,
-  laughing: V$,
-  satisfied: W$,
-  sweat_smile: Z$,
-  rofl: J$,
-  joy: Q$,
-  slightly_smiling_face: Y$,
-  upside_down_face: X$,
-  wink: K$,
-  blush: e5,
-  innocent: n5,
-  smiling_face_with_three_hearts: t5,
-  heart_eyes: o5,
-  star_struck: s5,
-  kissing_heart: r5,
-  kissing: c5,
-  relaxed: a5,
-  kissing_closed_eyes: i5,
-  kissing_smiling_eyes: l5,
-  smiling_face_with_tear: u5,
-  yum: p5,
-  stuck_out_tongue: h5,
-  stuck_out_tongue_winking_eye: d5,
-  zany_face: f5,
-  stuck_out_tongue_closed_eyes: m5,
-  money_mouth_face: g5,
-  hugs: _5,
-  hand_over_mouth: b5,
-  shushing_face: k5,
-  thinking: y5,
-  zipper_mouth_face: w5,
-  raised_eyebrow: v5,
-  neutral_face: x5,
-  expressionless: A5,
-  no_mouth: S5,
-  smirk: L5,
-  unamused: C5,
-  roll_eyes: E5,
-  grimacing: T5,
-  lying_face: D5,
-  relieved: q5,
-  pensive: j5,
-  sleepy: R5,
-  drooling_face: N5,
-  sleeping: P5,
-  mask: I5,
-  face_with_thermometer: O5,
-  face_with_head_bandage: F5,
-  nauseated_face: M5,
-  vomiting_face: B5,
-  sneezing_face: z5,
-  hot_face: $5,
-  cold_face: G5,
-  woozy_face: U5,
-  dizzy_face: H5,
-  exploding_head: V5,
-  cowboy_hat_face: W5,
-  partying_face: Z5,
-  disguised_face: J5,
-  sunglasses: Q5,
-  nerd_face: Y5,
-  monocle_face: X5,
-  confused: K5,
-  worried: e6,
-  slightly_frowning_face: n6,
-  frowning_face: t6,
-  open_mouth: o6,
-  hushed: s6,
-  astonished: r6,
-  flushed: c6,
-  pleading_face: a6,
-  frowning: i6,
-  anguished: l6,
-  fearful: u6,
-  cold_sweat: p6,
-  disappointed_relieved: h6,
-  cry: d6,
-  sob: f6,
-  scream: m6,
-  confounded: g6,
-  persevere: _6,
-  disappointed: b6,
-  sweat: k6,
-  weary: y6,
-  tired_face: w6,
-  yawning_face: v6,
-  triumph: x6,
-  rage: A6,
-  pout: S6,
-  angry: L6,
-  cursing_face: C6,
-  smiling_imp: E6,
-  imp: T6,
-  skull: D6,
-  skull_and_crossbones: q6,
-  hankey: j6,
-  poop: R6,
-  shit: N6,
-  clown_face: P6,
-  japanese_ogre: I6,
-  japanese_goblin: O6,
-  ghost: F6,
-  alien: M6,
-  space_invader: B6,
-  robot: z6,
-  smiley_cat: $6,
-  smile_cat: G6,
-  joy_cat: U6,
-  heart_eyes_cat: H6,
-  smirk_cat: V6,
-  kissing_cat: W6,
-  scream_cat: Z6,
-  crying_cat_face: J6,
-  pouting_cat: Q6,
-  see_no_evil: Y6,
-  hear_no_evil: X6,
-  speak_no_evil: K6,
-  kiss: e4,
-  love_letter: n4,
-  cupid: t4,
-  gift_heart: o4,
-  sparkling_heart: s4,
-  heartpulse: r4,
-  heartbeat: c4,
-  revolving_hearts: a4,
-  two_hearts: i4,
-  heart_decoration: l4,
-  heavy_heart_exclamation: u4,
-  broken_heart: p4,
-  heart: h4,
-  orange_heart: d4,
-  yellow_heart: f4,
-  green_heart: m4,
-  blue_heart: g4,
-  purple_heart: _4,
-  brown_heart: b4,
-  black_heart: k4,
-  white_heart: y4,
-  anger: w4,
-  boom: v4,
-  collision: x4,
-  dizzy: A4,
-  sweat_drops: S4,
-  dash: L4,
-  hole: C4,
-  bomb: E4,
-  speech_balloon: T4,
-  eye_speech_bubble: D4,
-  left_speech_bubble: q4,
-  right_anger_bubble: j4,
-  thought_balloon: R4,
-  zzz: N4,
-  wave: P4,
-  raised_back_of_hand: I4,
-  raised_hand_with_fingers_splayed: O4,
-  hand: F4,
-  raised_hand: M4,
-  vulcan_salute: B4,
-  ok_hand: z4,
-  pinched_fingers: $4,
-  pinching_hand: G4,
-  v: U4,
-  crossed_fingers: H4,
-  love_you_gesture: V4,
-  metal: W4,
-  call_me_hand: Z4,
-  point_left: J4,
-  point_right: Q4,
-  point_up_2: Y4,
-  middle_finger: X4,
-  fu: K4,
-  point_down: e8,
-  point_up: n8,
+  grinning: Uz,
+  smiley: Hz,
+  smile: Vz,
+  grin: Wz,
+  laughing: Zz,
+  satisfied: Jz,
+  sweat_smile: Qz,
+  rofl: Yz,
+  joy: Xz,
+  slightly_smiling_face: Kz,
+  upside_down_face: e5,
+  wink: n5,
+  blush: t5,
+  innocent: o5,
+  smiling_face_with_three_hearts: s5,
+  heart_eyes: r5,
+  star_struck: c5,
+  kissing_heart: a5,
+  kissing: i5,
+  relaxed: l5,
+  kissing_closed_eyes: u5,
+  kissing_smiling_eyes: p5,
+  smiling_face_with_tear: h5,
+  yum: d5,
+  stuck_out_tongue: f5,
+  stuck_out_tongue_winking_eye: m5,
+  zany_face: g5,
+  stuck_out_tongue_closed_eyes: _5,
+  money_mouth_face: b5,
+  hugs: k5,
+  hand_over_mouth: y5,
+  shushing_face: w5,
+  thinking: v5,
+  zipper_mouth_face: x5,
+  raised_eyebrow: A5,
+  neutral_face: S5,
+  expressionless: L5,
+  no_mouth: C5,
+  smirk: E5,
+  unamused: T5,
+  roll_eyes: D5,
+  grimacing: q5,
+  lying_face: j5,
+  relieved: R5,
+  pensive: N5,
+  sleepy: P5,
+  drooling_face: I5,
+  sleeping: O5,
+  mask: F5,
+  face_with_thermometer: M5,
+  face_with_head_bandage: B5,
+  nauseated_face: $5,
+  vomiting_face: z5,
+  sneezing_face: G5,
+  hot_face: U5,
+  cold_face: H5,
+  woozy_face: V5,
+  dizzy_face: W5,
+  exploding_head: Z5,
+  cowboy_hat_face: J5,
+  partying_face: Q5,
+  disguised_face: Y5,
+  sunglasses: X5,
+  nerd_face: K5,
+  monocle_face: e6,
+  confused: n6,
+  worried: t6,
+  slightly_frowning_face: o6,
+  frowning_face: s6,
+  open_mouth: r6,
+  hushed: c6,
+  astonished: a6,
+  flushed: i6,
+  pleading_face: l6,
+  frowning: u6,
+  anguished: p6,
+  fearful: h6,
+  cold_sweat: d6,
+  disappointed_relieved: f6,
+  cry: m6,
+  sob: g6,
+  scream: _6,
+  confounded: b6,
+  persevere: k6,
+  disappointed: y6,
+  sweat: w6,
+  weary: v6,
+  tired_face: x6,
+  yawning_face: A6,
+  triumph: S6,
+  rage: L6,
+  pout: C6,
+  angry: E6,
+  cursing_face: T6,
+  smiling_imp: D6,
+  imp: q6,
+  skull: j6,
+  skull_and_crossbones: R6,
+  hankey: N6,
+  poop: P6,
+  shit: I6,
+  clown_face: O6,
+  japanese_ogre: F6,
+  japanese_goblin: M6,
+  ghost: B6,
+  alien: $6,
+  space_invader: z6,
+  robot: G6,
+  smiley_cat: U6,
+  smile_cat: H6,
+  joy_cat: V6,
+  heart_eyes_cat: W6,
+  smirk_cat: Z6,
+  kissing_cat: J6,
+  scream_cat: Q6,
+  crying_cat_face: Y6,
+  pouting_cat: X6,
+  see_no_evil: K6,
+  hear_no_evil: e4,
+  speak_no_evil: n4,
+  kiss: t4,
+  love_letter: o4,
+  cupid: s4,
+  gift_heart: r4,
+  sparkling_heart: c4,
+  heartpulse: a4,
+  heartbeat: i4,
+  revolving_hearts: l4,
+  two_hearts: u4,
+  heart_decoration: p4,
+  heavy_heart_exclamation: h4,
+  broken_heart: d4,
+  heart: f4,
+  orange_heart: m4,
+  yellow_heart: g4,
+  green_heart: _4,
+  blue_heart: b4,
+  purple_heart: k4,
+  brown_heart: y4,
+  black_heart: w4,
+  white_heart: v4,
+  anger: x4,
+  boom: A4,
+  collision: S4,
+  dizzy: L4,
+  sweat_drops: C4,
+  dash: E4,
+  hole: T4,
+  bomb: D4,
+  speech_balloon: q4,
+  eye_speech_bubble: j4,
+  left_speech_bubble: R4,
+  right_anger_bubble: N4,
+  thought_balloon: P4,
+  zzz: I4,
+  wave: O4,
+  raised_back_of_hand: F4,
+  raised_hand_with_fingers_splayed: M4,
+  hand: B4,
+  raised_hand: $4,
+  vulcan_salute: z4,
+  ok_hand: G4,
+  pinched_fingers: U4,
+  pinching_hand: H4,
+  v: V4,
+  crossed_fingers: W4,
+  love_you_gesture: Z4,
+  metal: J4,
+  call_me_hand: Q4,
+  point_left: Y4,
+  point_right: X4,
+  point_up_2: K4,
+  middle_finger: e8,
+  fu: n8,
+  point_down: t8,
+  point_up: o8,
   "+1": "👍",
-  thumbsup: t8,
+  thumbsup: s8,
   "-1": "👎",
-  thumbsdown: o8,
-  fist_raised: s8,
-  fist: r8,
-  fist_oncoming: c8,
-  facepunch: a8,
-  punch: i8,
-  fist_left: l8,
-  fist_right: u8,
-  clap: p8,
-  raised_hands: h8,
-  open_hands: d8,
-  palms_up_together: f8,
-  handshake: m8,
-  pray: g8,
-  writing_hand: _8,
-  nail_care: b8,
-  selfie: k8,
-  muscle: y8,
-  mechanical_arm: w8,
-  mechanical_leg: v8,
-  leg: x8,
-  foot: A8,
-  ear: S8,
-  ear_with_hearing_aid: L8,
-  nose: C8,
-  brain: E8,
-  anatomical_heart: T8,
-  lungs: D8,
-  tooth: q8,
-  bone: j8,
-  eyes: R8,
-  eye: N8,
-  tongue: P8,
-  lips: I8,
-  baby: O8,
-  child: F8,
-  boy: M8,
-  girl: B8,
-  adult: z8,
-  blond_haired_person: $8,
-  man: G8,
-  bearded_person: U8,
-  red_haired_man: H8,
-  curly_haired_man: V8,
-  white_haired_man: W8,
-  bald_man: Z8,
-  woman: J8,
-  red_haired_woman: Q8,
-  person_red_hair: Y8,
-  curly_haired_woman: X8,
-  person_curly_hair: K8,
-  white_haired_woman: eG,
-  person_white_hair: nG,
-  bald_woman: tG,
-  person_bald: oG,
-  blond_haired_woman: sG,
-  blonde_woman: rG,
-  blond_haired_man: cG,
-  older_adult: aG,
-  older_man: iG,
-  older_woman: lG,
-  frowning_person: uG,
-  frowning_man: pG,
-  frowning_woman: hG,
-  pouting_face: dG,
-  pouting_man: fG,
-  pouting_woman: mG,
-  no_good: gG,
-  no_good_man: _G,
-  ng_man: bG,
-  no_good_woman: kG,
-  ng_woman: yG,
-  ok_person: wG,
-  ok_man: vG,
-  ok_woman: xG,
-  tipping_hand_person: AG,
-  information_desk_person: SG,
-  tipping_hand_man: LG,
-  sassy_man: CG,
-  tipping_hand_woman: EG,
-  sassy_woman: TG,
-  raising_hand: DG,
-  raising_hand_man: qG,
-  raising_hand_woman: jG,
-  deaf_person: RG,
-  deaf_man: NG,
-  deaf_woman: PG,
-  bow: IG,
-  bowing_man: OG,
-  bowing_woman: FG,
-  facepalm: MG,
-  man_facepalming: BG,
-  woman_facepalming: zG,
-  shrug: $G,
-  man_shrugging: GG,
-  woman_shrugging: UG,
-  health_worker: HG,
-  man_health_worker: VG,
-  woman_health_worker: WG,
-  student: ZG,
-  man_student: JG,
-  woman_student: QG,
-  teacher: YG,
-  man_teacher: XG,
-  woman_teacher: KG,
-  judge: eU,
-  man_judge: nU,
-  woman_judge: tU,
-  farmer: oU,
-  man_farmer: sU,
-  woman_farmer: rU,
-  cook: cU,
-  man_cook: aU,
-  woman_cook: iU,
-  mechanic: lU,
-  man_mechanic: uU,
-  woman_mechanic: pU,
-  factory_worker: hU,
-  man_factory_worker: dU,
-  woman_factory_worker: fU,
-  office_worker: mU,
-  man_office_worker: gU,
-  woman_office_worker: _U,
-  scientist: bU,
-  man_scientist: kU,
-  woman_scientist: yU,
-  technologist: wU,
-  man_technologist: vU,
-  woman_technologist: xU,
-  singer: AU,
-  man_singer: SU,
-  woman_singer: LU,
-  artist: CU,
-  man_artist: EU,
-  woman_artist: TU,
-  pilot: DU,
-  man_pilot: qU,
-  woman_pilot: jU,
-  astronaut: RU,
-  man_astronaut: NU,
-  woman_astronaut: PU,
-  firefighter: IU,
-  man_firefighter: OU,
-  woman_firefighter: FU,
-  police_officer: MU,
-  cop: BU,
-  policeman: zU,
-  policewoman: $U,
-  detective: GU,
-  male_detective: UU,
-  female_detective: HU,
-  guard: VU,
-  guardsman: WU,
-  guardswoman: ZU,
-  ninja: JU,
-  construction_worker: QU,
-  construction_worker_man: YU,
-  construction_worker_woman: XU,
-  prince: KU,
-  princess: e9,
-  person_with_turban: n9,
-  man_with_turban: t9,
-  woman_with_turban: o9,
-  man_with_gua_pi_mao: s9,
-  woman_with_headscarf: r9,
-  person_in_tuxedo: c9,
-  man_in_tuxedo: a9,
-  woman_in_tuxedo: i9,
-  person_with_veil: l9,
-  man_with_veil: u9,
-  woman_with_veil: p9,
-  bride_with_veil: h9,
-  pregnant_woman: d9,
-  breast_feeding: f9,
-  woman_feeding_baby: m9,
-  man_feeding_baby: g9,
-  person_feeding_baby: _9,
-  angel: b9,
-  santa: k9,
-  mrs_claus: y9,
-  mx_claus: w9,
-  superhero: v9,
-  superhero_man: x9,
-  superhero_woman: A9,
-  supervillain: S9,
-  supervillain_man: L9,
-  supervillain_woman: C9,
-  mage: E9,
-  mage_man: T9,
-  mage_woman: D9,
-  fairy: q9,
-  fairy_man: j9,
-  fairy_woman: R9,
-  vampire: N9,
-  vampire_man: P9,
-  vampire_woman: I9,
-  merperson: O9,
-  merman: F9,
-  mermaid: M9,
-  elf: B9,
-  elf_man: z9,
-  elf_woman: $9,
-  genie: G9,
-  genie_man: U9,
-  genie_woman: H9,
-  zombie: V9,
-  zombie_man: W9,
-  zombie_woman: Z9,
-  massage: J9,
-  massage_man: Q9,
-  massage_woman: Y9,
-  haircut: X9,
-  haircut_man: K9,
-  haircut_woman: e7,
-  walking: n7,
-  walking_man: t7,
-  walking_woman: o7,
-  standing_person: s7,
-  standing_man: r7,
-  standing_woman: c7,
-  kneeling_person: a7,
-  kneeling_man: i7,
-  kneeling_woman: l7,
-  person_with_probing_cane: u7,
-  man_with_probing_cane: p7,
-  woman_with_probing_cane: h7,
-  person_in_motorized_wheelchair: d7,
-  man_in_motorized_wheelchair: f7,
-  woman_in_motorized_wheelchair: m7,
-  person_in_manual_wheelchair: g7,
-  man_in_manual_wheelchair: _7,
-  woman_in_manual_wheelchair: b7,
-  runner: k7,
-  running: y7,
-  running_man: w7,
-  running_woman: v7,
-  woman_dancing: x7,
-  dancer: A7,
-  man_dancing: S7,
-  business_suit_levitating: L7,
-  dancers: C7,
-  dancing_men: E7,
-  dancing_women: T7,
-  sauna_person: D7,
-  sauna_man: q7,
-  sauna_woman: j7,
-  climbing: R7,
-  climbing_man: N7,
-  climbing_woman: P7,
-  person_fencing: I7,
-  horse_racing: O7,
-  skier: F7,
-  snowboarder: M7,
-  golfing: B7,
-  golfing_man: z7,
-  golfing_woman: $7,
-  surfer: G7,
-  surfing_man: U7,
-  surfing_woman: H7,
-  rowboat: V7,
-  rowing_man: W7,
-  rowing_woman: Z7,
-  swimmer: J7,
-  swimming_man: Q7,
-  swimming_woman: Y7,
-  bouncing_ball_person: X7,
-  bouncing_ball_man: K7,
-  basketball_man: eH,
-  bouncing_ball_woman: nH,
-  basketball_woman: tH,
-  weight_lifting: oH,
-  weight_lifting_man: sH,
-  weight_lifting_woman: rH,
-  bicyclist: cH,
-  biking_man: aH,
-  biking_woman: iH,
-  mountain_bicyclist: lH,
-  mountain_biking_man: uH,
-  mountain_biking_woman: pH,
-  cartwheeling: hH,
-  man_cartwheeling: dH,
-  woman_cartwheeling: fH,
-  wrestling: mH,
-  men_wrestling: gH,
-  women_wrestling: _H,
-  water_polo: bH,
-  man_playing_water_polo: kH,
-  woman_playing_water_polo: yH,
-  handball_person: wH,
-  man_playing_handball: vH,
-  woman_playing_handball: xH,
-  juggling_person: AH,
-  man_juggling: SH,
-  woman_juggling: LH,
-  lotus_position: CH,
-  lotus_position_man: EH,
-  lotus_position_woman: TH,
-  bath: DH,
-  sleeping_bed: qH,
-  people_holding_hands: jH,
-  two_women_holding_hands: RH,
-  couple: NH,
-  two_men_holding_hands: PH,
-  couplekiss: IH,
-  couplekiss_man_woman: OH,
-  couplekiss_man_man: FH,
-  couplekiss_woman_woman: MH,
-  couple_with_heart: BH,
-  couple_with_heart_woman_man: zH,
-  couple_with_heart_man_man: $H,
-  couple_with_heart_woman_woman: GH,
-  family: UH,
-  family_man_woman_boy: HH,
-  family_man_woman_girl: VH,
-  family_man_woman_girl_boy: WH,
-  family_man_woman_boy_boy: ZH,
-  family_man_woman_girl_girl: JH,
-  family_man_man_boy: QH,
-  family_man_man_girl: YH,
-  family_man_man_girl_boy: XH,
-  family_man_man_boy_boy: KH,
-  family_man_man_girl_girl: eV,
-  family_woman_woman_boy: nV,
-  family_woman_woman_girl: tV,
-  family_woman_woman_girl_boy: oV,
-  family_woman_woman_boy_boy: sV,
-  family_woman_woman_girl_girl: rV,
-  family_man_boy: cV,
-  family_man_boy_boy: aV,
-  family_man_girl: iV,
-  family_man_girl_boy: lV,
-  family_man_girl_girl: uV,
-  family_woman_boy: pV,
-  family_woman_boy_boy: hV,
-  family_woman_girl: dV,
-  family_woman_girl_boy: fV,
-  family_woman_girl_girl: mV,
-  speaking_head: gV,
-  bust_in_silhouette: _V,
-  busts_in_silhouette: bV,
-  people_hugging: kV,
-  footprints: yV,
-  monkey_face: wV,
-  monkey: vV,
-  gorilla: xV,
-  orangutan: AV,
-  dog: SV,
-  dog2: LV,
-  guide_dog: CV,
-  service_dog: EV,
-  poodle: TV,
-  wolf: DV,
-  fox_face: qV,
-  raccoon: jV,
-  cat: RV,
-  cat2: NV,
-  black_cat: PV,
-  lion: IV,
-  tiger: OV,
-  tiger2: FV,
-  leopard: MV,
-  horse: BV,
-  racehorse: zV,
-  unicorn: $V,
-  zebra: GV,
-  deer: UV,
-  bison: HV,
-  cow: VV,
-  ox: WV,
-  water_buffalo: ZV,
-  cow2: JV,
-  pig: QV,
-  pig2: YV,
-  boar: XV,
-  pig_nose: KV,
-  ram: eW,
-  sheep: nW,
-  goat: tW,
-  dromedary_camel: oW,
-  camel: sW,
-  llama: rW,
-  giraffe: cW,
-  elephant: aW,
-  mammoth: iW,
-  rhinoceros: lW,
-  hippopotamus: uW,
-  mouse: pW,
-  mouse2: hW,
-  rat: dW,
-  hamster: fW,
-  rabbit: mW,
-  rabbit2: gW,
-  chipmunk: _W,
-  beaver: bW,
-  hedgehog: kW,
-  bat: yW,
-  bear: wW,
-  polar_bear: vW,
-  koala: xW,
-  panda_face: AW,
-  sloth: SW,
-  otter: LW,
-  skunk: CW,
-  kangaroo: EW,
-  badger: TW,
-  feet: DW,
-  paw_prints: qW,
-  turkey: jW,
-  chicken: RW,
-  rooster: NW,
-  hatching_chick: PW,
-  baby_chick: IW,
-  hatched_chick: OW,
-  bird: FW,
-  penguin: MW,
-  dove: BW,
-  eagle: zW,
-  duck: $W,
-  swan: GW,
-  owl: UW,
-  dodo: HW,
-  feather: VW,
-  flamingo: WW,
-  peacock: ZW,
-  parrot: JW,
-  frog: QW,
-  crocodile: YW,
-  turtle: XW,
-  lizard: KW,
-  snake: eZ,
-  dragon_face: nZ,
-  dragon: tZ,
-  sauropod: oZ,
+  thumbsdown: r8,
+  fist_raised: c8,
+  fist: a8,
+  fist_oncoming: i8,
+  facepunch: l8,
+  punch: u8,
+  fist_left: p8,
+  fist_right: h8,
+  clap: d8,
+  raised_hands: f8,
+  open_hands: m8,
+  palms_up_together: g8,
+  handshake: _8,
+  pray: b8,
+  writing_hand: k8,
+  nail_care: y8,
+  selfie: w8,
+  muscle: v8,
+  mechanical_arm: x8,
+  mechanical_leg: A8,
+  leg: S8,
+  foot: L8,
+  ear: C8,
+  ear_with_hearing_aid: E8,
+  nose: T8,
+  brain: D8,
+  anatomical_heart: q8,
+  lungs: j8,
+  tooth: R8,
+  bone: N8,
+  eyes: P8,
+  eye: I8,
+  tongue: O8,
+  lips: F8,
+  baby: M8,
+  child: B8,
+  boy: $8,
+  girl: z8,
+  adult: G8,
+  blond_haired_person: U8,
+  man: H8,
+  bearded_person: V8,
+  red_haired_man: W8,
+  curly_haired_man: Z8,
+  white_haired_man: J8,
+  bald_man: Q8,
+  woman: Y8,
+  red_haired_woman: X8,
+  person_red_hair: K8,
+  curly_haired_woman: eG,
+  person_curly_hair: nG,
+  white_haired_woman: tG,
+  person_white_hair: oG,
+  bald_woman: sG,
+  person_bald: rG,
+  blond_haired_woman: cG,
+  blonde_woman: aG,
+  blond_haired_man: iG,
+  older_adult: lG,
+  older_man: uG,
+  older_woman: pG,
+  frowning_person: hG,
+  frowning_man: dG,
+  frowning_woman: fG,
+  pouting_face: mG,
+  pouting_man: gG,
+  pouting_woman: _G,
+  no_good: bG,
+  no_good_man: kG,
+  ng_man: yG,
+  no_good_woman: wG,
+  ng_woman: vG,
+  ok_person: xG,
+  ok_man: AG,
+  ok_woman: SG,
+  tipping_hand_person: LG,
+  information_desk_person: CG,
+  tipping_hand_man: EG,
+  sassy_man: TG,
+  tipping_hand_woman: DG,
+  sassy_woman: qG,
+  raising_hand: jG,
+  raising_hand_man: RG,
+  raising_hand_woman: NG,
+  deaf_person: PG,
+  deaf_man: IG,
+  deaf_woman: OG,
+  bow: FG,
+  bowing_man: MG,
+  bowing_woman: BG,
+  facepalm: $G,
+  man_facepalming: zG,
+  woman_facepalming: GG,
+  shrug: UG,
+  man_shrugging: HG,
+  woman_shrugging: VG,
+  health_worker: WG,
+  man_health_worker: ZG,
+  woman_health_worker: JG,
+  student: QG,
+  man_student: YG,
+  woman_student: XG,
+  teacher: KG,
+  man_teacher: eU,
+  woman_teacher: nU,
+  judge: tU,
+  man_judge: oU,
+  woman_judge: sU,
+  farmer: rU,
+  man_farmer: cU,
+  woman_farmer: aU,
+  cook: iU,
+  man_cook: lU,
+  woman_cook: uU,
+  mechanic: pU,
+  man_mechanic: hU,
+  woman_mechanic: dU,
+  factory_worker: fU,
+  man_factory_worker: mU,
+  woman_factory_worker: gU,
+  office_worker: _U,
+  man_office_worker: bU,
+  woman_office_worker: kU,
+  scientist: yU,
+  man_scientist: wU,
+  woman_scientist: vU,
+  technologist: xU,
+  man_technologist: AU,
+  woman_technologist: SU,
+  singer: LU,
+  man_singer: CU,
+  woman_singer: EU,
+  artist: TU,
+  man_artist: DU,
+  woman_artist: qU,
+  pilot: jU,
+  man_pilot: RU,
+  woman_pilot: NU,
+  astronaut: PU,
+  man_astronaut: IU,
+  woman_astronaut: OU,
+  firefighter: FU,
+  man_firefighter: MU,
+  woman_firefighter: BU,
+  police_officer: $U,
+  cop: zU,
+  policeman: GU,
+  policewoman: UU,
+  detective: HU,
+  male_detective: VU,
+  female_detective: WU,
+  guard: ZU,
+  guardsman: JU,
+  guardswoman: QU,
+  ninja: YU,
+  construction_worker: XU,
+  construction_worker_man: KU,
+  construction_worker_woman: e9,
+  prince: n9,
+  princess: t9,
+  person_with_turban: o9,
+  man_with_turban: s9,
+  woman_with_turban: r9,
+  man_with_gua_pi_mao: c9,
+  woman_with_headscarf: a9,
+  person_in_tuxedo: i9,
+  man_in_tuxedo: l9,
+  woman_in_tuxedo: u9,
+  person_with_veil: p9,
+  man_with_veil: h9,
+  woman_with_veil: d9,
+  bride_with_veil: f9,
+  pregnant_woman: m9,
+  breast_feeding: g9,
+  woman_feeding_baby: _9,
+  man_feeding_baby: b9,
+  person_feeding_baby: k9,
+  angel: y9,
+  santa: w9,
+  mrs_claus: v9,
+  mx_claus: x9,
+  superhero: A9,
+  superhero_man: S9,
+  superhero_woman: L9,
+  supervillain: C9,
+  supervillain_man: E9,
+  supervillain_woman: T9,
+  mage: D9,
+  mage_man: q9,
+  mage_woman: j9,
+  fairy: R9,
+  fairy_man: N9,
+  fairy_woman: P9,
+  vampire: I9,
+  vampire_man: O9,
+  vampire_woman: F9,
+  merperson: M9,
+  merman: B9,
+  mermaid: $9,
+  elf: z9,
+  elf_man: G9,
+  elf_woman: U9,
+  genie: H9,
+  genie_man: V9,
+  genie_woman: W9,
+  zombie: Z9,
+  zombie_man: J9,
+  zombie_woman: Q9,
+  massage: Y9,
+  massage_man: X9,
+  massage_woman: K9,
+  haircut: e7,
+  haircut_man: n7,
+  haircut_woman: t7,
+  walking: o7,
+  walking_man: s7,
+  walking_woman: r7,
+  standing_person: c7,
+  standing_man: a7,
+  standing_woman: i7,
+  kneeling_person: l7,
+  kneeling_man: u7,
+  kneeling_woman: p7,
+  person_with_probing_cane: h7,
+  man_with_probing_cane: d7,
+  woman_with_probing_cane: f7,
+  person_in_motorized_wheelchair: m7,
+  man_in_motorized_wheelchair: g7,
+  woman_in_motorized_wheelchair: _7,
+  person_in_manual_wheelchair: b7,
+  man_in_manual_wheelchair: k7,
+  woman_in_manual_wheelchair: y7,
+  runner: w7,
+  running: v7,
+  running_man: x7,
+  running_woman: A7,
+  woman_dancing: S7,
+  dancer: L7,
+  man_dancing: C7,
+  business_suit_levitating: E7,
+  dancers: T7,
+  dancing_men: D7,
+  dancing_women: q7,
+  sauna_person: j7,
+  sauna_man: R7,
+  sauna_woman: N7,
+  climbing: P7,
+  climbing_man: I7,
+  climbing_woman: O7,
+  person_fencing: F7,
+  horse_racing: M7,
+  skier: B7,
+  snowboarder: $7,
+  golfing: z7,
+  golfing_man: G7,
+  golfing_woman: U7,
+  surfer: H7,
+  surfing_man: V7,
+  surfing_woman: W7,
+  rowboat: Z7,
+  rowing_man: J7,
+  rowing_woman: Q7,
+  swimmer: Y7,
+  swimming_man: X7,
+  swimming_woman: K7,
+  bouncing_ball_person: eH,
+  bouncing_ball_man: nH,
+  basketball_man: tH,
+  bouncing_ball_woman: oH,
+  basketball_woman: sH,
+  weight_lifting: rH,
+  weight_lifting_man: cH,
+  weight_lifting_woman: aH,
+  bicyclist: iH,
+  biking_man: lH,
+  biking_woman: uH,
+  mountain_bicyclist: pH,
+  mountain_biking_man: hH,
+  mountain_biking_woman: dH,
+  cartwheeling: fH,
+  man_cartwheeling: mH,
+  woman_cartwheeling: gH,
+  wrestling: _H,
+  men_wrestling: bH,
+  women_wrestling: kH,
+  water_polo: yH,
+  man_playing_water_polo: wH,
+  woman_playing_water_polo: vH,
+  handball_person: xH,
+  man_playing_handball: AH,
+  woman_playing_handball: SH,
+  juggling_person: LH,
+  man_juggling: CH,
+  woman_juggling: EH,
+  lotus_position: TH,
+  lotus_position_man: DH,
+  lotus_position_woman: qH,
+  bath: jH,
+  sleeping_bed: RH,
+  people_holding_hands: NH,
+  two_women_holding_hands: PH,
+  couple: IH,
+  two_men_holding_hands: OH,
+  couplekiss: FH,
+  couplekiss_man_woman: MH,
+  couplekiss_man_man: BH,
+  couplekiss_woman_woman: $H,
+  couple_with_heart: zH,
+  couple_with_heart_woman_man: GH,
+  couple_with_heart_man_man: UH,
+  couple_with_heart_woman_woman: HH,
+  family: VH,
+  family_man_woman_boy: WH,
+  family_man_woman_girl: ZH,
+  family_man_woman_girl_boy: JH,
+  family_man_woman_boy_boy: QH,
+  family_man_woman_girl_girl: YH,
+  family_man_man_boy: XH,
+  family_man_man_girl: KH,
+  family_man_man_girl_boy: eV,
+  family_man_man_boy_boy: nV,
+  family_man_man_girl_girl: tV,
+  family_woman_woman_boy: oV,
+  family_woman_woman_girl: sV,
+  family_woman_woman_girl_boy: rV,
+  family_woman_woman_boy_boy: cV,
+  family_woman_woman_girl_girl: aV,
+  family_man_boy: iV,
+  family_man_boy_boy: lV,
+  family_man_girl: uV,
+  family_man_girl_boy: pV,
+  family_man_girl_girl: hV,
+  family_woman_boy: dV,
+  family_woman_boy_boy: fV,
+  family_woman_girl: mV,
+  family_woman_girl_boy: gV,
+  family_woman_girl_girl: _V,
+  speaking_head: bV,
+  bust_in_silhouette: kV,
+  busts_in_silhouette: yV,
+  people_hugging: wV,
+  footprints: vV,
+  monkey_face: xV,
+  monkey: AV,
+  gorilla: SV,
+  orangutan: LV,
+  dog: CV,
+  dog2: EV,
+  guide_dog: TV,
+  service_dog: DV,
+  poodle: qV,
+  wolf: jV,
+  fox_face: RV,
+  raccoon: NV,
+  cat: PV,
+  cat2: IV,
+  black_cat: OV,
+  lion: FV,
+  tiger: MV,
+  tiger2: BV,
+  leopard: $V,
+  horse: zV,
+  racehorse: GV,
+  unicorn: UV,
+  zebra: HV,
+  deer: VV,
+  bison: WV,
+  cow: ZV,
+  ox: JV,
+  water_buffalo: QV,
+  cow2: YV,
+  pig: XV,
+  pig2: KV,
+  boar: eW,
+  pig_nose: nW,
+  ram: tW,
+  sheep: oW,
+  goat: sW,
+  dromedary_camel: rW,
+  camel: cW,
+  llama: aW,
+  giraffe: iW,
+  elephant: lW,
+  mammoth: uW,
+  rhinoceros: pW,
+  hippopotamus: hW,
+  mouse: dW,
+  mouse2: fW,
+  rat: mW,
+  hamster: gW,
+  rabbit: _W,
+  rabbit2: bW,
+  chipmunk: kW,
+  beaver: yW,
+  hedgehog: wW,
+  bat: vW,
+  bear: xW,
+  polar_bear: AW,
+  koala: SW,
+  panda_face: LW,
+  sloth: CW,
+  otter: EW,
+  skunk: TW,
+  kangaroo: DW,
+  badger: qW,
+  feet: jW,
+  paw_prints: RW,
+  turkey: NW,
+  chicken: PW,
+  rooster: IW,
+  hatching_chick: OW,
+  baby_chick: FW,
+  hatched_chick: MW,
+  bird: BW,
+  penguin: $W,
+  dove: zW,
+  eagle: GW,
+  duck: UW,
+  swan: HW,
+  owl: VW,
+  dodo: WW,
+  feather: ZW,
+  flamingo: JW,
+  peacock: QW,
+  parrot: YW,
+  frog: XW,
+  crocodile: KW,
+  turtle: eZ,
+  lizard: nZ,
+  snake: tZ,
+  dragon_face: oZ,
+  dragon: sZ,
+  sauropod: rZ,
   "t-rex": "🦖",
-  whale: sZ,
-  whale2: rZ,
-  dolphin: cZ,
-  flipper: aZ,
-  seal: iZ,
-  fish: lZ,
-  tropical_fish: uZ,
-  blowfish: pZ,
-  shark: hZ,
-  octopus: dZ,
-  shell: fZ,
-  snail: mZ,
-  butterfly: gZ,
-  bug: _Z,
-  ant: bZ,
-  bee: kZ,
-  honeybee: yZ,
-  beetle: wZ,
-  lady_beetle: vZ,
-  cricket: xZ,
-  cockroach: AZ,
-  spider: SZ,
-  spider_web: LZ,
-  scorpion: CZ,
-  mosquito: EZ,
-  fly: TZ,
-  worm: DZ,
-  microbe: qZ,
-  bouquet: jZ,
-  cherry_blossom: RZ,
-  white_flower: NZ,
-  rosette: PZ,
-  rose: IZ,
-  wilted_flower: OZ,
-  hibiscus: FZ,
-  sunflower: MZ,
-  blossom: BZ,
-  tulip: zZ,
-  seedling: $Z,
-  potted_plant: GZ,
-  evergreen_tree: UZ,
-  deciduous_tree: HZ,
-  palm_tree: VZ,
-  cactus: WZ,
-  ear_of_rice: ZZ,
-  herb: JZ,
-  shamrock: QZ,
-  four_leaf_clover: YZ,
-  maple_leaf: XZ,
-  fallen_leaf: KZ,
-  leaves: eJ,
-  grapes: nJ,
-  melon: tJ,
-  watermelon: oJ,
-  tangerine: sJ,
-  orange: rJ,
-  mandarin: cJ,
-  lemon: aJ,
-  banana: iJ,
-  pineapple: lJ,
-  mango: uJ,
-  apple: pJ,
-  green_apple: hJ,
-  pear: dJ,
-  peach: fJ,
-  cherries: mJ,
-  strawberry: gJ,
-  blueberries: _J,
-  kiwi_fruit: bJ,
-  tomato: kJ,
-  olive: yJ,
-  coconut: wJ,
-  avocado: vJ,
-  eggplant: xJ,
-  potato: AJ,
-  carrot: SJ,
-  corn: LJ,
-  hot_pepper: CJ,
-  bell_pepper: EJ,
-  cucumber: TJ,
-  leafy_green: DJ,
-  broccoli: qJ,
-  garlic: jJ,
-  onion: RJ,
-  mushroom: NJ,
-  peanuts: PJ,
-  chestnut: IJ,
-  bread: OJ,
-  croissant: FJ,
-  baguette_bread: MJ,
-  flatbread: BJ,
-  pretzel: zJ,
-  bagel: $J,
-  pancakes: GJ,
-  waffle: UJ,
-  cheese: HJ,
-  meat_on_bone: VJ,
-  poultry_leg: WJ,
-  cut_of_meat: ZJ,
-  bacon: JJ,
-  hamburger: QJ,
-  fries: YJ,
-  pizza: XJ,
-  hotdog: KJ,
-  sandwich: eQ,
-  taco: nQ,
-  burrito: tQ,
-  tamale: oQ,
-  stuffed_flatbread: sQ,
-  falafel: rQ,
-  egg: cQ,
-  fried_egg: aQ,
-  shallow_pan_of_food: iQ,
-  stew: lQ,
-  fondue: uQ,
-  bowl_with_spoon: pQ,
-  green_salad: hQ,
-  popcorn: dQ,
-  butter: fQ,
-  salt: mQ,
-  canned_food: gQ,
-  bento: _Q,
-  rice_cracker: bQ,
-  rice_ball: kQ,
-  rice: yQ,
-  curry: wQ,
-  ramen: vQ,
-  spaghetti: xQ,
-  sweet_potato: AQ,
-  oden: SQ,
-  sushi: LQ,
-  fried_shrimp: CQ,
-  fish_cake: EQ,
-  moon_cake: TQ,
-  dango: DQ,
-  dumpling: qQ,
-  fortune_cookie: jQ,
-  takeout_box: RQ,
-  crab: NQ,
-  lobster: PQ,
-  shrimp: IQ,
-  squid: OQ,
-  oyster: FQ,
-  icecream: MQ,
-  shaved_ice: BQ,
-  ice_cream: zQ,
-  doughnut: $Q,
-  cookie: GQ,
-  birthday: UQ,
-  cake: HQ,
-  cupcake: VQ,
-  pie: WQ,
-  chocolate_bar: ZQ,
-  candy: JQ,
-  lollipop: QQ,
-  custard: YQ,
-  honey_pot: XQ,
-  baby_bottle: KQ,
-  milk_glass: eY,
-  coffee: nY,
-  teapot: tY,
-  tea: oY,
-  sake: sY,
-  champagne: rY,
-  wine_glass: cY,
-  cocktail: aY,
-  tropical_drink: iY,
-  beer: lY,
-  beers: uY,
-  clinking_glasses: pY,
-  tumbler_glass: hY,
-  cup_with_straw: dY,
-  bubble_tea: fY,
-  beverage_box: mY,
-  mate: gY,
-  ice_cube: _Y,
-  chopsticks: bY,
-  plate_with_cutlery: kY,
-  fork_and_knife: yY,
-  spoon: wY,
-  hocho: vY,
-  knife: xY,
-  amphora: AY,
-  earth_africa: SY,
-  earth_americas: LY,
-  earth_asia: CY,
-  globe_with_meridians: EY,
-  world_map: TY,
-  japan: DY,
-  compass: qY,
-  mountain_snow: jY,
-  mountain: RY,
-  volcano: NY,
-  mount_fuji: PY,
-  camping: IY,
-  beach_umbrella: OY,
-  desert: FY,
-  desert_island: MY,
-  national_park: BY,
-  stadium: zY,
-  classical_building: $Y,
-  building_construction: GY,
-  bricks: UY,
-  rock: HY,
-  wood: VY,
-  hut: WY,
-  houses: ZY,
-  derelict_house: JY,
-  house: QY,
-  house_with_garden: YY,
-  office: XY,
-  post_office: KY,
-  european_post_office: eX,
-  hospital: nX,
-  bank: tX,
-  hotel: oX,
-  love_hotel: sX,
-  convenience_store: rX,
-  school: cX,
-  department_store: aX,
-  factory: iX,
-  japanese_castle: lX,
-  european_castle: uX,
-  wedding: pX,
-  tokyo_tower: hX,
-  statue_of_liberty: dX,
-  church: fX,
-  mosque: mX,
-  hindu_temple: gX,
-  synagogue: _X,
-  shinto_shrine: bX,
-  kaaba: kX,
-  fountain: yX,
-  tent: wX,
-  foggy: vX,
-  night_with_stars: xX,
-  cityscape: AX,
-  sunrise_over_mountains: SX,
-  sunrise: LX,
-  city_sunset: CX,
-  city_sunrise: EX,
-  bridge_at_night: TX,
-  hotsprings: DX,
-  carousel_horse: qX,
-  ferris_wheel: jX,
-  roller_coaster: RX,
-  barber: NX,
-  circus_tent: PX,
-  steam_locomotive: IX,
-  railway_car: OX,
-  bullettrain_side: FX,
-  bullettrain_front: MX,
-  train2: BX,
-  metro: zX,
-  light_rail: $X,
-  station: GX,
-  tram: UX,
-  monorail: HX,
-  mountain_railway: VX,
-  train: WX,
-  bus: ZX,
-  oncoming_bus: JX,
-  trolleybus: QX,
-  minibus: YX,
-  ambulance: XX,
-  fire_engine: KX,
-  police_car: eK,
-  oncoming_police_car: nK,
-  taxi: tK,
-  oncoming_taxi: oK,
-  car: sK,
-  red_car: rK,
-  oncoming_automobile: cK,
-  blue_car: aK,
-  pickup_truck: iK,
-  truck: lK,
-  articulated_lorry: uK,
-  tractor: pK,
-  racing_car: hK,
-  motorcycle: dK,
-  motor_scooter: fK,
-  manual_wheelchair: mK,
-  motorized_wheelchair: gK,
-  auto_rickshaw: _K,
-  bike: bK,
-  kick_scooter: kK,
-  skateboard: yK,
-  roller_skate: wK,
-  busstop: vK,
-  motorway: xK,
-  railway_track: AK,
-  oil_drum: SK,
-  fuelpump: LK,
-  rotating_light: CK,
-  traffic_light: EK,
-  vertical_traffic_light: TK,
-  stop_sign: DK,
-  construction: qK,
-  anchor: jK,
-  boat: RK,
-  sailboat: NK,
-  canoe: PK,
-  speedboat: IK,
-  passenger_ship: OK,
-  ferry: FK,
-  motor_boat: MK,
-  ship: BK,
-  airplane: zK,
-  small_airplane: $K,
-  flight_departure: GK,
-  flight_arrival: UK,
-  parachute: HK,
-  seat: VK,
-  helicopter: WK,
-  suspension_railway: ZK,
-  mountain_cableway: JK,
-  aerial_tramway: QK,
-  artificial_satellite: YK,
-  rocket: XK,
-  flying_saucer: KK,
-  bellhop_bell: eee,
-  luggage: nee,
-  hourglass: tee,
-  hourglass_flowing_sand: oee,
-  watch: see,
-  alarm_clock: ree,
-  stopwatch: cee,
-  timer_clock: aee,
-  mantelpiece_clock: iee,
-  clock12: lee,
-  clock1230: uee,
-  clock1: pee,
-  clock130: hee,
-  clock2: dee,
-  clock230: fee,
-  clock3: mee,
-  clock330: gee,
-  clock4: _ee,
-  clock430: bee,
-  clock5: kee,
-  clock530: yee,
-  clock6: wee,
-  clock630: vee,
-  clock7: xee,
-  clock730: Aee,
-  clock8: See,
-  clock830: Lee,
-  clock9: Cee,
-  clock930: Eee,
-  clock10: Tee,
-  clock1030: Dee,
-  clock11: qee,
-  clock1130: jee,
-  new_moon: Ree,
-  waxing_crescent_moon: Nee,
-  first_quarter_moon: Pee,
-  moon: Iee,
-  waxing_gibbous_moon: Oee,
-  full_moon: Fee,
-  waning_gibbous_moon: Mee,
-  last_quarter_moon: Bee,
-  waning_crescent_moon: zee,
-  crescent_moon: $ee,
-  new_moon_with_face: Gee,
-  first_quarter_moon_with_face: Uee,
-  last_quarter_moon_with_face: Hee,
-  thermometer: Vee,
-  sunny: Wee,
-  full_moon_with_face: Zee,
-  sun_with_face: Jee,
-  ringed_planet: Qee,
-  star: Yee,
-  star2: Xee,
-  stars: Kee,
-  milky_way: ene,
-  cloud: nne,
-  partly_sunny: tne,
-  cloud_with_lightning_and_rain: one,
-  sun_behind_small_cloud: sne,
-  sun_behind_large_cloud: rne,
-  sun_behind_rain_cloud: cne,
-  cloud_with_rain: ane,
-  cloud_with_snow: ine,
-  cloud_with_lightning: lne,
-  tornado: une,
-  fog: pne,
-  wind_face: hne,
-  cyclone: dne,
-  rainbow: fne,
-  closed_umbrella: mne,
-  open_umbrella: gne,
-  umbrella: _ne,
-  parasol_on_ground: bne,
-  zap: kne,
-  snowflake: yne,
-  snowman_with_snow: wne,
-  snowman: vne,
-  comet: xne,
-  fire: Ane,
-  droplet: Sne,
-  ocean: Lne,
-  jack_o_lantern: Cne,
-  christmas_tree: Ene,
-  fireworks: Tne,
-  sparkler: Dne,
-  firecracker: qne,
-  sparkles: jne,
-  balloon: Rne,
-  tada: Nne,
-  confetti_ball: Pne,
-  tanabata_tree: Ine,
-  bamboo: One,
-  dolls: Fne,
-  flags: Mne,
-  wind_chime: Bne,
-  rice_scene: zne,
-  red_envelope: $ne,
-  ribbon: Gne,
-  gift: Une,
-  reminder_ribbon: Hne,
-  tickets: Vne,
-  ticket: Wne,
-  medal_military: Zne,
-  trophy: Jne,
-  medal_sports: Qne,
+  whale: cZ,
+  whale2: aZ,
+  dolphin: iZ,
+  flipper: lZ,
+  seal: uZ,
+  fish: pZ,
+  tropical_fish: hZ,
+  blowfish: dZ,
+  shark: fZ,
+  octopus: mZ,
+  shell: gZ,
+  snail: _Z,
+  butterfly: bZ,
+  bug: kZ,
+  ant: yZ,
+  bee: wZ,
+  honeybee: vZ,
+  beetle: xZ,
+  lady_beetle: AZ,
+  cricket: SZ,
+  cockroach: LZ,
+  spider: CZ,
+  spider_web: EZ,
+  scorpion: TZ,
+  mosquito: DZ,
+  fly: qZ,
+  worm: jZ,
+  microbe: RZ,
+  bouquet: NZ,
+  cherry_blossom: PZ,
+  white_flower: IZ,
+  rosette: OZ,
+  rose: FZ,
+  wilted_flower: MZ,
+  hibiscus: BZ,
+  sunflower: $Z,
+  blossom: zZ,
+  tulip: GZ,
+  seedling: UZ,
+  potted_plant: HZ,
+  evergreen_tree: VZ,
+  deciduous_tree: WZ,
+  palm_tree: ZZ,
+  cactus: JZ,
+  ear_of_rice: QZ,
+  herb: YZ,
+  shamrock: XZ,
+  four_leaf_clover: KZ,
+  maple_leaf: eJ,
+  fallen_leaf: nJ,
+  leaves: tJ,
+  grapes: oJ,
+  melon: sJ,
+  watermelon: rJ,
+  tangerine: cJ,
+  orange: aJ,
+  mandarin: iJ,
+  lemon: lJ,
+  banana: uJ,
+  pineapple: pJ,
+  mango: hJ,
+  apple: dJ,
+  green_apple: fJ,
+  pear: mJ,
+  peach: gJ,
+  cherries: _J,
+  strawberry: bJ,
+  blueberries: kJ,
+  kiwi_fruit: yJ,
+  tomato: wJ,
+  olive: vJ,
+  coconut: xJ,
+  avocado: AJ,
+  eggplant: SJ,
+  potato: LJ,
+  carrot: CJ,
+  corn: EJ,
+  hot_pepper: TJ,
+  bell_pepper: DJ,
+  cucumber: qJ,
+  leafy_green: jJ,
+  broccoli: RJ,
+  garlic: NJ,
+  onion: PJ,
+  mushroom: IJ,
+  peanuts: OJ,
+  chestnut: FJ,
+  bread: MJ,
+  croissant: BJ,
+  baguette_bread: $J,
+  flatbread: zJ,
+  pretzel: GJ,
+  bagel: UJ,
+  pancakes: HJ,
+  waffle: VJ,
+  cheese: WJ,
+  meat_on_bone: ZJ,
+  poultry_leg: JJ,
+  cut_of_meat: QJ,
+  bacon: YJ,
+  hamburger: XJ,
+  fries: KJ,
+  pizza: eQ,
+  hotdog: nQ,
+  sandwich: tQ,
+  taco: oQ,
+  burrito: sQ,
+  tamale: rQ,
+  stuffed_flatbread: cQ,
+  falafel: aQ,
+  egg: iQ,
+  fried_egg: lQ,
+  shallow_pan_of_food: uQ,
+  stew: pQ,
+  fondue: hQ,
+  bowl_with_spoon: dQ,
+  green_salad: fQ,
+  popcorn: mQ,
+  butter: gQ,
+  salt: _Q,
+  canned_food: bQ,
+  bento: kQ,
+  rice_cracker: yQ,
+  rice_ball: wQ,
+  rice: vQ,
+  curry: xQ,
+  ramen: AQ,
+  spaghetti: SQ,
+  sweet_potato: LQ,
+  oden: CQ,
+  sushi: EQ,
+  fried_shrimp: TQ,
+  fish_cake: DQ,
+  moon_cake: qQ,
+  dango: jQ,
+  dumpling: RQ,
+  fortune_cookie: NQ,
+  takeout_box: PQ,
+  crab: IQ,
+  lobster: OQ,
+  shrimp: FQ,
+  squid: MQ,
+  oyster: BQ,
+  icecream: $Q,
+  shaved_ice: zQ,
+  ice_cream: GQ,
+  doughnut: UQ,
+  cookie: HQ,
+  birthday: VQ,
+  cake: WQ,
+  cupcake: ZQ,
+  pie: JQ,
+  chocolate_bar: QQ,
+  candy: YQ,
+  lollipop: XQ,
+  custard: KQ,
+  honey_pot: eY,
+  baby_bottle: nY,
+  milk_glass: tY,
+  coffee: oY,
+  teapot: sY,
+  tea: rY,
+  sake: cY,
+  champagne: aY,
+  wine_glass: iY,
+  cocktail: lY,
+  tropical_drink: uY,
+  beer: pY,
+  beers: hY,
+  clinking_glasses: dY,
+  tumbler_glass: fY,
+  cup_with_straw: mY,
+  bubble_tea: gY,
+  beverage_box: _Y,
+  mate: bY,
+  ice_cube: kY,
+  chopsticks: yY,
+  plate_with_cutlery: wY,
+  fork_and_knife: vY,
+  spoon: xY,
+  hocho: AY,
+  knife: SY,
+  amphora: LY,
+  earth_africa: CY,
+  earth_americas: EY,
+  earth_asia: TY,
+  globe_with_meridians: DY,
+  world_map: qY,
+  japan: jY,
+  compass: RY,
+  mountain_snow: NY,
+  mountain: PY,
+  volcano: IY,
+  mount_fuji: OY,
+  camping: FY,
+  beach_umbrella: MY,
+  desert: BY,
+  desert_island: $Y,
+  national_park: zY,
+  stadium: GY,
+  classical_building: UY,
+  building_construction: HY,
+  bricks: VY,
+  rock: WY,
+  wood: ZY,
+  hut: JY,
+  houses: QY,
+  derelict_house: YY,
+  house: XY,
+  house_with_garden: KY,
+  office: eX,
+  post_office: nX,
+  european_post_office: tX,
+  hospital: oX,
+  bank: sX,
+  hotel: rX,
+  love_hotel: cX,
+  convenience_store: aX,
+  school: iX,
+  department_store: lX,
+  factory: uX,
+  japanese_castle: pX,
+  european_castle: hX,
+  wedding: dX,
+  tokyo_tower: fX,
+  statue_of_liberty: mX,
+  church: gX,
+  mosque: _X,
+  hindu_temple: bX,
+  synagogue: kX,
+  shinto_shrine: yX,
+  kaaba: wX,
+  fountain: vX,
+  tent: xX,
+  foggy: AX,
+  night_with_stars: SX,
+  cityscape: LX,
+  sunrise_over_mountains: CX,
+  sunrise: EX,
+  city_sunset: TX,
+  city_sunrise: DX,
+  bridge_at_night: qX,
+  hotsprings: jX,
+  carousel_horse: RX,
+  ferris_wheel: NX,
+  roller_coaster: PX,
+  barber: IX,
+  circus_tent: OX,
+  steam_locomotive: FX,
+  railway_car: MX,
+  bullettrain_side: BX,
+  bullettrain_front: $X,
+  train2: zX,
+  metro: GX,
+  light_rail: UX,
+  station: HX,
+  tram: VX,
+  monorail: WX,
+  mountain_railway: ZX,
+  train: JX,
+  bus: QX,
+  oncoming_bus: YX,
+  trolleybus: XX,
+  minibus: KX,
+  ambulance: eK,
+  fire_engine: nK,
+  police_car: tK,
+  oncoming_police_car: oK,
+  taxi: sK,
+  oncoming_taxi: rK,
+  car: cK,
+  red_car: aK,
+  oncoming_automobile: iK,
+  blue_car: lK,
+  pickup_truck: uK,
+  truck: pK,
+  articulated_lorry: hK,
+  tractor: dK,
+  racing_car: fK,
+  motorcycle: mK,
+  motor_scooter: gK,
+  manual_wheelchair: _K,
+  motorized_wheelchair: bK,
+  auto_rickshaw: kK,
+  bike: yK,
+  kick_scooter: wK,
+  skateboard: vK,
+  roller_skate: xK,
+  busstop: AK,
+  motorway: SK,
+  railway_track: LK,
+  oil_drum: CK,
+  fuelpump: EK,
+  rotating_light: TK,
+  traffic_light: DK,
+  vertical_traffic_light: qK,
+  stop_sign: jK,
+  construction: RK,
+  anchor: NK,
+  boat: PK,
+  sailboat: IK,
+  canoe: OK,
+  speedboat: FK,
+  passenger_ship: MK,
+  ferry: BK,
+  motor_boat: $K,
+  ship: zK,
+  airplane: GK,
+  small_airplane: UK,
+  flight_departure: HK,
+  flight_arrival: VK,
+  parachute: WK,
+  seat: ZK,
+  helicopter: JK,
+  suspension_railway: QK,
+  mountain_cableway: YK,
+  aerial_tramway: XK,
+  artificial_satellite: KK,
+  rocket: eee,
+  flying_saucer: nee,
+  bellhop_bell: tee,
+  luggage: oee,
+  hourglass: see,
+  hourglass_flowing_sand: ree,
+  watch: cee,
+  alarm_clock: aee,
+  stopwatch: iee,
+  timer_clock: lee,
+  mantelpiece_clock: uee,
+  clock12: pee,
+  clock1230: hee,
+  clock1: dee,
+  clock130: fee,
+  clock2: mee,
+  clock230: gee,
+  clock3: _ee,
+  clock330: bee,
+  clock4: kee,
+  clock430: yee,
+  clock5: wee,
+  clock530: vee,
+  clock6: xee,
+  clock630: Aee,
+  clock7: See,
+  clock730: Lee,
+  clock8: Cee,
+  clock830: Eee,
+  clock9: Tee,
+  clock930: Dee,
+  clock10: qee,
+  clock1030: jee,
+  clock11: Ree,
+  clock1130: Nee,
+  new_moon: Pee,
+  waxing_crescent_moon: Iee,
+  first_quarter_moon: Oee,
+  moon: Fee,
+  waxing_gibbous_moon: Mee,
+  full_moon: Bee,
+  waning_gibbous_moon: $ee,
+  last_quarter_moon: zee,
+  waning_crescent_moon: Gee,
+  crescent_moon: Uee,
+  new_moon_with_face: Hee,
+  first_quarter_moon_with_face: Vee,
+  last_quarter_moon_with_face: Wee,
+  thermometer: Zee,
+  sunny: Jee,
+  full_moon_with_face: Qee,
+  sun_with_face: Yee,
+  ringed_planet: Xee,
+  star: Kee,
+  star2: ene,
+  stars: nne,
+  milky_way: tne,
+  cloud: one,
+  partly_sunny: sne,
+  cloud_with_lightning_and_rain: rne,
+  sun_behind_small_cloud: cne,
+  sun_behind_large_cloud: ane,
+  sun_behind_rain_cloud: ine,
+  cloud_with_rain: lne,
+  cloud_with_snow: une,
+  cloud_with_lightning: pne,
+  tornado: hne,
+  fog: dne,
+  wind_face: fne,
+  cyclone: mne,
+  rainbow: gne,
+  closed_umbrella: _ne,
+  open_umbrella: bne,
+  umbrella: kne,
+  parasol_on_ground: yne,
+  zap: wne,
+  snowflake: vne,
+  snowman_with_snow: xne,
+  snowman: Ane,
+  comet: Sne,
+  fire: Lne,
+  droplet: Cne,
+  ocean: Ene,
+  jack_o_lantern: Tne,
+  christmas_tree: Dne,
+  fireworks: qne,
+  sparkler: jne,
+  firecracker: Rne,
+  sparkles: Nne,
+  balloon: Pne,
+  tada: Ine,
+  confetti_ball: One,
+  tanabata_tree: Fne,
+  bamboo: Mne,
+  dolls: Bne,
+  flags: $ne,
+  wind_chime: zne,
+  rice_scene: Gne,
+  red_envelope: Une,
+  ribbon: Hne,
+  gift: Vne,
+  reminder_ribbon: Wne,
+  tickets: Zne,
+  ticket: Jne,
+  medal_military: Qne,
+  trophy: Yne,
+  medal_sports: Xne,
   "1st_place_medal": "🥇",
   "2nd_place_medal": "🥈",
   "3rd_place_medal": "🥉",
-  soccer: Yne,
-  baseball: Xne,
-  softball: Kne,
-  basketball: ete,
-  volleyball: nte,
-  football: tte,
-  rugby_football: ote,
-  tennis: ste,
-  flying_disc: rte,
-  bowling: cte,
-  cricket_game: ate,
-  field_hockey: ite,
-  ice_hockey: lte,
-  lacrosse: ute,
-  ping_pong: pte,
-  badminton: hte,
-  boxing_glove: dte,
-  martial_arts_uniform: fte,
-  goal_net: mte,
-  golf: gte,
-  ice_skate: _te,
-  fishing_pole_and_fish: bte,
-  diving_mask: kte,
-  running_shirt_with_sash: yte,
-  ski: wte,
-  sled: vte,
-  curling_stone: xte,
-  dart: Ate,
-  yo_yo: Ste,
-  kite: Lte,
+  soccer: Kne,
+  baseball: ete,
+  softball: nte,
+  basketball: tte,
+  volleyball: ote,
+  football: ste,
+  rugby_football: rte,
+  tennis: cte,
+  flying_disc: ate,
+  bowling: ite,
+  cricket_game: lte,
+  field_hockey: ute,
+  ice_hockey: pte,
+  lacrosse: hte,
+  ping_pong: dte,
+  badminton: fte,
+  boxing_glove: mte,
+  martial_arts_uniform: gte,
+  goal_net: _te,
+  golf: bte,
+  ice_skate: kte,
+  fishing_pole_and_fish: yte,
+  diving_mask: wte,
+  running_shirt_with_sash: vte,
+  ski: xte,
+  sled: Ate,
+  curling_stone: Ste,
+  dart: Lte,
+  yo_yo: Cte,
+  kite: Ete,
   "8ball": "🎱",
-  crystal_ball: Cte,
-  magic_wand: Ete,
-  nazar_amulet: Tte,
-  video_game: Dte,
-  joystick: qte,
-  slot_machine: jte,
-  game_die: Rte,
-  jigsaw: Nte,
-  teddy_bear: Pte,
-  pinata: Ite,
-  nesting_dolls: Ote,
-  spades: Fte,
-  hearts: Mte,
-  diamonds: Bte,
-  clubs: zte,
-  chess_pawn: $te,
-  black_joker: Gte,
-  mahjong: Ute,
-  flower_playing_cards: Hte,
-  performing_arts: Vte,
-  framed_picture: Wte,
-  art: Zte,
-  thread: Jte,
-  sewing_needle: Qte,
-  yarn: Yte,
-  knot: Xte,
-  eyeglasses: Kte,
-  dark_sunglasses: eoe,
-  goggles: noe,
-  lab_coat: toe,
-  safety_vest: ooe,
-  necktie: soe,
-  shirt: roe,
-  tshirt: coe,
-  jeans: aoe,
-  scarf: ioe,
-  gloves: loe,
-  coat: uoe,
-  socks: poe,
-  dress: hoe,
-  kimono: doe,
-  sari: foe,
-  one_piece_swimsuit: moe,
-  swim_brief: goe,
-  shorts: _oe,
-  bikini: boe,
-  womans_clothes: koe,
-  purse: yoe,
-  handbag: woe,
-  pouch: voe,
-  shopping: xoe,
-  school_satchel: Aoe,
-  thong_sandal: Soe,
-  mans_shoe: Loe,
-  shoe: Coe,
-  athletic_shoe: Eoe,
-  hiking_boot: Toe,
-  flat_shoe: Doe,
-  high_heel: qoe,
-  sandal: joe,
-  ballet_shoes: Roe,
-  boot: Noe,
-  crown: Poe,
-  womans_hat: Ioe,
-  tophat: Ooe,
-  mortar_board: Foe,
-  billed_cap: Moe,
-  military_helmet: Boe,
-  rescue_worker_helmet: zoe,
-  prayer_beads: $oe,
-  lipstick: Goe,
-  ring: Uoe,
-  gem: Hoe,
-  mute: Voe,
-  speaker: Woe,
-  sound: Zoe,
-  loud_sound: Joe,
-  loudspeaker: Qoe,
-  mega: Yoe,
-  postal_horn: Xoe,
-  bell: Koe,
-  no_bell: ese,
-  musical_score: nse,
-  musical_note: tse,
-  notes: ose,
-  studio_microphone: sse,
-  level_slider: rse,
-  control_knobs: cse,
-  microphone: ase,
-  headphones: ise,
-  radio: lse,
-  saxophone: use,
-  accordion: pse,
-  guitar: hse,
-  musical_keyboard: dse,
-  trumpet: fse,
-  violin: mse,
-  banjo: gse,
-  drum: _se,
-  long_drum: bse,
-  iphone: kse,
-  calling: yse,
-  phone: wse,
-  telephone: vse,
-  telephone_receiver: xse,
-  pager: Ase,
-  fax: Sse,
-  battery: Lse,
-  electric_plug: Cse,
-  computer: Ese,
-  desktop_computer: Tse,
-  printer: Dse,
-  keyboard: qse,
-  computer_mouse: jse,
-  trackball: Rse,
-  minidisc: Nse,
-  floppy_disk: Pse,
-  cd: Ise,
-  dvd: Ose,
-  abacus: Fse,
-  movie_camera: Mse,
-  film_strip: Bse,
-  film_projector: zse,
-  clapper: $se,
-  tv: Gse,
-  camera: Use,
-  camera_flash: Hse,
-  video_camera: Vse,
-  vhs: Wse,
-  mag: Zse,
-  mag_right: Jse,
-  candle: Qse,
-  bulb: Yse,
-  flashlight: Xse,
-  izakaya_lantern: Kse,
-  lantern: ere,
-  diya_lamp: nre,
-  notebook_with_decorative_cover: tre,
-  closed_book: ore,
-  book: sre,
-  open_book: rre,
-  green_book: cre,
-  blue_book: are,
-  orange_book: ire,
-  books: lre,
-  notebook: ure,
-  ledger: pre,
-  page_with_curl: hre,
-  scroll: dre,
-  page_facing_up: fre,
-  newspaper: mre,
-  newspaper_roll: gre,
-  bookmark_tabs: _re,
-  bookmark: bre,
-  label: kre,
-  moneybag: yre,
-  coin: wre,
-  yen: vre,
-  dollar: xre,
-  euro: Are,
-  pound: Sre,
-  money_with_wings: Lre,
-  credit_card: Cre,
-  receipt: Ere,
-  chart: Tre,
-  envelope: Dre,
-  email: qre,
+  crystal_ball: Tte,
+  magic_wand: Dte,
+  nazar_amulet: qte,
+  video_game: jte,
+  joystick: Rte,
+  slot_machine: Nte,
+  game_die: Pte,
+  jigsaw: Ite,
+  teddy_bear: Ote,
+  pinata: Fte,
+  nesting_dolls: Mte,
+  spades: Bte,
+  hearts: $te,
+  diamonds: zte,
+  clubs: Gte,
+  chess_pawn: Ute,
+  black_joker: Hte,
+  mahjong: Vte,
+  flower_playing_cards: Wte,
+  performing_arts: Zte,
+  framed_picture: Jte,
+  art: Qte,
+  thread: Yte,
+  sewing_needle: Xte,
+  yarn: Kte,
+  knot: eoe,
+  eyeglasses: noe,
+  dark_sunglasses: toe,
+  goggles: ooe,
+  lab_coat: soe,
+  safety_vest: roe,
+  necktie: coe,
+  shirt: aoe,
+  tshirt: ioe,
+  jeans: loe,
+  scarf: uoe,
+  gloves: poe,
+  coat: hoe,
+  socks: doe,
+  dress: foe,
+  kimono: moe,
+  sari: goe,
+  one_piece_swimsuit: _oe,
+  swim_brief: boe,
+  shorts: koe,
+  bikini: yoe,
+  womans_clothes: woe,
+  purse: voe,
+  handbag: xoe,
+  pouch: Aoe,
+  shopping: Soe,
+  school_satchel: Loe,
+  thong_sandal: Coe,
+  mans_shoe: Eoe,
+  shoe: Toe,
+  athletic_shoe: Doe,
+  hiking_boot: qoe,
+  flat_shoe: joe,
+  high_heel: Roe,
+  sandal: Noe,
+  ballet_shoes: Poe,
+  boot: Ioe,
+  crown: Ooe,
+  womans_hat: Foe,
+  tophat: Moe,
+  mortar_board: Boe,
+  billed_cap: $oe,
+  military_helmet: zoe,
+  rescue_worker_helmet: Goe,
+  prayer_beads: Uoe,
+  lipstick: Hoe,
+  ring: Voe,
+  gem: Woe,
+  mute: Zoe,
+  speaker: Joe,
+  sound: Qoe,
+  loud_sound: Yoe,
+  loudspeaker: Xoe,
+  mega: Koe,
+  postal_horn: ese,
+  bell: nse,
+  no_bell: tse,
+  musical_score: ose,
+  musical_note: sse,
+  notes: rse,
+  studio_microphone: cse,
+  level_slider: ase,
+  control_knobs: ise,
+  microphone: lse,
+  headphones: use,
+  radio: pse,
+  saxophone: hse,
+  accordion: dse,
+  guitar: fse,
+  musical_keyboard: mse,
+  trumpet: gse,
+  violin: _se,
+  banjo: bse,
+  drum: kse,
+  long_drum: yse,
+  iphone: wse,
+  calling: vse,
+  phone: xse,
+  telephone: Ase,
+  telephone_receiver: Sse,
+  pager: Lse,
+  fax: Cse,
+  battery: Ese,
+  electric_plug: Tse,
+  computer: Dse,
+  desktop_computer: qse,
+  printer: jse,
+  keyboard: Rse,
+  computer_mouse: Nse,
+  trackball: Pse,
+  minidisc: Ise,
+  floppy_disk: Ose,
+  cd: Fse,
+  dvd: Mse,
+  abacus: Bse,
+  movie_camera: $se,
+  film_strip: zse,
+  film_projector: Gse,
+  clapper: Use,
+  tv: Hse,
+  camera: Vse,
+  camera_flash: Wse,
+  video_camera: Zse,
+  vhs: Jse,
+  mag: Qse,
+  mag_right: Yse,
+  candle: Xse,
+  bulb: Kse,
+  flashlight: ere,
+  izakaya_lantern: nre,
+  lantern: tre,
+  diya_lamp: ore,
+  notebook_with_decorative_cover: sre,
+  closed_book: rre,
+  book: cre,
+  open_book: are,
+  green_book: ire,
+  blue_book: lre,
+  orange_book: ure,
+  books: pre,
+  notebook: hre,
+  ledger: dre,
+  page_with_curl: fre,
+  scroll: mre,
+  page_facing_up: gre,
+  newspaper: _re,
+  newspaper_roll: bre,
+  bookmark_tabs: kre,
+  bookmark: yre,
+  label: wre,
+  moneybag: vre,
+  coin: xre,
+  yen: Are,
+  dollar: Sre,
+  euro: Lre,
+  pound: Cre,
+  money_with_wings: Ere,
+  credit_card: Tre,
+  receipt: Dre,
+  chart: qre,
+  envelope: jre,
+  email: Rre,
   "e-mail": "📧",
-  incoming_envelope: jre,
-  envelope_with_arrow: Rre,
-  outbox_tray: Nre,
-  inbox_tray: Pre,
+  incoming_envelope: Nre,
+  envelope_with_arrow: Pre,
+  outbox_tray: Ire,
+  inbox_tray: Ore,
   package: "📦",
-  mailbox: Ire,
-  mailbox_closed: Ore,
-  mailbox_with_mail: Fre,
-  mailbox_with_no_mail: Mre,
-  postbox: Bre,
-  ballot_box: zre,
-  pencil2: $re,
-  black_nib: Gre,
-  fountain_pen: Ure,
-  pen: Hre,
-  paintbrush: Vre,
-  crayon: Wre,
-  memo: Zre,
-  pencil: Jre,
-  briefcase: Qre,
-  file_folder: Yre,
-  open_file_folder: Xre,
-  card_index_dividers: Kre,
-  date: ece,
-  calendar: nce,
-  spiral_notepad: tce,
-  spiral_calendar: oce,
-  card_index: sce,
-  chart_with_upwards_trend: rce,
-  chart_with_downwards_trend: cce,
-  bar_chart: ace,
-  clipboard: ice,
-  pushpin: lce,
-  round_pushpin: uce,
-  paperclip: pce,
-  paperclips: hce,
-  straight_ruler: dce,
-  triangular_ruler: fce,
-  scissors: mce,
-  card_file_box: gce,
-  file_cabinet: _ce,
-  wastebasket: bce,
-  lock: kce,
-  unlock: yce,
-  lock_with_ink_pen: wce,
-  closed_lock_with_key: vce,
-  key: xce,
-  old_key: Ace,
-  hammer: Sce,
-  axe: Lce,
-  pick: Cce,
-  hammer_and_pick: Ece,
-  hammer_and_wrench: Tce,
-  dagger: Dce,
-  crossed_swords: qce,
-  gun: jce,
-  boomerang: Rce,
-  bow_and_arrow: Nce,
-  shield: Pce,
-  carpentry_saw: Ice,
-  wrench: Oce,
-  screwdriver: Fce,
-  nut_and_bolt: Mce,
-  gear: Bce,
-  clamp: zce,
-  balance_scale: $ce,
-  probing_cane: Gce,
-  link: Uce,
-  chains: Hce,
-  hook: Vce,
-  toolbox: Wce,
-  magnet: Zce,
-  ladder: Jce,
-  alembic: Qce,
-  test_tube: Yce,
-  petri_dish: Xce,
-  dna: Kce,
-  microscope: eae,
-  telescope: nae,
-  satellite: tae,
-  syringe: oae,
-  drop_of_blood: sae,
-  pill: rae,
-  adhesive_bandage: cae,
-  stethoscope: aae,
-  door: iae,
-  elevator: lae,
-  mirror: uae,
-  window: pae,
-  bed: hae,
-  couch_and_lamp: dae,
-  chair: fae,
-  toilet: mae,
-  plunger: gae,
-  shower: _ae,
-  bathtub: bae,
-  mouse_trap: kae,
-  razor: yae,
-  lotion_bottle: wae,
-  safety_pin: vae,
-  broom: xae,
-  basket: Aae,
-  roll_of_paper: Sae,
-  bucket: Lae,
-  soap: Cae,
-  toothbrush: Eae,
-  sponge: Tae,
-  fire_extinguisher: Dae,
-  shopping_cart: qae,
-  smoking: jae,
-  coffin: Rae,
-  headstone: Nae,
-  funeral_urn: Pae,
-  moyai: Iae,
-  placard: Oae,
-  atm: Fae,
-  put_litter_in_its_place: Mae,
-  potable_water: Bae,
-  wheelchair: zae,
-  mens: $ae,
-  womens: Gae,
-  restroom: Uae,
-  baby_symbol: Hae,
-  wc: Vae,
-  passport_control: Wae,
-  customs: Zae,
-  baggage_claim: Jae,
-  left_luggage: Qae,
-  warning: Yae,
-  children_crossing: Xae,
-  no_entry: Kae,
-  no_entry_sign: eie,
-  no_bicycles: nie,
-  no_smoking: tie,
-  do_not_litter: oie,
+  mailbox: Fre,
+  mailbox_closed: Mre,
+  mailbox_with_mail: Bre,
+  mailbox_with_no_mail: $re,
+  postbox: zre,
+  ballot_box: Gre,
+  pencil2: Ure,
+  black_nib: Hre,
+  fountain_pen: Vre,
+  pen: Wre,
+  paintbrush: Zre,
+  crayon: Jre,
+  memo: Qre,
+  pencil: Yre,
+  briefcase: Xre,
+  file_folder: Kre,
+  open_file_folder: ece,
+  card_index_dividers: nce,
+  date: tce,
+  calendar: oce,
+  spiral_notepad: sce,
+  spiral_calendar: rce,
+  card_index: cce,
+  chart_with_upwards_trend: ace,
+  chart_with_downwards_trend: ice,
+  bar_chart: lce,
+  clipboard: uce,
+  pushpin: pce,
+  round_pushpin: hce,
+  paperclip: dce,
+  paperclips: fce,
+  straight_ruler: mce,
+  triangular_ruler: gce,
+  scissors: _ce,
+  card_file_box: bce,
+  file_cabinet: kce,
+  wastebasket: yce,
+  lock: wce,
+  unlock: vce,
+  lock_with_ink_pen: xce,
+  closed_lock_with_key: Ace,
+  key: Sce,
+  old_key: Lce,
+  hammer: Cce,
+  axe: Ece,
+  pick: Tce,
+  hammer_and_pick: Dce,
+  hammer_and_wrench: qce,
+  dagger: jce,
+  crossed_swords: Rce,
+  gun: Nce,
+  boomerang: Pce,
+  bow_and_arrow: Ice,
+  shield: Oce,
+  carpentry_saw: Fce,
+  wrench: Mce,
+  screwdriver: Bce,
+  nut_and_bolt: $ce,
+  gear: zce,
+  clamp: Gce,
+  balance_scale: Uce,
+  probing_cane: Hce,
+  link: Vce,
+  chains: Wce,
+  hook: Zce,
+  toolbox: Jce,
+  magnet: Qce,
+  ladder: Yce,
+  alembic: Xce,
+  test_tube: Kce,
+  petri_dish: eae,
+  dna: nae,
+  microscope: tae,
+  telescope: oae,
+  satellite: sae,
+  syringe: rae,
+  drop_of_blood: cae,
+  pill: aae,
+  adhesive_bandage: iae,
+  stethoscope: lae,
+  door: uae,
+  elevator: pae,
+  mirror: hae,
+  window: dae,
+  bed: fae,
+  couch_and_lamp: mae,
+  chair: gae,
+  toilet: _ae,
+  plunger: bae,
+  shower: kae,
+  bathtub: yae,
+  mouse_trap: wae,
+  razor: vae,
+  lotion_bottle: xae,
+  safety_pin: Aae,
+  broom: Sae,
+  basket: Lae,
+  roll_of_paper: Cae,
+  bucket: Eae,
+  soap: Tae,
+  toothbrush: Dae,
+  sponge: qae,
+  fire_extinguisher: jae,
+  shopping_cart: Rae,
+  smoking: Nae,
+  coffin: Pae,
+  headstone: Iae,
+  funeral_urn: Oae,
+  moyai: Fae,
+  placard: Mae,
+  atm: Bae,
+  put_litter_in_its_place: $ae,
+  potable_water: zae,
+  wheelchair: Gae,
+  mens: Uae,
+  womens: Hae,
+  restroom: Vae,
+  baby_symbol: Wae,
+  wc: Zae,
+  passport_control: Jae,
+  customs: Qae,
+  baggage_claim: Yae,
+  left_luggage: Xae,
+  warning: Kae,
+  children_crossing: eie,
+  no_entry: nie,
+  no_entry_sign: tie,
+  no_bicycles: oie,
+  no_smoking: sie,
+  do_not_litter: rie,
   "non-potable_water": "🚱",
-  no_pedestrians: sie,
-  no_mobile_phones: rie,
-  underage: cie,
-  radioactive: aie,
-  biohazard: iie,
-  arrow_up: lie,
-  arrow_upper_right: uie,
-  arrow_right: pie,
-  arrow_lower_right: hie,
-  arrow_down: die,
-  arrow_lower_left: fie,
-  arrow_left: mie,
-  arrow_upper_left: gie,
-  arrow_up_down: _ie,
-  left_right_arrow: bie,
-  leftwards_arrow_with_hook: kie,
-  arrow_right_hook: yie,
-  arrow_heading_up: wie,
-  arrow_heading_down: vie,
-  arrows_clockwise: xie,
-  arrows_counterclockwise: Aie,
-  back: Sie,
-  end: Lie,
-  on: Cie,
-  soon: Eie,
-  top: Tie,
-  place_of_worship: Die,
-  atom_symbol: qie,
-  om: jie,
-  star_of_david: Rie,
-  wheel_of_dharma: Nie,
-  yin_yang: Pie,
-  latin_cross: Iie,
-  orthodox_cross: Oie,
-  star_and_crescent: Fie,
-  peace_symbol: Mie,
-  menorah: Bie,
-  six_pointed_star: zie,
-  aries: $ie,
-  taurus: Gie,
-  gemini: Uie,
-  cancer: Hie,
-  leo: Vie,
-  virgo: Wie,
-  libra: Zie,
-  scorpius: Jie,
-  sagittarius: Qie,
-  capricorn: Yie,
-  aquarius: Xie,
-  pisces: Kie,
-  ophiuchus: ele,
-  twisted_rightwards_arrows: nle,
-  repeat: tle,
-  repeat_one: ole,
-  arrow_forward: sle,
-  fast_forward: rle,
-  next_track_button: cle,
-  play_or_pause_button: ale,
-  arrow_backward: ile,
-  rewind: lle,
-  previous_track_button: ule,
-  arrow_up_small: ple,
-  arrow_double_up: hle,
-  arrow_down_small: dle,
-  arrow_double_down: fle,
-  pause_button: mle,
-  stop_button: gle,
-  record_button: _le,
-  eject_button: ble,
-  cinema: kle,
-  low_brightness: yle,
-  high_brightness: wle,
-  signal_strength: vle,
-  vibration_mode: xle,
-  mobile_phone_off: Ale,
-  female_sign: Sle,
-  male_sign: Lle,
-  transgender_symbol: Cle,
-  heavy_multiplication_x: Ele,
-  heavy_plus_sign: Tle,
-  heavy_minus_sign: Dle,
-  heavy_division_sign: qle,
-  infinity: jle,
-  bangbang: Rle,
-  interrobang: Nle,
-  question: Ple,
-  grey_question: Ile,
-  grey_exclamation: Ole,
-  exclamation: Fle,
-  heavy_exclamation_mark: Mle,
-  wavy_dash: Ble,
-  currency_exchange: zle,
-  heavy_dollar_sign: $le,
-  medical_symbol: Gle,
-  recycle: Ule,
-  fleur_de_lis: Hle,
-  trident: Vle,
-  name_badge: Wle,
-  beginner: Zle,
-  o: Jle,
-  white_check_mark: Qle,
-  ballot_box_with_check: Yle,
-  heavy_check_mark: Xle,
-  x: Kle,
-  negative_squared_cross_mark: eue,
-  curly_loop: nue,
-  loop: tue,
-  part_alternation_mark: oue,
-  eight_spoked_asterisk: sue,
-  eight_pointed_black_star: rue,
-  sparkle: cue,
-  copyright: aue,
-  registered: iue,
-  tm: lue,
-  hash: uue,
-  asterisk: pue,
-  zero: hue,
-  one: due,
-  two: fue,
-  three: mue,
-  four: gue,
-  five: _ue,
-  six: bue,
-  seven: kue,
-  eight: yue,
-  nine: wue,
-  keycap_ten: vue,
-  capital_abcd: xue,
-  abcd: Aue,
-  symbols: Sue,
-  abc: Lue,
-  a: Cue,
-  ab: Eue,
-  b: Tue,
-  cl: Due,
-  cool: que,
-  free: jue,
-  information_source: Rue,
-  id: Nue,
-  m: Pue,
+  no_pedestrians: cie,
+  no_mobile_phones: aie,
+  underage: iie,
+  radioactive: lie,
+  biohazard: uie,
+  arrow_up: pie,
+  arrow_upper_right: hie,
+  arrow_right: die,
+  arrow_lower_right: fie,
+  arrow_down: mie,
+  arrow_lower_left: gie,
+  arrow_left: _ie,
+  arrow_upper_left: bie,
+  arrow_up_down: kie,
+  left_right_arrow: yie,
+  leftwards_arrow_with_hook: wie,
+  arrow_right_hook: vie,
+  arrow_heading_up: xie,
+  arrow_heading_down: Aie,
+  arrows_clockwise: Sie,
+  arrows_counterclockwise: Lie,
+  back: Cie,
+  end: Eie,
+  on: Tie,
+  soon: Die,
+  top: qie,
+  place_of_worship: jie,
+  atom_symbol: Rie,
+  om: Nie,
+  star_of_david: Pie,
+  wheel_of_dharma: Iie,
+  yin_yang: Oie,
+  latin_cross: Fie,
+  orthodox_cross: Mie,
+  star_and_crescent: Bie,
+  peace_symbol: $ie,
+  menorah: zie,
+  six_pointed_star: Gie,
+  aries: Uie,
+  taurus: Hie,
+  gemini: Vie,
+  cancer: Wie,
+  leo: Zie,
+  virgo: Jie,
+  libra: Qie,
+  scorpius: Yie,
+  sagittarius: Xie,
+  capricorn: Kie,
+  aquarius: ele,
+  pisces: nle,
+  ophiuchus: tle,
+  twisted_rightwards_arrows: ole,
+  repeat: sle,
+  repeat_one: rle,
+  arrow_forward: cle,
+  fast_forward: ale,
+  next_track_button: ile,
+  play_or_pause_button: lle,
+  arrow_backward: ule,
+  rewind: ple,
+  previous_track_button: hle,
+  arrow_up_small: dle,
+  arrow_double_up: fle,
+  arrow_down_small: mle,
+  arrow_double_down: gle,
+  pause_button: _le,
+  stop_button: ble,
+  record_button: kle,
+  eject_button: yle,
+  cinema: wle,
+  low_brightness: vle,
+  high_brightness: xle,
+  signal_strength: Ale,
+  vibration_mode: Sle,
+  mobile_phone_off: Lle,
+  female_sign: Cle,
+  male_sign: Ele,
+  transgender_symbol: Tle,
+  heavy_multiplication_x: Dle,
+  heavy_plus_sign: qle,
+  heavy_minus_sign: jle,
+  heavy_division_sign: Rle,
+  infinity: Nle,
+  bangbang: Ple,
+  interrobang: Ile,
+  question: Ole,
+  grey_question: Fle,
+  grey_exclamation: Mle,
+  exclamation: Ble,
+  heavy_exclamation_mark: $le,
+  wavy_dash: zle,
+  currency_exchange: Gle,
+  heavy_dollar_sign: Ule,
+  medical_symbol: Hle,
+  recycle: Vle,
+  fleur_de_lis: Wle,
+  trident: Zle,
+  name_badge: Jle,
+  beginner: Qle,
+  o: Yle,
+  white_check_mark: Xle,
+  ballot_box_with_check: Kle,
+  heavy_check_mark: eue,
+  x: nue,
+  negative_squared_cross_mark: tue,
+  curly_loop: oue,
+  loop: sue,
+  part_alternation_mark: rue,
+  eight_spoked_asterisk: cue,
+  eight_pointed_black_star: aue,
+  sparkle: iue,
+  copyright: lue,
+  registered: uue,
+  tm: pue,
+  hash: hue,
+  asterisk: due,
+  zero: fue,
+  one: mue,
+  two: gue,
+  three: _ue,
+  four: bue,
+  five: kue,
+  six: yue,
+  seven: wue,
+  eight: vue,
+  nine: xue,
+  keycap_ten: Aue,
+  capital_abcd: Sue,
+  abcd: Lue,
+  symbols: Cue,
+  abc: Eue,
+  a: Tue,
+  ab: Due,
+  b: que,
+  cl: jue,
+  cool: Rue,
+  free: Nue,
+  information_source: Pue,
+  id: Iue,
+  m: Oue,
   new: "🆕",
-  ng: Iue,
-  o2: Oue,
-  ok: Fue,
-  parking: Mue,
-  sos: Bue,
-  up: zue,
-  vs: $ue,
-  koko: Gue,
-  sa: Uue,
-  ideograph_advantage: Hue,
-  accept: Vue,
-  congratulations: Wue,
-  secret: Zue,
-  u6e80: Jue,
-  red_circle: Que,
-  orange_circle: Yue,
-  yellow_circle: Xue,
-  green_circle: Kue,
-  large_blue_circle: epe,
-  purple_circle: npe,
-  brown_circle: tpe,
-  black_circle: ope,
-  white_circle: spe,
-  red_square: rpe,
-  orange_square: cpe,
-  yellow_square: ape,
-  green_square: ipe,
-  blue_square: lpe,
-  purple_square: upe,
-  brown_square: ppe,
-  black_large_square: hpe,
-  white_large_square: dpe,
-  black_medium_square: fpe,
-  white_medium_square: mpe,
-  black_medium_small_square: gpe,
-  white_medium_small_square: _pe,
-  black_small_square: bpe,
-  white_small_square: kpe,
-  large_orange_diamond: ype,
-  large_blue_diamond: wpe,
-  small_orange_diamond: vpe,
-  small_blue_diamond: xpe,
-  small_red_triangle: Ape,
-  small_red_triangle_down: Spe,
-  diamond_shape_with_a_dot_inside: Lpe,
-  radio_button: Cpe,
-  white_square_button: Epe,
-  black_square_button: Tpe,
-  checkered_flag: Dpe,
-  triangular_flag_on_post: qpe,
-  crossed_flags: jpe,
-  black_flag: Rpe,
-  white_flag: Npe,
-  rainbow_flag: Ppe,
-  transgender_flag: Ipe,
-  pirate_flag: Ope,
-  ascension_island: Fpe,
-  andorra: Mpe,
-  united_arab_emirates: Bpe,
-  afghanistan: zpe,
-  antigua_barbuda: $pe,
-  anguilla: Gpe,
-  albania: Upe,
-  armenia: Hpe,
-  angola: Vpe,
-  antarctica: Wpe,
-  argentina: Zpe,
-  american_samoa: Jpe,
-  austria: Qpe,
-  australia: Ype,
-  aruba: Xpe,
-  aland_islands: Kpe,
-  azerbaijan: ehe,
-  bosnia_herzegovina: nhe,
-  barbados: the,
-  bangladesh: ohe,
-  belgium: she,
-  burkina_faso: rhe,
-  bulgaria: che,
-  bahrain: ahe,
-  burundi: ihe,
-  benin: lhe,
-  st_barthelemy: uhe,
-  bermuda: phe,
-  brunei: hhe,
-  bolivia: dhe,
-  caribbean_netherlands: fhe,
-  brazil: mhe,
-  bahamas: ghe,
-  bhutan: _he,
-  bouvet_island: bhe,
-  botswana: khe,
-  belarus: yhe,
-  belize: whe,
-  canada: vhe,
-  cocos_islands: xhe,
-  congo_kinshasa: Ahe,
-  central_african_republic: She,
-  congo_brazzaville: Lhe,
-  switzerland: Che,
-  cote_divoire: Ehe,
-  cook_islands: The,
-  chile: Dhe,
-  cameroon: qhe,
-  cn: jhe,
-  colombia: Rhe,
-  clipperton_island: Nhe,
-  costa_rica: Phe,
-  cuba: Ihe,
-  cape_verde: Ohe,
-  curacao: Fhe,
-  christmas_island: Mhe,
-  cyprus: Bhe,
-  czech_republic: zhe,
-  de: $he,
-  diego_garcia: Ghe,
-  djibouti: Uhe,
-  denmark: Hhe,
-  dominica: Vhe,
-  dominican_republic: Whe,
-  algeria: Zhe,
-  ceuta_melilla: Jhe,
-  ecuador: Qhe,
-  estonia: Yhe,
-  egypt: Xhe,
-  western_sahara: Khe,
-  eritrea: ede,
-  es: nde,
-  ethiopia: tde,
-  eu: ode,
-  european_union: sde,
-  finland: rde,
-  fiji: cde,
-  falkland_islands: ade,
-  micronesia: ide,
-  faroe_islands: lde,
-  fr: ude,
-  gabon: pde,
-  gb: hde,
-  uk: dde,
-  grenada: fde,
-  georgia: mde,
-  french_guiana: gde,
-  guernsey: _de,
-  ghana: bde,
-  gibraltar: kde,
-  greenland: yde,
-  gambia: wde,
-  guinea: vde,
-  guadeloupe: xde,
-  equatorial_guinea: Ade,
-  greece: Sde,
-  south_georgia_south_sandwich_islands: Lde,
-  guatemala: Cde,
-  guam: Ede,
-  guinea_bissau: Tde,
-  guyana: Dde,
-  hong_kong: qde,
-  heard_mcdonald_islands: jde,
-  honduras: Rde,
-  croatia: Nde,
-  haiti: Pde,
-  hungary: Ide,
-  canary_islands: Ode,
-  indonesia: Fde,
-  ireland: Mde,
-  israel: Bde,
-  isle_of_man: zde,
-  india: $de,
-  british_indian_ocean_territory: Gde,
-  iraq: Ude,
-  iran: Hde,
-  iceland: Vde,
-  it: Wde,
-  jersey: Zde,
-  jamaica: Jde,
-  jordan: Qde,
-  jp: Yde,
-  kenya: Xde,
-  kyrgyzstan: Kde,
-  cambodia: efe,
-  kiribati: nfe,
-  comoros: tfe,
-  st_kitts_nevis: ofe,
-  north_korea: sfe,
-  kr: rfe,
-  kuwait: cfe,
-  cayman_islands: afe,
-  kazakhstan: ife,
-  laos: lfe,
-  lebanon: ufe,
-  st_lucia: pfe,
-  liechtenstein: hfe,
-  sri_lanka: dfe,
-  liberia: ffe,
-  lesotho: mfe,
-  lithuania: gfe,
-  luxembourg: _fe,
-  latvia: bfe,
-  libya: kfe,
-  morocco: yfe,
-  monaco: wfe,
-  moldova: vfe,
-  montenegro: xfe,
-  st_martin: Afe,
-  madagascar: Sfe,
-  marshall_islands: Lfe,
-  macedonia: Cfe,
-  mali: Efe,
-  myanmar: Tfe,
-  mongolia: Dfe,
-  macau: qfe,
-  northern_mariana_islands: jfe,
-  martinique: Rfe,
-  mauritania: Nfe,
-  montserrat: Pfe,
-  malta: Ife,
-  mauritius: Ofe,
-  maldives: Ffe,
-  malawi: Mfe,
-  mexico: Bfe,
-  malaysia: zfe,
-  mozambique: $fe,
-  namibia: Gfe,
-  new_caledonia: Ufe,
-  niger: Hfe,
-  norfolk_island: Vfe,
-  nigeria: Wfe,
-  nicaragua: Zfe,
-  netherlands: Jfe,
-  norway: Qfe,
-  nepal: Yfe,
-  nauru: Xfe,
-  niue: Kfe,
-  new_zealand: eme,
-  oman: nme,
-  panama: tme,
-  peru: ome,
-  french_polynesia: sme,
-  papua_new_guinea: rme,
-  philippines: cme,
-  pakistan: ame,
-  poland: ime,
-  st_pierre_miquelon: lme,
-  pitcairn_islands: ume,
-  puerto_rico: pme,
-  palestinian_territories: hme,
-  portugal: dme,
-  palau: fme,
-  paraguay: mme,
-  qatar: gme,
-  reunion: _me,
-  romania: bme,
-  serbia: kme,
-  ru: yme,
-  rwanda: wme,
-  saudi_arabia: vme,
-  solomon_islands: xme,
-  seychelles: Ame,
-  sudan: Sme,
-  sweden: Lme,
-  singapore: Cme,
-  st_helena: Eme,
-  slovenia: Tme,
-  svalbard_jan_mayen: Dme,
-  slovakia: qme,
-  sierra_leone: jme,
-  san_marino: Rme,
-  senegal: Nme,
-  somalia: Pme,
-  suriname: Ime,
-  south_sudan: Ome,
-  sao_tome_principe: Fme,
-  el_salvador: Mme,
-  sint_maarten: Bme,
-  syria: zme,
-  swaziland: $me,
-  tristan_da_cunha: Gme,
-  turks_caicos_islands: Ume,
-  chad: Hme,
-  french_southern_territories: Vme,
-  togo: Wme,
-  thailand: Zme,
-  tajikistan: Jme,
-  tokelau: Qme,
-  timor_leste: Yme,
-  turkmenistan: Xme,
-  tunisia: Kme,
-  tonga: ege,
-  tr: nge,
-  trinidad_tobago: tge,
-  tuvalu: oge,
-  taiwan: sge,
-  tanzania: rge,
-  ukraine: cge,
-  uganda: age,
-  us_outlying_islands: ige,
-  united_nations: lge,
-  us: uge,
-  uruguay: pge,
-  uzbekistan: hge,
-  vatican_city: dge,
-  st_vincent_grenadines: fge,
-  venezuela: mge,
-  british_virgin_islands: gge,
-  us_virgin_islands: _ge,
-  vietnam: bge,
-  vanuatu: kge,
-  wallis_futuna: yge,
-  samoa: wge,
-  kosovo: vge,
-  yemen: xge,
-  mayotte: Age,
-  south_africa: Sge,
-  zambia: Lge,
-  zimbabwe: Cge,
-  england: Ege,
-  scotland: Tge,
-  wales: Dge
+  ng: Fue,
+  o2: Mue,
+  ok: Bue,
+  parking: $ue,
+  sos: zue,
+  up: Gue,
+  vs: Uue,
+  koko: Hue,
+  sa: Vue,
+  ideograph_advantage: Wue,
+  accept: Zue,
+  congratulations: Jue,
+  secret: Que,
+  u6e80: Yue,
+  red_circle: Xue,
+  orange_circle: Kue,
+  yellow_circle: epe,
+  green_circle: npe,
+  large_blue_circle: tpe,
+  purple_circle: ope,
+  brown_circle: spe,
+  black_circle: rpe,
+  white_circle: cpe,
+  red_square: ape,
+  orange_square: ipe,
+  yellow_square: lpe,
+  green_square: upe,
+  blue_square: ppe,
+  purple_square: hpe,
+  brown_square: dpe,
+  black_large_square: fpe,
+  white_large_square: mpe,
+  black_medium_square: gpe,
+  white_medium_square: _pe,
+  black_medium_small_square: bpe,
+  white_medium_small_square: kpe,
+  black_small_square: ype,
+  white_small_square: wpe,
+  large_orange_diamond: vpe,
+  large_blue_diamond: xpe,
+  small_orange_diamond: Ape,
+  small_blue_diamond: Spe,
+  small_red_triangle: Lpe,
+  small_red_triangle_down: Cpe,
+  diamond_shape_with_a_dot_inside: Epe,
+  radio_button: Tpe,
+  white_square_button: Dpe,
+  black_square_button: qpe,
+  checkered_flag: jpe,
+  triangular_flag_on_post: Rpe,
+  crossed_flags: Npe,
+  black_flag: Ppe,
+  white_flag: Ipe,
+  rainbow_flag: Ope,
+  transgender_flag: Fpe,
+  pirate_flag: Mpe,
+  ascension_island: Bpe,
+  andorra: $pe,
+  united_arab_emirates: zpe,
+  afghanistan: Gpe,
+  antigua_barbuda: Upe,
+  anguilla: Hpe,
+  albania: Vpe,
+  armenia: Wpe,
+  angola: Zpe,
+  antarctica: Jpe,
+  argentina: Qpe,
+  american_samoa: Ype,
+  austria: Xpe,
+  australia: Kpe,
+  aruba: ehe,
+  aland_islands: nhe,
+  azerbaijan: the,
+  bosnia_herzegovina: ohe,
+  barbados: she,
+  bangladesh: rhe,
+  belgium: che,
+  burkina_faso: ahe,
+  bulgaria: ihe,
+  bahrain: lhe,
+  burundi: uhe,
+  benin: phe,
+  st_barthelemy: hhe,
+  bermuda: dhe,
+  brunei: fhe,
+  bolivia: mhe,
+  caribbean_netherlands: ghe,
+  brazil: _he,
+  bahamas: bhe,
+  bhutan: khe,
+  bouvet_island: yhe,
+  botswana: whe,
+  belarus: vhe,
+  belize: xhe,
+  canada: Ahe,
+  cocos_islands: She,
+  congo_kinshasa: Lhe,
+  central_african_republic: Che,
+  congo_brazzaville: Ehe,
+  switzerland: The,
+  cote_divoire: Dhe,
+  cook_islands: qhe,
+  chile: jhe,
+  cameroon: Rhe,
+  cn: Nhe,
+  colombia: Phe,
+  clipperton_island: Ihe,
+  costa_rica: Ohe,
+  cuba: Fhe,
+  cape_verde: Mhe,
+  curacao: Bhe,
+  christmas_island: $he,
+  cyprus: zhe,
+  czech_republic: Ghe,
+  de: Uhe,
+  diego_garcia: Hhe,
+  djibouti: Vhe,
+  denmark: Whe,
+  dominica: Zhe,
+  dominican_republic: Jhe,
+  algeria: Qhe,
+  ceuta_melilla: Yhe,
+  ecuador: Xhe,
+  estonia: Khe,
+  egypt: ede,
+  western_sahara: nde,
+  eritrea: tde,
+  es: ode,
+  ethiopia: sde,
+  eu: rde,
+  european_union: cde,
+  finland: ade,
+  fiji: ide,
+  falkland_islands: lde,
+  micronesia: ude,
+  faroe_islands: pde,
+  fr: hde,
+  gabon: dde,
+  gb: fde,
+  uk: mde,
+  grenada: gde,
+  georgia: _de,
+  french_guiana: bde,
+  guernsey: kde,
+  ghana: yde,
+  gibraltar: wde,
+  greenland: vde,
+  gambia: xde,
+  guinea: Ade,
+  guadeloupe: Sde,
+  equatorial_guinea: Lde,
+  greece: Cde,
+  south_georgia_south_sandwich_islands: Ede,
+  guatemala: Tde,
+  guam: Dde,
+  guinea_bissau: qde,
+  guyana: jde,
+  hong_kong: Rde,
+  heard_mcdonald_islands: Nde,
+  honduras: Pde,
+  croatia: Ide,
+  haiti: Ode,
+  hungary: Fde,
+  canary_islands: Mde,
+  indonesia: Bde,
+  ireland: $de,
+  israel: zde,
+  isle_of_man: Gde,
+  india: Ude,
+  british_indian_ocean_territory: Hde,
+  iraq: Vde,
+  iran: Wde,
+  iceland: Zde,
+  it: Jde,
+  jersey: Qde,
+  jamaica: Yde,
+  jordan: Xde,
+  jp: Kde,
+  kenya: efe,
+  kyrgyzstan: nfe,
+  cambodia: tfe,
+  kiribati: ofe,
+  comoros: sfe,
+  st_kitts_nevis: rfe,
+  north_korea: cfe,
+  kr: afe,
+  kuwait: ife,
+  cayman_islands: lfe,
+  kazakhstan: ufe,
+  laos: pfe,
+  lebanon: hfe,
+  st_lucia: dfe,
+  liechtenstein: ffe,
+  sri_lanka: mfe,
+  liberia: gfe,
+  lesotho: _fe,
+  lithuania: bfe,
+  luxembourg: kfe,
+  latvia: yfe,
+  libya: wfe,
+  morocco: vfe,
+  monaco: xfe,
+  moldova: Afe,
+  montenegro: Sfe,
+  st_martin: Lfe,
+  madagascar: Cfe,
+  marshall_islands: Efe,
+  macedonia: Tfe,
+  mali: Dfe,
+  myanmar: qfe,
+  mongolia: jfe,
+  macau: Rfe,
+  northern_mariana_islands: Nfe,
+  martinique: Pfe,
+  mauritania: Ife,
+  montserrat: Ofe,
+  malta: Ffe,
+  mauritius: Mfe,
+  maldives: Bfe,
+  malawi: $fe,
+  mexico: zfe,
+  malaysia: Gfe,
+  mozambique: Ufe,
+  namibia: Hfe,
+  new_caledonia: Vfe,
+  niger: Wfe,
+  norfolk_island: Zfe,
+  nigeria: Jfe,
+  nicaragua: Qfe,
+  netherlands: Yfe,
+  norway: Xfe,
+  nepal: Kfe,
+  nauru: eme,
+  niue: nme,
+  new_zealand: tme,
+  oman: ome,
+  panama: sme,
+  peru: rme,
+  french_polynesia: cme,
+  papua_new_guinea: ame,
+  philippines: ime,
+  pakistan: lme,
+  poland: ume,
+  st_pierre_miquelon: pme,
+  pitcairn_islands: hme,
+  puerto_rico: dme,
+  palestinian_territories: fme,
+  portugal: mme,
+  palau: gme,
+  paraguay: _me,
+  qatar: bme,
+  reunion: kme,
+  romania: yme,
+  serbia: wme,
+  ru: vme,
+  rwanda: xme,
+  saudi_arabia: Ame,
+  solomon_islands: Sme,
+  seychelles: Lme,
+  sudan: Cme,
+  sweden: Eme,
+  singapore: Tme,
+  st_helena: Dme,
+  slovenia: qme,
+  svalbard_jan_mayen: jme,
+  slovakia: Rme,
+  sierra_leone: Nme,
+  san_marino: Pme,
+  senegal: Ime,
+  somalia: Ome,
+  suriname: Fme,
+  south_sudan: Mme,
+  sao_tome_principe: Bme,
+  el_salvador: $me,
+  sint_maarten: zme,
+  syria: Gme,
+  swaziland: Ume,
+  tristan_da_cunha: Hme,
+  turks_caicos_islands: Vme,
+  chad: Wme,
+  french_southern_territories: Zme,
+  togo: Jme,
+  thailand: Qme,
+  tajikistan: Yme,
+  tokelau: Xme,
+  timor_leste: Kme,
+  turkmenistan: ege,
+  tunisia: nge,
+  tonga: tge,
+  tr: oge,
+  trinidad_tobago: sge,
+  tuvalu: rge,
+  taiwan: cge,
+  tanzania: age,
+  ukraine: ige,
+  uganda: lge,
+  us_outlying_islands: uge,
+  united_nations: pge,
+  us: hge,
+  uruguay: dge,
+  uzbekistan: fge,
+  vatican_city: mge,
+  st_vincent_grenadines: gge,
+  venezuela: _ge,
+  british_virgin_islands: bge,
+  us_virgin_islands: kge,
+  vietnam: yge,
+  vanuatu: wge,
+  wallis_futuna: vge,
+  samoa: xge,
+  kosovo: Age,
+  yemen: Sge,
+  mayotte: Lge,
+  south_africa: Cge,
+  zambia: Ege,
+  zimbabwe: Tge,
+  england: Dge,
+  scotland: qge,
+  wales: jge
 };
-var jge = {
+var Nge = {
   angry: [">:(", ">:-("],
   blush: [':")', ':-")'],
   broken_heart: ["</3", "<\\3"],
@@ -6990,9 +6990,9 @@ var jge = {
   sweat_smile: [",:)", ",:-)"],
   unamused: [":s", ":-S", ":z", ":-Z", ":$", ":-$"],
   wink: [";)", ";-)"]
-}, Rge = function(e, t) {
+}, Pge = function(e, t) {
   return e[t].content;
-}, Nge = function(e, t, o, r, s) {
+}, Ige = function(e, t, o, r, s) {
   var a = e.utils.arrayReplaceAt, c = e.utils.lib.ucmicro, l = new RegExp([c.Z.source, c.P.source, c.Cc.source].join("|"));
   function i(p, h, d) {
     var f, m = 0, L = [];
@@ -7018,10 +7018,10 @@ var jge = {
           ));
   };
 };
-function Pge(n) {
+function Oge(n) {
   return n.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
 }
-var Ige = function(e) {
+var Fge = function(e) {
   var t = e.defs, o;
   e.enabled.length && (t = Object.keys(t).reduce(function(l, i) {
     return e.enabled.indexOf(i) >= 0 && (l[i] = t[i]), l;
@@ -7034,7 +7034,7 @@ var Ige = function(e) {
   r.length === 0 ? s = "^$" : s = r.map(function(l) {
     return ":" + l + ":";
   }).concat(Object.keys(o)).sort().reverse().map(function(l) {
-    return Pge(l);
+    return Oge(l);
   }).join("|");
   var a = RegExp(s), c = RegExp(s, "g");
   return {
@@ -7043,27 +7043,27 @@ var Ige = function(e) {
     scanRE: a,
     replaceRE: c
   };
-}, Oge = Rge, Fge = Nge, Mge = Ige, Bge = function(e, t) {
+}, Mge = Pge, Bge = Ige, $ge = Fge, zge = function(e, t) {
   var o = {
     defs: {},
     shortcuts: {},
     enabled: []
-  }, r = Mge(e.utils.assign({}, o, t || {}));
-  e.renderer.rules.emoji = Oge, e.core.ruler.after(
+  }, r = $ge(e.utils.assign({}, o, t || {}));
+  e.renderer.rules.emoji = Mge, e.core.ruler.after(
     "linkify",
     "emoji",
-    Fge(e, r.defs, r.shortcuts, r.scanRE, r.replaceRE)
+    Bge(e, r.defs, r.shortcuts, r.scanRE, r.replaceRE)
   );
-}, zge = qge, $ge = jge, Gge = Bge, Uge = function(e, t) {
+}, Gge = Rge, Uge = Nge, Hge = zge, Vge = function(e, t) {
   var o = {
-    defs: zge,
-    shortcuts: $ge,
+    defs: Gge,
+    shortcuts: Uge,
     enabled: []
   }, r = e.utils.assign({}, o, t || {});
-  Gge(e, r);
+  Hge(e, r);
 };
-const Hge = /* @__PURE__ */ pn(Uge);
-var Vge = function(e, t, o) {
+const Wge = /* @__PURE__ */ hn(Vge);
+var Zge = function(e, t, o) {
   function r(f) {
     return f.trim().split(" ", 2)[0] === t;
   }
@@ -7097,8 +7097,8 @@ var Vge = function(e, t, o) {
     alt: ["paragraph", "reference", "blockquote", "list"]
   }), e.renderer.rules["container_" + t + "_open"] = h, e.renderer.rules["container_" + t + "_close"] = h;
 };
-const ln = /* @__PURE__ */ pn(Vge);
-let Wge = (n) => crypto.getRandomValues(new Uint8Array(n)), Zge = (n, e, t) => {
+const ln = /* @__PURE__ */ hn(Zge);
+let Jge = (n) => crypto.getRandomValues(new Uint8Array(n)), Qge = (n, e, t) => {
   let o = (2 << Math.log(n.length - 1) / Math.LN2) - 1, r = -~(1.6 * o * e / n.length);
   return (s = e) => {
     let a = "";
@@ -7109,32 +7109,32 @@ let Wge = (n) => crypto.getRandomValues(new Uint8Array(n)), Zge = (n, e, t) => {
           return a;
     }
   };
-}, Jge = (n, e = 21) => Zge(n, e, Wge), no = (n = 21) => crypto.getRandomValues(new Uint8Array(n)).reduce((e, t) => (t &= 63, t < 36 ? e += t.toString(36) : t < 62 ? e += (t - 26).toString(36).toUpperCase() : t > 62 ? e += "-" : e += "_", e), "");
-const Qn = /^[a-z]+:/i, Qge = /^pathname:\/\//, Mo = Symbol("vue-md-shiki-component"), Yge = () => [
+}, Yge = (n, e = 21) => Qge(n, e, Jge), to = (n = 21) => crypto.getRandomValues(new Uint8Array(n)).reduce((e, t) => (t &= 63, t < 36 ? e += t.toString(36) : t < 62 ? e += (t - 26).toString(36).toUpperCase() : t > 62 ? e += "-" : e += "_", e), "");
+const Xn = /^[a-z]+:/i, Xge = /^pathname:\/\//, ut = Symbol("vue-md-shiki-component"), Kge = () => [
   ..."abap,actionscript-3,ada,apache,apex,apl,applescript,ara,asm,astro,awk,ballerina,bat,batch,berry,be,bibtex,bicep,blade,c,cadence,cdc,clarity,clojure,clj,cmake,cobol,codeql,ql,coffee,cpp,crystal,csharp,c#,cs,css,cue,d,dart,dax,diff,docker,dream-maker,elixir,elm,erb,erlang,erl,fish,fsharp,f#,fs,gherkin,git-commit,git-rebase,glsl,gnuplot,go,graphql,groovy,hack,haml,handlebars,hbs,haskell,hs,hcl,hlsl,html,http,imba,ini,properties,java,javascript,js,jinja-html,jison,json,json5,jsonc,jsonnet,jssm,fsl,jsx,julia,kotlin,latex,less,liquid,lisp,logo,lua,make,makefile,markdown,md,marko,matlab,mdx,mermaid,nginx,nim,nix,objective-c,objc,objective-cpp,ocaml,pascal,perl,php,plsql,postcss,powerquery,powershell,ps,ps1,prisma,prolog,proto,pug,jade,puppet,purescript,python,py,r,raku,perl6,razor,rel,riscv,rst,ruby,rb,rust,rs,sas,sass,scala,scheme,scss,shaderlab,shader,shellscript,bash,console,sh,shell,zsh,smalltalk,solidity,sparql,sql,ssh-config,stata,stylus,styl,svelte,swift,system-verilog,tasl,tcl,tex,toml,tsx,turtle,twig,typescript,ts,v,vb,cmd,verilog,vhdl,viml,vim,vimscript,vue-html,vue,wasm,wenyan,文言,wgsl,xml,xsl,yaml,yml,zenscript".split(
     ","
   ),
-  ...Object.keys(Bo)
-], Bo = {
+  ...Object.keys($o)
+], $o = {
   "C++": "cpp",
   "C#": "csharp"
 };
-function Xge(n) {
+function e_e(n) {
   const e = n.renderer.rules.fence;
   n.renderer.rules.fence = (...t) => {
     const [o, r] = t, s = o[r];
     s.info = s.info.replace(/\[.*\]/, "");
     let a = zo(s.info);
-    Yge().includes(a) || (a = "plainText");
+    Kge().includes(a) || (a = "plainText");
     const l = e(...t);
     return `<div class="language-${a}">${l}</div>`;
   };
 }
-function Kge(n) {
+function n_e(n) {
   var e;
   return ((e = n.match(/\[(.*)\]/)) == null ? void 0 : e[1]) || zo(n) || "txt";
 }
-const zo = (n) => n.trim().replace(/:(no-)?line-numbers({| |$).*/, "").replace(/(-vue|{| ).*$/, "").replace(/^vue-html$/, "template"), e_e = (n) => {
+const zo = (n) => n.trim().replace(/:(no-)?line-numbers({| |$).*/, "").replace(/(-vue|{| ).*$/, "").replace(/^vue-html$/, "template"), t_e = (n) => {
   n.use(...Ve("tip", "TIP", n)).use(...Ve("info", "INFO", n)).use(...Ve("warning", "WARNING", n)).use(...Ve("danger", "DANGER", n)).use(...Ve("details", "Details", n)).use(ln, "v-pre", {
     render: (e, t) => e[t].nesting === 1 ? `<div v-pre>
 ` : `</div>
@@ -7143,7 +7143,7 @@ const zo = (n) => n.trim().replace(/:(no-)?line-numbers({| |$).*/, "").replace(/
     render: (e, t) => e[t].nesting === 1 ? `<div class="vp-raw">
 ` : `</div>
 `
-  }).use(...n_e());
+  }).use(...o_e());
 };
 function Ve(n, e, t) {
   return [
@@ -7165,18 +7165,18 @@ function Ve(n, e, t) {
     }
   ];
 }
-function n_e() {
+function o_e() {
   return [
     ln,
     "code-group",
     {
       render(n, e) {
         if (n[e].nesting === 1) {
-          const t = no(5);
+          const t = to(5);
           let o = "", r = 'checked="checked"';
           for (let s = e + 1; !(n[s].nesting === -1 && n[s].type === "container_code-group_close"); ++s)
             if (n[s].type === "fence" && n[s].tag === "code") {
-              const a = Kge(n[s].info), c = no(7);
+              const a = n_e(n[s].info), c = to(7);
               o += `<input type="radio" name="group-${t}" id="tab-${c}" ${r}><label for="tab-${c}">${a}</label>`, r && (n[s].info += " active", r = "");
             }
           return `<div class="vp-code-group"><div class="tabs">${o}</div><div class="blocks">
@@ -7188,7 +7188,7 @@ function n_e() {
     }
   ];
 }
-function vn(n, e = {}) {
+function xn(n, e = {}) {
   return ({ code: t }) => {
     const o = e.tagRegExp ?? /(?:\/\/|\/\*{1,2}) *\[!code\s+([\w+-]+)(?::(\d+))?] *(?:\*{1,2}\/)?/, r = [];
     return t = t.split(`
@@ -7211,22 +7211,22 @@ function Qe(n, e, t) {
   const o = new RegExp(`<${t ?? "w+"}[^>]*class="([\\w+-:;\\/* ]*)"`);
   return e = Array.isArray(e) ? e : [e], n.replace(o, (r, s) => r.replace(s, `${s} ${e}`));
 }
-function t_e(n = {}) {
+function s_e(n = {}) {
   const e = n.commonDiffClass ?? "diff", t = n.removedLinesClasses ?? ["remove"], o = n.removedLinesClasses ?? ["add"], r = n.removeLineTag ?? "--", s = n.addLineTag ?? "++", a = n.hasDiffClass ?? "has-diff";
   return {
     name: "diff",
-    handler: vn({
+    handler: xn({
       [r]: [e, ...t],
       [s]: [e, ...o]
     }, n),
     postProcess: ({ code: c }) => c.includes(e) ? Qe(c, a, "pre") : c
   };
 }
-function o_e(n = {}) {
+function r_e(n = {}) {
   const e = n.hasFocusClass ?? "has-focus", t = n.hasFocusedLinesClass ?? "has-focused-lines", o = n.focusTag ?? "focus";
   return {
     name: "focus",
-    handler: vn(
+    handler: xn(
       {
         [o]: [e]
       },
@@ -7235,17 +7235,17 @@ function o_e(n = {}) {
     postProcess: ({ code: r }) => r.includes(e) ? Qe(r, t, "pre") : r
   };
 }
-function s_e(n = {}) {
+function c_e(n = {}) {
   const e = n.hasHighlightClass ?? "has-highlight", t = n.hasHighlightedLinesClass ?? "has-highlighted-lines", o = n.highlightTag ?? "hl";
   return {
     name: "highlight",
-    handler: vn({
+    handler: xn({
       [o]: [e]
     }, n),
     postProcess: ({ code: r }) => r.includes(e) ? Qe(r, t, "pre") : r
   };
 }
-function r_e(n, e, t) {
+function a_e(n, e, t) {
   return n.reduce((o, r) => {
     var c;
     const { code: s, lineOptions: a } = ((c = r.handler) == null ? void 0 : c.call(r, {
@@ -7264,7 +7264,7 @@ function r_e(n, e, t) {
     lineOptions: []
   });
 }
-function c_e(n, e, t) {
+function i_e(n, e, t) {
   return n.reduce((o, r) => {
     var s;
     return ((s = r.postProcess) == null ? void 0 : s.call(r, {
@@ -7273,11 +7273,11 @@ function c_e(n, e, t) {
     })) ?? o;
   }, e);
 }
-var $o = { exports: {} };
+var Go = { exports: {} };
 (function(n, e) {
   (function(t, o) {
     n.exports = o();
-  })(fo, () => {
+  })(go, () => {
     return t = { 770: function(r, s, a) {
       var c = this && this.__importDefault || function(S) {
         return S && S.__esModule ? S : { default: S };
@@ -7451,10 +7451,10 @@ var $o = { exports: {} };
           return typeof readbuffer == "function" ? new Uint8Array(readbuffer(N)) : (P = read(N, "binary"), C(typeof P == "object"), P);
         }, typeof scriptArgs < "u" && scriptArgs, typeof onig_print < "u" && (typeof console > "u" && (console = {}), console.log = onig_print, console.warn = console.error = typeof printErr < "u" ? printErr : onig_print);
         var L, S, b = i.print || console.log.bind(console), k = i.printErr || console.warn.bind(console);
-        Object.assign(i, h), h = null, i.arguments && i.arguments, i.thisProgram && i.thisProgram, i.quit && i.quit, i.wasmBinary && (L = i.wasmBinary), i.noExitRuntime, typeof WebAssembly != "object" && $("no native wasm support detected");
+        Object.assign(i, h), h = null, i.arguments && i.arguments, i.thisProgram && i.thisProgram, i.quit && i.quit, i.wasmBinary && (L = i.wasmBinary), i.noExitRuntime, typeof WebAssembly != "object" && z("no native wasm support detected");
         var w = !1;
         function C(N, P) {
-          N || $(P);
+          N || z(P);
         }
         var y, u, g, x = typeof TextDecoder < "u" ? new TextDecoder("utf8") : void 0;
         function _(N, P, X) {
@@ -7471,8 +7471,8 @@ var $o = { exports: {} };
                 if ((K = (240 & K) == 224 ? (15 & K) << 12 | Ne << 6 | Pe : (7 & K) << 18 | Ne << 12 | Pe << 6 | 63 & N[P++]) < 65536)
                   H += String.fromCharCode(K);
                 else {
-                  var ut = K - 65536;
-                  H += String.fromCharCode(55296 | ut >> 10, 56320 | 1023 & ut);
+                  var ht = K - 65536;
+                  H += String.fromCharCode(55296 | ht >> 10, 56320 | 1023 & ht);
                 }
               } else
                 H += String.fromCharCode((31 & K) << 6 | Ne);
@@ -7493,16 +7493,16 @@ var $o = { exports: {} };
           if (i.preRun)
             for (typeof i.preRun == "function" && (i.preRun = [i.preRun]); i.preRun.length; )
               M(i.preRun.shift());
-          de(E);
+          fe(E);
         }
         function R() {
-          de(D);
+          fe(D);
         }
         function F() {
           if (i.postRun)
             for (typeof i.postRun == "function" && (i.postRun = [i.postRun]); i.postRun.length; )
               Z(i.postRun.shift());
-          de(T);
+          fe(T);
         }
         function M(N) {
           E.unshift(N);
@@ -7517,13 +7517,13 @@ var $o = { exports: {} };
         function G(N) {
           J++, i.monitorRunDependencies && i.monitorRunDependencies(J);
         }
-        function z(N) {
+        function $(N) {
           if (J--, i.monitorRunDependencies && i.monitorRunDependencies(J), J == 0 && V) {
             var P = V;
             V = null, P();
           }
         }
-        function $(N) {
+        function z(N) {
           i.onAbort && i.onAbort(N), k(N = "Aborted(" + N + ")"), w = !0, N += ". Build with -sASSERTIONS for more info.";
           var P = new WebAssembly.RuntimeError(N);
           throw l(P), P;
@@ -7540,7 +7540,7 @@ var $o = { exports: {} };
               return p(N);
             throw "both async and sync fetching of the wasm failed";
           } catch (P) {
-            $(P);
+            z(P);
           }
         }
         function we() {
@@ -7558,7 +7558,7 @@ var $o = { exports: {} };
           var N = { env: Se, wasi_snapshot_preview1: Se };
           function P(W, H) {
             var K = W.exports;
-            i.asm = K, A((S = i.asm.memory).buffer), i.asm.__indirect_function_table, O(i.asm.__wasm_call_ctors), z();
+            i.asm = K, A((S = i.asm.memory).buffer), i.asm.__indirect_function_table, O(i.asm.__wasm_call_ctors), $();
           }
           function X(W) {
             P(W.instance);
@@ -7569,7 +7569,7 @@ var $o = { exports: {} };
             }).then(function(H) {
               return H;
             }).then(W, function(H) {
-              k("failed to asynchronously prepare wasm: " + H), $(H);
+              k("failed to asynchronously prepare wasm: " + H), z(H);
             });
           }
           if (G(), i.instantiateWasm)
@@ -7584,7 +7584,7 @@ var $o = { exports: {} };
             });
           })).catch(l), {};
         }
-        function de(N) {
+        function fe(N) {
           for (; N.length > 0; )
             N.shift()(i);
         }
@@ -7678,12 +7678,12 @@ var $o = { exports: {} };
     }(770);
     var t, o;
   });
-})($o);
-var on = $o.exports, Go = { exports: {} };
+})(Go);
+var on = Go.exports, Uo = { exports: {} };
 (function(n, e) {
   (function(t, o) {
     n.exports = o();
-  })(fo, function() {
+  })(go, function() {
     return (() => {
       var t = { 350: (r, s) => {
         Object.defineProperty(s, "__esModule", { value: !0 }), s.UseOnigurumaFindOptions = s.DebugFlags = void 0, s.DebugFlags = { InDebugMode: typeof process < "u" && !!process.env.VSCODE_TEXTMATE_DEBUG }, s.UseOnigurumaFindOptions = !1;
@@ -8268,21 +8268,21 @@ var on = $o.exports, Go = { exports: {} };
             const q = function(R, F, M, O, Z, J) {
               let V = Z.beginRuleCapturedEOL ? 0 : -1;
               const G = [];
-              for (let z = Z; z; z = z.pop()) {
-                const $ = z.getRule(R);
-                $ instanceof i.BeginWhileRule && G.push({ rule: $, stack: z });
+              for (let $ = Z; $; $ = $.pop()) {
+                const z = $.getRule(R);
+                z instanceof i.BeginWhileRule && G.push({ rule: z, stack: $ });
               }
-              for (let z = G.pop(); z; z = G.pop()) {
-                const { ruleScanner: $, findOptions: Y } = m(z.rule, R, z.stack.endRule, M, O === V), j = $.findNextMatchSync(F, O, Y);
-                if (c.DebugFlags.InDebugMode && (console.log("  scanning for while rule"), console.log($.toString())), !j) {
-                  c.DebugFlags.InDebugMode && console.log("  popping " + z.rule.debugName + " - " + z.rule.debugWhileRegExp), Z = z.stack.pop();
+              for (let $ = G.pop(); $; $ = G.pop()) {
+                const { ruleScanner: z, findOptions: Y } = m($.rule, R, $.stack.endRule, M, O === V), j = z.findNextMatchSync(F, O, Y);
+                if (c.DebugFlags.InDebugMode && (console.log("  scanning for while rule"), console.log(z.toString())), !j) {
+                  c.DebugFlags.InDebugMode && console.log("  popping " + $.rule.debugName + " - " + $.rule.debugWhileRegExp), Z = $.stack.pop();
                   break;
                 }
                 if (j.ruleId !== i.whileRuleId) {
-                  Z = z.stack.pop();
+                  Z = $.stack.pop();
                   break;
                 }
-                j.captureIndices && j.captureIndices.length && (J.produce(z.stack, j.captureIndices[0].start), S(R, F, M, z.stack, J, z.rule.whileCaptures, j.captureIndices), J.produce(z.stack, j.captureIndices[0].end), V = j.captureIndices[0].end, j.captureIndices[0].end > O && (O = j.captureIndices[0].end, M = !1));
+                j.captureIndices && j.captureIndices.length && (J.produce($.stack, j.captureIndices[0].start), S(R, F, M, $.stack, J, $.rule.whileCaptures, j.captureIndices), J.produce($.stack, j.captureIndices[0].end), V = j.captureIndices[0].end, j.captureIndices[0].end > O && (O = j.captureIndices[0].end, M = !1));
               }
               return { stack: Z, linePos: O, anchorPosition: V, isFirstLine: M };
             }(k, w, C, y, u, g);
@@ -8297,28 +8297,28 @@ var on = $o.exports, Go = { exports: {} };
           return new h(u, !1);
           function T() {
             c.DebugFlags.InDebugMode && (console.log(""), console.log(`@@scanNext ${y}: |${w.content.substr(y).replace(/\n$/, "\\n")}|`));
-            const q = function(O, Z, J, V, G, z) {
-              const $ = function(oe, we, He, de, me, je) {
-                const ve = me.getRule(oe), { ruleScanner: xe, findOptions: Ae } = f(ve, oe, me.endRule, He, de === je);
+            const q = function(O, Z, J, V, G, $) {
+              const z = function(oe, we, He, fe, me, je) {
+                const ve = me.getRule(oe), { ruleScanner: xe, findOptions: Ae } = f(ve, oe, me.endRule, He, fe === je);
                 let ge = 0;
                 c.DebugFlags.InDebugMode && (ge = p.performanceNow());
-                const ee = xe.findNextMatchSync(we, de, Ae);
+                const ee = xe.findNextMatchSync(we, fe, Ae);
                 if (c.DebugFlags.InDebugMode) {
                   const Se = p.performanceNow() - ge;
-                  Se > 5 && console.warn(`Rule ${ve.debugName} (${ve.id}) matching took ${Se} against '${we}'`), console.log(`  scanning for (linePos: ${de}, anchorPosition: ${je})`), console.log(xe.toString()), ee && console.log(`matched rule id: ${ee.ruleId} from ${ee.captureIndices[0].start} to ${ee.captureIndices[0].end}`);
+                  Se > 5 && console.warn(`Rule ${ve.debugName} (${ve.id}) matching took ${Se} against '${we}'`), console.log(`  scanning for (linePos: ${fe}, anchorPosition: ${je})`), console.log(xe.toString()), ee && console.log(`matched rule id: ${ee.ruleId} from ${ee.captureIndices[0].start} to ${ee.captureIndices[0].end}`);
                 }
                 return ee ? { captureIndices: ee.captureIndices, matchedRuleId: ee.ruleId } : null;
-              }(O, Z, J, V, G, z), Y = O.getInjections();
+              }(O, Z, J, V, G, $), Y = O.getInjections();
               if (Y.length === 0)
-                return $;
-              const j = function(oe, we, He, de, me, je, ve) {
+                return z;
+              const j = function(oe, we, He, fe, me, je, ve) {
                 let xe, Ae = Number.MAX_VALUE, ge = null, ee = 0;
                 const Se = je.contentNameScopesList.getScopeNames();
                 for (let Re = 0, N = oe.length; Re < N; Re++) {
                   const P = oe[Re];
                   if (!P.matcher(Se))
                     continue;
-                  const X = we.getRule(P.ruleId), { ruleScanner: se, findOptions: W } = f(X, we, null, de, me === ve), H = se.findNextMatchSync(He, me, W);
+                  const X = we.getRule(P.ruleId), { ruleScanner: se, findOptions: W } = f(X, we, null, fe, me === ve), H = se.findNextMatchSync(He, me, W);
                   if (!H)
                     continue;
                   c.DebugFlags.InDebugMode && (console.log(`  matched injection: ${P.debugSelector}`), console.log(se.toString()));
@@ -8327,13 +8327,13 @@ var on = $o.exports, Go = { exports: {} };
                     break;
                 }
                 return ge ? { priorityMatch: ee === -1, captureIndices: ge, matchedRuleId: xe } : null;
-              }(Y, O, Z, J, V, G, z);
+              }(Y, O, Z, J, V, G, $);
               if (!j)
-                return $;
-              if (!$)
+                return z;
+              if (!z)
                 return j;
-              const Q = $.captureIndices[0].start, U = j.captureIndices[0].start;
-              return U < Q || j.priorityMatch && U === Q ? j : $;
+              const Q = z.captureIndices[0].start, U = j.captureIndices[0].start;
+              return U < Q || j.priorityMatch && U === Q ? j : z;
             }(k, w, C, y, u, E);
             if (!q)
               return c.DebugFlags.InDebugMode && console.log("  no more matches."), g.produce(u, v), void (A = !0);
@@ -8351,14 +8351,14 @@ var on = $o.exports, Go = { exports: {} };
               if (u = u.push(F, y, E, R[0].end === v, null, V, V), O instanceof i.BeginEndRule) {
                 const G = O;
                 c.DebugFlags.InDebugMode && console.log("  pushing " + G.debugName + " - " + G.debugBeginRegExp), S(k, w, C, u, g, G.beginCaptures, R), g.produce(u, R[0].end), E = R[0].end;
-                const z = G.getContentName(w.content, R), $ = V.pushAttributed(z, k);
-                if (u = u.withContentNameScopesList($), G.endHasBackReferences && (u = u.withEndRule(G.getEndWithResolvedBackReferences(w.content, R))), !M && Z.hasSameRuleAs(u))
+                const $ = G.getContentName(w.content, R), z = V.pushAttributed($, k);
+                if (u = u.withContentNameScopesList(z), G.endHasBackReferences && (u = u.withEndRule(G.getEndWithResolvedBackReferences(w.content, R))), !M && Z.hasSameRuleAs(u))
                   return c.DebugFlags.InDebugMode && console.error("[2] - Grammar is in an endless loop - Grammar pushed the same rule without advancing"), u = u.pop(), g.produce(u, v), void (A = !0);
               } else if (O instanceof i.BeginWhileRule) {
                 const G = O;
                 c.DebugFlags.InDebugMode && console.log("  pushing " + G.debugName), S(k, w, C, u, g, G.beginCaptures, R), g.produce(u, R[0].end), E = R[0].end;
-                const z = G.getContentName(w.content, R), $ = V.pushAttributed(z, k);
-                if (u = u.withContentNameScopesList($), G.whileHasBackReferences && (u = u.withEndRule(G.getWhileWithResolvedBackReferences(w.content, R))), !M && Z.hasSameRuleAs(u))
+                const $ = G.getContentName(w.content, R), z = V.pushAttributed($, k);
+                if (u = u.withContentNameScopesList(z), G.whileHasBackReferences && (u = u.withEndRule(G.getWhileWithResolvedBackReferences(w.content, R))), !M && Z.hasSameRuleAs(u))
                   return c.DebugFlags.InDebugMode && console.error("[3] - Grammar is in an endless loop - Grammar pushed the same rule without advancing"), u = u.pop(), g.produce(u, v), void (A = !0);
               } else {
                 const G = O;
@@ -8914,11 +8914,11 @@ var on = $o.exports, Go = { exports: {} };
             } else
               C === 2 ? y.push(j) : y = j;
           }
-          function z() {
+          function $() {
             let j = w(">"), Q = !1;
             return j.charCodeAt(j.length - 1) === 47 && (Q = !0, j = j.substring(0, j.length - 1)), { name: j.trim(), isClosed: Q };
           }
-          function $(j) {
+          function z(j) {
             if (j.isClosed)
               return "";
             let Q = w("</");
@@ -8976,7 +8976,7 @@ var on = $o.exports, Go = { exports: {} };
               }
               return A("unexpected closed tag");
             }
-            let U = z();
+            let U = $();
             switch (U.name) {
               case "dict":
                 C === 1 ? E() : C === 2 ? T() : (y = {}, i !== null && (y[i] = { filename: l, line: d, char: f }), _(1, y)), U.isClosed && R();
@@ -8985,28 +8985,28 @@ var on = $o.exports, Go = { exports: {} };
                 C === 1 ? D() : C === 2 ? q() : (y = [], _(2, y)), U.isClosed && F();
                 continue;
               case "key":
-                Y = $(U), C !== 1 ? A("unexpected <key>") : x !== null ? A("too many <key>") : x = Y;
+                Y = z(U), C !== 1 ? A("unexpected <key>") : x !== null ? A("too many <key>") : x = Y;
                 continue;
               case "string":
-                M($(U));
+                M(z(U));
                 continue;
               case "real":
-                O(parseFloat($(U)));
+                O(parseFloat(z(U)));
                 continue;
               case "integer":
-                Z(parseInt($(U), 10));
+                Z(parseInt(z(U), 10));
                 continue;
               case "date":
-                J(new Date($(U)));
+                J(new Date(z(U)));
                 continue;
               case "data":
-                V($(U));
+                V(z(U));
                 continue;
               case "true":
-                $(U), G(!0);
+                z(U), G(!0);
                 continue;
               case "false":
-                $(U), G(!1);
+                z(U), G(!1);
                 continue;
             }
             if (!/^plist/.test(U.name))
@@ -9736,9 +9736,9 @@ var on = $o.exports, Go = { exports: {} };
       }(787);
     })();
   });
-})(Go);
-var Uo = Go.exports;
-const xn = [
+})(Uo);
+var Ho = Uo.exports;
+const An = [
   {
     id: "abap",
     scopeName: "source.abap",
@@ -10683,20 +10683,20 @@ class ne {
     return t !== 0 && (c = t), o !== 0 && (l = o === 8 ? 0 : o), r !== -1 && (i = r), s !== 0 && (p = s), a !== 0 && (h = a), (c << 0 | l << 8 | i << 11 | d << 10 | p << 15 | h << 24) >>> 0;
   }
 }
-function a_e(n) {
+function l_e(n) {
   return n.endsWith("/") || n.endsWith("\\") ? n.slice(0, -1) : n;
 }
-function i_e(n) {
+function u_e(n) {
   return n.startsWith("./") ? n.slice(2) : n;
 }
-function Ho(n) {
+function Vo(n) {
   const e = n.split(/[\/\\]/g);
   return e.slice(0, e.length - 1);
 }
-function Vo(...n) {
-  return n.map(a_e).map(i_e).join("/");
+function Wo(...n) {
+  return n.map(l_e).map(u_e).join("/");
 }
-function l_e(n, e) {
+function p_e(n, e) {
   const t = /* @__PURE__ */ new Map();
   for (const o of n) {
     const r = e(o);
@@ -10704,7 +10704,7 @@ function l_e(n, e) {
   }
   return t;
 }
-function u_e(n, e = !1) {
+function h_e(n, e = !1) {
   const t = n.length;
   let o = 0, r = "", s = 0, a = 16, c = 0, l = 0, i = 0, p = 0, h = 0;
   function d(w, C) {
@@ -10816,10 +10816,10 @@ function u_e(n, e = !1) {
     if (r = "", h = 0, s = o, l = c, p = i, o >= t)
       return s = t, a = 17;
     let w = n.charCodeAt(o);
-    if (Mn(w)) {
+    if (Bn(w)) {
       do
         o++, r += String.fromCharCode(w), w = n.charCodeAt(o);
-      while (Mn(w));
+      while (Bn(w));
       return a = 15;
     }
     if (We(w))
@@ -10894,7 +10894,7 @@ function u_e(n, e = !1) {
     }
   }
   function b(w) {
-    if (Mn(w) || We(w))
+    if (Bn(w) || We(w))
       return !1;
     switch (w) {
       case 125:
@@ -10929,7 +10929,7 @@ function u_e(n, e = !1) {
     getTokenError: () => h
   };
 }
-function Mn(n) {
+function Bn(n) {
   return n === 32 || n === 9;
 }
 function We(n) {
@@ -10938,23 +10938,23 @@ function We(n) {
 function Oe(n) {
   return n >= 48 && n <= 57;
 }
-var to;
+var oo;
 (function(n) {
   n[n.lineFeed = 10] = "lineFeed", n[n.carriageReturn = 13] = "carriageReturn", n[n.space = 32] = "space", n[n._0 = 48] = "_0", n[n._1 = 49] = "_1", n[n._2 = 50] = "_2", n[n._3 = 51] = "_3", n[n._4 = 52] = "_4", n[n._5 = 53] = "_5", n[n._6 = 54] = "_6", n[n._7 = 55] = "_7", n[n._8 = 56] = "_8", n[n._9 = 57] = "_9", n[n.a = 97] = "a", n[n.b = 98] = "b", n[n.c = 99] = "c", n[n.d = 100] = "d", n[n.e = 101] = "e", n[n.f = 102] = "f", n[n.g = 103] = "g", n[n.h = 104] = "h", n[n.i = 105] = "i", n[n.j = 106] = "j", n[n.k = 107] = "k", n[n.l = 108] = "l", n[n.m = 109] = "m", n[n.n = 110] = "n", n[n.o = 111] = "o", n[n.p = 112] = "p", n[n.q = 113] = "q", n[n.r = 114] = "r", n[n.s = 115] = "s", n[n.t = 116] = "t", n[n.u = 117] = "u", n[n.v = 118] = "v", n[n.w = 119] = "w", n[n.x = 120] = "x", n[n.y = 121] = "y", n[n.z = 122] = "z", n[n.A = 65] = "A", n[n.B = 66] = "B", n[n.C = 67] = "C", n[n.D = 68] = "D", n[n.E = 69] = "E", n[n.F = 70] = "F", n[n.G = 71] = "G", n[n.H = 72] = "H", n[n.I = 73] = "I", n[n.J = 74] = "J", n[n.K = 75] = "K", n[n.L = 76] = "L", n[n.M = 77] = "M", n[n.N = 78] = "N", n[n.O = 79] = "O", n[n.P = 80] = "P", n[n.Q = 81] = "Q", n[n.R = 82] = "R", n[n.S = 83] = "S", n[n.T = 84] = "T", n[n.U = 85] = "U", n[n.V = 86] = "V", n[n.W = 87] = "W", n[n.X = 88] = "X", n[n.Y = 89] = "Y", n[n.Z = 90] = "Z", n[n.asterisk = 42] = "asterisk", n[n.backslash = 92] = "backslash", n[n.closeBrace = 125] = "closeBrace", n[n.closeBracket = 93] = "closeBracket", n[n.colon = 58] = "colon", n[n.comma = 44] = "comma", n[n.dot = 46] = "dot", n[n.doubleQuote = 34] = "doubleQuote", n[n.minus = 45] = "minus", n[n.openBrace = 123] = "openBrace", n[n.openBracket = 91] = "openBracket", n[n.plus = 43] = "plus", n[n.slash = 47] = "slash", n[n.formFeed = 12] = "formFeed", n[n.tab = 9] = "tab";
-})(to || (to = {}));
+})(oo || (oo = {}));
 var un;
 (function(n) {
   n.DEFAULT = {
     allowTrailingComma: !1
   };
 })(un || (un = {}));
-function p_e(n, e = [], t = un.DEFAULT) {
+function d_e(n, e = [], t = un.DEFAULT) {
   let o = null, r = [];
   const s = [];
   function a(l) {
     Array.isArray(r) ? r.push(l) : o !== null && (r[o] = l);
   }
-  return h_e(n, {
+  return f_e(n, {
     onObjectBegin: () => {
       const l = {};
       a(l), s.push(r), r = l, o = null;
@@ -10978,8 +10978,8 @@ function p_e(n, e = [], t = un.DEFAULT) {
     }
   }, t), r[0];
 }
-function h_e(n, e, t = un.DEFAULT) {
-  const o = u_e(n, !1), r = [];
+function f_e(n, e, t = un.DEFAULT) {
+  const o = h_e(n, !1), r = [];
   function s(E) {
     return E ? () => E(o.getTokenOffset(), o.getTokenLength(), o.getTokenStartLine(), o.getTokenStartCharacter()) : () => !0;
   }
@@ -11166,35 +11166,35 @@ function h_e(n, e, t = un.DEFAULT) {
   }
   return C(), o.getToken() === 17 ? t.allowEmptyContent ? !0 : (y(4, [], []), !1) : A() ? (o.getToken() !== 17 && y(9, [], []), !0) : (y(4, [], []), !1);
 }
-var oo;
-(function(n) {
-  n[n.None = 0] = "None", n[n.UnexpectedEndOfComment = 1] = "UnexpectedEndOfComment", n[n.UnexpectedEndOfString = 2] = "UnexpectedEndOfString", n[n.UnexpectedEndOfNumber = 3] = "UnexpectedEndOfNumber", n[n.InvalidUnicode = 4] = "InvalidUnicode", n[n.InvalidEscapeCharacter = 5] = "InvalidEscapeCharacter", n[n.InvalidCharacter = 6] = "InvalidCharacter";
-})(oo || (oo = {}));
 var so;
 (function(n) {
-  n[n.OpenBraceToken = 1] = "OpenBraceToken", n[n.CloseBraceToken = 2] = "CloseBraceToken", n[n.OpenBracketToken = 3] = "OpenBracketToken", n[n.CloseBracketToken = 4] = "CloseBracketToken", n[n.CommaToken = 5] = "CommaToken", n[n.ColonToken = 6] = "ColonToken", n[n.NullKeyword = 7] = "NullKeyword", n[n.TrueKeyword = 8] = "TrueKeyword", n[n.FalseKeyword = 9] = "FalseKeyword", n[n.StringLiteral = 10] = "StringLiteral", n[n.NumericLiteral = 11] = "NumericLiteral", n[n.LineCommentTrivia = 12] = "LineCommentTrivia", n[n.BlockCommentTrivia = 13] = "BlockCommentTrivia", n[n.LineBreakTrivia = 14] = "LineBreakTrivia", n[n.Trivia = 15] = "Trivia", n[n.Unknown = 16] = "Unknown", n[n.EOF = 17] = "EOF";
+  n[n.None = 0] = "None", n[n.UnexpectedEndOfComment = 1] = "UnexpectedEndOfComment", n[n.UnexpectedEndOfString = 2] = "UnexpectedEndOfString", n[n.UnexpectedEndOfNumber = 3] = "UnexpectedEndOfNumber", n[n.InvalidUnicode = 4] = "InvalidUnicode", n[n.InvalidEscapeCharacter = 5] = "InvalidEscapeCharacter", n[n.InvalidCharacter = 6] = "InvalidCharacter";
 })(so || (so = {}));
-const d_e = p_e;
 var ro;
 (function(n) {
-  n[n.InvalidSymbol = 1] = "InvalidSymbol", n[n.InvalidNumberFormat = 2] = "InvalidNumberFormat", n[n.PropertyNameExpected = 3] = "PropertyNameExpected", n[n.ValueExpected = 4] = "ValueExpected", n[n.ColonExpected = 5] = "ColonExpected", n[n.CommaExpected = 6] = "CommaExpected", n[n.CloseBraceExpected = 7] = "CloseBraceExpected", n[n.CloseBracketExpected = 8] = "CloseBracketExpected", n[n.EndOfFileExpected = 9] = "EndOfFileExpected", n[n.InvalidCommentToken = 10] = "InvalidCommentToken", n[n.UnexpectedEndOfComment = 11] = "UnexpectedEndOfComment", n[n.UnexpectedEndOfString = 12] = "UnexpectedEndOfString", n[n.UnexpectedEndOfNumber = 13] = "UnexpectedEndOfNumber", n[n.InvalidUnicode = 14] = "InvalidUnicode", n[n.InvalidEscapeCharacter = 15] = "InvalidEscapeCharacter", n[n.InvalidCharacter = 16] = "InvalidCharacter";
+  n[n.OpenBraceToken = 1] = "OpenBraceToken", n[n.CloseBraceToken = 2] = "CloseBraceToken", n[n.OpenBracketToken = 3] = "OpenBracketToken", n[n.CloseBracketToken = 4] = "CloseBracketToken", n[n.CommaToken = 5] = "CommaToken", n[n.ColonToken = 6] = "ColonToken", n[n.NullKeyword = 7] = "NullKeyword", n[n.TrueKeyword = 8] = "TrueKeyword", n[n.FalseKeyword = 9] = "FalseKeyword", n[n.StringLiteral = 10] = "StringLiteral", n[n.NumericLiteral = 11] = "NumericLiteral", n[n.LineCommentTrivia = 12] = "LineCommentTrivia", n[n.BlockCommentTrivia = 13] = "BlockCommentTrivia", n[n.LineBreakTrivia = 14] = "LineBreakTrivia", n[n.Trivia = 15] = "Trivia", n[n.Unknown = 16] = "Unknown", n[n.EOF = 17] = "EOF";
 })(ro || (ro = {}));
-const f_e = typeof self < "u" && typeof self.WorkerGlobalScope < "u", m_e = "process" in globalThis && typeof process < "u" && typeof process.release < "u" && process.release.name === "node", lt = f_e || !m_e;
-let g_e = "";
-const __e = "dist/";
-let Bn = null;
-async function b_e(n) {
-  if (!Bn) {
+const m_e = d_e;
+var co;
+(function(n) {
+  n[n.InvalidSymbol = 1] = "InvalidSymbol", n[n.InvalidNumberFormat = 2] = "InvalidNumberFormat", n[n.PropertyNameExpected = 3] = "PropertyNameExpected", n[n.ValueExpected = 4] = "ValueExpected", n[n.ColonExpected = 5] = "ColonExpected", n[n.CommaExpected = 6] = "CommaExpected", n[n.CloseBraceExpected = 7] = "CloseBraceExpected", n[n.CloseBracketExpected = 8] = "CloseBracketExpected", n[n.EndOfFileExpected = 9] = "EndOfFileExpected", n[n.InvalidCommentToken = 10] = "InvalidCommentToken", n[n.UnexpectedEndOfComment = 11] = "UnexpectedEndOfComment", n[n.UnexpectedEndOfString = 12] = "UnexpectedEndOfString", n[n.UnexpectedEndOfNumber = 13] = "UnexpectedEndOfNumber", n[n.InvalidUnicode = 14] = "InvalidUnicode", n[n.InvalidEscapeCharacter = 15] = "InvalidEscapeCharacter", n[n.InvalidCharacter = 16] = "InvalidCharacter";
+})(co || (co = {}));
+const g_e = typeof self < "u" && typeof self.WorkerGlobalScope < "u", __e = "process" in globalThis && typeof process < "u" && typeof process.release < "u" && process.release.name === "node", pt = g_e || !__e;
+let b_e = "";
+const k_e = "dist/";
+let $n = null;
+async function y_e(n) {
+  if (!$n) {
     let e;
-    if (lt)
+    if (pt)
       e = on.loadWASM({
-        data: await fetch(Wo(Vo(...Ho(n), "onig.wasm")))
+        data: await fetch(Zo(Wo(...Vo(n), "onig.wasm")))
       });
     else {
       const o = require("path").join(require.resolve("vscode-oniguruma"), "../onig.wasm"), s = require("fs").readFileSync(o).buffer;
       e = on.loadWASM(s);
     }
-    Bn = e.then(() => ({
+    $n = e.then(() => ({
       createOnigScanner(t) {
         return on.createOnigScanner(t);
       },
@@ -11203,41 +11203,41 @@ async function b_e(n) {
       }
     }));
   }
-  return Bn;
+  return $n;
 }
-function Wo(n) {
-  if (lt)
-    return `${g_e}${n}`;
+function Zo(n) {
+  if (pt)
+    return `${b_e}${n}`;
   {
     const e = require("path");
     return e.isAbsolute(n) ? n : e.resolve(__dirname, "..", n);
   }
 }
-async function k_e(n) {
-  const e = Wo(n);
-  return lt ? await fetch(e).then((t) => t.text()) : await require("fs").promises.readFile(e, "utf-8");
+async function w_e(n) {
+  const e = Zo(n);
+  return pt ? await fetch(e).then((t) => t.text()) : await require("fs").promises.readFile(e, "utf-8");
 }
-async function Zo(n) {
-  const e = [], t = d_e(await k_e(n), e, {
+async function Jo(n) {
+  const e = [], t = m_e(await w_e(n), e, {
     allowTrailingComma: !0
   });
   if (e.length)
     throw e[0];
   return t;
 }
-async function Jo(n) {
-  let e = await Zo(n);
-  const t = Qo(e);
+async function Qo(n) {
+  let e = await Jo(n);
+  const t = Yo(e);
   if (t.include) {
-    const o = await Jo(Vo(...Ho(n), t.include));
+    const o = await Qo(Wo(...Vo(n), t.include));
     o.settings && (t.settings = o.settings.concat(t.settings)), o.bg && !t.bg && (t.bg = o.bg), o.colors && (t.colors = { ...o.colors, ...t.colors }), delete t.include;
   }
   return t;
 }
-async function y_e(n) {
-  return await Zo(n);
+async function v_e(n) {
+  return await Jo(n);
 }
-function w_e(n) {
+function x_e(n) {
   n.settings || (n.settings = []), !(n.settings[0] && n.settings[0].settings && !n.settings[0].scope) && n.settings.unshift({
     settings: {
       foreground: n.fg,
@@ -11245,26 +11245,26 @@ function w_e(n) {
     }
   });
 }
-function Qo(n) {
+function Yo(n) {
   const e = n.type || "dark", t = {
     name: n.name,
     type: e,
     ...n,
-    ...v_e(n)
+    ...A_e(n)
   };
-  return n.include && (t.include = n.include), n.tokenColors && (t.settings = n.tokenColors, delete t.tokenColors), w_e(t), t;
+  return n.include && (t.include = n.include), n.tokenColors && (t.settings = n.tokenColors, delete t.tokenColors), x_e(t), t;
 }
-const co = { light: "#333333", dark: "#bbbbbb" }, ao = { light: "#fffffe", dark: "#1e1e1e" };
-function v_e(n) {
+const ao = { light: "#333333", dark: "#bbbbbb" }, io = { light: "#fffffe", dark: "#1e1e1e" };
+function A_e(n) {
   var s, a, c, l;
   let e, t, o = n.settings ? n.settings : n.tokenColors;
   const r = o ? o.find((i) => !i.name && !i.scope) : void 0;
-  return (s = r == null ? void 0 : r.settings) != null && s.foreground && (e = r.settings.foreground), (a = r == null ? void 0 : r.settings) != null && a.background && (t = r.settings.background), !e && ((c = n == null ? void 0 : n.colors) != null && c["editor.foreground"]) && (e = n.colors["editor.foreground"]), !t && ((l = n == null ? void 0 : n.colors) != null && l["editor.background"]) && (t = n.colors["editor.background"]), e || (e = n.type === "light" ? co.light : co.dark), t || (t = n.type === "light" ? ao.light : ao.dark), {
+  return (s = r == null ? void 0 : r.settings) != null && s.foreground && (e = r.settings.foreground), (a = r == null ? void 0 : r.settings) != null && a.background && (t = r.settings.background), !e && ((c = n == null ? void 0 : n.colors) != null && c["editor.foreground"]) && (e = n.colors["editor.foreground"]), !t && ((l = n == null ? void 0 : n.colors) != null && l["editor.background"]) && (t = n.colors["editor.background"]), e || (e = n.type === "light" ? ao.light : ao.dark), t || (t = n.type === "light" ? io.light : io.dark), {
     fg: e,
     bg: t
   };
 }
-class x_e {
+class S_e {
   constructor(e, t) {
     this.languagesPath = "languages/", this.languageMap = {}, this.scopeToLangMap = {}, this._onigLibPromise = e, this._onigLibName = t;
   }
@@ -11283,8 +11283,8 @@ class x_e {
       return null;
     if (t.grammar)
       return t.grammar;
-    const o = await y_e(
-      xn.includes(t) ? `${this.languagesPath}${t.path}` : t.path
+    const o = await v_e(
+      An.includes(t) ? `${this.languagesPath}${t.path}` : t.path
     );
     return t.grammar = o, o;
   }
@@ -11294,8 +11294,8 @@ class x_e {
     }), this.scopeToLangMap[e.scopeName] = e;
   }
 }
-function A_e(n, e, t, o, r) {
-  let s = t.split(/\r\n|\r|\n/), a = Uo.INITIAL, c = [], l = [];
+function L_e(n, e, t, o, r) {
+  let s = t.split(/\r\n|\r|\n/), a = Ho.INITIAL, c = [], l = [];
   for (let i = 0, p = s.length; i < p; i++) {
     let h = s[i];
     if (h === "") {
@@ -11319,7 +11319,7 @@ function A_e(n, e, t, o, r) {
           );
           _ += A.length, x.push({
             content: A,
-            scopes: S_e(n, v.scopes)
+            scopes: C_e(n, v.scopes)
           }), m++;
         }
       }
@@ -11334,30 +11334,30 @@ function A_e(n, e, t, o, r) {
   }
   return l;
 }
-function S_e(n, e) {
+function C_e(n, e) {
   let t = [];
   for (let o = 0, r = e.length; o < r; o++) {
     let s = e.slice(0, o), a = e[o];
     t[o] = {
       scopeName: a,
-      themeMatches: C_e(n, a, s)
+      themeMatches: T_e(n, a, s)
     };
   }
   return t;
 }
-function io(n, e) {
+function lo(n, e) {
   let t = n + ".";
   return n === e || e.substring(0, t.length) === t;
 }
-function L_e(n, e, t, o) {
-  if (!io(n, t))
+function E_e(n, e, t, o) {
+  if (!lo(n, t))
     return !1;
   let r = e.length - 1, s = o.length - 1;
   for (; r >= 0 && s >= 0; )
-    io(e[r], o[s]) && r--, s--;
+    lo(e[r], o[s]) && r--, s--;
   return r === -1;
 }
-function C_e(n, e, t) {
+function T_e(n, e, t) {
   let o = [], r = 0;
   for (let s = 0, a = n.settings.length; s < a; s++) {
     let c = n.settings[s], l;
@@ -11369,7 +11369,7 @@ function C_e(n, e, t) {
       continue;
     for (let i = 0, p = l.length; i < p; i++) {
       let d = l[i].split(/ /), f = d[d.length - 1], m = d.slice(0, d.length - 1);
-      L_e(f, m, e, t) && (o[r++] = c, i = p);
+      E_e(f, m, e, t) && (o[r++] = c, i = p);
     }
   }
   return o;
@@ -11399,7 +11399,7 @@ var De = [
   7: "reverse",
   9: "strikethrough"
 };
-function E_e(n, e) {
+function D_e(n, e) {
   const t = n.indexOf("\x1B", e);
   if (t !== -1 && n[t + 1] === "[") {
     const o = n.indexOf("m", t);
@@ -11413,7 +11413,7 @@ function E_e(n, e) {
     position: n.length
   };
 }
-function lo(n) {
+function uo(n) {
   const e = n.shift();
   if (e === "2") {
     const t = n.splice(0, 3).map((o) => Number.parseInt(o));
@@ -11427,7 +11427,7 @@ function lo(n) {
       return { type: "table", index: Number(t) };
   }
 }
-function T_e(n) {
+function q_e(n) {
   const e = [];
   for (; n.length > 0; ) {
     const t = n.shift();
@@ -11454,7 +11454,7 @@ function T_e(n) {
           value: { type: "named", name: De[o - 30] }
         });
       else if (o === 38) {
-        const r = lo(n);
+        const r = uo(n);
         r && e.push({
           type: "setForegroundColor",
           value: r
@@ -11469,7 +11469,7 @@ function T_e(n) {
           value: { type: "named", name: De[o - 40] }
         });
       else if (o === 48) {
-        const r = lo(n);
+        const r = uo(n);
         r && e.push({
           type: "setBackgroundColor",
           value: r
@@ -11487,21 +11487,21 @@ function T_e(n) {
   }
   return e;
 }
-function D_e() {
+function j_e() {
   let n = null, e = null, t = /* @__PURE__ */ new Set();
   return {
     parse(o) {
       const r = [];
       let s = 0;
       do {
-        const a = E_e(o, s), c = a.sequence ? o.substring(s, a.startPosition) : o.substring(s);
+        const a = D_e(o, s), c = a.sequence ? o.substring(s, a.startPosition) : o.substring(s);
         if (c.length > 0 && r.push({
           value: c,
           foreground: n,
           background: e,
           decorations: new Set(t)
         }), a.sequence) {
-          const l = T_e(a.sequence);
+          const l = q_e(a.sequence);
           for (const i of l)
             i.type === "resetAll" ? (n = null, e = null, t.clear()) : i.type === "resetForegroundColor" ? n = null : i.type === "resetBackgroundColor" ? e = null : i.type === "resetDecoration" && t.delete(i.value);
           for (const i of l)
@@ -11513,7 +11513,7 @@ function D_e() {
     }
   };
 }
-var q_e = {
+var R_e = {
   black: "#000000",
   red: "#bb0000",
   green: "#00bb00",
@@ -11531,7 +11531,7 @@ var q_e = {
   brightCyan: "#55ffff",
   brightWhite: "#ffffff"
 };
-function j_e(n = q_e) {
+function N_e(n = R_e) {
   function e(c) {
     return n[c];
   }
@@ -11572,19 +11572,19 @@ function j_e(n = q_e) {
     value: a
   };
 }
-function R_e(n, e) {
-  const t = e.split(/\r?\n/), o = j_e(
+function P_e(n, e) {
+  const t = e.split(/\r?\n/), o = N_e(
     Object.fromEntries(
       De.map((s) => [
         s,
         n.colors[`terminal.ansi${s[0].toUpperCase()}${s.substring(1)}`]
       ])
     )
-  ), r = D_e();
+  ), r = j_e();
   return t.map(
     (s) => r.parse(s).map((a) => {
       let c;
-      a.decorations.has("reverse") ? c = a.background ? o.value(a.background) : n.bg : c = a.foreground ? o.value(a.foreground) : n.fg, a.decorations.has("dim") && (c = N_e(c));
+      a.decorations.has("reverse") ? c = a.background ? o.value(a.background) : n.bg : c = a.foreground ? o.value(a.foreground) : n.fg, a.decorations.has("dim") && (c = I_e(c));
       let l = ke.None;
       return a.decorations.has("bold") && (l |= ke.Bold), a.decorations.has("italic") && (l |= ke.Italic), a.decorations.has("underline") && (l |= ke.Underline), {
         content: a.value,
@@ -11594,7 +11594,7 @@ function R_e(n, e) {
     })
   );
 }
-function N_e(n) {
+function I_e(n) {
   const e = n.match(/#([0-9a-f]{3})([0-9a-f]{3})?([0-9a-f]{2})?/);
   if (e)
     if (e[3]) {
@@ -11604,7 +11604,7 @@ function N_e(n) {
       return e[2] ? `#${e[1]}${e[2]}80` : `#${Array.from(e[1]).map((t) => `${t}${t}`).join("")}80`;
   return n;
 }
-const P_e = {
+const O_e = {
   pre({ className: n, style: e, children: t }) {
     return `<pre class="${n}" style="${e}" tabindex="0">${t}</pre>`;
   },
@@ -11618,10 +11618,10 @@ const P_e = {
     return `<span style="${n}">${e}</span>`;
   }
 };
-function uo(n, e = {}) {
-  const t = e.bg || "#fff", o = l_e(e.lineOptions ?? [], (a) => a.line), r = e.elements || {};
+function po(n, e = {}) {
+  const t = e.bg || "#fff", o = p_e(e.lineOptions ?? [], (a) => a.line), r = e.elements || {};
   function s(a = "", c = {}, l) {
-    const i = r[a] || P_e[a];
+    const i = r[a] || O_e[a];
     return i ? (l = l.filter(Boolean), i({
       ...c,
       children: a === "code" ? l.join(`
@@ -11637,7 +11637,7 @@ function uo(n, e = {}) {
         "code",
         {},
         n.map((a, c) => {
-          const l = c + 1, i = o.get(l) ?? [], p = F_e(i).join(" ");
+          const l = c + 1, i = o.get(l) ?? [], p = B_e(i).join(" ");
           return s(
             "line",
             {
@@ -11656,7 +11656,7 @@ function uo(n, e = {}) {
                   token: h,
                   index: d
                 },
-                [O_e(h.content)]
+                [M_e(h.content)]
               );
             })
           );
@@ -11665,32 +11665,32 @@ function uo(n, e = {}) {
     ]
   );
 }
-const I_e = {
+const F_e = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
   '"': "&quot;",
   "'": "&#39;"
 };
-function O_e(n) {
-  return n.replace(/[&<>"']/g, (e) => I_e[e]);
+function M_e(n) {
+  return n.replace(/[&<>"']/g, (e) => F_e[e]);
 }
-function F_e(n) {
+function B_e(n) {
   const e = /* @__PURE__ */ new Set(["line"]);
   for (const t of n)
     for (const o of t.classes ?? [])
       e.add(o);
   return Array.from(e);
 }
-class M_e extends Uo.Registry {
+class $_e extends Ho.Registry {
   constructor(e) {
-    super(e), this._resolver = e, this.themesPath = "themes/", this._resolvedThemes = {}, this._resolvedGrammars = {}, this._langGraph = /* @__PURE__ */ new Map(), this._langMap = xn.reduce((t, o) => (t[o.id] = o, t), {});
+    super(e), this._resolver = e, this.themesPath = "themes/", this._resolvedThemes = {}, this._resolvedGrammars = {}, this._langGraph = /* @__PURE__ */ new Map(), this._langMap = An.reduce((t, o) => (t[o.id] = o, t), {});
   }
   getTheme(e) {
     return typeof e == "string" ? this._resolvedThemes[e] : e;
   }
   async loadTheme(e) {
-    return typeof e == "string" ? (this._resolvedThemes[e] || (this._resolvedThemes[e] = await Jo(`${this.themesPath}${e}.json`)), this._resolvedThemes[e]) : (e = Qo(e), e.name && (this._resolvedThemes[e.name] = e), e);
+    return typeof e == "string" ? (this._resolvedThemes[e] || (this._resolvedThemes[e] = await Qo(`${this.themesPath}${e}.json`)), this._resolvedThemes[e]) : (e = Yo(e), e.name && (this._resolvedThemes[e.name] = e), e);
   }
   async loadThemes(e) {
     return await Promise.all(e.map((t) => this.loadTheme(t)));
@@ -11733,20 +11733,20 @@ class M_e extends Uo.Registry {
         this._langGraph.set(t, this._langMap[t]);
   }
 }
-function Yo(n) {
-  return typeof n == "string" ? xn.find((e) => {
+function Xo(n) {
+  return typeof n == "string" ? An.find((e) => {
     var t;
     return e.id === n || ((t = e.aliases) == null ? void 0 : t.includes(n));
   }) : n;
 }
-function B_e(n) {
+function z_e(n) {
   var r;
-  let e = xn, t = n.themes || [], o = (r = n.paths) != null && r.wasm ? n.paths.wasm.endsWith("/") ? n.paths.wasm : n.paths.wasm + "/" : __e;
-  return n.langs && (e = n.langs.map(Yo)), n.theme && t.unshift(n.theme), t.length || (t = ["nord"]), { _languages: e, _themes: t, _wasmPath: o };
+  let e = An, t = n.themes || [], o = (r = n.paths) != null && r.wasm ? n.paths.wasm.endsWith("/") ? n.paths.wasm : n.paths.wasm + "/" : k_e;
+  return n.langs && (e = n.langs.map(Xo)), n.theme && t.unshift(n.theme), t.length || (t = ["nord"]), { _languages: e, _themes: t, _wasmPath: o };
 }
-async function z_e(n) {
+async function G_e(n) {
   var x, _;
-  const { _languages: e, _themes: t, _wasmPath: o } = B_e(n), r = new x_e(b_e(o), "vscode-oniguruma"), s = new M_e(r);
+  const { _languages: e, _themes: t, _wasmPath: o } = z_e(n), r = new S_e(y_e(o), "vscode-oniguruma"), s = new $_e(r);
   (x = n.paths) != null && x.themes && (s.themesPath = n.paths.themes.endsWith("/") ? n.paths.themes : n.paths.themes + "/"), (_ = n.paths) != null && _.languages && (r.languagesPath = n.paths.languages.endsWith("/") ? n.paths.languages : n.paths.languages + "/");
   const c = (await s.loadThemes(t))[0];
   let l;
@@ -11787,14 +11787,14 @@ async function z_e(n) {
     return { _grammar: A };
   }
   function m(v, A = "text", E, D = { includeExplanation: !0 }) {
-    if ($_e(A))
+    if (U_e(A))
       return [...v.split(/\r\n|\r|\n/).map((M) => [{ content: M }])];
     const { _grammar: T } = f(A), { _theme: q, _colorMap: R } = d(E);
-    return A_e(q, R, v, T, D);
+    return L_e(q, R, v, T, D);
   }
   function L(v, A) {
     const { _theme: E } = d(A);
-    return R_e(E, v);
+    return P_e(E, v);
   }
   function S(v, A = "text", E) {
     let D;
@@ -11805,7 +11805,7 @@ async function z_e(n) {
     const T = m(v, D.lang, D.theme, {
       includeExplanation: !1
     }), { _theme: q } = d(D.theme);
-    return uo(T, {
+    return po(T, {
       fg: q.fg,
       bg: q.bg,
       lineOptions: D == null ? void 0 : D.lineOptions,
@@ -11814,7 +11814,7 @@ async function z_e(n) {
   }
   function b(v, A) {
     const E = L(v, A == null ? void 0 : A.theme), { _theme: D } = d(A == null ? void 0 : A.theme);
-    return uo(E, {
+    return po(E, {
       fg: D.fg,
       bg: D.bg,
       lineOptions: A == null ? void 0 : A.lineOptions,
@@ -11825,7 +11825,7 @@ async function z_e(n) {
     await s.loadTheme(v);
   }
   async function w(v) {
-    const A = Yo(v);
+    const A = Xo(v);
     r.addLanguage(A), await s.loadLanguage(A);
   }
   function C() {
@@ -11857,15 +11857,15 @@ async function z_e(n) {
     setColorReplacements: p
   };
 }
-function $_e(n) {
+function U_e(n) {
   return !n || ["plaintext", "txt", "text"].includes(n);
 }
-async function G_e(n = {}) {
-  const e = await z_e(n), t = n.processors ?? [];
+async function H_e(n = {}) {
+  const e = await G_e(n), t = n.processors ?? [];
   return {
     ...e,
     codeToHtml: (o, r) => {
-      const s = typeof r == "object" ? r.lang : r, a = typeof r == "object" ? r.lineOptions ?? [] : [], c = typeof r == "object" ? r.theme : void 0, { code: l, lineOptions: i } = r_e(t, o, s), p = e.codeToHtml(l, {
+      const s = typeof r == "object" ? r.lang : r, a = typeof r == "object" ? r.lineOptions ?? [] : [], c = typeof r == "object" ? r.theme : void 0, { code: l, lineOptions: i } = a_e(t, o, s), p = e.codeToHtml(l, {
         lang: s,
         theme: c,
         lineOptions: [
@@ -11873,11 +11873,11 @@ async function G_e(n = {}) {
           ...a
         ]
       });
-      return c_e(t, p, s);
+      return i_e(t, p, s);
     }
   };
 }
-const U_e = Jge("abcdefghijklmnopqrstuvwxyz", 10), H_e = (n) => {
+const V_e = Yge("abcdefghijklmnopqrstuvwxyz", 10), W_e = (n) => {
   n = n.replace(/^(?:\[.*?\])?.*?([\d,-]+).*/, "$1").trim();
   const e = [];
   return n ? (n.split(",").map((t) => t.split("-").map((o) => parseInt(o, 10))).forEach(([t, o]) => {
@@ -11886,20 +11886,20 @@ const U_e = Jge("abcdefghijklmnopqrstuvwxyz", 10), H_e = (n) => {
     line: t,
     classes: ["highlighted"]
   }))) : [];
-}, V_e = {
+}, Z_e = {
   name: "error-level",
-  handler: vn({
+  handler: xn({
     error: ["highlighted", "error"],
     warning: ["highlighted", "warning"]
   })
 };
-async function W_e(n = "material-theme-palenight", e = [], t = "", o = console) {
+async function J_e(n = "material-theme-palenight", e = [], t = "", o = console) {
   const r = typeof n == "string" || "name" in n, s = (L) => typeof L == "string" ? L : L.name, a = [
-    o_e(),
-    s_e({ hasHighlightClass: "highlighted" }),
-    t_e(),
-    V_e
-  ], c = await G_e({
+    r_e(),
+    c_e({ hasHighlightClass: "highlighted" }),
+    s_e(),
+    Z_e
+  ], c = await H_e({
     themes: r ? [n] : [n.dark, n.light],
     // something wrong with shiki, cannot dynamic load css
     langs: ["css", ...e],
@@ -11917,9 +11917,9 @@ async function W_e(n = "material-theme-palenight", e = [], t = "", o = console) 
 The language '${S}' is not loaded, falling back to '${t || "txt"}' for syntax highlighting.`
       // )
     );
-    const w = H_e(b), C = (E) => E.replace(p, (D, T) => `<pre ${k}${T.replace(' tabindex="0"', "")}>`).replace(i, (D, T) => D.replace(T, "")), y = /* @__PURE__ */ new Map(), u = (E) => k ? E : E.replace(f, (D) => {
+    const w = W_e(b), C = (E) => E.replace(p, (D, T) => `<pre ${k}${T.replace(' tabindex="0"', "")}>`).replace(i, (D, T) => D.replace(T, "")), y = /* @__PURE__ */ new Map(), u = (E) => k ? E : E.replace(f, (D) => {
       let T = y.get(D);
-      return T || (T = U_e(), y.set(D, T)), T;
+      return T || (T = V_e(), y.set(D, T)), T;
     }), g = (E) => (y.forEach((D, T) => {
       E = E.replace(new RegExp(D, "gi"), T);
     }), E), x = (E) => E.replace(/(<span class="line highlighted">)(<\/span>)/g, "$1<wbr>$2");
@@ -11949,28 +11949,28 @@ The language '${S}' is not loaded, falling back to '${t || "txt"}' for syntax hi
     return v + A;
   }, highlighter: c, loadLang: l };
 }
-const $n = /{([\d,-]+)}/, Z_e = (n) => {
+const Gn = /{([\d,-]+)}/, Q_e = (n) => {
   const e = n.renderer.rules.fence;
   n.renderer.rules.fence = (...t) => {
     const [o, r] = t, s = o[r], a = s.attrs && s.attrs[0];
     let c = null;
     if (!a) {
       const l = s.info;
-      if (!l || !$n.test(l))
+      if (!l || !Gn.test(l))
         return e(...t);
-      const i = l.replace($n, "").trim();
-      s.info = i, c = $n.exec(l)[1];
+      const i = l.replace(Gn, "").trim();
+      s.info = i, c = Gn.exec(l)[1];
     }
     return !c && (c = a[0], !c || !/[\d,-]+/.test(c)) ? e(...t) : (s.info += " " + c, e(...t));
   };
-}, J_e = (n) => {
+}, Y_e = (n) => {
   const e = n.renderer.rules.image;
   n.renderer.rules.image = (t, o, r, s, a) => {
     const c = t[o];
     let l = c.attrGet("src");
-    return l && !Qn.test(l) && (/^\.?\//.test(l) || (l = "./" + l), c.attrSet("src", decodeURIComponent(l))), e(t, o, r, s, a);
+    return l && !Xn.test(l) && (/^\.?\//.test(l) || (l = "./" + l), c.attrSet("src", decodeURIComponent(l))), e(t, o, r, s, a);
   };
-}, Q_e = (n, e = !1) => {
+}, X_e = (n, e = !1) => {
   const t = n.renderer.rules.fence;
   n.renderer.rules.fence = (...o) => {
     const r = t(...o), [s, a] = o, c = s[a].info;
@@ -11987,14 +11987,14 @@ const $n = /{([\d,-]+)}/, Z_e = (n) => {
     ].map((f, m) => `<span class="line-number">${m + 1}</span><br>`).join("")}</div>`;
     return r.replace(/<\/div>$/, `${h}</div>`).replace(/"(language-[^"]*?)"/, '"$1 line-numbers-mode"');
   };
-}, Y_e = /(^|.*\/)index.md(#?.*)$/i, X_e = (n, e, t) => {
+}, K_e = /(^|.*\/)index.md(#?.*)$/i, ebe = (n, e, t) => {
   n.renderer.rules.link_open = (s, a, c, l, i) => {
     const p = s[a], h = p.attrIndex("href");
     if (h >= 0) {
       const d = p.attrs[h], f = d[1];
-      Qn.test(f) ? (Object.entries(e).forEach(([L, S]) => {
+      Xn.test(f) ? (Object.entries(e).forEach(([L, S]) => {
         p.attrSet(L, S);
-      }), f.replace(Qn, "").startsWith("//localhost:") && r(f, l), d[1] = f.replace(Qge, "")) : (// internal anchor links
+      }), f.replace(Xn, "").startsWith("//localhost:") && r(f, l), d[1] = f.replace(Xge, "")) : (// internal anchor links
       !f.startsWith("#") && // mail links
       !f.startsWith("mailto:") && // links to files (other than html/md)
       !/\.(?!html|md)\w+($|\?)/i.test(f) ? o(d, l) : f.startsWith("#") && (d[1] = decodeURI(d[1])), d[1].startsWith("/") && (d[1] = `${t}${d[1]}`.replace(/\/+/g, "/"))), d[1] = d[1].replace(/\bimport\.meta/g, "import%2Emeta").replace(/\bprocess\.env/g, "process%2Eenv");
@@ -12003,7 +12003,7 @@ const $n = /{([\d,-]+)}/, Z_e = (n) => {
   };
   function o(s, a) {
     let c = s[1];
-    const l = c.match(Y_e);
+    const l = c.match(K_e);
     if (l) {
       const [, i, p] = l;
       c = i + p;
@@ -12018,15 +12018,15 @@ const $n = /{([\d,-]+)}/, Z_e = (n) => {
   function r(s, a) {
     (a.links || (a.links = [])).push(s);
   }
-}, K_e = async (n = {}, e = "/", t = console) => {
+}, Ko = async (n = {}, e = "/", t = console) => {
   var c;
-  const { plugin: o, highlighter: r, loadLang: s } = await W_e(n.theme, n.languages, n.defaultHighlightLang, t), a = C$({
+  const { plugin: o, highlighter: r, loadLang: s } = await J_e(n.theme, n.languages, n.defaultHighlightLang, t), a = Tz({
     html: !0,
     linkify: !0,
     highlight: n.highlight || o,
     ...n
   });
-  return a.linkify.set({ fuzzyLink: !1 }), a.use(Z_e).use(Xge).use(e_e).use(J_e).use(X_e, { target: "_blank", rel: "noreferrer", ...n.externalLinks }, e).use(Q_e, n.lineNumbers), (c = n.attrs) != null && c.disable || a.use(z$, n.attrs), a.use(Hge), a.use(Te, {
+  return a.linkify.set({ fuzzyLink: !1 }), a.use(Q_e).use(e_e).use(t_e).use(Y_e).use(ebe, { target: "_blank", rel: "noreferrer", ...n.externalLinks }, e).use(X_e, n.lineNumbers), (c = n.attrs) != null && c.disable || a.use(Gz, n.attrs), a.use(Wge), a.use(Te, {
     slugify: sn,
     permalink: Te.permalink.linkInsideHeader({
       symbol: "&ZeroWidthSpace;",
@@ -12041,68 +12041,68 @@ const $n = /{([\d,-]+)}/, Z_e = (n) => {
       }
     }),
     ...n.anchor
-  }), n.headers && a.use(ds, {
+  }), n.headers && a.use(ms, {
     level: [2, 3, 4, 5, 6],
     slugify: sn,
     ...typeof n.headers == "boolean" ? void 0 : n.headers
-  }), a.use(fs).use(_s, {
+  }), a.use(gs).use(ks, {
     ...n.toc
   }), n.config && n.config(a), { md: a, highlighter: r, loadLang: s };
-}, ebe = {
+}, nbe = {
   viewBox: "0 0 24 24",
   width: "1.2em",
   height: "1.2em"
-}, nbe = /* @__PURE__ */ ie("path", {
+}, tbe = /* @__PURE__ */ le("path", {
   fill: "none",
   stroke: "currentColor",
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2",
   d: "M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M7 11l5 5l5-5m-5-7v12"
-}, null, -1), tbe = [
-  nbe
+}, null, -1), obe = [
+  tbe
 ];
-function obe(n, e) {
-  return ce(), fe("svg", ebe, tbe);
+function sbe(n, e) {
+  return re(), ie("svg", nbe, obe);
 }
-const sbe = { name: "tabler-download", render: obe }, rbe = {
+const rbe = { name: "tabler-download", render: sbe }, cbe = {
   viewBox: "0 0 24 24",
   width: "1.2em",
   height: "1.2em"
-}, cbe = /* @__PURE__ */ ie("path", {
+}, abe = /* @__PURE__ */ le("path", {
   fill: "none",
   stroke: "currentColor",
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2",
   d: "m5 12l5 5L20 7"
-}, null, -1), abe = [
-  cbe
+}, null, -1), ibe = [
+  abe
 ];
-function ibe(n, e) {
-  return ce(), fe("svg", rbe, abe);
+function lbe(n, e) {
+  return re(), ie("svg", cbe, ibe);
 }
-const lbe = { name: "tabler-check", render: ibe }, ube = {
+const ube = { name: "tabler-check", render: lbe }, pbe = {
   viewBox: "0 0 24 24",
   width: "1.2em",
   height: "1.2em"
-}, pbe = /* @__PURE__ */ ie("g", {
+}, hbe = /* @__PURE__ */ le("g", {
   fill: "none",
   stroke: "currentColor",
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2"
 }, [
-  /* @__PURE__ */ ie("path", { d: "M8 10a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z" }),
-  /* @__PURE__ */ ie("path", { d: "M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" })
-], -1), hbe = [
-  pbe
+  /* @__PURE__ */ le("path", { d: "M8 10a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z" }),
+  /* @__PURE__ */ le("path", { d: "M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" })
+], -1), dbe = [
+  hbe
 ];
-function dbe(n, e) {
-  return ce(), fe("svg", ube, hbe);
+function fbe(n, e) {
+  return re(), ie("svg", pbe, dbe);
 }
-const fbe = { name: "tabler-copy", render: dbe };
-async function mbe(n) {
+const mbe = { name: "tabler-copy", render: fbe };
+async function gbe(n) {
   try {
     return navigator.clipboard.writeText(n);
   } catch {
@@ -12112,13 +12112,13 @@ async function mbe(n) {
     document.body.appendChild(e), e.select(), e.selectionStart = 0, e.selectionEnd = n.length, document.execCommand("copy"), document.body.removeChild(e), r && (o.removeAllRanges(), o.addRange(r)), t && t.focus();
   }
 }
-const gbe = (n, e = !1) => {
+const _be = (n, e = !1) => {
   const t = "ABCDEFGHJKLMNPQRSTUVWXY3456789";
   let o = "";
   for (let r = 0; r < n.valueOf(); r++)
     o += t.charAt(Math.floor(Math.random() * t.length));
   return e ? o.toLowerCase() : o;
-}, _be = {
+}, bbe = {
   javascript: ".js",
   python: ".py",
   java: ".java",
@@ -12143,13 +12143,13 @@ const gbe = (n, e = !1) => {
   html: ".html",
   css: ".css"
   // add more file extensions here, make sure the key is same as language prop in CodeBlock.tsx component
-}, bbe = (n, e, t = "Enter file name") => {
-  const o = _be[n] || ".file", r = `file-${gbe(3, !0)}${o}`, s = window.prompt(t || "", r);
+}, kbe = (n, e, t = "Enter file name") => {
+  const o = bbe[n] || ".file", r = `file-${_be(3, !0)}${o}`, s = window.prompt(t || "", r);
   if (!s)
     return;
   const a = new Blob([e], { type: "text/plain" }), c = URL.createObjectURL(a), l = document.createElement("a");
   l.download = s, l.href = c, l.style.display = "none", document.body.appendChild(l), l.click(), document.body.removeChild(l), URL.revokeObjectURL(c);
-}, kbe = { class: "vp-header" }, ybe = { class: "ctrl" }, Yn = /* @__PURE__ */ Xn({
+}, ybe = { class: "vp-header" }, wbe = { class: "ctrl" }, Kn = /* @__PURE__ */ pn({
   __name: "VueMarkDownHeader",
   props: {
     lang: {
@@ -12174,10 +12174,10 @@ const gbe = (n, e = !1) => {
     }
   },
   setup(n) {
-    const e = n, t = Me(!1), o = Me(null), r = Gn(() => t.value ? e.copiedTxt : e.copyTxt);
+    const e = n, t = Me(!1), o = Me(null), r = Un(() => t.value ? e.copiedTxt : e.copyTxt);
     function s() {
       const c = /* @__PURE__ */ new Map();
-      mbe(e.item).then(() => {
+      gbe(e.item).then(() => {
         t.value = !0, clearTimeout(c.get(o.value));
         const l = setTimeout(() => {
           t.value = !1, c.delete(o.value);
@@ -12186,23 +12186,23 @@ const gbe = (n, e = !1) => {
       });
     }
     function a() {
-      bbe(e.lang, e.item, e.downloadTxt);
+      kbe(e.lang, e.item, e.downloadTxt);
     }
     return (c, l) => {
-      const i = fbe, p = lbe, h = sbe;
-      return ce(), fe("div", kbe, [
-        Xo(c.$slots, "default", {}, () => [
-          ie("div", null, Un(n.lang), 1)
+      const i = mbe, p = ube, h = rbe;
+      return re(), ie("div", ybe, [
+        ho(c.$slots, "default", {}, () => [
+          le("div", null, Hn(n.lang), 1)
         ]),
-        ie("div", ybe, [
-          ie("div", {
+        le("div", wbe, [
+          le("div", {
             class: "copyRef ctrl",
             onClick: s,
             ref_key: "copyRef",
             ref: o
           }, [
-            t.value ? (ce(), pt(p, { key: 1 })) : (ce(), pt(i, { key: 0 })),
-            ie("span", null, Un(Ko(r)), 1)
+            t.value ? (re(), dt(p, { key: 1 })) : (re(), dt(i, { key: 0 })),
+            le("span", null, Hn(es(r)), 1)
           ], 512),
           _e(h, {
             class: "copyRef",
@@ -12212,7 +12212,7 @@ const gbe = (n, e = !1) => {
       ]);
     };
   }
-}), wbe = { class: "tabs" }, vbe = ["onClick"], xbe = ["innerHTML"], Abe = /* @__PURE__ */ Xn({
+}), vbe = { class: "tabs" }, xbe = ["onClick"], Abe = ["innerHTML"], Sbe = /* @__PURE__ */ pn({
   __name: "VueGroupCode",
   props: {
     names: {
@@ -12229,30 +12229,30 @@ const gbe = (n, e = !1) => {
     function t(o) {
       e.value = o;
     }
-    return (o, r) => (ce(), fe(An, null, [
-      _e(Yn, null, {
-        default: es(() => [
-          ie("div", wbe, [
-            (ce(!0), fe(An, null, ht(n.names, (s, a) => (ce(), fe("span", {
+    return (o, r) => (re(), ie(Sn, null, [
+      _e(Kn, null, {
+        default: ns(() => [
+          le("div", vbe, [
+            (re(!0), ie(Sn, null, ft(n.names, (s, a) => (re(), ie("span", {
               key: a,
               onClick: () => t(a),
-              class: dt({ active: e.value === a })
-            }, Un(s), 11, vbe))), 128))
+              class: Vn({ active: e.value === a })
+            }, Hn(s), 11, xbe))), 128))
           ])
         ]),
         _: 1
       }),
-      (ce(!0), fe(An, null, ht(n.blocks, (s, a) => ns((ce(), fe("div", {
+      (re(!0), ie(Sn, null, ft(n.blocks, (s, a) => ts((re(), ie("div", {
         innerHTML: s.innerHTML,
-        class: dt(s.className),
+        class: Vn(s.className),
         key: a
-      }, null, 10, xbe)), [
-        [ts, e.value === a]
+      }, null, 10, Abe)), [
+        [os, e.value === a]
       ])), 128))
     ], 64));
   }
 });
-function Sbe(n) {
+function Lbe(n) {
   let e = n;
   const t = /以下是(.+)续写的代码：\n\n/, o = e.match(t);
   if (o) {
@@ -12266,9 +12266,9 @@ function Sbe(n) {
   const r = /\n```\n/g;
   return e = e.replace(r, "\n``` \n"), e;
 }
-const Cbe = /* @__PURE__ */ Xn({
+const Ebe = /* @__PURE__ */ pn({
   components: {
-    VueMarkDownHeader: Yn
+    VueMarkDownHeader: Kn
   },
   props: {
     content: {
@@ -12302,14 +12302,14 @@ const Cbe = /* @__PURE__ */ Xn({
       stream: a,
       class: c,
       style: l
-    } = os(n), i = Gn(() => ["vp-doc", c.value]);
+    } = ss(n), i = Un(() => ["vp-doc", c.value]);
     function p(L, S = "") {
       let b = "";
       const w = new DOMParser().parseFromString(L, "text/html"), C = /shellscript|shell|bash|sh|zsh/.test(S);
       return w.querySelectorAll("span.line:not(.diff.remove)").forEach((y) => b += (y.textContent || "") + `
 `), C && (b = b.replace(/^ *(\$|>) /gm, "").trim()), b.slice(0, -1);
     }
-    const h = Gn(() => Sbe(n.content || ""));
+    const h = Un(() => Lbe(n.content || ""));
     function d(L) {
       if (L.nodeType === Node.TEXT_NODE)
         return L.textContent;
@@ -12317,7 +12317,7 @@ const Cbe = /* @__PURE__ */ Xn({
         const S = L, b = /^language-/, k = Array.from(S.classList).some((y) => b.test(y)), w = /vp-code-group/;
         if (Array.from(S.classList).some((y) => w.test(y))) {
           const u = Array.from(S.querySelectorAll(".tabs label")).map((x) => x.innerText), g = S.querySelectorAll(".blocks div");
-          return _e(Abe, {
+          return _e(Sbe, {
             names: u,
             blocks: g
           }, null);
@@ -12333,7 +12333,7 @@ const Cbe = /* @__PURE__ */ Xn({
             item: g,
             html: g,
             lang: u
-          }, [_e(Yn, {
+          }, [_e(Kn, {
             lang: u,
             item: g
           }, null)]), _e("div", {
@@ -12346,7 +12346,7 @@ const Cbe = /* @__PURE__ */ Xn({
             const x = S.attributes[g];
             u[x.name] = x.value;
           }
-          return as(S.tagName, {
+          return is(S.tagName, {
             ...u
           }, y);
         }
@@ -12359,7 +12359,7 @@ const Cbe = /* @__PURE__ */ Xn({
         for (let b = 0; b < L.length; b++) {
           const k = L[b];
           try {
-            const w = Bo[k.toLocaleUpperCase()] || k;
+            const w = $o[k.toLocaleUpperCase()] || k;
             await r.value(w);
           } catch {
             continue;
@@ -12367,11 +12367,11 @@ const Cbe = /* @__PURE__ */ Xn({
         }
       t.value = ((S = o.value) == null ? void 0 : S.render(h.value)) || "";
     }
-    ss(h, async () => await f()), rs(async () => {
+    rs(h, async () => await f()), cs(async () => {
       const {
         md: L,
         loadLang: S
-      } = await cs(Mo);
+      } = await as(ut);
       o.value = L, r.value = S, await f();
     });
     function m() {
@@ -12387,19 +12387,45 @@ const Cbe = /* @__PURE__ */ Xn({
     }
     return () => m();
   }
-}), Ebe = {
+}), Tbe = /* @__PURE__ */ pn({
+  __name: "VueMarkdownItProvider",
+  props: {
+    options: {
+      type: Object,
+      default: {
+        theme: "dracula-soft",
+        defaultHighlightLang: "javascript"
+      }
+    },
+    class: {
+      type: String,
+      default: ""
+    }
+  },
+  setup(n) {
+    const t = Ko({
+      ...n.options
+    });
+    return ls(ut, t), (o, r) => (re(), ie("div", {
+      class: Vn(n.class)
+    }, [
+      ho(o.$slots, "default")
+    ], 2));
+  }
+}), Dbe = {
   install(n, e = {
     theme: "dracula-soft",
     defaultHighlightLang: "javascript"
   }) {
-    const t = K_e({
+    const t = Ko({
       ...e
     });
-    n.provide(Mo, t);
+    n.provide(ut, t);
   }
 };
 export {
-  Yn as VueMarkDownHeader,
-  Cbe as VueMarkdownIt,
-  Ebe as default
+  Kn as VueMarkDownHeader,
+  Ebe as VueMarkdownIt,
+  Tbe as VueMarkdownItProvider,
+  Dbe as default
 };

@@ -17,5 +17,6 @@ declare module '@vue/runtime-core' {
     VueGroupCode: typeof import('./src/components/VueGroupCode.vue')['default']
     VueMarkDownHeader: typeof import('./src/components/VueMarkDownHeader.vue')['default']
     VueMarkdownIt: typeof import('./src/components/VueMarkdownIt.vue')['default']
+    VueMarkdownItProvider: typeof import('./src/components/VueMarkdownItProvider.vue')['default']
   }
 }

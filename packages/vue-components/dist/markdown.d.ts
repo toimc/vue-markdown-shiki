@@ -32,4 +32,12 @@ export type MarkdownType = {
     highlighter: HighlightPlugin['highlighter'];
     loadLang: HighlightPlugin['loadLang'];
 };
+/**
+ * Create a markdown renderer with options.
+ *
+ * @param {MarkdownOptions} [options={}] - The markdown options.
+ * @param {string} [base='/'] - The base URL.
+ * @param {Pick<Logger, 'warn'>} [logger=console] - The logger.
+ * @returns {Promise<MarkdownType>} The markdown renderer, highlighter, and loadLang function.
+ */
 export declare const createMarkdownRenderer: (options?: MarkdownOptions, base?: string, logger?: Pick<Logger, 'warn'>) => Promise<MarkdownType>;
