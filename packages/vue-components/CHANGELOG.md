@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.3.0...vue-markdown-shiki@1.4.0) (2023-04-28)
+
+
+### ✨ Features | 新功能
+
+* add VueMarkdownItProvider for async use ([ec4ad0f](https://github.com/toimc/vue-markdown-shiki/commit/ec4ad0fa12864a34af7cb705a97da61d0e5ce312))
+
+
+
 ## [1.3.0](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.2.1...vue-markdown-shiki@1.3.0) (2023-04-27)
 
 
