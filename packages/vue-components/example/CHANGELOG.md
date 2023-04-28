@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](///compare/example@0.1.3...example@0.1.4) (2023-04-28)
+
+**Note:** Version bump only for package example
+
+
+
+
+
 ## [0.1.3](///compare/example@0.1.2...example@0.1.3) (2023-04-28)
 
 **Note:** Version bump only for package example
