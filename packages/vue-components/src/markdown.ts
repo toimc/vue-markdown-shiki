@@ -26,6 +26,7 @@ import type { HighlightPlugin } from './shared'
 
 export type ThemeOptions = IThemeRegistration | { light: IThemeRegistration; dark: IThemeRegistration }
 
+// 类型说明
 export interface MarkdownOptions extends MarkdownIt.Options {
   lineNumbers?: boolean
   config?: (md: MarkdownIt) => void
@@ -50,6 +51,14 @@ export type MarkdownRenderer = MarkdownIt
 
 export type MarkdownType = { md: MarkdownRenderer; highlighter: HighlightPlugin['highlighter']; loadLang: HighlightPlugin['loadLang'] }
 
+/**
+ * Create a markdown renderer with options.
+ *
+ * @param {MarkdownOptions} [options={}] - The markdown options.
+ * @param {string} [base='/'] - The base URL.
+ * @param {Pick<Logger, 'warn'>} [logger=console] - The logger.
+ * @returns {Promise<MarkdownType>} The markdown renderer, highlighter, and loadLang function.
+ */
 export const createMarkdownRenderer = async (
   // srcDir: string,
   options: MarkdownOptions = {},
