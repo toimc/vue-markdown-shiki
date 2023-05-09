@@ -18,7 +18,28 @@ This is a Vue 3 component library that provides integration with Shiki and Markd
   - `VueMarkDownHeader` provides a menu for copy and download functionality
   - `VueMarkdownItProvider` a wrapper for async use, provides a global `md` instance for MarkdownIt.
 
-## 🚀 Getting Started
+## 🌈 Motion
+
+The initial intention behind this project:
+
+After noticing the attractive code highlighting provided by Shiki in Vitepress, I started looking for a corresponding Vue component solution. However, I found that there weren't any satisfactory solutions for non-server-side rendering. As a result, I decided to create a plugin called vue-markdown-shiki. I hope everyone will find it useful and enjoyable.
+
+If you are looking for a Node.js solution(SSR), you may consider using [markdown-it-shiki](https://www.npmjs.com/package/markdown-it-shiki).
+
+Completed features:
+
+-[x] Vue components that can be used out-of-the-box
+-[x] Extended support for markdownIt properties
+-[x] ChatGPT stream-style output display
+-[x] Customizable code block slot
+-[x] Code block header that allows for download and copying
+
+Next development plan:
+
+-[] Optimization for SSR scenarios
+-[] Provide sample projects for frameworks such as Nuxt.
+
+## 📝 Intro
 
 `VueMarkdownIt` options:
 
