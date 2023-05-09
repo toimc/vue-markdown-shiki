@@ -28,16 +28,16 @@ If you are looking for a Node.js solution(SSR), you may consider using [markdown
 
 Completed features:
 
--[x] Vue components that can be used out-of-the-box
--[x] Extended support for markdownIt properties
--[x] ChatGPT stream-style output display
--[x] Customizable code block slot
--[x] Code block header that allows for download and copying
+- Vue components that can be used out-of-the-box
+- Extended support for markdownIt properties
+- ChatGPT stream-style output display
+- Customizable code block slot
+- Code block header that allows for download and copying
 
 Next development plan:
 
--[] Optimization for SSR scenarios
--[] Provide sample projects for frameworks such as Nuxt.
+- Optimization for SSR scenarios
+- Provide sample projects for frameworks such as Nuxt.
 
 ## 📝 Intro
 

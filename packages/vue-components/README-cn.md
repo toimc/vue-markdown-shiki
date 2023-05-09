@@ -16,6 +16,25 @@
   - `VueMarkDownHeader` 提供复制和下载功能的菜单
   - `VueMarkdownItProvider` 是用于异步使用的包装器，提供了全局的 `md` 实例，用于 MarkdownIt。
 
+## 🌈 该项目的初衷
+
+在注意到Vitepress中Shiki提供的吸引人的代码高亮之后，我开始寻找相应的Vue组件解决方案。然而，我发现对于非服务器端渲染，没有令人满意的解决方案。因此，我决定创建一个名为vue-markdown-shiki的插件。希望大家会发现它有用和愉快。
+
+如果你正在寻找一个Node.js解决方案（SSR），你可以考虑使用[markdown-it-shiki](https://www.npmjs.com/package/markdown-it-shiki)。
+
+已完成的功能：
+
+- 可以直接使用的Vue组件
+- 扩展了markdownIt属性的支持
+- ChatGPT流式输出显示
+- 可自定义的代码块插槽
+- 代码块标题，允许下载和复制
+
+下一步的开发计划：
+
+- 优化服务器端渲染场景
+- 为像Nuxt这样的框架提供示例项目。
+
 ## ⚙️ 选项
 
 `VueMarkdownIt` 选项：
