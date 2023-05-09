@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.4...vue-markdown-shiki@1.4.5) (2023-05-09)
+
+
+### 📝 Documentation | 文档
+
+* update readme ([ca7a2aa](https://github.com/toimc/vue-markdown-shiki/commit/ca7a2aa6edb0c7a7c3058678a1f762f59251290b))
+
+
+
 ## [1.4.4](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.3...vue-markdown-shiki@1.4.4) (2023-05-09)
 
 
