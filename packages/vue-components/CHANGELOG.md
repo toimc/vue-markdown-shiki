@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.3...vue-markdown-shiki@1.4.4) (2023-05-09)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* language regex bug ([0e81168](https://github.com/toimc/vue-markdown-shiki/commit/0e81168ba8490ca2ebd35375298f245dc3babf60))
+
+
+### 📝 Documentation | 文档
+
+* Motion update ([095bb56](https://github.com/toimc/vue-markdown-shiki/commit/095bb564cfc1923468e1dfa0313d067066e20d98))
+
+
+
 ## [1.4.3](https://github.com/toimc/vue-markdown-shiki/compare/vue-markdown-shiki@1.4.2...vue-markdown-shiki@1.4.3) (2023-04-28)
 
 
