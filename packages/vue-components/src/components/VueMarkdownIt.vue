@@ -100,7 +100,7 @@ export default defineComponent({
 
           return <VueGroupCode names={names} blocks={blocks}></VueGroupCode>
         } else if (languageClassFound) {
-          const langMatch = element.className.match(/language-(\w+)/)
+          const langMatch = element.className.match(/language-([\w+]+)/)
           const lang = langMatch ? langMatch[1] : 'plain'
 
           const item = getCodes(element.innerHTML, lang)
@@ -144,7 +144,7 @@ export default defineComponent({
         for (let i = 0; i < match.length; i++) {
           const item = match[i]
           try {
-            const langType = transform[item.toLocaleUpperCase()] || item
+            const langType = transform[item.toLocaleLowerCase()] || item
             await loadLangFn.value(langType as Lang)
             // loadLangFn.value(match[i] as Lang).then(() => {
             //   console.log('loaded')
