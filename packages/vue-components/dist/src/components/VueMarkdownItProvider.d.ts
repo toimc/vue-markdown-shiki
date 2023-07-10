@@ -1,6 +1,6 @@
 import type { PropType } from 'vue';
 import type { MarkdownOptions } from '../markdown';
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     options: {
         type: PropType<MarkdownOptions>;
         default: {
@@ -27,5 +27,12 @@ declare const _sfc_main: import("vue").DefineComponent<{
 }>>, {
     class: string;
     options: MarkdownOptions;
+}, {}>, {
+    default?(_: {}): any;
 }>;
-export default _sfc_main;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

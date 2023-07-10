@@ -1,4 +1,4 @@
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     lang: {
         type: StringConstructor;
         default: string;
@@ -46,5 +46,12 @@ declare const _sfc_main: import("vue").DefineComponent<{
     copiedTxt: string;
     item: string;
     downloadTxt: string;
+}, {}>, {
+    default?(_: {}): any;
 }>;
-export default _sfc_main;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

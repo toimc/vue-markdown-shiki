@@ -1,5 +1,5 @@
 import type { PropType } from 'vue';
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<{
     names: {
         type: PropType<String[]>;
         required: true;
@@ -17,5 +17,5 @@ declare const _sfc_main: import("vue").DefineComponent<{
         type: PropType<NodeListOf<Element>>;
         required: true;
     };
-}>>, {}>;
-export default _sfc_main;
+}>>, {}, {}>;
+export default _default;

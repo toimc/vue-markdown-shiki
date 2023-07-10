@@ -1,7 +1,5 @@
 import type { PropType, CSSProperties } from 'vue';
-import type { Lang } from 'shiki';
-import type MarkdownIt from 'markdown-it';
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: import("vue").DefineComponent<{
     content: {
         type: StringConstructor;
         required: true;
@@ -18,11 +16,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-}, {
-    render: import("vue").Ref<string>;
-    md: import("vue").Ref<MarkdownIt | undefined>;
-    loadLangFn: import("vue").Ref<((lang: Lang) => Promise<void>) | undefined>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     content: {
         type: StringConstructor;
         required: true;
@@ -43,5 +37,5 @@ declare const _sfc_main: import("vue").DefineComponent<{
     style: CSSProperties;
     class: string;
     stream: boolean;
-}>;
-export default _sfc_main;
+}, {}>;
+export default _default;
