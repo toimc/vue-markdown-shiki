@@ -17,7 +17,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "conventional-changelog-conventionalcommits": "^5.0.0"
+    "conventional-changelog-conventionalcommits": "^5.0.0",
+    "lerna": "6"
   },
   "repository": {
     "type": "git",
