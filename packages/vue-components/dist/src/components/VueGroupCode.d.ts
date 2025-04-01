@@ -1,5 +1,5 @@
-import type { PropType } from 'vue';
-declare const _default: import("vue").DefineComponent<{
+import { PropType } from 'vue';
+declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     names: {
         type: PropType<String[]>;
         required: true;
@@ -8,7 +8,7 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<NodeListOf<Element>>;
         required: true;
     };
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     names: {
         type: PropType<String[]>;
         required: true;
@@ -17,5 +17,5 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<NodeListOf<Element>>;
         required: true;
     };
-}>>, {}, {}>;
+}>> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

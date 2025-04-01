@@ -7,7 +7,7 @@ import VueGroupCode from './VueGroupCode.vue'
 import '../theme/index'
 
 import type { PropType, VNode, CSSProperties } from 'vue'
-import type { Lang } from 'shiki'
+import type { BundledLanguage } from 'shiki'
 import type { MarkdownType } from '../markdown'
 import type MarkdownIt from 'markdown-it'
 
@@ -23,7 +23,7 @@ export default defineComponent({
     },
     style: {
       type: Object as PropType<CSSProperties>,
-      default: () => {}
+      default: () => { }
     },
     class: {
       type: String,
@@ -145,7 +145,7 @@ export default defineComponent({
           const item = match[i]
           try {
             const langType = transform[item.toLocaleLowerCase()] || item
-            await loadLangFn.value(langType as Lang)
+            await loadLangFn.value(langType as BundledLanguage)
             // loadLangFn.value(match[i] as Lang).then(() => {
             //   console.log('loaded')
             // })

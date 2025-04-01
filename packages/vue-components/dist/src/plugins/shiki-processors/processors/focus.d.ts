@@ -1,5 +1,5 @@
-import type { RangeProcessorOptions } from '../utils/create-range-processor';
-import type { Processor } from '../types';
+import { RangeProcessorOptions } from '../utils/create-range-processor';
+import { Processor } from '../types';
 export interface FocusProcessorOptions extends RangeProcessorOptions {
     hasFocusedLinesClass?: string;
     hasFocusClass?: string;

@@ -1,5 +1,7 @@
-import type { TagClassesDictionary, ProcessorHandler } from '../types';
+import { ProcessorHandler } from '../types';
+type TagClassesDictionary = Record<string, string[]>;
 export interface RangeProcessorOptions {
-    tagRegExp?: RegExp;
+    [key: string]: any;
 }
-export declare function createRangeProcessor(dictionary: TagClassesDictionary, options?: RangeProcessorOptions): ProcessorHandler;
+export declare const createRangeProcessor: (classesMap: TagClassesDictionary, options?: RangeProcessorOptions) => ProcessorHandler;
+export {};

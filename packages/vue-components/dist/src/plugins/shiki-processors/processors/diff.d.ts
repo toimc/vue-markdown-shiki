@@ -1,5 +1,5 @@
-import type { Processor } from '../types';
-import type { RangeProcessorOptions } from '../utils/create-range-processor';
+import { Processor } from '../types';
+import { RangeProcessorOptions } from '../utils/create-range-processor';
 export interface DiffProcessorOptions extends RangeProcessorOptions {
     commonDiffClass?: string;
     removedLinesClasses?: string[];

@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite';
+import { Plugin } from 'vite';
 interface Options {
     distDir?: string;
     overwrite?: boolean;

@@ -1,4 +1,4 @@
-import type { Highlighter, Lang } from 'shiki'
+import type { Highlighter, BundledLanguage } from 'shiki'
 
 export const EXTERNAL_URL_RE = /^[a-z]+:/i
 export const PATHNAME_PROTOCOL_RE = /^pathname:\/\//
@@ -90,7 +90,7 @@ export function sanitizeFileName(name: string): string {
 export interface HighlightPlugin {
   plugin: (str: string, lang: string, attrs: string) => string
   highlighter: Highlighter
-  loadLang: (lang: Lang) => Promise<void>
+  loadLang: (lang: BundledLanguage) => Promise<void>
 }
 
 export const MarkdownSymbol = Symbol('vue-md-shiki-component')

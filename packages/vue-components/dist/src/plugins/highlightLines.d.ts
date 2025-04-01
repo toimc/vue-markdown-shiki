@@ -1,2 +1,2 @@
-import type MarkdownIt from 'markdown-it';
+import { default as MarkdownIt } from 'markdown-it';
 export declare const highlightLinePlugin: (md: MarkdownIt) => void;

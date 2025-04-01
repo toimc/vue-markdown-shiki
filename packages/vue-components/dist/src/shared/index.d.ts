@@ -1,4 +1,4 @@
-import type { Highlighter, Lang } from 'shiki';
+import { Highlighter, BundledLanguage } from 'shiki';
 export declare const EXTERNAL_URL_RE: RegExp;
 export declare const PATHNAME_PROTOCOL_RE: RegExp;
 export declare const APPEARANCE_KEY = "vitepress-theme-appearance";
@@ -40,7 +40,7 @@ export declare function sanitizeFileName(name: string): string;
 export interface HighlightPlugin {
     plugin: (str: string, lang: string, attrs: string) => string;
     highlighter: Highlighter;
-    loadLang: (lang: Lang) => Promise<void>;
+    loadLang: (lang: BundledLanguage) => Promise<void>;
 }
 export declare const MarkdownSymbol: unique symbol;
 export declare const getLangs: () => string[];

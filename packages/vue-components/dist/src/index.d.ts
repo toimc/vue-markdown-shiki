@@ -1,8 +1,8 @@
-import type { App } from 'vue';
-import type { MarkdownOptions } from './markdown';
-import VueMarkdownIt from "./components/VueMarkdownIt";
-import VueMarkDownHeader from "./components/VueMarkDownHeader";
-import VueMarkdownItProvider from "./components/VueMarkdownItProvider";
+import { App } from 'vue';
+import { MarkdownOptions } from './markdown';
+import { default as VueMarkdownIt } from './components/VueMarkdownIt';
+import { default as VueMarkDownHeader } from './components/VueMarkDownHeader';
+import { default as VueMarkdownItProvider } from './components/VueMarkdownItProvider';
 /**
  * Install a Markdown renderer plugin into a Vue.js app instance.
  * @param {App} app - The Vue.js app instance to install the plugin into.

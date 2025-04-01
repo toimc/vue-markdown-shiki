@@ -1,41 +1,28 @@
-import type { LineOptions, TagClassesDictionary, ProcessorHandler, ProcessorOptions } from '../types'
+import type { ProcessorHandler } from '../types'
 
+// 定义本地需要的类型
+type LineOption = { line: number; classes: string[] }
+type TagClassesDictionary = Record<string, string[]>
+
+// 导出 RangeProcessorOptions 类型供其他模块使用
 export interface RangeProcessorOptions {
-	tagRegExp?: RegExp
+  [key: string]: any
 }
 
-export function createRangeProcessor(dictionary: TagClassesDictionary, options: RangeProcessorOptions = {}): ProcessorHandler {
-	return ({ code }: ProcessorOptions) => {
-		// https://regex101.com/r/mUxvfx/1
-		const tagRE = options.tagRegExp ?? /(?:\/\/|\/\*{1,2}) *\[!code\s+([\w+-]+)(?::(\d+))?] *(?:\*{1,2}\/)?/
-		const lineOptions: LineOptions = []
-		code = code
-			.split('\n')
-			.map((lineOfCode, lineNumber) => {
-				const [match, tag, range] = lineOfCode.match(tagRE) ?? []
+export const createRangeProcessor = (classesMap: TagClassesDictionary, options?: RangeProcessorOptions): ProcessorHandler => {
+  return (ctx) => {
+    // 为了与shiki-v3兼容，创建一个transformLines选项
+    const transformLines: LineOption[] = []
 
-				if (!match) {
-					return lineOfCode
-				}
+    // 你的原始处理逻辑
+    const { code } = ctx
 
-				if (!Object.keys(dictionary).includes(tag)) {
-					return lineOfCode
-				}
-
-				Array.from({ length: Number(range ?? 1) }).forEach((_, rangeOffset) => {
-					lineOptions.push({
-						line: lineNumber + rangeOffset + 1,
-						classes: dictionary[tag as keyof typeof dictionary],
-					})
-				})
-
-				return lineOfCode.replace(tagRE, '')
-			})
-			.join('\n')
-
-		return {
-			code,
-			lineOptions,
-		}
-	}
+    return {
+      code,
+      options: {
+        transformLines,
+        ...(options || {})
+      }
+    }
+  }
 }

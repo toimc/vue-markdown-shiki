@@ -1,9 +1,29 @@
 import type MarkdownIt from 'markdown-it'
-import type { RenderRule } from 'markdown-it/lib/renderer'
-import type Token from 'markdown-it/lib/token'
 import container from 'markdown-it-container'
 import { nanoid } from 'nanoid'
 import { extractTitle } from './preWrapper'
+
+// 定义Token和RenderRule类型
+type Token = {
+  nesting: number
+  info: string
+  markup: string
+  map?: [number, number]
+  type: string
+  tag: string
+  content: string
+  meta?: any
+  block: boolean
+  hidden: boolean
+  attrs?: [string, string][]
+  children?: Token[]
+  level: number
+}
+
+// 定义 MarkdownIt 选项类型
+type MarkdownItOptions = Record<string, any>
+
+type RenderRule = (tokens: Token[], idx: number, options: MarkdownItOptions, env: any, self: any) => string
 
 export const containerPlugin = (md: MarkdownIt) => {
   md.use(...createContainer('tip', 'TIP', md))

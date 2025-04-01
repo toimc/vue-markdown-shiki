@@ -1,5 +1,5 @@
 <template>
-  <div :class="class">
+  <div :class="customClass">
     <slot></slot>
   </div>
 </template>
@@ -26,6 +26,9 @@ const props = defineProps({
     default: ''
   }
 })
+
+// 重命名props.class为customClass避免冲突
+const customClass = props.class
 
 const md = createMarkdownRenderer({
   ...props.options

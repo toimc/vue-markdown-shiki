@@ -1,4 +1,15 @@
-declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
+declare function __VLS_template(): {
+    attrs: Partial<{}>;
+    slots: {
+        default?(_: {}): any;
+    };
+    refs: {
+        copyRef: HTMLDivElement;
+    };
+    rootEl: HTMLDivElement;
+};
+type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
+declare const __VLS_component: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     lang: {
         type: StringConstructor;
         default: string;
@@ -19,7 +30,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     lang: {
         type: StringConstructor;
         default: string;
@@ -40,15 +51,16 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: StringConstructor;
         default: string;
     };
-}>>, {
+}>> & Readonly<{}>, {
     lang: string;
     copyTxt: string;
     copiedTxt: string;
     item: string;
     downloadTxt: string;
-}, {}>, {
-    default?(_: {}): any;
-}>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
+    copyRef: HTMLDivElement;
+}, HTMLDivElement>;
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {
     new (): {

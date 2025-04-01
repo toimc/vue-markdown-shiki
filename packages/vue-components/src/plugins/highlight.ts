@@ -1,11 +1,4 @@
-// import c from 'picocolors'
-import type {
-  // BUNDLED_LANGUAGES,
-  HtmlRendererOptions,
-  ILanguageRegistration,
-  IThemeRegistration,
-  Lang
-} from 'shiki'
+import type { LanguageRegistration, ThemeRegistration, BundledLanguage, BundledTheme } from 'shiki'
 import type { Processor } from './shiki-processors/index'
 import type { Logger } from 'vite'
 import type { ThemeOptions } from '../markdown'
@@ -25,34 +18,30 @@ import {
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz', 10)
 
 /**
- * 2 steps:
- *
- * 1. convert attrs into line numbers:
- *    {4,7-13,16,23-27,40} -> [4,7,8,9,10,11,12,13,16,23,24,25,26,27,40]
- * 2. convert line numbers into line options:
- *    [{ line: number, classes: string[] }]
+ * 在Shiki v3中不再需要lineOptions，此函数保留供参考
+ * 将未来可能需要重新实现类似功能，目前已替换为transformers
  */
-const attrsToLines = (attrs: string): HtmlRendererOptions['lineOptions'] => {
-  attrs = attrs.replace(/^(?:\[.*?\])?.*?([\d,-]+).*/, '$1').trim()
-  const result: number[] = []
-  if (!attrs) {
-    return []
-  }
-  attrs
-    .split(',')
-    .map((v) => v.split('-').map((v) => parseInt(v, 10)))
-    .forEach(([start, end]) => {
-      if (start && end) {
-        result.push(...Array.from({ length: end - start + 1 }, (_, i) => start + i))
-      } else {
-        result.push(start)
-      }
-    })
-  return result.map((v) => ({
-    line: v,
-    classes: ['highlighted']
-  }))
-}
+// const attrsToLines = (attrs: string) => {
+//   attrs = attrs.replace(/^(?:\[.*?\])?.*?([\d,-]+).*/, '$1').trim()
+//   const result: number[] = []
+//   if (!attrs) {
+//     return []
+//   }
+//   attrs
+//     .split(',')
+//     .map((v) => v.split('-').map((v) => parseInt(v, 10)))
+//     .forEach(([start, end]) => {
+//       if (start && end) {
+//         result.push(...Array.from({ length: end - start + 1 }, (_, i) => start + i))
+//       } else {
+//         result.push(start)
+//       }
+//     })
+//   return result.map((v) => ({
+//     line: v,
+//     classes: ['highlighted']
+//   }))
+// }
 
 const errorLevelProcessor = defineProcessor({
   name: 'error-level',
@@ -63,13 +52,16 @@ const errorLevelProcessor = defineProcessor({
 })
 
 export async function highlight(
-  theme: ThemeOptions = 'material-theme-palenight',
-  languages: ILanguageRegistration[] = [],
+  theme: ThemeOptions = 'github-dark',
+  languages: LanguageRegistration[] = [],
   defaultLang: string = '',
   logger: Pick<Logger, 'warn'> = console
 ): Promise<HighlightPlugin> {
   const hasSingleTheme = typeof theme === 'string' || 'name' in theme
-  const getThemeName = (themeValue: IThemeRegistration) => (typeof themeValue === 'string' ? themeValue : themeValue.name)
+  const getThemeName = (themeValue: ThemeRegistration): string => {
+    if (typeof themeValue === 'string') return themeValue
+    return themeValue.name || 'github-dark' // 提供默认值
+  }
 
   const processors: Processor[] = [
     createFocusProcessor(),
@@ -78,21 +70,32 @@ export async function highlight(
     errorLevelProcessor
   ]
 
-  // 初始化highlighter
-  const highlighter = await getHighlighter({
-    themes: hasSingleTheme ? [theme] : [theme.dark, theme.light],
-    // something wrong with shiki, cannot dynamic load css
+  // 创建highlighter配置
+  const options: any = {
     langs: ['css', ...languages],
     processors
-  })
+  }
 
-  const loadLang = async (lang: Lang) => {
+  // 设置主题
+  if (hasSingleTheme) {
+    options.themes = [theme]
+  } else {
+    // @ts-ignore - 双主题模式
+    options.themes = [theme.dark, theme.light]
+  }
+
+  // 初始化highlighter
+  const highlighter = await getHighlighter(options)
+
+  const loadLang = async (lang: BundledLanguage) => {
     if (lang && !highlighter.getLoadedLanguages().includes(lang)) {
       await highlighter.loadLanguage(lang)
     }
   }
 
-  await loadLang(defaultLang as Lang)
+  if (defaultLang) {
+    await loadLang(defaultLang as BundledLanguage)
+  }
 
   const styleRE = /<pre[^>]*(style=".*?")/
   const preRE = /^<pre(.*?)>/
@@ -106,17 +109,10 @@ export async function highlight(
     if (lang) {
       const langLoaded = highlighter.getLoadedLanguages().includes(lang as any)
       if (!langLoaded && lang !== 'ansi' && lang !== 'txt') {
-        // highlighter.loadLanguage(lang as Lang)
-        logger.warn(
-          // c.yellow(
-          `\nThe language '${lang}' is not loaded, falling back to '${defaultLang || 'txt'}' for syntax highlighting.`
-          // )
-        )
-        // lang = defaultLang
+        logger.warn(`\nThe language '${lang}' is not loaded, falling back to '${defaultLang || 'txt'}' for syntax highlighting.`)
       }
     }
 
-    const lineOptions = attrsToLines(attrs)
     const cleanup = (str: string) => {
       return str
         .replace(preRE, (_, attributes) => `<pre ${vPre}${attributes.replace(' tabindex="0"', '')}>`)
@@ -150,31 +146,34 @@ export async function highlight(
 
     str = removeMustache(str)
 
-    const codeToHtml = (theme: IThemeRegistration) => {
+    const codeToHtml = (theme: ThemeRegistration) => {
       let res: any
       try {
+        const themeName = getThemeName(theme)
         res =
           lang === 'ansi'
-            ? highlighter.ansiToHtml(str, {
-                lineOptions,
-                theme: getThemeName(theme)
+            ? highlighter.codeToHtml(str, {
+                lang: 'ansi',
+                theme: themeName as BundledTheme
               })
             : highlighter.codeToHtml(str, {
                 lang,
-                lineOptions,
-                theme: getThemeName(theme)
+                theme: themeName as BundledTheme
               })
       } catch (error) {
-        res = highlighter.ansiToHtml(str, {
-          lineOptions,
-          theme: getThemeName(theme)
+        const themeName = getThemeName(theme)
+        res = highlighter.codeToHtml(str, {
+          lang: 'ansi',
+          theme: themeName as BundledTheme
         })
       }
       return fillEmptyHighlightedLine(cleanup(restoreMustache(res)))
     }
 
-    if (hasSingleTheme) return codeToHtml(theme)
+    if (hasSingleTheme) return codeToHtml(theme as ThemeRegistration)
+    // @ts-ignore - 双主题模式
     const dark = addClass(codeToHtml(theme.dark), 'vp-code-dark', 'pre')
+    // @ts-ignore - 双主题模式
     const light = addClass(codeToHtml(theme.light), 'vp-code-light', 'pre')
     return dark + light
   }

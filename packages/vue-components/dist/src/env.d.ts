@@ -1,5 +1,5 @@
-import type { MarkdownSfcBlocks } from '@mdit-vue/plugin-sfc';
-import type { Header } from './shared/index';
+import { MarkdownSfcBlocks } from '@mdit-vue/plugin-sfc';
+import { Header } from './shared/index';
 export interface MarkdownEnv {
     /**
      * The raw Markdown content without frontmatter

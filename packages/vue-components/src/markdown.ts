@@ -11,8 +11,8 @@ import { slugify } from '@mdit-vue/shared'
 import MarkdownIt from 'markdown-it'
 import anchorPlugin from 'markdown-it-anchor'
 import attrsPlugin from 'markdown-it-attrs'
-import emojiPlugin from 'markdown-it-emoji'
-import type { ILanguageRegistration, IThemeRegistration } from 'shiki'
+import { full as emoji } from 'markdown-it-emoji'
+import type { LanguageRegistration, ThemeRegistration } from 'shiki'
 import type { Logger } from 'vite'
 import { containerPlugin } from './plugins/containers'
 import { highlight } from './plugins/highlight'
@@ -24,10 +24,10 @@ import { preWrapperPlugin } from './plugins/preWrapper'
 import type { HighlightPlugin } from './shared'
 // import { snippetPlugin } from './plugins/snippet'
 
-export type ThemeOptions = IThemeRegistration | { light: IThemeRegistration; dark: IThemeRegistration }
+export type ThemeOptions = string | ThemeRegistration | { light: ThemeRegistration; dark: ThemeRegistration }
 
 // 类型说明
-export interface MarkdownOptions extends MarkdownIt.Options {
+export interface MarkdownOptions {
   lineNumbers?: boolean
   config?: (md: MarkdownIt) => void
   anchor?: anchorPlugin.AnchorOptions
@@ -42,9 +42,16 @@ export interface MarkdownOptions extends MarkdownIt.Options {
   headers?: HeadersPluginOptions | boolean
   // sfc?: SfcPluginOptions
   theme?: ThemeOptions
-  languages?: ILanguageRegistration[]
+  languages?: LanguageRegistration[]
   toc?: TocPluginOptions
   externalLinks?: Record<string, string>
+  html?: boolean
+  linkify?: boolean
+  xhtmlOut?: boolean
+  breaks?: boolean
+  langPrefix?: string
+  quotes?: string | string[]
+  highlight?: (str: string, lang: string, attrs: string) => string
 }
 
 export type MarkdownRenderer = MarkdownIt
@@ -92,7 +99,7 @@ export const createMarkdownRenderer = async (
   if (!options.attrs?.disable) {
     md.use(attrsPlugin, options.attrs)
   }
-  md.use(emojiPlugin)
+  md.use(emoji)
 
   // mdit-vue plugins
   md.use(anchorPlugin, {

@@ -1,15 +1,15 @@
-import { type HeadersPluginOptions } from '@mdit-vue/plugin-headers';
-import { type TocPluginOptions } from '@mdit-vue/plugin-toc';
-import MarkdownIt from 'markdown-it';
-import anchorPlugin from 'markdown-it-anchor';
-import type { ILanguageRegistration, IThemeRegistration } from 'shiki';
-import type { Logger } from 'vite';
-import type { HighlightPlugin } from './shared';
-export type ThemeOptions = IThemeRegistration | {
-    light: IThemeRegistration;
-    dark: IThemeRegistration;
+import { HeadersPluginOptions } from '@mdit-vue/plugin-headers';
+import { TocPluginOptions } from '@mdit-vue/plugin-toc';
+import { default as MarkdownIt } from 'markdown-it';
+import { default as anchorPlugin } from 'markdown-it-anchor';
+import { LanguageRegistration, ThemeRegistration } from 'shiki';
+import { Logger } from 'vite';
+import { HighlightPlugin } from './shared';
+export type ThemeOptions = string | ThemeRegistration | {
+    light: ThemeRegistration;
+    dark: ThemeRegistration;
 };
-export interface MarkdownOptions extends MarkdownIt.Options {
+export interface MarkdownOptions {
     lineNumbers?: boolean;
     config?: (md: MarkdownIt) => void;
     anchor?: anchorPlugin.AnchorOptions;
@@ -22,9 +22,16 @@ export interface MarkdownOptions extends MarkdownIt.Options {
     defaultHighlightLang?: string;
     headers?: HeadersPluginOptions | boolean;
     theme?: ThemeOptions;
-    languages?: ILanguageRegistration[];
+    languages?: LanguageRegistration[];
     toc?: TocPluginOptions;
     externalLinks?: Record<string, string>;
+    html?: boolean;
+    linkify?: boolean;
+    xhtmlOut?: boolean;
+    breaks?: boolean;
+    langPrefix?: string;
+    quotes?: string | string[];
+    highlight?: (str: string, lang: string, attrs: string) => string;
 }
 export type MarkdownRenderer = MarkdownIt;
 export type MarkdownType = {
@@ -40,4 +47,4 @@ export type MarkdownType = {
  * @param {Pick<Logger, 'warn'>} [logger=console] - The logger.
  * @returns {Promise<MarkdownType>} The markdown renderer, highlighter, and loadLang function.
  */
-export declare const createMarkdownRenderer: (options?: MarkdownOptions, base?: string, logger?: Pick<Logger, 'warn'>) => Promise<MarkdownType>;
+export declare const createMarkdownRenderer: (options?: MarkdownOptions, base?: string, logger?: Pick<Logger, "warn">) => Promise<MarkdownType>;
