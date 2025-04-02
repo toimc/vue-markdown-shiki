@@ -7,33 +7,15 @@
 ## ✨ 特点
 
 - Vue 3 整合，便于组件开发
-- Shiki 整合，实现高效代码语法高亮
+- Shiki v3 整合，实现高效代码语法高亮
 - Markdown-it 整合，提供强大的 Markdown 解析功能
 - 可定制的代码高亮和 Markdown 解析选项
 - 复制和下载功能
+- 兼容 Vite 6
 - 提供两个组件：`VueMarkdownIt` 和 `VueMarkDownHeader`
   - `VueMarkdownIt` 渲染原生 Markdown 字符串并默认包含 `VueMarkDownHeader`
   - `VueMarkDownHeader` 提供复制和下载功能的菜单
   - `VueMarkdownItProvider` 是用于异步使用的包装器，提供了全局的 `md` 实例，用于 MarkdownIt。
-
-## 🌈 该项目的初衷
-
-在注意到Vitepress中Shiki提供的吸引人的代码高亮之后，我开始寻找相应的Vue组件解决方案。然而，我发现对于非服务器端渲染，没有令人满意的解决方案。因此，我决定创建一个名为vue-markdown-shiki的插件。希望大家会发现它有用和愉快。
-
-如果你正在寻找一个Node.js解决方案（SSR），你可以考虑使用[markdown-it-shiki](https://www.npmjs.com/package/markdown-it-shiki)。
-
-已完成的功能：
-
-- 可以直接使用的Vue组件
-- 扩展了markdownIt属性的支持
-- ChatGPT流式输出显示
-- 可自定义的代码块插槽
-- 代码块标题，允许下载和复制
-
-下一步的开发计划：
-
-- 优化服务器端渲染场景
-- 为像Nuxt这样的框架提供示例项目。
 
 ## ⚙️ 选项
 
@@ -55,10 +37,17 @@
    ```bash
    npm install vue-markdown-shiki
    ```
+
    or
 
    ```bash
    yarn add vue-markdown-shiki
+   ```
+
+   或者使用 pnpm（推荐）：
+
+   ```bash
+   pnpm add vue-markdown-shiki
    ```
 
 2. 在 Vue 3 项目中导入所需的组件，修改 `main.ts`：
@@ -66,65 +55,62 @@
    ```typescript
    import 'vue-markdown-shiki/style'
    import markdownPlugin from 'vue-markdown-shiki'
-   
+
    app.use(markdownPlugin)
    ```
-   
+
    你还可以使用 `app.use(markdownPlugin, options)` 传递一个 `options`，该参数可以接受如下内容：
-   
+
    `MarkdownOptions` 接口扩展了 [`MarkdownIt.Options`](https://markdown-it.github.io/markdown-it/#MarkdownIt.new) 接口，提供了配置 Markdown-it 解析器的选项。除了基础选项外，`MarkdownOptions` 还提供了以下选项：
-   
+
    - `lineNumbers`：一个布尔值，指定是否应向代码块添加行号。
    - `config`：一个接受 `MarkdownIt` 实例并允许您对其进行配置的函数。
    - `anchor`：一个 `markdown-it-anchor` 插件选项对象，用于向 Markdown 中的标题添加锚点。
    - `attrs`：一个 `markdown-it-attrs` 插件选项对象，允许您向 Markdown 中的元素添加自定义属性。
    - `defaultHighlightLang`：一个字符串，指定要用于代码块高亮的默认语言。
    - `headers`：一个 `markdown-it-anchor` 插件选项对象，用于向 Markdown 中的标题添加锚点。如果设置为 `false`，则禁用该插件。
-   - `theme`：一个 `markdown-it-highlightjs-theme` 插件选项对象，允许您自定义用于代码高亮的主题。
-   - `languages`：一个对象数组，用于使用 `markdown-it-highlight` 插件注册其他要进行语法高亮的语言。
+   - `theme`：用于配置 Shiki 主题的选项对象，用于代码高亮。使用 Shiki v3，您可以使用内置主题和自定义主题。
+   - `languages`：一个对象数组，用于注册其他要进行语法高亮的语言。
    - `toc`：一个 `markdown-it-table-of-contents` 插件选项对象，用于为 Markdown 生成目录。
    - `externalLinks`：一个将域名映射到其对应 URL 前缀的对象，这些前缀将添加到 Markdown 中的外部链接中。
-   
+
    这些选项可以传递给 `app.use(markdownPlugin, options)` 方法，以配置 `VueMarkdownIt` 组件使用的 `markdown-it` 解析器。
-   
+
    **提示：为什么在这里需要使用 `app.use` 全局初始化实例？**
-   
+
    这是因为它允许我们在渲染 Markdown 字符串时避免重复加载语言 JSON，因此强烈建议进行全局初始化。如果您认为在页面加载期间进行初始化不够优雅，可以使用异步组件。请参阅[示例](https://vuejs.org/guide/components/async.html)。
-   
+
    a. 定义一个 `MD.vue` 组件:
-   
+
    ```vue
    <script setup lang="ts">
-     import {VueMarkdownItProvider, VueMarkdownIt} from 'vue-markdown-shiki'
+   import { VueMarkdownItProvider, VueMarkdownIt } from 'vue-markdown-shiki'
    </script>
-   
+
    <template>
      <VueMarkdownItProvider>
        <VueMarkdownIt :content="str" :stream="stream" ref="md" :class="theme"> </VueMarkdownIt>
      </VueMarkdownItProvider>
    </template>
    ```
-   
+
    b. 使用异步组件 `MD.vue`:
-   
+
    ```vue
    <script>
    import { defineAsyncComponent } from 'vue'
-   
+
    export default {
      components: {
-       AdminPage: defineAsyncComponent(() =>
-         import('./components/MD.vue')
-       )
+       AdminPage: defineAsyncComponent(() => import('./components/MD.vue'))
      }
    }
    </script>
    ```
 
-
 3. 复制资源：
 
-   - Vite-plugin:
+   - Vite-plugin（兼容 Vite 6）:
 
      ```bash
      npm install -D vite-plugin-forvmsc
@@ -145,13 +131,13 @@
 
      ```
 
-   - 手动复制对应的资源: `node_modules/vue-markdown-shiki/public/*`, 到你的Vue3项目的 `public` 目录.
+   - 手动复制对应的资源: `node_modules/vue-markdown-shiki/public/*`, 到你的 Vue3 项目的 `public` 目录.
 
 4. 在 Vue 3 模板中使用组件：
 
    ```vue
    import { VueMarkdownIt } from 'vue-markdown-shiki'
-   
+
    <template>
      <div>
        <VueMarkdownIt :content="'your-raw-markdown-string'" />
@@ -162,6 +148,7 @@
 要查看更详细的使用说明，请参阅 [示例](https://toimc.github.io/vue-markdown-shiki/).
 
 ## 贡献
+
 欢迎大家贡献！如果您发现一个错误或有功能请求，请在 GitHub 上提交一个 issue。如果您想贡献代码，请 fork 仓库并提交一个 pull request。
 
 ## 许可证

@@ -9,37 +9,17 @@ This is a Vue 3 component library that provides integration with Shiki and Markd
 ## ✨ Features
 
 - Vue 3 integration for easy component development
-- Shiki integration for efficient code syntax highlighting
+- Shiki v3 integration for efficient code syntax highlighting
 - Markdown-it integration for powerful Markdown parsing
 - Customizable code highlighting and Markdown parsing options
 - Copy and download functionality
+- Compatible with Vite 6
 - Two components provided: `VueMarkdownIt` and `VueMarkDownHeader`
   - `VueMarkdownIt` renders native Markdown strings and includes `VueMarkDownHeader` by default
   - `VueMarkDownHeader` provides a menu for copy and download functionality
   - `VueMarkdownItProvider` a wrapper for async use, provides a global `md` instance for MarkdownIt.
 
-## 🌈 Motion
-
-The initial intention behind this project:
-
-After noticing the attractive code highlighting provided by Shiki in Vitepress, I started looking for a corresponding Vue component solution. However, I found that there weren't any satisfactory solutions for non-server-side rendering. As a result, I decided to create a plugin called vue-markdown-shiki. I hope everyone will find it useful and enjoyable.
-
-If you are looking for a Node.js solution(SSR), you may consider using [markdown-it-shiki](https://www.npmjs.com/package/markdown-it-shiki).
-
-Completed features:
-
-- Vue components that can be used out-of-the-box
-- Extended support for markdownIt properties
-- ChatGPT stream-style output display
-- Customizable code block slot
-- Code block header that allows for download and copying
-
-Next development plan:
-
-- Optimization for SSR scenarios
-- Provide sample projects for frameworks such as Nuxt.
-
-## 📝 Intro
+## 🚀 Getting Started
 
 `VueMarkdownIt` options:
 
@@ -66,12 +46,18 @@ To use this component library in your Vue 3 project, follow these steps:
    yarn add vue-markdown-shiki
    ```
 
+   or with pnpm (recommended):
+
+   ```bash
+   pnpm add vue-markdown-shiki
+   ```
+
 2. Import the components you need in your Vue 3 project, modify `main.ts`：
 
    ```typescript
    import 'vue-markdown-shiki/style'
    import markdownPlugin from 'vue-markdown-shiki'
-   
+
    app.use(markdownPlugin)
    ```
 
@@ -85,8 +71,8 @@ To use this component library in your Vue 3 project, follow these steps:
    - `attrs`: An object of options for the `markdown-it-attrs` plugin, which allows you to add custom attributes to elements in the Markdown.
    - `defaultHighlightLang`: A string that specifies the default language for code blocks to be highlighted with.
    - `headers`: An object of options for the `markdown-it-anchor` plugin, which adds anchors to the headings in the Markdown. If set to `false`, the plugin will be disabled.
-   - `theme`: An object of options for the `markdown-it-highlightjs-theme` plugin, which allows you to customize the theme used for code highlighting.
-   - `languages`: An array of objects that register additional languages for highlighting with the `markdown-it-highlight` plugin.
+   - `theme`: An object of options for configuring the Shiki theme used for code highlighting. With Shiki v3, you can use both bundled themes and custom themes.
+   - `languages`: An array of objects that register additional languages for highlighting.
    - `toc`: An object of options for the `markdown-it-table-of-contents` plugin, which generates a table of contents for the Markdown.
    - `externalLinks`: An object that maps domain names to their corresponding URL prefixes, which are added to external links in the Markdown.
 
@@ -100,9 +86,9 @@ To use this component library in your Vue 3 project, follow these steps:
 
    ```vue
    <script setup lang="ts">
-     import {VueMarkdownItProvider, VueMarkdownIt} from 'vue-markdown-shiki'
+   import { VueMarkdownItProvider, VueMarkdownIt } from 'vue-markdown-shiki'
    </script>
-   
+
    <template>
      <VueMarkdownItProvider>
        <VueMarkdownIt :content="str" :stream="stream" ref="md" :class="theme"> </VueMarkdownIt>
@@ -115,22 +101,18 @@ To use this component library in your Vue 3 project, follow these steps:
    ```vue
    <script>
    import { defineAsyncComponent } from 'vue'
-   
+
    export default {
      components: {
-       AdminPage: defineAsyncComponent(() =>
-         import('./components/MD.vue')
-       )
+       AdminPage: defineAsyncComponent(() => import('./components/MD.vue'))
      }
    }
    </script>
    ```
 
-   
-
 3. Copy Assets:
 
-   - Vite-plugin:
+   - Vite-plugin (compatible with Vite 6):
 
      ```bash
      npm install -D vite-plugin-forvmsc
@@ -157,7 +139,7 @@ To use this component library in your Vue 3 project, follow these steps:
 
    ```vue
    import { VueMarkdownIt } from 'vue-markdown-shiki'
-   
+
    <template>
      <div>
        <VueMarkdownIt :content="'your-raw-markdown-string'" />
@@ -166,8 +148,6 @@ To use this component library in your Vue 3 project, follow these steps:
    ```
 
 For more detailed usage instructions, please see the [Example](https://toimc.github.io/vue-markdown-shiki/).
-
-
 
 ## Contributing
 
